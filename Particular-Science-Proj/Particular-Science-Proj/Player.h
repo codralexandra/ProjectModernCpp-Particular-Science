@@ -6,12 +6,17 @@ class Player
 {
 public:
 
+
+	bool GetIsDrawing();
+	int16_t GetPersonalScore();
+	void UpdateScore();
+
 private:
 	//caracter
-	bool isDrawing;
-	bool isLeader;
-	int16_t personalScore;
-	std::chrono::time_point<std::chrono::high_resolution_clock>startTime;
+	bool m_isDrawing;
+	bool m_isLeader;
+	int16_t m_personalScore;
+	//std::chrono::time_point<std::chrono::high_resolution_clock>startTime;
 
 };
 
