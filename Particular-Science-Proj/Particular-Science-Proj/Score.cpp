@@ -9,13 +9,35 @@ Score::Score(uint16_t timp, const std::string& dificultate):m_timp(timp), m_difi
 {
 }
 
-void Score::SetTimp(uint16_t timp)
+Score::Score(const Score& s)
+{
+	this->m_timp = s.m_timp;
+	this->m_dificultate = s.m_dificultate;
+}
+
+Score& Score::operator=(const Score& s)
+{
+	this->m_timp = s.m_timp;
+	this->m_dificultate = s.m_dificultate;
+}
+
+void Score::SetTime(uint16_t timp)
 {
 	this->m_timp = timp;
 }
 
-void Score::SetDificultate(const std::string& dificultate)
+void Score::SetDificulty(const std::string& dificultate)
 {
 	this->m_dificultate = dificultate;
+}
+
+uint16_t Score::GetTime()
+{
+	return this->m_timp;
+}
+
+std::string Score::GetDificulty()
+{
+	return this->m_dificultate;
 }
 
