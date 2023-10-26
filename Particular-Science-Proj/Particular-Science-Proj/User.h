@@ -9,6 +9,8 @@ public:
 	User& operator=(const User& user);
 	User(const User& user);
 
+	~User();
+
 	std::string GetUsername();
 	std::string GetEmail();
 	std::string GetPassword();
