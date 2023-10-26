@@ -1,22 +1,24 @@
 #pragma once
+#include "User.h"
 #include <cstdint>
 #include <iostream>
 #include <chrono>
-class Player
+class Player: public User 
 {
 public:
 
 
+	void SetIsDrawing();
+	void UpdateScore(int16_t newscore);
 	bool GetIsDrawing();
 	int16_t GetPersonalScore();
-	void UpdateScore();
+	std::string GetPlayerUsername();
+	bool GetHasTopScore();
 
 private:
-	//caracter
+	char caracter; //placeholder 
 	bool m_isDrawing;
-	bool m_isLeader;
-	int16_t m_personalScore;
-	//std::chrono::time_point<std::chrono::high_resolution_clock>startTime;
-
+	bool m_hasTopScore;
+	int16_t m_personalScore; 
 };
 
