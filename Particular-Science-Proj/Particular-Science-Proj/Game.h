@@ -3,11 +3,11 @@
 #include "Player.h"
 #include "Difficulty.h"
 
-class Match
+class Game
 {
 public:
-	Match();
-	Match(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date);
+	Game();
+	Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date);
 
 	void setPlayers(std::vector<Player> players);
 	void setWords(std::vector<std::string> words);
