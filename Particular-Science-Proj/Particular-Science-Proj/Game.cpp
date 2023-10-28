@@ -1,40 +1,40 @@
-#include "Match.h"
+#include "Game.h"
 
-Match::Match()
+Game::Game()
 {
 }
 
-Match::Match(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date) :
+Game::Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date) :
 	m_players{ players }, m_difficulty{ difficulty }, m_words{ words }, m_date{ date }
 {
 }
 
-void Match::setPlayers(std::vector<Player> players)
+void Game::setPlayers(std::vector<Player> players)
 {
 	m_players = players;
 }
 
-void Match::setWords(std::vector<std::string> words)
+void Game::setWords(std::vector<std::string> words)
 {
 	m_words = words;
 }
 
-void Match::setDate(std::string date)
+void Game::setDate(std::string date)
 {
 	m_date = date;
 }
 
-std::vector<Player> Match::getPlayers()
+std::vector<Player> Game::getPlayers()
 {
 	return m_players;
 }
 
-std::vector<std::string> Match::getWords()
+std::vector<std::string> Game::getWords()
 {
 	return m_words;
 }
 
-std::string Match::getDate()
+std::string Game::getDate()
 {
 	return m_date;
 }
