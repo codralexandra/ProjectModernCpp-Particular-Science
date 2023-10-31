@@ -1,13 +1,14 @@
 #include "User.h"
 
-User::User(): m_email(""), m_password(""), m_personalBest(0)
+User::User(): m_email(""), m_password(""), m_gameHistory(), m_personalBest(0)
 {
 
 }
 
-User::User(const std::string& email, const std::string& password, uint16_t personalBest): 
-	m_email(email), m_password(password), m_personalBest(personalBest)
+User::User(const std::string& email, const std::string& password, const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest):
+	m_email(email), m_password(password), m_gameHistory(gameHistory), m_personalBest(personalBest)
 {
+
 }
 
 User& User::operator=(const User& user)

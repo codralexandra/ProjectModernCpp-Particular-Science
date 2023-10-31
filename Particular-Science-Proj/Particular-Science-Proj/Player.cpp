@@ -20,11 +20,6 @@ int16_t Player::GetPersonalScore()
     return m_personalScore;
 }
 
-std::string Player::GetPlayerUsername()
-{
-    return User::GetUsername();
-}
-
 bool Player::GetHasTopScore()
 {
     return m_hasTopScore;

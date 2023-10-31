@@ -12,7 +12,6 @@ public:
 	void UpdateScore(int16_t newscore);
 	bool GetIsDrawing();
 	int16_t GetPersonalScore();
-	std::string GetPlayerUsername();
 	bool GetHasTopScore();
 
 private:
