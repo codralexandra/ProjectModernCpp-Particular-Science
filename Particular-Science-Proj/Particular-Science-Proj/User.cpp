@@ -85,3 +85,17 @@ void User::AddGameToGameHistory(std::pair<uint16_t, std::string> game)
 	}
 }
 
+std::ostream& operator<<(std::ostream& ostream, const User& user)
+{
+	std::queue<std::pair<uint16_t, std::string>> copyGameHistory = user.m_gameHistory;
+	ostream <<"Email: " << user.m_email <<"\n" 
+		<< "Password: " << user.m_password << "\n"
+		<< "Game history: \n";
+	while (!copyGameHistory.empty())
+	{
+		ostream << copyGameHistory.front().first << ", " << copyGameHistory.front().first << " ";
+		copyGameHistory.pop();
+	}
+	ostream << "Personal best: " << user.m_personalBest << "\n";
+	return ostream;
+}
