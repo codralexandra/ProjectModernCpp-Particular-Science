@@ -15,6 +15,7 @@ User& User::operator=(const User& user)
 {
 	m_email = user.m_email;
 	m_password = user.m_password;
+	m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
 	return *this;
 }
@@ -23,6 +24,7 @@ User::User(const User& user)
 {
 	m_email = user.m_email;
 	m_password = user.m_password;
+	m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
 }
 
@@ -40,6 +42,11 @@ std::string User::GetPassword()
 	return m_password;
 }
 
+std::queue<std::pair<uint16_t, std::string>> User::GetGameHistory()
+{
+	return m_gameHistory;
+}
+
 uint16_t User::GetPersonalBest()
 {
 	return m_personalBest;
@@ -55,8 +62,26 @@ void User::SetPassword(const std::string& password)
 	m_password = password;
 }
 
+void User::SetGameHistory(const std::queue<std::pair<uint16_t, std::string>> gameHistory)
+{
+	m_gameHistory = gameHistory;
+}
+
 void User::SetPersonalBest(uint16_t personalBest)
 {
 	m_personalBest = personalBest;
+}
+
+void User::AddGameToGameHistory(std::pair<uint16_t, std::string> game)
+{
+	if (m_gameHistory.size() >= 5)
+	{
+		m_gameHistory.pop();
+		m_gameHistory.push(game);
+	}
+	else
+	{
+		m_gameHistory.push(game);
+	}
 }
 
