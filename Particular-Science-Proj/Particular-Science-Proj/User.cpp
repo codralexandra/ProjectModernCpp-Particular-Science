@@ -40,6 +40,16 @@ bool User::validateUserEmail()
 	return true;
 }
 
+bool User::validateUserPassword()
+{
+	bool allValid = std::regex_match(GetPassword(), std::regex(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$)"));
+	if (!allValid) {
+		std::cout << "The password doesn't meet all the requirements.";
+		return false;
+	}
+	return true;
+}
+
 User::~User()
 {
 }

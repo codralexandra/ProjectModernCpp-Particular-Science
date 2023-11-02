@@ -13,6 +13,7 @@ public:
 	User(const User& user);
 	friend std::ostream& operator<<(std::ostream& ostream, const User& user);
 	bool validateUserEmail();
+	bool validateUserPassword();
 	~User();
 
 	std::string GetEmail();
