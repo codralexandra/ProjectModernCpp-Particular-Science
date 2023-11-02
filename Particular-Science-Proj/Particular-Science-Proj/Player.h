@@ -26,6 +26,9 @@ public:
 
 
 
+	Player& operator = (const Player& player);
+	bool operator<(const Player& player) const;
+	bool operator>(const Player& player) const;
 
 private:
 	std::string m_nickname;

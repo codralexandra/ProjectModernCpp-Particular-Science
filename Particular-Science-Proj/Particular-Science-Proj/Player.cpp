@@ -77,3 +77,26 @@ uint16_t Player::GetPosition()
 {
     return m_position;
 }
+
+
+
+
+
+Player& Player::operator=(const Player& player)
+{
+    this->m_nickname = player.m_nickname;
+    this->m_isDrawing = player.m_isDrawing;
+    this->m_hasTopScore = player.m_hasTopScore;
+    this->m_personalScore = player.m_personalScore;
+    this->m_position = player.m_position;
+}
+
+bool Player::operator < (const Player& player) const
+{
+    return this->m_personalScore < player.m_personalScore;
+}
+
+bool Player::operator > (const Player& player) const
+{
+    return this->m_personalScore > player.m_personalScore;
+}
