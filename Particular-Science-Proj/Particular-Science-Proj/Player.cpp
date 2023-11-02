@@ -2,6 +2,7 @@
 
 Player::Player()
 {
+    m_nickname = " ";
     m_isDrawing = false;
     m_hasTopScore = false;
     m_personalScore = 0;
@@ -10,6 +11,7 @@ Player::Player()
 
 Player::Player(bool isDrawing)
 {
+    m_nickname = " ";
     m_isDrawing = isDrawing;
     m_hasTopScore = false;
     m_personalScore = 0;
@@ -18,15 +20,24 @@ Player::Player(bool isDrawing)
 
 Player::Player(const Player& player)
 {
+    this->m_nickname = player.m_nickname;
     this->m_isDrawing = player.m_isDrawing;
     this->m_hasTopScore = player.m_hasTopScore;
     this->m_personalScore = player.m_personalScore;
     this->m_position = player.m_position;
 }
 
-void Player::SetIsDrawing()
+
+
+
+void Player::SetNickname(std::string nickname)
 {
-    m_isDrawing = true;
+    m_nickname = nickname;
+}
+
+void Player::SetIsDrawing(bool isDrawing)
+{
+    m_isDrawing = isDrawing;
 }
 
 void Player::UpdateScore(int16_t newscore)
@@ -37,6 +48,14 @@ void Player::UpdateScore(int16_t newscore)
 void Player::UpdatePosition(uint16_t position)
 {
     m_position = position;
+}
+
+
+
+
+std::string Player::GetNickname()
+{
+    return m_nickname;
 }
 
 bool Player::GetIsDrawing()

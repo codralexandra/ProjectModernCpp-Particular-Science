@@ -11,11 +11,14 @@ public:
 	Player(bool isDrawing);
 	Player(const Player& player);
 
-	void SetIsDrawing();
+
+	void SetNickname(std::string nickname);
+	void SetIsDrawing(bool isDrawing);
 	void UpdateScore(int16_t newscore);
 	void UpdatePosition(uint16_t position);
 
 
+	std::string GetNickname();
 	bool GetIsDrawing();
 	int16_t GetPersonalScore();
 	bool GetHasTopScore();
@@ -25,6 +28,7 @@ public:
 
 
 private:
+	std::string m_nickname;
 	bool m_isDrawing;
 	bool m_hasTopScore;
 	int16_t m_personalScore; 
