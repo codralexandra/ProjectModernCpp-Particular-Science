@@ -16,6 +16,9 @@ public:
 	std::vector<Player> getPlayers();
 	std::vector<std::string> getWords();
 	std::string getDate();
+
+	
+	
 private:
 	std::vector<Player> m_players;
 	Difficulty m_difficulty;
