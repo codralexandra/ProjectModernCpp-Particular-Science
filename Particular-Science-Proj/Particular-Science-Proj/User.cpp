@@ -1,4 +1,5 @@
 #include "User.h"
+#include<regex>
 
 User::User(): m_email(""), m_password(""), m_gameHistory(), m_personalBest(0)
 {
@@ -26,6 +27,17 @@ User::User(const User& user)
 	m_password = user.m_password;
 	m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
+}
+
+bool User::validateUserEmail()
+{
+	bool emailValid;
+	emailValid = std::regex_match(GetEmail(), std::regex(R"([_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4}))"));
+	if (!emailValid) {
+		std::cout << "The email given is not correct.";
+		return false;
+	}
+	return true;
 }
 
 User::~User()

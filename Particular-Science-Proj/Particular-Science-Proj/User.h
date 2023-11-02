@@ -3,6 +3,7 @@
 #include <string>
 #include <queue>
 #include<iostream>
+
 class User
 {
 public:
@@ -11,7 +12,7 @@ public:
 	User& operator=(const User& user);
 	User(const User& user);
 	friend std::ostream& operator<<(std::ostream& ostream, const User& user);
-
+	bool validateUserEmail();
 	~User();
 
 	std::string GetEmail();
