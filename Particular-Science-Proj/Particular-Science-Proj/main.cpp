@@ -22,7 +22,7 @@ void Score_Player_Guessing(Player& p,int timp)
 void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 {
 	float average_time;
-	int sum_times;
+	int sum_times=0;
 
 	for (int i = 0; i < players_guessing.size(); i++)
 	{

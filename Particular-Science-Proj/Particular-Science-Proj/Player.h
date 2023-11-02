@@ -23,6 +23,8 @@ public:
 	int16_t GetPersonalScore();
 	bool GetHasTopScore();
 	uint16_t GetPosition();
+	bool GetHasGuessed();
+	uint16_t GetTimeGuessed();
 
 
 
@@ -31,6 +33,8 @@ public:
 	bool operator>(const Player& player) const;
 
 private:
+	bool m_hasGuessed;
+	uint16_t m_timeGuessed;
 	std::string m_nickname;
 	bool m_isDrawing;
 	bool m_hasTopScore;

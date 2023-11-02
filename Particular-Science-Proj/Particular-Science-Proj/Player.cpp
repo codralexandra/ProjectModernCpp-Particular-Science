@@ -78,6 +78,16 @@ uint16_t Player::GetPosition()
     return m_position;
 }
 
+bool Player::GetHasGuessed()
+{
+    return m_hasGuessed;
+}
+
+uint16_t Player::GetTimeGuessed()
+{
+    return m_timeGuessed;
+}
+
 
 
 
