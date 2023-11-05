@@ -17,7 +17,8 @@ public:
 	std::vector<std::string> getWords();
 	std::string getDate();
 
-	
+	void Start_Game();
+	void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing);
 	
 private:
 	std::vector<Player> m_players;
