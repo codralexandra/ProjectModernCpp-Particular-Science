@@ -36,6 +36,19 @@ Player::Player(const Player& player)
     this->m_timeGuessed = player.m_timeGuessed;
 }
 
+Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname, 
+    bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position)
+{
+    this->m_nickname = nickname;
+    this->m_isDrawing = isDrawing;
+    this->m_hasTopScore = hasTopScore;
+    this->m_personalScore = personalScore;
+    this->m_position = position;
+    this->m_hasDrawn = hasDrawn;
+    this->m_hasGuessed = hasGuessed;
+    this->m_timeGuessed = timeGuessed;
+}
+
 
 
 

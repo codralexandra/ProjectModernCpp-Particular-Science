@@ -10,6 +10,8 @@ public:
 	Player();
 	Player(bool isDrawing);
 	Player(const Player& player);
+	Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname, bool isDrawing,
+		bool hasTopScore, int16_t personalScore, uint16_t position);
 
 
 	void SetNickname(std::string nickname);
