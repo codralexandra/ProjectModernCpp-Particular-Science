@@ -1,4 +1,6 @@
-#include "Player.h"
+module player;
+using Scribble::Player;
+
 
 Player::Player()
 {
@@ -36,7 +38,7 @@ Player::Player(const Player& player)
     this->m_timeGuessed = player.m_timeGuessed;
 }
 
-Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname, 
+Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname,
     bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position)
 {
     this->m_nickname = nickname;
@@ -137,6 +139,10 @@ Player& Player::operator=(const Player& player)
     this->m_hasTopScore = player.m_hasTopScore;
     this->m_personalScore = player.m_personalScore;
     this->m_position = player.m_position;
+    this->m_hasDrawn = player.m_hasDrawn;
+    this->m_hasGuessed = player.m_hasGuessed;
+    this->m_timeGuessed = player.m_timeGuessed;
+    return *this;
 }
 
 bool Player::operator < (const Player& player) const
@@ -147,4 +153,12 @@ bool Player::operator < (const Player& player) const
 bool Player::operator > (const Player& player) const
 {
     return this->m_personalScore > player.m_personalScore;
+}
+
+std::ostream& Scribble::operator<<(std::ostream& os, Player& player)
+{
+    os << "Nickname: " << player.GetNickname() << "\nPosition: " << player.GetPosition() << "\nTime: " << player.GetTimeGuessed()
+        << "\nLeader: " << player.GetHasTopScore() << "\nHas Guessed: " << player.GetHasGuessed() << "\nHas Drawn: "
+        << player.GetHasDrawn() << "\nIs Drawing: " << player.GetIsDrawing() << "\nScore: " << player.GetPersonalScore() << "\n";
+    return os;
 }
