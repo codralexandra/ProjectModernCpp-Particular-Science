@@ -14,6 +14,8 @@ public:
 
 	void SetNickname(std::string nickname);
 	void SetIsDrawing(bool isDrawing);
+	void SetHasGuessed(bool hasGuessed);
+	void SetHasDrawn(bool hasDrawn);
 	void UpdateScore(int16_t newscore);
 	void UpdatePosition(uint16_t position);
 
@@ -24,6 +26,7 @@ public:
 	bool GetHasTopScore();
 	uint16_t GetPosition();
 	bool GetHasGuessed();
+	bool GetHasDrawn();
 	uint16_t GetTimeGuessed();
 
 
@@ -34,6 +37,7 @@ public:
 
 private:
 	bool m_hasGuessed;
+	bool m_hasDrawn;
 	uint16_t m_timeGuessed;
 	std::string m_nickname;
 	bool m_isDrawing;
