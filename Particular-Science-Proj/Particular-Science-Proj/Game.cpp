@@ -1,4 +1,5 @@
-#include "Game.h"
+module game;
+using Scribble::Game;
 
 Game::Game()
 {
@@ -24,7 +25,9 @@ void Game::setDate(std::string date)
 	m_date = date;
 }
 
-std::vector<Player> Game::getPlayers()
+
+
+std::vector<Scribble::Player> Scribble::Game::getPlayers()
 {
 	return m_players;
 }
