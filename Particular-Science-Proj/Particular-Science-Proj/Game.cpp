@@ -91,3 +91,15 @@ void Game::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 
 	}
 }
+
+void Scribble::Game::updateHistoryPlayer() //recheck
+{
+	std::queue<std::pair<uint16_t, std::string>> gameHistory;
+	for (auto& player : m_players)
+	{
+		gameHistory = player.GetGameHistory();
+		gameHistory.pop();
+		player.SetGameHistory(gameHistory);
+		player.AddGameToGameHistory({ player.GetPersonalBest(),player.GetNickname() });
+	}
+}

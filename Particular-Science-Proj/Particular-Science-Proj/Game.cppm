@@ -23,6 +23,7 @@ namespace Scribble
 
 		void Start_Game();
 		void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing);
+		void updateHistoryPlayer();
 	private:
 		std::vector<Player> m_players;
 		Difficulty m_difficulty;
