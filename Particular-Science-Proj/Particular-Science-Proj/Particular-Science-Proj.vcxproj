@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Difficulty.cpp" />
+    <ClCompile Include="Game.cppm" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -140,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Difficulty.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
