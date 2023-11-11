@@ -136,12 +136,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player.cppm" />
+    <ClCompile Include="Round.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="User.cppm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Difficulty.h" />
+    <ClInclude Include="Round.h" />
     <ClInclude Include="Score.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

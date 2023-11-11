@@ -1,7 +1,6 @@
 //test main for pull, modify as needed
 #include <iostream>
 #include <vector>
-#include "Player.h"
 void Score_Player_Guessing(Player& p,int timp)
 {
 	if (timp == 60)
