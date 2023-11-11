@@ -1,4 +1,5 @@
-#include "User.h"
+module user;
+using Scribble::User;
 #include<regex>
 
 User::User(): m_email(""), m_password(""), m_gameHistory(), m_personalBest(0)
