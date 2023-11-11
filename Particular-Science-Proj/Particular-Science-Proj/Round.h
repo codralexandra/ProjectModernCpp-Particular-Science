@@ -1,16 +1,16 @@
 #pragma once
 import player;
 import game;
-class Round:public Game
+class Round //public Game:
 {
 public:
 	Round();
 	void StartRound();
-	void SetDrawer(const Player& p);
-	Player GetDrawer();
+	void SetDrawer(const Scribble::Player& p);
+	Scribble::Player GetDrawer();
 
 private:
-	Player m_CurrentDrawer;
+	Scribble::Player m_CurrentDrawer;
 
 };
 

@@ -1,7 +1,6 @@
 module;
 export module player;
-
-#include "User.h"
+import user;
 import<cstdint>;
 import<chrono>;
 

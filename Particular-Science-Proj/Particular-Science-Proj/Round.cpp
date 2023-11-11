@@ -2,7 +2,7 @@
 
 Round::Round()
 {
-	this->m_CurrentDrawer = new Player();
+	this->m_CurrentDrawer = new Scribble::Player;
 }
 
 void Round::StartRound()
@@ -14,12 +14,12 @@ void Round::StartRound()
 	}
 }
 
-void Round::SetDrawer(const Player& p)
+void Round::SetDrawer(const Scribble::Player& p)
 {
 	this->m_CurrentDrawer = p;
 }
 
-Player Round::GetDrawer()
+Scribble::Player Round::GetDrawer()
 {
 	return this->m_CurrentDrawer;
 }
