@@ -39,11 +39,11 @@
     <ClCompile Include="Game.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="User.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="User.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Score.h">
       <Filter>Header Files</Filter>
     </ClInclude>
