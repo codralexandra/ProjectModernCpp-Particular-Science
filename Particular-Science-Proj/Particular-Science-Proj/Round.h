@@ -1,7 +1,9 @@
 #pragma once
+
+//import game;
 import player;
-import game;
-class Round //public Game:
+
+class Round: 
 {
 public:
 	Round();

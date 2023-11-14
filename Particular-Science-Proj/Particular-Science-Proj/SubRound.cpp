@@ -2,6 +2,7 @@
 
 SubRound::SubRound()
 {
+
 }
 
 void SubRound::SetWord(const std::string& cuv)

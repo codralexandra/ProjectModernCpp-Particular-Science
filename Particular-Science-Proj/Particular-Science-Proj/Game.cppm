@@ -5,7 +5,7 @@ import "Difficulty.h";
 import player;
 export module game;
 
-namespace Scribble
+namespace Scribble1
 {
 	export class Game
 	{

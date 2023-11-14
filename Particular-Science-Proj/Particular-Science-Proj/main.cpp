@@ -1,7 +1,9 @@
 //test main for pull, modify as needed
 #include <iostream>
 #include <vector>
-void Score_Player_Guessing(Player& p,int timp)
+import player;
+
+void Score_Player_Guessing(Scribble::Player& p,int timp)
 {
 	if (timp == 60)
 	{
