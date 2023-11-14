@@ -13,5 +13,6 @@ class SubRound:public Round
 
 private:
 	std::string word;
+	//Qtimer time;
 };
 
