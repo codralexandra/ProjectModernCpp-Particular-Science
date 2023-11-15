@@ -24,3 +24,18 @@ uint16_t Word::getNumberHint()
 {
 	return m_numberHint;
 }
+
+std::string Word::getValueAux()
+{
+	return m_valueAux;
+}
+
+void Word::PrintPlayerDrawing()
+{
+	std::cout << "The word is: " << m_value << std::endl;
+}
+
+void Word::PrintPlayerGuessing()
+{
+	std::cout << "The word is: " << m_valueAux << std::endl;
+}
