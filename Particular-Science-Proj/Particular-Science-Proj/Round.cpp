@@ -7,11 +7,11 @@ Round::Round()
 
 void Round::StartRound()
 {
-	for (int i = 0; i < this->m_players.size(); i++)
+	/*for (int i = 0; i < this->m_players.size(); i++)
 	{
 		SetDrawer(m_players[i]);
 
-	}
+	}*/
 }
 
 void Round::SetDrawer(const Scribble::Player& p)

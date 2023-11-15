@@ -1,9 +1,9 @@
 module;
 export module user;
-#include <cstdint>;
-#include <string>;
-#include <queue>;
-#include<iostream>;
+import <cstdint>;
+import <string>;
+import <queue>;
+import<iostream>;
 
 namespace Scribble
 {
@@ -14,7 +14,7 @@ namespace Scribble
 		User(const std::string& email, const std::string& password, const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest);
 		User& operator=(const User& user);
 		User(const User& user);
-		friend std::ostream& operator<<(std::ostream& ostream, const User& user);
+		//friend std::ostream& operator<<(std::ostream& ostream, const User& user);
 		bool validateUserEmail();
 		bool validateUserPassword();
 		~User();

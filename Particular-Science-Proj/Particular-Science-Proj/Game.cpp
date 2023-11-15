@@ -1,4 +1,5 @@
 module game;
+import <queue>;
 using Scribble::Game;
 
 Game::Game()

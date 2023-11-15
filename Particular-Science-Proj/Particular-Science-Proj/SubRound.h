@@ -1,9 +1,7 @@
-#pragma once
 #include <string>
 #include "Round.h"
-#include <iostream>
 
-class SubRound:public Round
+class SubRound :public Round
 {
 public:
 	SubRound();
@@ -13,6 +11,6 @@ public:
 
 private:
 	std::string word;
-	//Qtimer time;
+	//	//Qtimer time;
 };
 

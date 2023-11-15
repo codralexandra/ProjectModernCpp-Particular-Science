@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
       <EnableModules>true</EnableModules>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -95,7 +95,7 @@
       <ConformanceMode>true</ConformanceMode>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
       <EnableModules>true</EnableModules>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
@@ -129,7 +129,7 @@
       <ConformanceMode>true</ConformanceMode>
       <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
       <EnableModules>true</EnableModules>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,15 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Difficulty.cpp" />
-    <ClCompile Include="Game.cppm" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="game.cppm" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Player.cppm" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="player.cppm" />
     <ClCompile Include="Round.cpp" />
     <ClCompile Include="SubRound.cpp" />
-    <ClCompile Include="User.cpp" />
-    <ClCompile Include="User.cppm" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="user.cppm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Difficulty.h" />

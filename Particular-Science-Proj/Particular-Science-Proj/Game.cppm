@@ -1,11 +1,11 @@
 module;
+export module game;
 import <iostream>;
 import <vector>;
-import "Difficulty.h";
+#include "Difficulty.h"
 import player;
-export module game;
 
-namespace Scribble1
+namespace Scribble
 {
 	export class Game
 	{

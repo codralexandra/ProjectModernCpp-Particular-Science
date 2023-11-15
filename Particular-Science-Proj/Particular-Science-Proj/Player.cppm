@@ -1,8 +1,8 @@
 module;
 export module player;
 import user;
-import<cstdint>;
-import<chrono>;
+import <cstdint>;
+import <chrono>;
 
 
 namespace Scribble

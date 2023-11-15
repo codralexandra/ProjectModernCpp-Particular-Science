@@ -20,11 +20,11 @@ void SubRound::StartSubRound()
 
 }
 
-void SubRound::PrintWordToGuess()
-{
-	for (int i = 0; i < this->word.size(); i++)
-	{
-		std::cout << "_ ";
-	}
-	std::cout << std::endl;
-}
+//void SubRound::PrintWordToGuess()
+//{
+//	for (int i = 0; i < this->word.size(); i++)
+//	{
+//		std::cout << "_ ";
+//	}
+//	std::cout << std::endl;
+//}

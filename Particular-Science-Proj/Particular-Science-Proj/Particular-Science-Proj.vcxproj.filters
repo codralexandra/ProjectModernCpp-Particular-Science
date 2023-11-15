@@ -18,32 +18,32 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="user.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User.cpp">
+    <ClCompile Include="player.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="game.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Difficulty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cppm">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Round.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SubRound.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

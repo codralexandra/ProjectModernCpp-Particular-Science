@@ -4,7 +4,7 @@ import game;
 import player;
 
 
-class Round: //public Game
+class Round: public Scribble::Game
 {
 public:
 	Round();
