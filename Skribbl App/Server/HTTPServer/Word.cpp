@@ -42,25 +42,25 @@ void Word::PrintPlayerGuessing()
 	std::cout << "The word is: " << m_valueAux << std::endl;
 }
 
+
 void Word::ShowHint()
 {
-	if (m_numberHint > 0)
-	{
-     	srand(0);
-		bool ok = false;
-		int randomPosition;
-		while (ok==false)
-			{
-				randomPosition = rand() % m_valueAux.size();
-				if (m_valueAux[randomPosition] == '_')
-				{
-					ok == true;
-				}
+    if (m_numberHint > 0)
+    {
+        srand(0);
+        bool ok = false;
+        int randomPosition;
+        while (ok == false)
+        {
+            randomPosition = rand() % m_valueAux.size();
+            if (m_valueAux[randomPosition] == '_')
+            {
+                ok == true;
+            }
 
-			}
-		std::cout << randomPosition << " " << m_value[randomPosition];
-		m_valueAux[randomPosition] = m_value[randomPosition];
-		m_numberHint -= 1;
-	}
-
+        }
+        std::cout << randomPosition << " " << m_value[randomPosition];
+        m_valueAux[randomPosition] = m_value[randomPosition];
+        m_numberHint -= 1;
+    }
 }

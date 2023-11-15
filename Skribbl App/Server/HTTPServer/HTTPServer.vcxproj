@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClInclude Include="Word.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Words.input" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

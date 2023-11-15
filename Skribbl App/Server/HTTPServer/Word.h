@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include <ctime>
 class Word
 {
 
 private:
 	std::string m_value; 
 	std::string m_difficulty; 
-	uint16_t m_numberHint;  
+	uint16_t m_numberHint;  ///initializare const
 	std::string m_valueAux;
 public:
 
