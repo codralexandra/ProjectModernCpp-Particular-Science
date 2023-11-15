@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <ctime>
 class Word
 {
 
@@ -33,5 +34,7 @@ public:
 
 	void PrintPlayerDrawing();
 	void PrintPlayerGuessing();
+
+	void ShowHint();
 };
 
