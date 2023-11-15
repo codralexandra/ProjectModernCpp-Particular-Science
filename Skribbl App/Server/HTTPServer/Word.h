@@ -4,8 +4,8 @@ class Word
 {
 
 private:
-	std::string m_value;
-	std::string m_difficulty;
+	std::string m_value; 
+	std::string m_difficulty; 
 	uint16_t m_numberHint;  ///initializare const
 public:
 
@@ -20,5 +20,8 @@ public:
 	void setValue(const std::string& value);
 	void setDifficulty(const std::string& difficulty);
 
+	std::string getDifficulty();
+	std::string getValue();
+	uint16_t getNumberHint();
 };
 
