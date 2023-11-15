@@ -1,4 +1,6 @@
 #include "Word.h"
+#include <iostream>
+#include <ctime>
 
 void Word::setValue(const std::string& value)
 {

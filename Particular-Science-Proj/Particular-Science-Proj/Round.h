@@ -4,7 +4,7 @@ import game;
 import player;
 
 
-class Round: 
+class Round: //public Game
 {
 public:
 	Round();
