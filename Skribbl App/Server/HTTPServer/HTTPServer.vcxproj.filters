@@ -30,6 +30,9 @@
     <ClCompile Include="user.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Word.h">
