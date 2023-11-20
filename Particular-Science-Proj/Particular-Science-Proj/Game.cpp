@@ -84,11 +84,11 @@ void Game::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 	}
 
 	if (sum_times == 60 * players_guessing.size())
-		p.UpdateScore(p.GetPersonalScore() - 100);
+		p.SetScore(p.GetPersonalScore() - 100);
 	else
 	{
 		average_time = sum_times / players_guessing.size();
-		p.UpdateScore(p.GetPersonalScore() + (60 - average_time) * 100 / 60);
+		p.SetScore(p.GetPersonalScore() + (60 - average_time) * 100 / 60);
 
 	}
 }

@@ -2,7 +2,7 @@ module player;
 using Scribble::Player;
 
 
-Player::Player()
+Player::Player():User()
 {
     m_nickname = " ";
     m_isDrawing = false;
@@ -14,7 +14,7 @@ Player::Player()
     m_timeGuessed = 60;
 }
 
-Player::Player(bool isDrawing)
+Player::Player(bool isDrawing):User()
 {
     m_nickname = " ";
     m_isDrawing = isDrawing;
@@ -28,6 +28,7 @@ Player::Player(bool isDrawing)
 
 Player::Player(const Player& player)
 {
+    //SetEmail(player.get...)  nu merge player e const help
     this->m_nickname = player.m_nickname;
     this->m_isDrawing = player.m_isDrawing;
     this->m_hasTopScore = player.m_hasTopScore;
@@ -39,8 +40,13 @@ Player::Player(const Player& player)
 }
 
 Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname,
-    bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position)
+    bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position, const std::string& email, const std::string& password,
+    const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest)
 {
+    SetEmail(email);
+    SetGameHistory(gameHistory);
+    SetPassword(password);
+    SetPersonalBest(personalBest);
     this->m_nickname = nickname;
     this->m_isDrawing = isDrawing;
     this->m_hasTopScore = hasTopScore;
@@ -74,19 +80,20 @@ void Player::SetHasDrawn(bool hasDrawn)
     m_hasDrawn = hasDrawn;
 }
 
-void Player::UpdateScore(int16_t newscore)
+void Player::SetScore(int16_t newscore)
 {
     m_personalScore = newscore;
 }
 
-void Player::UpdatePosition(uint16_t position)
+void Player::SetPosition(uint16_t position)
 {
     m_position = position;
 }
 
-
-
-
+void Scribble::Player::SetHasTopScore(bool topScore)
+{
+    m_hasTopScore = topScore;
+}
 
 std::string Player::GetNickname()
 {
@@ -128,10 +135,6 @@ uint16_t Player::GetTimeGuessed()
     return m_timeGuessed;
 }
 
-
-
-
-
 Player& Player::operator=(const Player& player)
 {
     this->m_nickname = player.m_nickname;
@@ -147,11 +150,13 @@ Player& Player::operator=(const Player& player)
 
 bool Player::operator < (const Player& player) const
 {
+    std::cout << "Compara Player dupa scor apelata";
     return this->m_personalScore < player.m_personalScore;
 }
 
 bool Player::operator > (const Player& player) const
 {
+    std::cout << "Compara Player dupa scor apelata";
     return this->m_personalScore > player.m_personalScore;
 }
 

@@ -16,16 +16,17 @@ namespace Scribble
 		Player(const Player& player);
 
 		Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname,
-			bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position);
+			bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position, const std::string& email, const std::string& password, 
+			const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest);
 
 
 		void SetNickname(std::string nickname);
 		void SetIsDrawing(bool isDrawing);
 		void SetHasGuessed(bool hasGuessed);
 		void SetHasDrawn(bool hasDrawn);
-		void UpdateScore(int16_t newscore);
-		void UpdatePosition(uint16_t position);
-
+		void SetScore(int16_t newscore);
+		void SetPosition(uint16_t position);
+		void SetHasTopScore(bool topScore);
 
 		std::string GetNickname();
 		bool GetIsDrawing();
