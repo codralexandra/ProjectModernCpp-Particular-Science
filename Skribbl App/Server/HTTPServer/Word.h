@@ -12,13 +12,14 @@ private:
 	std::string m_valueAux;
 public:
 
-	Word(const std::string& value, const std::string& difficulty, std::string& valueAux)
+	Word(const std::string& value, const std::string& difficulty)
 		: m_value(value), m_difficulty(difficulty)
 	{
+		std::cout << "Constructor apelat\n";
 		m_numberHint = m_value.size() / 2;
 		for (int i = 0; i < m_value.size(); i++)
 		{
-			valueAux += '_';
+			m_valueAux += '_';
 		}
 	}
 

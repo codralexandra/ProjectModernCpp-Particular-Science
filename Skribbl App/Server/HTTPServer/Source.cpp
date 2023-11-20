@@ -1,10 +1,11 @@
 ﻿#include <filesystem>
 #include <iostream>
 #include <memory>
-
-#include <crow.h>
-#include <sqlite_orm/sqlite_orm.h>
-namespace sql = sqlite_orm;
+#include "Word.h"
+//
+//#include <crow.h>
+//#include <sqlite_orm/sqlite_orm.h>
+//namespace sql = sqlite_orm;
 
 
 // Cerinte:
@@ -18,7 +19,11 @@ namespace sql = sqlite_orm;
 
 int main() 
 {
-	std::cout << "I installed sqlite_orm and crow. Now, the sky is the limit!" /*🌌🚀*/ << std::endl;
-
+	//std::cout << "I installed sqlite_orm and crow. Now, the sky is the limit!" /*🌌🚀*/ << std::endl;
+	Word w("table","EASY");
+	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
+	w.ShowHint();
+	w.ShowHint();
+	w.ShowHint();
 	return 0;
 }
