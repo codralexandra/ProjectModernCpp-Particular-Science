@@ -50,10 +50,10 @@
     <ClInclude Include="Difficulty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Round.h">
+    <ClInclude Include="SubRound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SubRound.h">
+    <ClInclude Include="Round.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

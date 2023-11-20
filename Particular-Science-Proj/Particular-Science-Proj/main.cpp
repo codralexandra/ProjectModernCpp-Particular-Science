@@ -4,8 +4,8 @@
 import player;
 import user;
 import game;
-#include "Round.h"
-
+//#include "Round.h"
+#include "SubRound.h"
 
 void Score_Player_Guessing(Scribble::Player& p,int timp)
 {
@@ -49,55 +49,57 @@ int main() {
 	//	std::cout << "Password ok\n";
 	//}
 
-	Scribble::Player p;
-	
-	p.SetHasDrawn(true);
-	p.SetHasGuessed(false);
-	p.SetNickname("blabla");
-	p.SetIsDrawing(true);
-	p.SetPosition(2);
-	p.SetScore(100);
-	p.SetHasTopScore(true);
-	//std::cout << p;
-	//Score_Player_Guessing(p,30);
-	//std::cout << std::endl << p;
+	//Scribble::Player p;
+	//
+	//p.SetHasDrawn(true);
+	//p.SetHasGuessed(false);
+	//p.SetNickname("blabla");
+	//p.SetIsDrawing(true);
+	//p.SetPosition(2);
+	//p.SetScore(100);
+	//p.SetHasTopScore(true);
+	////std::cout << p;
+	////Score_Player_Guessing(p,30);
+	////std::cout << std::endl << p;
 
-	Scribble::Player r;
+	//Scribble::Player r;
 
-	r.SetHasDrawn(true);
-	r.SetHasGuessed(false);
-	r.SetNickname("aaaaaaaa");
-	r.SetIsDrawing(true);
-	r.SetPosition(1);
-	r.SetScore(150);
-	r.SetHasTopScore(true);
+	//r.SetHasDrawn(true);
+	//r.SetHasGuessed(false);
+	//r.SetNickname("aaaaaaaa");
+	//r.SetIsDrawing(true);
+	//r.SetPosition(1);
+	//r.SetScore(150);
+	//r.SetHasTopScore(true);
 
-	//if (p > r)
+	////if (p > r)
+	////{
+	////	std::cout << p;
+	////}
+	////else
+	////	std::cout << r;
+
+	//Scribble::Game g;
+	//g.setDate("12-12-2022");
+	//g.setPlayers({ p,r });
+	//g.setWords({ "house","table" });
+	///*std::cout << g.getDate() << std::endl;
+	//for (int i = 0; i < g.getPlayers().size(); i++)
 	//{
-	//	std::cout << p;
+	//	std::cout << g.getPlayers()[i];
 	//}
-	//else
-	//	std::cout << r;
+	//for (auto word : g.getWords())
+	//{
+	//	std::cout << word<<" ";
+	//}*/
+	////g.Start_Game();
 
-	Scribble::Game g;
-	g.setDate("12-12-2022");
-	g.setPlayers({ p,r });
-	g.setWords({ "house","table" });
-	/*std::cout << g.getDate() << std::endl;
-	for (int i = 0; i < g.getPlayers().size(); i++)
-	{
-		std::cout << g.getPlayers()[i];
-	}
-	for (auto word : g.getWords())
-	{
-		std::cout << word<<" ";
-	}*/
-	//g.Start_Game();
+	//Round q;
+	//std::cout<< q.GetDrawer();
+	//q.StartRound(g);
 
-	Round q;
-	std::cout<< q.GetDrawer();
-	q.StartRound(g);
-
+	SubRound sr;
+	sr.StartSubRound();
 	
 	return 0;
 }

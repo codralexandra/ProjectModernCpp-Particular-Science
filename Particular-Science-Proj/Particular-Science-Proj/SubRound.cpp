@@ -19,8 +19,8 @@ const std::string SubRound::GetWord() const
 void SubRound::StartSubRound()
 {
 	std::cout << "Start SubRound apelata\n";
-	/*Scribble::Player p = this->GetDrawer();
-	SetWord("table");*/
+	Scribble::Player p = this->GetDrawer();
+	SetWord("table");
 
 }
 

@@ -1,7 +1,7 @@
 #include <string>
 #include "Round.h"
 
-class SubRound:public Round 
+class SubRound: public Round 
 {
 public:
 	SubRound();
@@ -11,6 +11,6 @@ public:
 
 private:
 	std::string word;
-	//	//Qtimer time;
+	//Qtimer time;
 };
 
