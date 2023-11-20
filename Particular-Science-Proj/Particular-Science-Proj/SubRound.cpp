@@ -7,6 +7,7 @@ SubRound::SubRound()
 
 void SubRound::SetWord(const std::string& cuv)
 {
+	std::cout << "Set Word apelata\n";
 	this->word = cuv;
 }
 
@@ -17,14 +18,10 @@ const std::string SubRound::GetWord() const
 
 void SubRound::StartSubRound()
 {
+	std::cout << "Start SubRound apelata\n";
+	/*Scribble::Player p = this->GetDrawer();
+	SetWord("table");*/
 
 }
 
-//void SubRound::PrintWordToGuess()
-//{
-//	for (int i = 0; i < this->word.size(); i++)
-//	{
-//		std::cout << "_ ";
-//	}
-//	std::cout << std::endl;
-//}
+

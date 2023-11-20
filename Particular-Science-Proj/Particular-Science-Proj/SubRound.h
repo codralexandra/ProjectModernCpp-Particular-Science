@@ -1,7 +1,7 @@
 #include <string>
 #include "Round.h"
 
-class SubRound :public Round
+class SubRound:public Round 
 {
 public:
 	SubRound();

@@ -6,6 +6,7 @@ import user;
 import game;
 #include "Round.h"
 
+
 void Score_Player_Guessing(Scribble::Player& p,int timp)
 {
 	if (timp == 60)
@@ -96,5 +97,7 @@ int main() {
 	Round q;
 	std::cout<< q.GetDrawer();
 	q.StartRound(g);
+
+	
 	return 0;
 }
