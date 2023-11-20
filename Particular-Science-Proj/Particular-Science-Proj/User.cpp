@@ -32,6 +32,7 @@ User::User(const User& user)
 
 bool User::validateUserEmail()
 {
+	std::cout << "Validare Email apelata\n";
 	bool emailValid;
 	emailValid = std::regex_match(GetEmail(), std::regex(R"([_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4}))"));
 	if (!emailValid) {
@@ -43,6 +44,7 @@ bool User::validateUserEmail()
 
 bool User::validateUserPassword()
 {
+	std::cout << "Validare Parola apelata\n";
 	bool allValid = std::regex_match(GetPassword(), std::regex(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$)"));
 	if (!allValid) {
 		std::cout << "The password doesn't meet all the requirements.";
@@ -97,6 +99,7 @@ void User::SetPersonalBest(uint16_t personalBest)
 
 void User::AddGameToGameHistory(std::pair<uint16_t, std::string> game)
 {
+	std::cout << "ADD Game to History apelata\n";
 	if (m_gameHistory.size() >= 5)
 	{
 		m_gameHistory.pop();
@@ -116,7 +119,7 @@ std::ostream& Scribble::operator<<(std::ostream& ostream, const User& user)
 		<< "Game history: \n";
 	while (!copyGameHistory.empty())
 	{
-		ostream << copyGameHistory.front().first << ", " << copyGameHistory.front().first << " ";
+		ostream << copyGameHistory.front().first << " " << copyGameHistory.front().second << "\n";
 		copyGameHistory.pop();
 	}
 	ostream << "Personal best: " << user.m_personalBest << "\n";
