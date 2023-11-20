@@ -3,6 +3,7 @@
 #include <vector>
 import player;
 import user;
+import game;
 
 void Score_Player_Guessing(Scribble::Player& p,int timp)
 {
@@ -63,17 +64,32 @@ int main() {
 
 	r.SetHasDrawn(true);
 	r.SetHasGuessed(false);
-	r.SetNickname("blabla");
+	r.SetNickname("aaaaaaaa");
 	r.SetIsDrawing(true);
 	r.SetPosition(1);
 	r.SetScore(150);
 	r.SetHasTopScore(true);
 
-	if (p > r)
+	//if (p > r)
+	//{
+	//	std::cout << p;
+	//}
+	//else
+	//	std::cout << r;
+
+	Scribble::Game g;
+	g.setDate("12-12-2022");
+	g.setPlayers({ p,r });
+	g.setWords({ "house","table" });
+	/*std::cout << g.getDate() << std::endl;
+	for (int i = 0; i < g.getPlayers().size(); i++)
 	{
-		std::cout << p;
+		std::cout << g.getPlayers()[i];
 	}
-	else
-		std::cout << r;
+	for (auto word : g.getWords())
+	{
+		std::cout << word<<" ";
+	}*/
+	g.Start_Game();
 	return 0;
 }

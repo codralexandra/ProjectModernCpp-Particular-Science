@@ -2,7 +2,7 @@ module;
 export module game;
 import <iostream>;
 import <vector>;
-#include "Difficulty.h"
+//import <"Difficulty.h">;   CHECKKKKKKK THIS
 import player;
 
 namespace Scribble
@@ -11,7 +11,7 @@ namespace Scribble
 	{
 	public:
 		Game();
-		Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date);
+		Game(std::vector<Player> players, /*Difficulty difficulty*/ std::vector<std::string> words, std::string date);
 
 		void setPlayers(std::vector<Player> players);
 		void setWords(std::vector<std::string> words);
@@ -27,7 +27,7 @@ namespace Scribble
 
 	private:
 		std::vector<Player> m_players;
-		Difficulty m_difficulty;
+		//Difficulty m_difficulty;
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
 		std::string m_date; //regex check or make class

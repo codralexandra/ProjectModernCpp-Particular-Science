@@ -39,10 +39,10 @@
     <ClCompile Include="Round.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SubRound.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="user.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubRound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

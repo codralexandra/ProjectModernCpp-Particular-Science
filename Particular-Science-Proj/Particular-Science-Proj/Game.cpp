@@ -1,13 +1,13 @@
 module game;
 import <queue>;
-using Scribble::Game;
+using namespace Scribble;
 
 Game::Game()
 {
 }
 
-Game::Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date) :
-	m_players{ players }, m_difficulty{ difficulty }, m_words{ words }, m_date{ date }
+Game::Game(std::vector<Player> players,/* Difficulty difficulty,*/ std::vector<std::string> words, std::string date) :
+	m_players{ players }, /*m_difficulty{difficulty},*/ m_words{words}, m_date{date}
 {
 }
 
@@ -45,6 +45,7 @@ std::string Game::getDate()
 
 void Game::Start_Game()
 {
+	std::cout << "Start Game apelata \n";
 	int dim_runde = 4;
 	for (int i = 0; i < dim_runde; i++)
 	{
@@ -74,6 +75,7 @@ void Game::Start_Game()
 
 void Game::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 {
+	std::cout << "Score Drawing apelata\n";
 	float average_time;
 	int sum_times = 0;
 
@@ -95,6 +97,7 @@ void Game::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 
 void Scribble::Game::updateHistoryPlayer() //recheck
 {
+	std::cout << "Update Hostory Player apelata\n";
 	std::queue<std::pair<uint16_t, std::string>> gameHistory;
 	for (auto& player : m_players)
 	{

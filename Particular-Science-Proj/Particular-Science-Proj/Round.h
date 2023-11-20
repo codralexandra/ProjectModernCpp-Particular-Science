@@ -1,5 +1,3 @@
-#pragma once
-
 import game;
 import player;
 
