@@ -12,9 +12,9 @@ namespace Scribble
 	public:
 		User();
 		User(const std::string& email, const std::string& password, const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest);
+		friend std::ostream& operator<<(std::ostream& ostream, const User& user); //trebe facuta virtuala 
 		User& operator=(const User& user);
 		User(const User& user);
-		friend std::ostream& operator<<(std::ostream& ostream, const User& user);
 		bool validateUserEmail();
 		bool validateUserPassword();
 		~User();

@@ -4,6 +4,7 @@
 import player;
 import user;
 import game;
+#include "Round.h"
 
 void Score_Player_Guessing(Scribble::Player& p,int timp)
 {
@@ -90,6 +91,10 @@ int main() {
 	{
 		std::cout << word<<" ";
 	}*/
-	g.Start_Game();
+	//g.Start_Game();
+
+	Round q;
+	std::cout<< q.GetDrawer();
+	q.StartRound(g);
 	return 0;
 }

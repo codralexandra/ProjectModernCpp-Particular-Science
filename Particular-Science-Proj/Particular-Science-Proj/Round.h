@@ -2,11 +2,11 @@ import game;
 import player;
 
 
-class Round: public Scribble::Game
+class Round
 {
 public:
 	Round();
-	void StartRound();
+	void StartRound(Scribble::Game& g);
 	void SetDrawer(const Scribble::Player& p);
 	Scribble::Player GetDrawer();
 
