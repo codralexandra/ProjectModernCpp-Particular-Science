@@ -4,6 +4,7 @@ import <string>;
 export class __declspec(dllexport) HashMethod
 {
 public:
+	HashMethod() = default;
 	void Set(std::string pas);
 	std::string Get();
 	void SetHashedPass();
@@ -12,7 +13,5 @@ private:
 
 private:
 	int Hash();
-public:
 
-	HashMethod() = default;
 };
