@@ -137,6 +137,11 @@
     <ClCompile Include="user.cpp" />
     <ClCompile Include="user.cppm" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HashingDLL\HashingDLL.vcxproj">
+      <Project>{944265dd-ac22-41e0-8086-000b1b5e7781}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
