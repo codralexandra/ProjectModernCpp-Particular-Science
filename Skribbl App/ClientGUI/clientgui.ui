@@ -1,28 +1,267 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ClientGUIClass</class>
- <widget class="QMainWindow" name="ClientGUIClass" >
-  <property name="objectName" >
-   <string notr="true">ClientGUIClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QMainWindow" name="ClientGUIClass">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>844</width>
+    <height>564</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>ClientGUI</string>
-  </property>  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:0.75, y2:0.79, stop:0 rgba(255, 190, 230, 255), stop:1 rgba(220, 217, 255, 255), x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 231, 251, 255), stop:1 rgba(210, 230, 255, 255));
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="1">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="gameTitle_2">
+        <property name="font">
+         <font>
+          <pointsize>40</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: transparent; /* Set the background to transparent to allow the palette to take effect */
+</string>
+        </property>
+        <property name="text">
+         <string>Scribble</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="loginButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#loginButton {
+  background-color: #f0f0f0; /* Background color */
+  border: 2px solid #333; /* Border color */
+  border-radius: 10px; /* Border radius */
+  color: #333; /* Text color */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 8px 16px; /* Padding */
+}
+
+QPushButton#loginButton:hover {
+  background-color: #e0e0e0; /* Adjust as needed */
+}
+
+/* Simulate scribbled appearance using a background image */
+QPushButton#loginButton:pressed {
+  background-image: url('path/to/scribble_texture.png'); /* Adjust the path to your scribble texture */
+  color: #fff; /* Text color on pressed state */
+}
+
+/* Add a slight box shadow for depth */
+QPushButton#loginButton:pressed,
+QPushButton#loginButton:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}</string>
+            </property>
+            <property name="text">
+             <string>Login</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="newButton">
+            <property name="styleSheet">
+             <string notr="true">QPushButton#newButton {
+  background-color: #f0f0f0; /* Background color */
+  border: 2px solid #333; /* Border color */
+  border-radius: 10px; /* Border radius */
+  color: #333; /* Text color */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 8px 16px; /* Padding */
+}
+
+QPushButton#newButton:hover {
+  background-color: #e0e0e0; /* Adjust as needed */
+}
+
+/* Simulate scribbled appearance using a background image */
+QPushButton#newButton:pressed {
+  background-image: url('path/to/scribble_texture.png'); /* Adjust the path to your scribble texture */
+  color: #fff; /* Text color on pressed state */
+}
+
+/* Add a slight box shadow for depth */
+QPushButton#newButton:pressed,
+QPushButton#newButton:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}</string>
+            </property>
+            <property name="text">
+             <string>New Account</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>269</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <spacer name="verticalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>87</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>269</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="1">
+     <spacer name="verticalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>84</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>844</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="clientgui.qrc"/>
+  <include location="clientgui.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>
