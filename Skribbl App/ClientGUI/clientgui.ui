@@ -75,30 +75,20 @@
           <item>
            <widget class="QPushButton" name="startLoginButton">
             <property name="styleSheet">
-             <string notr="true">QPushButton#loginButton {
-  background-color: #f0f0f0; /* Background color */
-  border: 2px solid #333; /* Border color */
-  border-radius: 10px; /* Border radius */
-  color: #333; /* Text color */
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  padding: 8px 16px; /* Padding */
+             <string notr="true">#startLoginButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
-QPushButton#loginButton:hover {
-  background-color: #e0e0e0; /* Adjust as needed */
+#startLoginButton:hover {
+    background-color: #d3d3d3;
 }
 
-/* Simulate scribbled appearance using a background image */
-QPushButton#loginButton:pressed {
-  background-image: url('path/to/scribble_texture.png'); /* Adjust the path to your scribble texture */
-  color: #fff; /* Text color on pressed state */
-}
-
-/* Add a slight box shadow for depth */
-QPushButton#loginButton:pressed,
-QPushButton#loginButton:hover {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+#startLoginButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
 }</string>
             </property>
             <property name="text">
@@ -122,30 +112,20 @@ QPushButton#loginButton:hover {
           <item>
            <widget class="QPushButton" name="startRegisterButton">
             <property name="styleSheet">
-             <string notr="true">QPushButton#newButton {
-  background-color: #f0f0f0; /* Background color */
-  border: 2px solid #333; /* Border color */
-  border-radius: 10px; /* Border radius */
-  color: #333; /* Text color */
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  padding: 8px 16px; /* Padding */
+             <string notr="true">#startRegisterButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
-QPushButton#newButton:hover {
-  background-color: #e0e0e0; /* Adjust as needed */
+#startRegisterButton:hover {
+    background-color: #d3d3d3;
 }
 
-/* Simulate scribbled appearance using a background image */
-QPushButton#newButton:pressed {
-  background-image: url('path/to/scribble_texture.png'); /* Adjust the path to your scribble texture */
-  color: #fff; /* Text color on pressed state */
-}
-
-/* Add a slight box shadow for depth */
-QPushButton#newButton:pressed,
-QPushButton#newButton:hover {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+#startRegisterButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
 }</string>
             </property>
             <property name="text">
