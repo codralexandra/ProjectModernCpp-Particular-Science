@@ -99,16 +99,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="registerwindow.cpp" />
     <QtRcc Include="clientgui.qrc" />
     <QtUic Include="clientgui.ui" />
     <QtMoc Include="clientgui.h" />
     <ClCompile Include="clientgui.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="registerwindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\PersonalProjs\Server-Client\Client\HashingDLL\HashingDLL.vcxproj">
       <Project>{944265dd-ac22-41e0-8086-000b1b5e7781}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="registerwindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

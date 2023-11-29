@@ -73,7 +73,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QPushButton" name="loginButton">
+           <widget class="QPushButton" name="startLoginButton">
             <property name="styleSheet">
              <string notr="true">QPushButton#loginButton {
   background-color: #f0f0f0; /* Background color */
@@ -120,7 +120,7 @@ QPushButton#loginButton:hover {
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="newButton">
+           <widget class="QPushButton" name="startRegisterButton">
             <property name="styleSheet">
              <string notr="true">QPushButton#newButton {
   background-color: #f0f0f0; /* Background color */
