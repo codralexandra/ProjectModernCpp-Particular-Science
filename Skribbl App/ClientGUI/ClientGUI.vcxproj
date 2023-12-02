@@ -110,15 +110,18 @@
     <QtUic Include="registerwindow.ui" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\PersonalProjs\Server-Client\Client\HashingDLL\HashingDLL.vcxproj">
-      <Project>{944265dd-ac22-41e0-8086-000b1b5e7781}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <QtMoc Include="registerwindow.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="loginwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="HashingDLL\HashingDLL.vcxproj">
+      <Project>{944265dd-ac22-41e0-8086-000b1b5e7781}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sounds\MainMenu.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

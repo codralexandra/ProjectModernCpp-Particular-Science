@@ -21,6 +21,9 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Sounds">
+      <UniqueIdentifier>{76a61d86-3edc-46ef-be6b-3f6c7c0e3dc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="clientgui.qrc">
@@ -62,5 +65,10 @@
     <QtMoc Include="loginwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sounds\MainMenu.mp3">
+      <Filter>Sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>
