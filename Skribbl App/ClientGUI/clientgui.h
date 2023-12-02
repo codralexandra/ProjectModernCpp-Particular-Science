@@ -4,6 +4,7 @@
 #include "ui_clientgui.h"
 #include "registerwindow.h"
 #include "loginwindow.h"
+#include <qsoundeffect>
 
 class ClientGUI : public QMainWindow
 {
@@ -21,4 +22,5 @@ private:
     Ui::ClientGUIClass ui;
     RegisterWindow m_registerWindow;
     LoginWindow m_loginWindow;
+    QSoundEffect* sound;
 };
