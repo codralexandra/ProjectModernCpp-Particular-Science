@@ -2,9 +2,12 @@
 #include <iostream>
 #include <memory>
 #include "Word.h"
-//
+#include "routing.h"
+#include <sqlite_orm/sqlite_orm.h>
+
+using namespace http;
 //#include <crow.h>
-//#include <sqlite_orm/sqlite_orm.h>
+#include <sqlite_orm/sqlite_orm.h>
 //namespace sql = sqlite_orm;
 
 
@@ -25,5 +28,7 @@ int main()
 	w.ShowHint();
 	w.ShowHint();
 	w.ShowHint();
+	Routing r;
+	r.Run();
 	return 0;
 }
