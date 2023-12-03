@@ -6,9 +6,9 @@
 #include <sqlite_orm/sqlite_orm.h>
 
 using namespace http;
-//#include <crow.h>
-#include <sqlite_orm/sqlite_orm.h>
-//namespace sql = sqlite_orm;
+#include <crow.h>
+#include "gamedata.h"
+namespace sql = sqlite_orm;
 
 
 // Cerinte:
@@ -23,12 +23,22 @@ using namespace http;
 int main() 
 {
 	//std::cout << "I installed sqlite_orm and crow. Now, the sky is the limit!" /*🌌🚀*/ << std::endl;
-	Word w("table","EASY",1);
+	/*Word w("table","EASY",1);
 	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
 	w.ShowHint();
 	w.ShowHint();
-	w.ShowHint();
-	Routing r;
-	r.Run();
+	w.ShowHint();*/
+
+	Storage db = createStorage("Game.sqlite");
+	db.sync_schema();  //crapa la sinc de ce???
+	auto initialProductsCount = db.count<Word2>();
+	if (initialProductsCount == 0)
+	{
+		populateStorage(db);
+
+	}
+	std::cout << db.count<Word2>() << std::endl;
+	/*Routing r;
+	r.Run();*/
 	return 0;
 }
