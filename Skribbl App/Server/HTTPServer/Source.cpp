@@ -29,15 +29,47 @@ int main()
 	w.ShowHint();
 	w.ShowHint();*/
 
-	Storage db = createStorage("Game.sqlite");
-	db.sync_schema();  //crapa la sinc de ce???
-	auto initialProductsCount = db.count<Word2>();
-	if (initialProductsCount == 0)
+	Storage db = createStorage("Words.sqlite");
+	try {
+		db.sync_schema();
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Error during schema sync: " << e.what() << std::endl;
+	}
+	
+	auto initialWordsCount = db.count<Word2>();
+	if (initialWordsCount == 0)
 	{
 		populateStorage(db);
 
 	}
 	std::cout << db.count<Word2>() << std::endl;
+
+	crow::SimpleApp app;
+	CROW_ROUTE(app, "/")([]() {
+
+		return "MEAW";
+		}
+	);
+	CROW_ROUTE(app, "/words")([&db]() {
+
+		std::vector<crow::json::wvalue>wordsJson;
+		for (const auto& word : db.iterate<Word2>())
+		{
+			crow::json::wvalue wordJson{
+				{"id", word.m_id},
+				{ "name",word.m_value},
+				{ "difficulty",word.m_difficulty }
+
+			};
+			wordsJson.push_back(wordJson);
+		}
+		return crow::json::wvalue(wordsJson);
+		});
+	app.port(18080).multithreaded().run();
+
+	//afiseaza 521 de cuv cand an 500 in fisier why???
+
 	/*Routing r;
 	r.Run();*/
 	return 0;
