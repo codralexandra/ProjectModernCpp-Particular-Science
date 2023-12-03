@@ -36,12 +36,18 @@
     <ClCompile Include="user.cppm">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="gamedata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Word.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="routing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gamedata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

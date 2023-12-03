@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <ctime>
+
+
 class Word
 {
 
@@ -30,10 +32,11 @@ public:
 	void setValue(const std::string& value);
 	void setDifficulty(const std::string& difficulty);
 
-	std::string getDifficulty();
-	std::string getValue();
-	uint16_t getNumberHint();
+	std::string getDifficulty() const;
+	std::string getValue() const;
+	uint16_t getNumberHint() ;
 	std::string getValueAux();
+	uint16_t getId() const;
 	
 
 	void PrintPlayerDrawing();

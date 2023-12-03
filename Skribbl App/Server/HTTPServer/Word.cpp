@@ -12,12 +12,12 @@ void Word::setDifficulty(const std::string& difficulty)
 	this->m_difficulty = difficulty;
 }
 
-std::string Word::getDifficulty()
+std::string Word::getDifficulty() const
 {
 	return m_difficulty;
 }
 
-std::string Word::getValue()
+std::string Word::getValue() const
 {
 	return m_value;
 }
@@ -30,6 +30,11 @@ uint16_t Word::getNumberHint()
 std::string Word::getValueAux()
 {
 	return m_valueAux;
+}
+
+uint16_t Word::getId() const
+{
+    return m_id;
 }
 
 void Word::PrintPlayerDrawing()

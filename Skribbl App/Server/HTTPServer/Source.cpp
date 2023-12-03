@@ -23,7 +23,7 @@ using namespace http;
 int main() 
 {
 	//std::cout << "I installed sqlite_orm and crow. Now, the sky is the limit!" /*🌌🚀*/ << std::endl;
-	Word w("table","EASY");
+	Word w("table","EASY",1);
 	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
 	w.ShowHint();
 	w.ShowHint();
