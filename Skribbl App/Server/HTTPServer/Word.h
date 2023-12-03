@@ -10,10 +10,12 @@ private:
 	std::string m_difficulty; 
 	uint16_t m_numberHint;  ///initializare const
 	std::string m_valueAux;
+	uint16_t m_id;
+
 public:
 
-	Word(const std::string& value, const std::string& difficulty)
-		: m_value(value), m_difficulty(difficulty)
+	Word(const std::string& value, const std::string& difficulty,uint16_t id)
+		: m_value(value), m_difficulty(difficulty),m_id(id)
 	{
 		std::cout << "Constructor apelat\n";
 		m_numberHint = m_value.size() / 2;
@@ -32,6 +34,7 @@ public:
 	std::string getValue();
 	uint16_t getNumberHint();
 	std::string getValueAux();
+	
 
 	void PrintPlayerDrawing();
 	void PrintPlayerGuessing();

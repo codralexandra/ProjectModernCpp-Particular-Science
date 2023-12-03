@@ -135,6 +135,8 @@
   <ItemGroup>
     <ClCompile Include="routing.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="user.cppm" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="utils.cppm" />
     <ClCompile Include="Word.cpp" />
