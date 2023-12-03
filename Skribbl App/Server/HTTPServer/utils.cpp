@@ -1,7 +1,9 @@
 module utils;
 
+using namespace http;
+
 // See https://stackoverflow.com/a/57346888/12388382
-std::vector<std::string> split(const std::string& str, const std::string& delim)
+std::vector<std::string> http::split(const std::string& str, const std::string& delim)
 {
     std::vector<std::string> result;
     size_t startIndex = 0;
@@ -16,7 +18,7 @@ std::vector<std::string> split(const std::string& str, const std::string& delim)
     return result;
 }
 
-std::unordered_map<std::string, std::string> parseUrlArgs(const std::string& urlArgs)
+std::unordered_map<std::string, std::string> http::parseUrlArgs(const std::string& urlArgs)
 {
     if (urlArgs == "") {
         return {};
