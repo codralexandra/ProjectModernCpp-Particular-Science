@@ -1,6 +1,5 @@
 #include "clientgui.h"
 #include <QtWidgets/QApplication>
-#include <qsoundeffect.h>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

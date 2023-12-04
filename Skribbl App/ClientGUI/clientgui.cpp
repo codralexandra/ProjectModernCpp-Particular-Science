@@ -7,7 +7,8 @@ ClientGUI::ClientGUI(QWidget *parent)
     connect(ui.startRegisterButton, &QPushButton::clicked, this, &ClientGUI::on_startRegisterButton_clicked);
     connect(ui.startLoginButton, &QPushButton::clicked, this, &ClientGUI::on_startLoginButton_clicked);
     sound = new QSoundEffect;
-    sound->setSource(QUrl::fromLocalFile("./Sounds/MainMenu.mp3"));
+    sound->setSource(QUrl::fromLocalFile("./Sounds/MainMenu.wav"));
+    sound->setVolume(10.0);
     sound->setLoopCount(QSoundEffect::Infinite);
     sound->play();
     connect(ui.songVolume, &QSlider::valueChanged, this, [this](int value) {

@@ -67,7 +67,7 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Sounds\MainMenu.mp3">
+    <Media Include="Sounds\MainMenu.wav">
       <Filter>Sounds</Filter>
     </Media>
   </ItemGroup>
