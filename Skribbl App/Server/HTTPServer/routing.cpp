@@ -20,6 +20,7 @@ void Routing::Run()
         if (usernameIter != end && emailIter != end && passwordIter != end)
         {
             //add to database
+            std::cout << usernameIter->second << " ";
         }
         return crow::response(200);;
         });
