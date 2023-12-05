@@ -16,6 +16,18 @@
 int  main()
 {
     std::cout << "I installed cpr. Now, my server is the limit!:(\n";
+	std::string email;
+	std::string username;
+	std::string pass;
+	std::cin >> email >> username >> pass;
 
+    auto response = cpr::Put(
+		cpr::Url{ "http://localhost:18080/register" },
+		cpr::Payload{
+			{ "email", email },
+			{ "username", username },
+			{ "password", pass}
+	}
+	);
     return 0;
 }

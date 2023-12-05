@@ -134,8 +134,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="user.cpp" />
-    <ClCompile Include="user.cppm" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HashingDLL\HashingDLL.vcxproj">

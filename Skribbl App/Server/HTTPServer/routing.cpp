@@ -10,7 +10,7 @@ void Routing::Run()
 
 
     CROW_ROUTE(m_app, "/register")
-        .methods("POST"_method)
+        .methods("PUT"_method)
         ([](const crow::request& req) {
         auto bodyArgs = parseUrlArgs(req.body);
         auto end = bodyArgs.end();
@@ -20,7 +20,7 @@ void Routing::Run()
         if (usernameIter != end && emailIter != end && passwordIter != end)
         {
             //add to database
-            std::cout << usernameIter->second << " ";
+            std::cout << usernameIter->second << " " << emailIter->second << " " << passwordIter->second << std::endl;
         }
         return crow::response(200);;
         });
