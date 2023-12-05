@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="difficulty.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="game.cppm" />
     <ClCompile Include="gamedata.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="difficulty.h" />
     <ClInclude Include="gamedata.h" />
     <ClInclude Include="routing.h" />
     <ClInclude Include="Word.h" />
