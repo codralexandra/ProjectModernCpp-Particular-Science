@@ -134,6 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gamedata.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="player.cppm" />
     <ClCompile Include="routing.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="user.cpp" />
