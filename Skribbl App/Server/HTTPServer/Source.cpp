@@ -22,12 +22,12 @@ namespace sql = sqlite_orm;
 
 int main() 
 {
-	//std::cout << "I installed sqlite_orm and crow. Now, the sky is the limit!" /*🌌🚀*/ << std::endl;
-	/*Word w("table","EASY",1);
+	
+	Word w("Ice-cream","EASY",1);
 	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
 	w.ShowHint();
 	w.ShowHint();
-	w.ShowHint();*/
+	w.ShowHint();
 
 	Storage db = createStorage("Words.sqlite");
 	try {
