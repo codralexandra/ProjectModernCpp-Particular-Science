@@ -23,54 +23,52 @@ namespace sql = sqlite_orm;
 int main() 
 {
 	
-	//Word w("Ice-cream","EASY",1);
-	//std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
-	//w.ShowHint();
-	//w.ShowHint();
-	//w.ShowHint();
+	Word w("Ice-cream","EASY",1);
+	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
+	w.ShowHint();
+	w.ShowHint();
+	w.ShowHint();
 
-	//Storage db = createStorage("Words.sqlite");
-	//try {
-	//	db.sync_schema();
-	//}
-	//catch (const std::exception& e) {
-	//	std::cerr << "Error during schema sync: " << e.what() << std::endl;
-	//}
-	//
-	//auto initialWordsCount = db.count<Word2>();
-	//if (initialWordsCount == 0)
-	//{
-	//	populateStorage(db);
+	Storage db = createStorage("Words.sqlite");
+	try {
+		db.sync_schema();
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Error during schema sync: " << e.what() << std::endl;
+	}
+	
+	auto initialWordsCount = db.count<Word2>();
+	if (initialWordsCount == 0)
+	{
+		populateStorage(db);
 
-	//}
-	//std::cout << db.count<Word2>() << std::endl;
+	}
+	std::cout << db.count<Word2>() << std::endl;
 
-	//crow::SimpleApp app;
-	//CROW_ROUTE(app, "/")([]() {
+	crow::SimpleApp app;
+	CROW_ROUTE(app, "/")([]() {
 
-	//	return "MEAW";
-	//	}
-	//);
-	//CROW_ROUTE(app, "/words")([&db]() {
+		return "MEAW";
+		}
+	);
+	CROW_ROUTE(app, "/words")([&db]() {
 
-	//	std::vector<crow::json::wvalue>wordsJson;
-	//	for (const auto& word : db.iterate<Word2>())
-	//	{
-	//		crow::json::wvalue wordJson{
-	//			{"id", word.m_id},
-	//			{ "name",word.m_value},
-	//			{ "difficulty",word.m_difficulty }
+		std::vector<crow::json::wvalue>wordsJson;
+		for (const auto& word : db.iterate<Word2>())
+		{
+			crow::json::wvalue wordJson{
+				{"id", word.m_id},
+				{ "name",word.m_value},
+				{ "difficulty",word.m_difficulty }
 
-	//		};
-	//		wordsJson.push_back(wordJson);
-	//	}
-	//	return crow::json::wvalue(wordsJson);
-	//	});
-	//app.port(18080).multithreaded().run();
+			};
+			wordsJson.push_back(wordJson);
+		}
+		return crow::json::wvalue(wordsJson);
+		});
+	app.port(18080).multithreaded().run();
 
-	//afiseaza 521 de cuv cand an 500 in fisier why???
-
-	Routing r;
+	/*Routing r;
 	r.Run();
-	return 0;
+	return 0;*/
 }

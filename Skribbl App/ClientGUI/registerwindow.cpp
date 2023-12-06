@@ -1,8 +1,8 @@
 #include "registerwindow.h"
 #include<iostream>
 #include <qchar.h>
-import hash;
-//import hash;
+#include "HashingDLL/hash.h"
+
 RegisterWindow::RegisterWindow(QWidget *parent)
 	: QWidget(parent)
 {
@@ -12,6 +12,7 @@ RegisterWindow::RegisterWindow(QWidget *parent)
 
 RegisterWindow::~RegisterWindow()
 {}
+
 bool RegisterWindow::validateUserPassword(const std::string& m_password)
 {
 
@@ -21,6 +22,7 @@ bool RegisterWindow::validateUserPassword(const std::string& m_password)
 	}
 	return true;
 }
+
 bool RegisterWindow::validateUserEmail(const std::string& m_email)
 {
 	bool emailValid;
@@ -45,7 +47,7 @@ void RegisterWindow::onRegisterButtonClicked()
 	std::string email = QStringConversion(ui.emailInput->text());
 	std::string username = QStringConversion(ui.usernameInput->text());
 	std::string password = QStringConversion(ui.passwordInput->text());
-	//HashMethod pass;
+	HashMethod pass;
 
 	if (validateUserPassword(password))
 	{
