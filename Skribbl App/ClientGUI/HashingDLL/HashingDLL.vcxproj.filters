@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hash.cppm">
+    <ClCompile Include="hash.h">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="hash.cpp">

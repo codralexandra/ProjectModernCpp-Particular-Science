@@ -1,4 +1,4 @@
-module hash;
+#include "hash.h"
 
 void HashMethod::Set(std::string pas)
 {
