@@ -23,7 +23,7 @@ namespace sql = sqlite_orm;
 int main() 
 {
 	
-	Word w("Ice-cream","EASY",1);
+	/*Word w("Ice-cream","EASY",1);
 	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
 	w.ShowHint();
 	w.ShowHint();
@@ -66,9 +66,9 @@ int main()
 		}
 		return crow::json::wvalue(wordsJson);
 		});
-	app.port(18080).multithreaded().run();
+	app.port(18080).multithreaded().run();*/
 
-	/*Routing r;
+	Routing r;
 	r.Run();
-	return 0;*/
+	return 0;
 }

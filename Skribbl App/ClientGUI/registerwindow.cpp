@@ -43,8 +43,7 @@ std::string RegisterWindow::QStringConversion(QString string)
 
 void RegisterWindow::onRegisterButtonClicked()
 {
-	
-	std::string email = QStringConversion(ui.emailInput->text());
+	std::string email{ ui.emailInput->text().toUtf8() };
 	std::string username = QStringConversion(ui.usernameInput->text());
 	std::string password = QStringConversion(ui.passwordInput->text());
 	HashMethod pass;
