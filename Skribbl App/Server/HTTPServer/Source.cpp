@@ -34,10 +34,7 @@ int main()
 	if (initialWordsCount == 0)
 	{
 		populateStorage(db);
-
 	}
-	std::cout << db.count<Word>() << std::endl;
-
 	crow::SimpleApp app;
 	CROW_ROUTE(app, "/")([]() {
 

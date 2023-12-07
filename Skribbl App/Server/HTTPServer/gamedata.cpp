@@ -12,6 +12,8 @@ void populateStorage(Storage& storage)
 		Word w{id, word,dif };
 		cuvinte.push_back(w);
 	}
+
+
 	storage.insert_range(cuvinte.begin(), cuvinte.end());
 	//inserare pt word cum inserez user 
 

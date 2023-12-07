@@ -1,5 +1,4 @@
 #include "routing.h"
-
 using namespace http;
 
 void Routing::Run()
@@ -9,19 +8,12 @@ void Routing::Run()
 		});
 
 
+
+
     CROW_ROUTE(m_app, "/register")
         .methods("PUT"_method)
         ([](const crow::request& req) {
-        auto bodyArgs = parseUrlArgs(req.body);
-        auto end = bodyArgs.end();
-        auto usernameIter = bodyArgs.find("username");
-        auto emailIter = bodyArgs.find("email");
-        auto passwordIter = bodyArgs.find("password");
-        if (usernameIter != end && emailIter != end && passwordIter != end)
-        {
-            //add to database
-            std::cout << usernameIter->second << " " << emailIter->second << " " << passwordIter->second << std::endl;
-        }
+        //Register function
         return crow::response(200);;
         });
 
@@ -49,4 +41,17 @@ void Routing::Run()
 
 
 	m_app.port(18080).multithreaded().run();
+}
+
+crow::response http::Routing::Register(const crow::request& req, Storage& storage) const
+{
+    auto bodyArgs = parseUrlArgs(req.body);
+    auto end = bodyArgs.end();
+    auto usernameIter = bodyArgs.find("username");
+    auto emailIter = bodyArgs.find("email");
+    auto passwordIter = bodyArgs.find("password");
+    if (usernameIter != end && emailIter != end && passwordIter != end)
+    {
+        //insert into table User
+    }
 }
