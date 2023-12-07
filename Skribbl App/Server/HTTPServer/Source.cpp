@@ -22,14 +22,7 @@ namespace sql = sqlite_orm;
 
 int main() 
 {
-	
-	/*Word w("Ice-cream","EASY",1);
-	std::cout<<w.getValueAux()<<" "<<w.getNumberHint()<<std::endl;
-	w.ShowHint();
-	w.ShowHint();
-	w.ShowHint();
-
-	Storage db = createStorage("Words.sqlite");
+	Storage db = CreateStorage("Words.sqlite");
 	try {
 		db.sync_schema();
 	}
@@ -37,13 +30,13 @@ int main()
 		std::cerr << "Error during schema sync: " << e.what() << std::endl;
 	}
 	
-	auto initialWordsCount = db.count<Word2>();
+	auto initialWordsCount = db.count<Word>();
 	if (initialWordsCount == 0)
 	{
 		populateStorage(db);
 
 	}
-	std::cout << db.count<Word2>() << std::endl;
+	std::cout << db.count<Word>() << std::endl;
 
 	crow::SimpleApp app;
 	CROW_ROUTE(app, "/")([]() {
@@ -54,19 +47,19 @@ int main()
 	CROW_ROUTE(app, "/words")([&db]() {
 
 		std::vector<crow::json::wvalue>wordsJson;
-		for (const auto& word : db.iterate<Word2>())
+		for (const auto& word : db.iterate<Word>())
 		{
 			crow::json::wvalue wordJson{
-				{"id", word.m_id},
-				{ "name",word.m_value},
-				{ "difficulty",word.m_difficulty }
+				{"id", word.getId()},
+				{ "name",word.getValue()},
+				{ "difficulty",word.getDifficulty()}
 
 			};
 			wordsJson.push_back(wordJson);
 		}
 		return crow::json::wvalue(wordsJson);
 		});
-	app.port(18080).multithreaded().run();*/
+	app.port(18080).multithreaded().run();
 
 	Routing r;
 	r.Run();

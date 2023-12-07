@@ -4,7 +4,6 @@ using Scribble::Player;
 
 Player::Player() :User()
 {
-    m_nickname = " ";
     m_isDrawing = false;
     m_hasTopScore = false;
     m_personalScore = 0;
@@ -16,7 +15,7 @@ Player::Player() :User()
 
 Player::Player(bool isDrawing) :User()
 {
-    m_nickname = " ";
+
     m_isDrawing = isDrawing;
     m_hasTopScore = false;
     m_personalScore = 0;
@@ -28,8 +27,7 @@ Player::Player(bool isDrawing) :User()
 
 Player::Player(const Player& player)
 {
-    //SetEmail(player.get...)  nu merge player e const help
-    this->m_nickname = player.m_nickname;
+    
     this->m_isDrawing = player.m_isDrawing;
     this->m_hasTopScore = player.m_hasTopScore;
     this->m_personalScore = player.m_personalScore;
@@ -39,7 +37,7 @@ Player::Player(const Player& player)
     this->m_timeGuessed = player.m_timeGuessed;
 }
 
-Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname,
+Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed,
     bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position, const std::string& email, const std::string& password,
     const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest)
 {
@@ -47,7 +45,6 @@ Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string
     SetGameHistory(gameHistory);
     SetPassword(password);
     SetPersonalBest(personalBest);
-    this->m_nickname = nickname;
     this->m_isDrawing = isDrawing;
     this->m_hasTopScore = hasTopScore;
     this->m_personalScore = personalScore;
@@ -60,10 +57,7 @@ Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string
 
 
 
-void Player::SetNickname(std::string nickname)
-{
-    m_nickname = nickname;
-}
+
 
 void Player::SetIsDrawing(bool isDrawing)
 {
@@ -95,10 +89,6 @@ void Scribble::Player::SetHasTopScore(bool topScore)
     m_hasTopScore = topScore;
 }
 
-std::string Player::GetNickname()
-{
-    return m_nickname;
-}
 
 bool Player::GetIsDrawing()
 {
@@ -137,7 +127,6 @@ uint16_t Player::GetTimeGuessed()
 
 Player& Player::operator=(const Player& player)
 {
-    this->m_nickname = player.m_nickname;
     this->m_isDrawing = player.m_isDrawing;
     this->m_hasTopScore = player.m_hasTopScore;
     this->m_personalScore = player.m_personalScore;
@@ -162,7 +151,7 @@ bool Player::operator > (const Player& player) const
 
 std::ostream& Scribble::operator<<(std::ostream& os, Player& player)
 {
-    os << "Nickname: " << player.GetNickname() << "\nPosition: " << player.GetPosition() << "\nTime: " << player.GetTimeGuessed()
+    os << "username: " << "\nPosition: " << player.GetPosition() << "\nTime: " << player.GetTimeGuessed()
         << "\nLeader: " << player.GetHasTopScore() << "\nHas Guessed: " << player.GetHasGuessed() << "\nHas Drawn: "
         << player.GetHasDrawn() << "\nIs Drawing: " << player.GetIsDrawing() << "\nScore: " << player.GetPersonalScore() << "\n";
     return os;

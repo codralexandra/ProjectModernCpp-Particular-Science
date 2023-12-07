@@ -15,12 +15,10 @@ namespace Scribble
 		Player(bool isDrawing);
 		Player(const Player& player);
 
-		Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed, std::string nickname,
+		Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed,
 			bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position, const std::string& email, const std::string& password,
 			const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest);
 
-
-		void SetNickname(std::string nickname);
 		void SetIsDrawing(bool isDrawing);
 		void SetHasGuessed(bool hasGuessed);
 		void SetHasDrawn(bool hasDrawn);
@@ -28,7 +26,6 @@ namespace Scribble
 		void SetPosition(uint16_t position);
 		void SetHasTopScore(bool topScore);
 
-		std::string GetNickname();
 		bool GetIsDrawing();
 		int16_t GetPersonalScore();
 		bool GetHasTopScore();
@@ -47,7 +44,6 @@ namespace Scribble
 		bool m_hasGuessed;
 		bool m_hasDrawn;
 		uint16_t m_timeGuessed;
-		std::string m_nickname;
 		bool m_isDrawing;
 		bool m_hasTopScore;
 		int16_t m_personalScore;

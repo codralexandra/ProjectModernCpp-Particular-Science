@@ -2,6 +2,28 @@
 #include <iostream>
 #include <ctime>
 
+
+
+Word::Word(const uint16_t& id,const std::string& value, const std::string& difficulty)
+	: m_id(id),m_value(value), m_difficulty(difficulty)
+{
+	m_numberHint = m_value.size() / 2;
+	for (int i = 0; i < m_value.size(); i++)
+	{
+		if (m_value[i] == '-')
+			m_valueAux += ' ';
+		else
+			m_valueAux += '_';
+	}
+}
+Word::Word()
+{
+	 m_value = "";
+	 m_difficulty="";
+	 m_numberHint = 0;  ///initializare const
+	 m_valueAux= "";
+	 m_id = -1;
+}
 void Word::setValue(const std::string& value)
 {
 	this->m_value = value;
@@ -22,12 +44,12 @@ std::string Word::getValue() const
 	return m_value;
 }
 
-uint16_t Word::getNumberHint()
+uint16_t Word::getNumberHint() const
 {
 	return m_numberHint;
 }
 
-std::string Word::getValueAux()
+std::string Word::getValueAux() const 
 {
 	return m_valueAux;
 }
@@ -35,6 +57,11 @@ std::string Word::getValueAux()
 uint16_t Word::getId() const
 {
     return m_id;
+}
+
+void Word::SetId(const uint16_t& id)
+{
+	m_id = id;
 }
 
 void Word::PrintPlayerDrawing()

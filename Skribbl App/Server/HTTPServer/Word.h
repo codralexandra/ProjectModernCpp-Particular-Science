@@ -16,29 +16,18 @@ private:
 
 public:
 
-	Word(const std::string& value, const std::string& difficulty, uint16_t id)
-		: m_value(value), m_difficulty(difficulty), m_id(id)
-	{
-		std::cout << "Constructor apelat\n";
-		m_numberHint = m_value.size() / 2;
-		for (int i = 0; i < m_value.size(); i++)
-		{
-			if (m_value[i] == '-')
-				m_valueAux += ' ';
-			else
-				m_valueAux += '_';
-		}
-	}
-
+	Word(const uint16_t& id, const std::string& value, const std::string& difficulty);
+	Word();
 	~Word() = default;
 
 	void setValue(const std::string& value);
 	void setDifficulty(const std::string& difficulty);
+	void SetId(const uint16_t& id);
 
 	std::string getDifficulty() const;
 	std::string getValue() const;
-	uint16_t getNumberHint();
-	std::string getValueAux();
+	uint16_t getNumberHint() const;
+	std::string getValueAux() const;
 	uint16_t getId() const;
 
 

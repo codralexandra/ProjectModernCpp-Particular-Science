@@ -2,19 +2,21 @@ module user;
 using Scribble::User;
 import <regex>;
 
-User::User() : m_email(""), m_password(""), m_gameHistory(), m_personalBest(0)
+User::User() : m_email(""), m_password(""), m_gameHistory(), m_personalBest(0), m_username("")
 {
 
 }
 
-User::User(const std::string& email, const std::string& password, const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest) :
-	m_email(email), m_password(password), m_gameHistory(gameHistory), m_personalBest(personalBest)
+User::User(const std::string& email, const std::string& username, const std::string& password, 
+	const std::queue<std::pair<uint16_t, std::string>>& gameHistory, const uint16_t& personalBest) :
+	m_email(email),m_username(username), m_password(password), m_gameHistory(gameHistory), m_personalBest(personalBest)
 {
 
 }
 
 User& User::operator=(const User& user)
 {
+	m_username = user.m_username;
 	m_email = user.m_email;
 	m_password = user.m_password;
 	m_gameHistory = user.m_gameHistory;
@@ -24,6 +26,7 @@ User& User::operator=(const User& user)
 
 User::User(const User& user)
 {
+	m_username = user.m_username;
 	m_email = user.m_email;
 	m_password = user.m_password;
 	m_gameHistory = user.m_gameHistory;
@@ -57,22 +60,27 @@ User::~User()
 {
 }
 
-std::string User::GetEmail()
+std::string User::GetEmail() const
 {
 	return m_email;
 }
 
-std::string User::GetPassword()
+std::string Scribble::User::GetUsername() const
+{
+	return m_username;
+}
+
+std::string User::GetPassword() const
 {
 	return m_password;
 }
 
-std::queue<std::pair<uint16_t, std::string>> User::GetGameHistory()
+std::queue<std::pair<uint16_t, std::string>> User::GetGameHistory() const
 {
 	return m_gameHistory;
 }
 
-uint16_t User::GetPersonalBest()
+uint16_t User::GetPersonalBest() const
 {
 	return m_personalBest;
 }
@@ -82,17 +90,22 @@ void User::SetEmail(const std::string& email)
 	m_email = email;
 }
 
+void User::SetUsername(std::string username)
+{
+	m_username = username;
+}
+
 void User::SetPassword(const std::string& password)
 {
 	m_password = password;
 }
 
-void User::SetGameHistory(const std::queue<std::pair<uint16_t, std::string>> gameHistory)
+void User::SetGameHistory(const std::queue<std::pair<uint16_t, std::string>>& gameHistory)
 {
 	m_gameHistory = gameHistory;
 }
 
-void User::SetPersonalBest(uint16_t personalBest)
+void User::SetPersonalBest(const uint16_t& personalBest)
 {
 	m_personalBest = personalBest;
 }
@@ -111,17 +124,17 @@ void User::AddGameToGameHistory(std::pair<uint16_t, std::string> game)
 	}
 }
 
-std::ostream& Scribble::operator<<(std::ostream& ostream, const User& user)
-{
-	std::queue<std::pair<uint16_t, std::string>> copyGameHistory = user.m_gameHistory;
-	ostream << "Email: " << user.m_email << "\n"
-		<< "Password: " << user.m_password << "\n"
-		<< "Game history: \n";
-	while (!copyGameHistory.empty())
-	{
-		ostream << copyGameHistory.front().first << " " << copyGameHistory.front().second << "\n";
-		copyGameHistory.pop();
-	}
-	ostream << "Personal best: " << user.m_personalBest << "\n";
-	return ostream;
-}
+//std::ostream& Scribble::operator<<(std::ostream& ostream, const User& user)
+//{
+//	std::queue<std::pair<uint16_t, std::string>> copyGameHistory = user.m_gameHistory;
+//	ostream << "Email: " << user.m_email << "\n"
+//		<< "Password: " << user.m_password << "\n"
+//		<< "Game history: \n";
+//	while (!copyGameHistory.empty())
+//	{
+//		ostream << copyGameHistory.front().first << " " << copyGameHistory.front().second << "\n";
+//		copyGameHistory.pop();
+//	}
+//	ostream << "Personal best: " << user.m_personalBest << "\n";
+//	return ostream;
+//}

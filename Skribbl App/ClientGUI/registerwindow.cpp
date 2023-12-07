@@ -44,8 +44,8 @@ std::string RegisterWindow::QStringConversion(QString string)
 void RegisterWindow::onRegisterButtonClicked()
 {
 	std::string email{ ui.emailInput->text().toUtf8() };
-	std::string username = QStringConversion(ui.usernameInput->text());
-	std::string password = QStringConversion(ui.passwordInput->text());
+	std::string username{ ui.usernameInput->text().toUtf8() };
+	std::string password{ ui.passwordInput->text().toUtf8() };
 	HashMethod pass;
 
 	if (validateUserPassword(password))
