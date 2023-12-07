@@ -11,10 +11,10 @@ namespace http
 	class Routing
 	{
 	public:
-		void Run();
+		void Run(Storage& storage);
 
 	private:
-		crow::response Register(const crow::request& req, Storage &storage)const;
+		crow::response Register(const crow::request& req, Storage& storage)const;
 
 	private:
 		crow::SimpleApp m_app;

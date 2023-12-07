@@ -1,19 +1,17 @@
 #include "routing.h"
 using namespace http;
 
-void Routing::Run()
+void Routing::Run(Storage& storage)
 {
 	CROW_ROUTE(m_app, "/")([]() {
 		return "This is an example app of crow and sql-orm";
 		});
 
 
-
-
     CROW_ROUTE(m_app, "/register")
         .methods("PUT"_method)
-        ([](const crow::request& req) {
-        //Register function
+        ([this,&storage](const crow::request& req) {
+        this->Register(req, storage);
         return crow::response(200);;
         });
 
@@ -52,6 +50,11 @@ crow::response http::Routing::Register(const crow::request& req, Storage& storag
     auto passwordIter = bodyArgs.find("password");
     if (usernameIter != end && emailIter != end && passwordIter != end)
     {
-        //insert into table User
+        /*std::vector<std::pair<std::string, std::string>>  user;
+        user.push_back(std::make_pair(usernameIter->second, passwordIter->second));
+        storage.insert_range(user.begin(), user.end());*/
+        std::pair<std::string, std::string>user = { usernameIter->second, passwordIter->second };
+        storage.insert(user);
     }
+
 }

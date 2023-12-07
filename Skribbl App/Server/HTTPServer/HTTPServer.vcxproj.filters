@@ -57,6 +57,12 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="userdb.cppm">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="userdb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Word.h">

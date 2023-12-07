@@ -59,6 +59,6 @@ int main()
 	app.port(18080).multithreaded().run();
 
 	Routing r;
-	r.Run();
+	r.Run(db);
 	return 0;
 }
