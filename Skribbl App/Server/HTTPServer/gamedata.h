@@ -2,11 +2,9 @@
 #include <crow.h>
 #include <sqlite_orm/sqlite_orm.h>
 #include "Word.h"
-import user;
+import userdb;
 namespace sql = sqlite_orm;
 using namespace Scribble;
-#include "Word.h"
-import user;
 import utils;
 
 
@@ -22,8 +20,9 @@ inline auto CreateStorage(const std::string& filename)
 		),
 		sql::make_table(
 			"User",
-			sql::make_column("username", &User::SetUsername, &User::GetUsername, sql::primary_key()),
-			sql::make_column("password", &User::SetPassword, &User::GetPassword)
+			sql::make_column("id", &UserDB::SetId, &UserDB::GetId, sql::primary_key().autoincrement()),
+			sql::make_column("username", &UserDB::SetUsername, &UserDB::GetUsername),
+			sql::make_column("password", &UserDB::SetPassword, &UserDB::GetPassword)
 		)
 		
 	);

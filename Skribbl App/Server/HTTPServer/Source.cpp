@@ -56,7 +56,7 @@ int main()
 		}
 		return crow::json::wvalue(wordsJson);
 		});
-	app.port(18080).multithreaded().run();
+	//app.port(18080).multithreaded().run();
 
 	Routing r;
 	r.Run(db);

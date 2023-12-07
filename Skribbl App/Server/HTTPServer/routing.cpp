@@ -1,4 +1,5 @@
 #include "routing.h"
+import userdb;
 using namespace http;
 
 void Routing::Run(Storage& storage)
@@ -11,7 +12,21 @@ void Routing::Run(Storage& storage)
     CROW_ROUTE(m_app, "/register")
         .methods("PUT"_method)
         ([this,&storage](const crow::request& req) {
-        this->Register(req, storage);
+        crow::json::rvalue jsonData = crow::json::load(req.body);
+
+        // Check if the JSON data was parsed successfully
+        if (!jsonData) {
+            return crow::response(400, "Invalid JSON format");
+        }
+
+        // Access JSON data fields (e.g., email, username, password)
+        std::string email = jsonData["email"].s();
+        std::string username = jsonData["username"].s();
+        std::string password = jsonData["password"].s();
+        std::cout << email << "\n";
+        uint16_t id = -1;
+        UserDB user(id, username, password);
+        storage.insert(user);
         return crow::response(200);;
         });
 
@@ -41,20 +56,25 @@ void Routing::Run(Storage& storage)
 	m_app.port(18080).multithreaded().run();
 }
 
+//crow::response http::Routing::Register(const crow::request& req, Storage& storage) const
+//{
+//    auto bodyArgs = parseUrlArgs(req.body);
+//    auto end = bodyArgs.end();
+//    auto usernameIter = bodyArgs.find("username");
+//    auto emailIter = bodyArgs.find("email");
+//    auto passwordIter = bodyArgs.find("password");
+//    if (usernameIter != end && emailIter != end && passwordIter != end)
+//    {
+//        UserDB user(usernameIter->second, passwordIter->second);
+//        storage.replace(user);        
+//    }
+//    return crow::response(200, "Register Successful");
+//}
+
+
 crow::response http::Routing::Register(const crow::request& req, Storage& storage) const
 {
-    auto bodyArgs = parseUrlArgs(req.body);
-    auto end = bodyArgs.end();
-    auto usernameIter = bodyArgs.find("username");
-    auto emailIter = bodyArgs.find("email");
-    auto passwordIter = bodyArgs.find("password");
-    if (usernameIter != end && emailIter != end && passwordIter != end)
-    {
-        /*std::vector<std::pair<std::string, std::string>>  user;
-        user.push_back(std::make_pair(usernameIter->second, passwordIter->second));
-        storage.insert_range(user.begin(), user.end());*/
-        std::pair<std::string, std::string>user = { usernameIter->second, passwordIter->second };
-        storage.insert(user);
-    }
+    
 
+    return crow::response(200, "Received and processed JSON data");
 }

@@ -68,14 +68,20 @@ void RegisterWindow::onRegisterButtonClicked()
 	std::string passw;
 	std::cin >> email >> username >> passw;*/
 
+	crow::json::wvalue jsonPayload;
+	jsonPayload["email"] = email;
+	jsonPayload["username"] = username;
+	jsonPayload["password"] = password;
+	std::string jsonString = jsonPayload.dump();
+
 	auto response = cpr::Put(
 		cpr::Url{ "http://localhost:18080/register" },
-		cpr::Payload{
-			{ "email", email },
-			{ "username", username },
-			{ "password", password}
-	}
+		cpr::Body{ jsonString },
+		cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
 	);
+
+
+
 	//std::stringstream urlBuilder;
 	//urlBuilder << "http://localhost:18080/register";
 	//		   auto response = cpr::Get(cpr::Url{urlBuilder.str()},
