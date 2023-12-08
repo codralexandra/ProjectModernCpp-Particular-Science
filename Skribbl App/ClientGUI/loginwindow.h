@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "ui_loginwindow.h"
+#include "registerwindow.h"
 
 class LoginWindow : public QWidget
 {
@@ -10,7 +11,10 @@ class LoginWindow : public QWidget
 public:
 	LoginWindow(QWidget *parent = nullptr);
 	~LoginWindow();
+public slots:
+	void on_registerButton_clicked();
 
 private:
 	Ui::LoginWindowClass ui;
+	RegisterWindow m_registerWindow;
 };
