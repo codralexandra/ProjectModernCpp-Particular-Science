@@ -1,13 +1,15 @@
 #include <string>
-#include "Round.h"
+using namespace Scribble;
+import game;
 
-class SubRound: public Round 
+class SubRound
 {
 public:
 	SubRound();
 	void SetWord(const std::string& cuv);
 	const std::string GetWord()const;
-	void StartSubRound();
+	void StartSubRound(Scribble::Game& g);
+	
 
 private:
 	std::string word;
