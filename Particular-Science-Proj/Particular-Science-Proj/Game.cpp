@@ -50,14 +50,14 @@ void Game::Start_Game()
 	int dim_runde = 4;
 	for (int i = 0; i < dim_runde; i++)
 	{
-		for (auto player : m_players)
-		{
-			player.SetIsDrawing(true);
-			//random word choice
-			Score_Player_Drawing(player, m_players);
-			//print result
-		}
-		//print score after round ends (add timer)
+		r=new Round();
+		r.StartRound(*this);
+		//	player.SetIsDrawing(true);
+		//	//random word choice
+		//	Score_Player_Drawing(player, m_players);
+		//	//print result
+		//
+		////print score after round ends (add timer)
 	}
 	//print score after game
 	//stop game

@@ -4,6 +4,7 @@ import <iostream>;
 import <vector>;
 #include "Difficulty.h"; 
 import player;
+#include "Round.h"
 
 namespace Scribble
 {
@@ -31,6 +32,7 @@ namespace Scribble
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
 		std::string m_date; //regex check or make class
+		Round* r;
 	};
 
 }

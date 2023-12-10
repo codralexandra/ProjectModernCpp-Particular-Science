@@ -1,3 +1,4 @@
+import game;
 #include "Round.h"
 
 Round::Round()
@@ -10,7 +11,9 @@ void Round::StartRound(Scribble::Game& g)
 	std::cout << "Start ROUND apelata\n";
 	for (int i = 0; i < g.getPlayers().size(); i++)
 	{
+		sb = new SubRound();
 		SetDrawer(g.getPlayers()[i]);
+		sb->StartSubRound(g);
 
 	}
 }

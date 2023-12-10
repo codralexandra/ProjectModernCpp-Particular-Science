@@ -1,5 +1,6 @@
 import game;
 import player;
+#include "SubRound.h"
 
 class Round
 {
@@ -11,6 +12,7 @@ public:
 
 private:
 	Scribble::Player m_CurrentDrawer;
+	SubRound* sb;
 
 };
 

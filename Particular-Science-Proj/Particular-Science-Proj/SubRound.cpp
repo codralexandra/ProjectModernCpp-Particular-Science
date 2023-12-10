@@ -1,4 +1,5 @@
 #include "SubRound.h"
+#include <iostream>
 
 SubRound::SubRound()
 {
@@ -16,7 +17,7 @@ const std::string SubRound::GetWord() const
 	return this->word;
 }
 
-void SubRound::StartSubRound()
+void SubRound::StartSubRound(Scribble::Game& g)
 {
 	std::cout << "Start SubRound apelata\n";
 	Scribble::Player p = this->GetDrawer();
