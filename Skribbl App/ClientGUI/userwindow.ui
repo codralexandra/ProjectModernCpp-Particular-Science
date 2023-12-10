@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UserWindowClass</class>
+ <widget class="QWidget" name="UserWindowClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>759</width>
+    <height>517</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>UserWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:0.75, y2:0.79, stop:0 rgba(255, 190, 230, 255), stop:1 rgba(220, 217, 255, 255), x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 231, 251, 255), stop:1 rgba(210, 230, 255, 255));</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <spacer name="verticalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>171</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>319</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="startGameButton">
+       <property name="styleSheet">
+        <string notr="true">#startLoginButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#startLoginButton:hover {
+    background-color: #d3d3d3;
+}
+
+#startLoginButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+       </property>
+       <property name="text">
+        <string>Start Game</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="profileButton">
+       <property name="styleSheet">
+        <string notr="true">#startRegisterButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#startRegisterButton:hover {
+    background-color: #d3d3d3;
+}
+
+#startRegisterButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+       </property>
+       <property name="text">
+        <string>Profile</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="settingsButton">
+       <property name="styleSheet">
+        <string notr="true">#settingsButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#settingsButton:hover {
+    background-color: #d3d3d3;
+}
+
+#settingsButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+       </property>
+       <property name="text">
+        <string>Settings</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exitButton">
+       <property name="styleSheet">
+        <string notr="true">#exitButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#exitButton:hover {
+    background-color: #d3d3d3;
+}
+
+#exitButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+       </property>
+       <property name="text">
+        <string>Exit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>319</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>170</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
