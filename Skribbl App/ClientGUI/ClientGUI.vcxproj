@@ -32,12 +32,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>6.6.1_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets;multimedia;multimedia</QtModules>
+    <QtModules>core;gui;widgets;multimedia</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>6.6.1_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets;multimedia;</QtModules>
+    <QtModules>core;gui;widgets;multimedia</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -103,6 +103,7 @@
   <ItemGroup>
     <ClCompile Include="loginwindow.cpp" />
     <ClCompile Include="registerwindow.cpp" />
+    <ClCompile Include="userwindow.cpp" />
     <QtRcc Include="clientgui.qrc" />
     <QtUic Include="clientgui.ui" />
     <QtMoc Include="clientgui.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="main.cpp" />
     <QtUic Include="loginwindow.ui" />
     <QtUic Include="registerwindow.ui" />
+    <QtUic Include="userwindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="registerwindow.h" />
@@ -124,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Sounds\MainMenu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="userwindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
