@@ -136,19 +136,6 @@
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <widget class="QPushButton" name="startRegisterButton">
             <property name="styleSheet">
              <string notr="true">#startRegisterButton {
@@ -173,7 +160,55 @@
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_2">
+           <widget class="QPushButton" name="settingsButton">
+            <property name="styleSheet">
+             <string notr="true">#settingsButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#settingsButton:hover {
+    background-color: #d3d3d3;
+}
+
+#settingsButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+            </property>
+            <property name="text">
+             <string>Settings</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="exitButton">
+            <property name="styleSheet">
+             <string notr="true">#exitButton {
+    background-color: white;
+    border: 2px solid #8f8f91;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#exitButton:hover {
+    background-color: #d3d3d3;
+}
+
+#exitButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+            </property>
+            <property name="text">
+             <string>Exit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_6">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
