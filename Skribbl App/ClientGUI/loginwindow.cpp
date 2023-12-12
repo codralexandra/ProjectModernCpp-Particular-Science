@@ -4,14 +4,13 @@ LoginWindow::LoginWindow(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	connect(ui.registerButton, &QPushButton::clicked, this, &LoginWindow::on_registerButton_clicked);
+	connect(ui.backButton, &QPushButton::clicked, this, &LoginWindow::on_backButton_clicked);
 }
 
 LoginWindow::~LoginWindow()
 {}
 
-void LoginWindow::on_registerButton_clicked()
+void LoginWindow::on_backButton_clicked()
 {
-	this->hide();
-	m_registerWindow.show();
+	this->close();
 }

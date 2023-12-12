@@ -8,10 +8,16 @@ RegisterWindow::RegisterWindow(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.registerButton, &QPushButton::clicked, this, &RegisterWindow::onRegisterButtonClicked);
+	connect(ui.backButton, &QPushButton::clicked, this, &RegisterWindow::on_backButton_clicked);
 }
 
 RegisterWindow::~RegisterWindow()
 {}
+
+void RegisterWindow::on_backButton_clicked()
+{
+	this->close();
+}
 
 bool RegisterWindow::validateUserPassword(const std::string& m_password)
 {

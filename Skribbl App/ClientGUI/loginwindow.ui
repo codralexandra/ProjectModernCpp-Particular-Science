@@ -240,9 +240,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="registerButton">
+         <widget class="QPushButton" name="backButton">
           <property name="styleSheet">
-           <string notr="true">#registerButton { 
+           <string notr="true">#backButton { 
 	background-color: #c0c0c0;
     border: 2px solid #c0c0c0;
     border-radius: 10px;
@@ -250,17 +250,17 @@
     color: white;
 }
 
-#registerButton:hover {
+#backButton:hover {
     background-color: #d3d3d3;
 }
 
-#registerButton:pressed {
+#backButton:pressed {
     background-color: #a9a9a9; 
     border: 2px solid #686868; 
 }</string>
           </property>
           <property name="text">
-           <string>Register Instead</string>
+           <string>Back</string>
           </property>
          </widget>
         </item>

@@ -133,23 +133,20 @@
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::MinimumExpanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QLabel" name="label">
             <property name="styleSheet">
@@ -183,20 +180,20 @@
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer_11">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>17</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QLabel" name="pswText_3">
             <property name="font">
@@ -253,7 +250,7 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item alignment="Qt::AlignHCenter">
+        <item>
          <widget class="QPushButton" name="registerButton">
           <property name="styleSheet">
            <string notr="true">#registerButton {
@@ -274,6 +271,31 @@
           </property>
           <property name="text">
            <string>Register</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="backButton">
+          <property name="styleSheet">
+           <string notr="true">#backButton { 
+	background-color: #c0c0c0;
+    border: 2px solid #c0c0c0;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+}
+
+#backButton:hover {
+    background-color: #d3d3d3;
+}
+
+#backButton:pressed {
+    background-color: #a9a9a9; 
+    border: 2px solid #686868; 
+}</string>
+          </property>
+          <property name="text">
+           <string>Back</string>
           </property>
          </widget>
         </item>

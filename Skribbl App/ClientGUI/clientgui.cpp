@@ -23,13 +23,13 @@ ClientGUI::~ClientGUI()
 
 void ClientGUI::on_startRegisterButton_clicked()
 {
-    this->hide();
+    //this->hide();
     m_registerWindow.show();
 }
 
 void ClientGUI::on_startLoginButton_clicked()
 {
-    this->hide();
+    //this->hide();
     m_loginWindow.show();
 }
 
