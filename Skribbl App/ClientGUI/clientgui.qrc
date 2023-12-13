@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="ClientGUI">
+    <qresource prefix="/ClientGUI">
+        <file>Image Assets/volume.png</file>
+        <file>Image Assets/mute.png</file>
     </qresource>
 </RCC>

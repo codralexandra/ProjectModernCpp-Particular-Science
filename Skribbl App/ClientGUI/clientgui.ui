@@ -20,19 +20,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="1">
-     <spacer name="verticalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>84</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="1" column="0">
      <spacer name="horizontalSpacer_3">
       <property name="orientation">
@@ -42,6 +29,19 @@
        <size>
         <width>269</width>
         <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <spacer name="verticalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>87</height>
        </size>
       </property>
      </spacer>
@@ -239,26 +239,26 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="1">
-     <spacer name="verticalSpacer_5">
+    <item row="2" column="1">
+     <spacer name="verticalSpacer_4">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>87</height>
+        <height>84</height>
        </size>
       </property>
      </spacer>
     </item>
-    <item row="0" column="2">
-     <widget class="QSlider" name="songVolume">
-      <property name="sliderPosition">
-       <number>10</number>
+    <item row="0" column="2" alignment="Qt::AlignRight">
+     <widget class="QRadioButton" name="soundMuteCheck">
+      <property name="styleSheet">
+       <string notr="true">background : transparent</string>
       </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="text">
+       <string>Mute Sound</string>
       </property>
      </widget>
     </item>

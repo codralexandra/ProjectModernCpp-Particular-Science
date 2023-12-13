@@ -103,6 +103,8 @@
   <ItemGroup>
     <ClCompile Include="loginwindow.cpp" />
     <ClCompile Include="registerwindow.cpp" />
+    <ClCompile Include="settingswindow.cpp" />
+    <ClCompile Include="soundmanager.cpp" />
     <ClCompile Include="userwindow.cpp" />
     <QtRcc Include="clientgui.qrc" />
     <QtUic Include="clientgui.ui" />
@@ -111,6 +113,7 @@
     <ClCompile Include="main.cpp" />
     <QtUic Include="loginwindow.ui" />
     <QtUic Include="registerwindow.ui" />
+    <QtUic Include="settingswindow.ui" />
     <QtUic Include="userwindow.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="userwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="settingswindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="soundmanager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
