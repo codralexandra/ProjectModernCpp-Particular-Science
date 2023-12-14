@@ -23,27 +23,42 @@ void Routing::Run(Storage& storage)
         std::string email = jsonData["email"].s();
         std::string username = jsonData["username"].s();
         std::string password = jsonData["password"].s();
-        std::cout << email << "\n";
-        uint16_t id = -1;
-        UserDB user(id, username, password);
-        storage.insert(user);
-        return crow::response(200);;
+        //bool isUnique = make function that checks in databse if username and email already exist, if any of them does return false  
+        bool isUnique = true;
+
+        if (isUnique)
+        {
+            uint16_t id = -1;
+            UserDB user(id, username, password);
+            storage.insert(user);
+            return crow::response(200, "Registration successful");
+        }
+        else
+        {
+            return crow::response(409, "Registration failed: username/email already exists.");
+        }
         });
 
     CROW_ROUTE(m_app, "/login")
         .methods("PUT"_method)
         ([](const crow::request& req) {
+
         crow::json::rvalue jsonData = crow::json::load(req.body);
+
+        if (!jsonData) {
+            return crow::response(400, "Invalid JSON format");
+        }
+
         std::string username = jsonData["username"].s();
         std::string password = jsonData["password"].s();
-        // bool isAuthenticated = checkUser(usernameIter->second, passwordIter->second);
-        bool isAuthenticated = false;
-        if (isAuthenticated) {
+        // bool isAuthenticated = make function that checks in databse if username and password match, if they don't return false
+        bool isAuthenticated = true;
 
+        if (isAuthenticated) {
             return crow::response(200, "Login successful");
         }
         else {
-            return crow::response(401, "Unauthorized");
+            return crow::response(401, "Login failed: username/password incorrect");
         }
       });
 
