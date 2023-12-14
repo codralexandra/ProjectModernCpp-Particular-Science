@@ -31,24 +31,19 @@ void Routing::Run(Storage& storage)
         });
 
     CROW_ROUTE(m_app, "/login")
-        .methods("POST"_method)
+        .methods("PUT"_method)
         ([](const crow::request& req) {
-        auto bodyArgs = parseUrlArgs(req.body);
-        auto end = bodyArgs.end();
-        auto usernameIter = bodyArgs.find("username");
-        auto passwordIter = bodyArgs.find("password");
-        if (usernameIter != end && passwordIter != end) {
+        crow::json::rvalue jsonData = crow::json::load(req.body);
+        std::string username = jsonData["username"].s();
+        std::string password = jsonData["password"].s();
            // bool isAuthenticated = checkUser(usernameIter->second, passwordIter->second);
-            bool isAuthenticated = true;
-            if (isAuthenticated) {
-                return crow::response(200, "Login successful");
-            }
-            else {
-                return crow::response(401, "Unauthorized");
-            }
+        bool isAuthenticated = false;
+        if (isAuthenticated) {
+
+            return crow::response(200, "Login successful");
         }
         else {
-            return crow::response(400, "Bad Request");
+            return crow::response(401, "Unauthorized");
         }
       });
 

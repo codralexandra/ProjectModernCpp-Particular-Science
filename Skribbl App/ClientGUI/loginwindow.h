@@ -2,8 +2,13 @@
 
 #include <QWidget>
 #include "ui_loginwindow.h"
+#include<regex>
 #include <cpr/cpr.h>
 #include <crow.h>
+#include <iostream>
+#include <numeric>
+#include <sstream>
+#include <string>
 
 class LoginWindow : public QWidget
 {
@@ -18,4 +23,6 @@ public slots:
 
 private:
 	Ui::LoginWindowClass ui;
+	bool validateUserPassword(const std::string& m_password);
+	bool validateUsername(const std::string& m_username);
 };
