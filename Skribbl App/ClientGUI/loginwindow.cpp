@@ -33,6 +33,7 @@ void LoginWindow::on_loginButton_clicked()
 {
 	std::string username{ ui.usernameInput->text().toUtf8() };
 	std::string password{ ui.passwordInput->text().toUtf8() };
+	HashMethod pass;
 	if (!validateUsername(username))
 	{
 		ui.loginStateLabel->setText("Login failed: Invalid username. Username must contain at least 3 letters and can only include letters and numbers.");

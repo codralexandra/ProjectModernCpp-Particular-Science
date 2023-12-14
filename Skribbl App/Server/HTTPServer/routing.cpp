@@ -36,7 +36,7 @@ void Routing::Run(Storage& storage)
         crow::json::rvalue jsonData = crow::json::load(req.body);
         std::string username = jsonData["username"].s();
         std::string password = jsonData["password"].s();
-           // bool isAuthenticated = checkUser(usernameIter->second, passwordIter->second);
+        // bool isAuthenticated = checkUser(usernameIter->second, passwordIter->second);
         bool isAuthenticated = false;
         if (isAuthenticated) {
 
