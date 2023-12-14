@@ -12,11 +12,11 @@ void Round::StartRound(std::vector<Scribble::Player>& p)
 	for (int i = 0; i < p.size(); i++)
 	{
 		sb = new SubRound();
-		p[i].SetIsDrawing(true);
-		//sb->StartSubRound(g);
+		p[i].SetIsDrawer(true);
+		sb->StartSubRound(p[i]);
 		Score_Player_Drawing(p[i], p);
 		Score_Player_Guessing(p);
-		p[i].SetIsDrawing(false);
+		p[i].SetIsDrawer(false);
 		
 	}
 	//end round
@@ -30,7 +30,7 @@ void Round::Score_Player_Drawing(Scribble::Player& p, std::vector<Scribble::Play
 
 	for (int i = 0; i < players_guessing.size(); i++)
 	{
-		if (players_guessing[i].GetIsDrawing() == false)
+		if (players_guessing[i].GetIsDrawer() == false)
 			sum_times = players_guessing[i].GetTimeGuessed() + sum_times;
 	}
 
@@ -48,7 +48,7 @@ void Round::Score_Player_Guessing(std::vector<Scribble::Player>& p)
 {
 	for (auto player : p)
 	{
-		if (player.GetIsDrawing() == false)
+		if (player.GetIsDrawer() == false)
 		{
 			if (player.GetTimeGuessed() == 60)
 			{
