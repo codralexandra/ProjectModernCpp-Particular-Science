@@ -50,7 +50,7 @@ Player::Player(bool hasGuessed, uint16_t timeGuessed,
 
 void Player::SetIsDrawer(bool isDrawing)
 {
-    m_isDrawing = isDrawing;
+    m_isDrawer = isDrawing;
 }
 
 void Player::SetHasGuessed(bool hasGuessed)

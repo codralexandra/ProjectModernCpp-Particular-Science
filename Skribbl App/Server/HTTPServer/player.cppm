@@ -17,7 +17,7 @@ namespace Scribble
 
 		Player(bool hasGuessed, uint16_t timeGuessed,
 			bool isDrawer, int16_t personalScore, const std::string& email, const std::string& password,
-			const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest);
+			 uint16_t personalBest);
 
 		void SetIsDrawer(bool isDrawing);
 		void SetHasGuessed(bool hasGuessed);

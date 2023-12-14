@@ -16,11 +16,11 @@ namespace Scribble
 
 		void setPlayers(std::vector<Player> players);
 		void setWords(std::vector<std::string> words);
-		void setDate(std::string date);
+		
 
 		std::vector<Player> getPlayers();
 		std::vector<std::string> getWords();
-		std::string getDate();
+		
 
 		void Start_Game();
 		
