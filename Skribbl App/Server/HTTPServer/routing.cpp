@@ -10,7 +10,7 @@ void Routing::Run(Storage& storage)
 
 
     CROW_ROUTE(m_app, "/register")
-        .methods("PUT"_method)
+        .methods("POST"_method)
         ([this,&storage](const crow::request& req) {
         crow::json::rvalue jsonData = crow::json::load(req.body);
 

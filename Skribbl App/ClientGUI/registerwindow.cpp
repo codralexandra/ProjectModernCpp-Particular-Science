@@ -3,7 +3,7 @@
 #include <qchar.h>
 #include "HashingDLL/hash.h"
 
-RegisterWindow::RegisterWindow(QWidget *parent)
+RegisterWindow::RegisterWindow(QWidget* parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
@@ -48,9 +48,9 @@ void RegisterWindow::onRegisterButtonClicked()
 	std::string password{ ui.passwordInput->text().toUtf8() };
 	HashMethod pass;
 
-	if (!validateUsername(username)  || !validateUserEmail(email) || !validateUserPassword(password))
+	if (!validateUsername(username) || !validateUserEmail(email) || !validateUserPassword(password))
 	{
-		//add error message like "Please ensure all fields are filled in before proceeding"
+		//add error message like "Registration failed: Please ensure all fields are filled in before proceeding"
 	}
 	else
 	{
@@ -61,20 +61,32 @@ void RegisterWindow::onRegisterButtonClicked()
 		jsonPayload["password"] = password;
 		std::string jsonString = jsonPayload.dump();
 
-		auto response = cpr::Put(
+		auto response = cpr::Post(
 			cpr::Url{ "http://localhost:18080/register" },
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
 		);
+		if (response.error) {
+			//add error message like "Registration failed: Server is closed."
+		}
+		if (response.status_code != 200)
+		{
+			if (response.status_code >= 400 && response.status_code < 500)
+			{
+				//add error message like "Registration failed: The email or username is already in use. Please try a different one."
+			}
+			else if (response.status_code >= 500 && response.status_code < 600)
+			{
+				//add error message like "Registration failed: Network or server error. Please try again later."
+			}
+			else
+			{
+				//add error message like "Registration failed: Unexpected error. Please try again later."
+			}
+		}
+		else
+		{
+			//open the main window
+		}
 	}
-
-
-	//std::stringstream urlBuilder;
-	//urlBuilder << "http://localhost:18080/register";
-	//		   auto response = cpr::Get(cpr::Url{urlBuilder.str()},
-	//									cpr::Parameters{{ "email", email.toStdString().c_str() },
-	//			   { "username", username.toStdString().c_str() },
-	//			   { "password", pass.Get() }});
-
-
 }
