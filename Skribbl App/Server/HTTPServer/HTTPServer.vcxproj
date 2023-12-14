@@ -139,8 +139,10 @@
     <ClCompile Include="gamedata.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player.cppm" />
+    <ClCompile Include="round.cpp" />
     <ClCompile Include="routing.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="subRound.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="user.cpp" />
     <ClCompile Include="user.cppm" />
@@ -153,7 +155,9 @@
   <ItemGroup>
     <ClInclude Include="difficulty.h" />
     <ClInclude Include="gamedata.h" />
+    <ClInclude Include="round.h" />
     <ClInclude Include="routing.h" />
+    <ClInclude Include="subRound.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>

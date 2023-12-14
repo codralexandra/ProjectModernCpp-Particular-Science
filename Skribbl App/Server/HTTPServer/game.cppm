@@ -4,7 +4,7 @@ import <iostream>;
 import <vector>;
 #include "Difficulty.h"; 
 import player;
-
+#include "round.h";
 
 namespace Scribble
 {
@@ -24,14 +24,16 @@ namespace Scribble
 
 		void Start_Game();
 		void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing);
-		void updateHistoryPlayer();
+		void Score_Player_Guessing(Scribble::Player& p, int timp);
+		Player Winner();
+		//void updateHistoryPlayer();
 
 	private:
 		std::vector<Player> m_players;
 		Difficulty m_difficulty;
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
-		std::string m_date; //regex check or make class
+		Round r;
 	};
 
 }
