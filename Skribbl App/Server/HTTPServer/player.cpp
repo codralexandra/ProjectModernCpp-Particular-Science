@@ -4,11 +4,9 @@ using Scribble::Player;
 
 Player::Player() :User()
 {
-    m_isDrawing = false;
-    m_hasTopScore = false;
+    m_isDrawer = false;
+
     m_personalScore = 0;
-    m_position = 1;
-    m_hasDrawn = false;
     m_hasGuessed = false;
     m_timeGuessed = 60;
 }
@@ -16,11 +14,8 @@ Player::Player() :User()
 Player::Player(bool isDrawing) :User()
 {
 
-    m_isDrawing = isDrawing;
-    m_hasTopScore = false;
+    m_isDrawer = isDrawing;
     m_personalScore = 0;
-    m_position = 1;
-    m_hasDrawn = false;
     m_hasGuessed = false;
     m_timeGuessed = false;
 }
@@ -28,38 +23,32 @@ Player::Player(bool isDrawing) :User()
 Player::Player(const Player& player)
 {
     
-    this->m_isDrawing = player.m_isDrawing;
-    this->m_hasTopScore = player.m_hasTopScore;
+    this->m_isDrawer = player.m_isDrawer;
+  
     this->m_personalScore = player.m_personalScore;
-    this->m_position = player.m_position;
-    this->m_hasDrawn = player.m_hasDrawn;
+  
     this->m_hasGuessed = player.m_hasGuessed;
     this->m_timeGuessed = player.m_timeGuessed;
 }
 
-Player::Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed,
-    bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position, const std::string& email, const std::string& password,
-    const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest)
+Player::Player(bool hasGuessed, uint16_t timeGuessed,
+    bool isDrawer,  int16_t personalScore,  const std::string& email, const std::string& password,
+     uint16_t personalBest)
 {
     SetEmail(email);
-    SetGameHistory(gameHistory);
+   
     SetPassword(password);
     SetPersonalBest(personalBest);
-    this->m_isDrawing = isDrawing;
-    this->m_hasTopScore = hasTopScore;
+    this->m_isDrawer = isDrawer;
+  
     this->m_personalScore = personalScore;
-    this->m_position = position;
-    this->m_hasDrawn = hasDrawn;
+  
     this->m_hasGuessed = hasGuessed;
     this->m_timeGuessed = timeGuessed;
 }
 
 
-
-
-
-
-void Player::SetIsDrawing(bool isDrawing)
+void Player::SetIsDrawer(bool isDrawing)
 {
     m_isDrawing = isDrawing;
 }
@@ -69,30 +58,21 @@ void Player::SetHasGuessed(bool hasGuessed)
     m_hasGuessed = hasGuessed;
 }
 
-void Player::SetHasDrawn(bool hasDrawn)
-{
-    m_hasDrawn = hasDrawn;
-}
+
 
 void Player::SetScore(int16_t newscore)
 {
     m_personalScore = newscore;
 }
 
-void Player::SetPosition(uint16_t position)
-{
-    m_position = position;
-}
-
-void Scribble::Player::SetHasTopScore(bool topScore)
-{
-    m_hasTopScore = topScore;
-}
 
 
-bool Player::GetIsDrawing()
+
+
+
+bool Player::GetIsDrawer()
 {
-    return m_isDrawing;
+    return m_isDrawer;
 }
 
 int16_t Player::GetPersonalScore()
@@ -100,25 +80,14 @@ int16_t Player::GetPersonalScore()
     return m_personalScore;
 }
 
-bool Player::GetHasTopScore()
-{
-    return m_hasTopScore;
-}
 
-uint16_t Player::GetPosition()
-{
-    return m_position;
-}
 
 bool Player::GetHasGuessed()
 {
     return m_hasGuessed;
 }
 
-bool Player::GetHasDrawn()
-{
-    return m_hasDrawn;
-}
+
 
 uint16_t Player::GetTimeGuessed()
 {
@@ -127,11 +96,10 @@ uint16_t Player::GetTimeGuessed()
 
 Player& Player::operator=(const Player& player)
 {
-    this->m_isDrawing = player.m_isDrawing;
-    this->m_hasTopScore = player.m_hasTopScore;
+    this->m_isDrawer = player.m_isDrawer;
+  
     this->m_personalScore = player.m_personalScore;
-    this->m_position = player.m_position;
-    this->m_hasDrawn = player.m_hasDrawn;
+ 
     this->m_hasGuessed = player.m_hasGuessed;
     this->m_timeGuessed = player.m_timeGuessed;
     return *this;
@@ -151,8 +119,7 @@ bool Player::operator > (const Player& player) const
 
 std::ostream& Scribble::operator<<(std::ostream& os, Player& player)
 {
-    os << "username: " << "\nPosition: " << player.GetPosition() << "\nTime: " << player.GetTimeGuessed()
-        << "\nLeader: " << player.GetHasTopScore() << "\nHas Guessed: " << player.GetHasGuessed() << "\nHas Drawn: "
-        << player.GetHasDrawn() << "\nIs Drawing: " << player.GetIsDrawing() << "\nScore: " << player.GetPersonalScore() << "\n";
+    os << "username: "<<player.GetUsername() << "\nTime: " << player.GetTimeGuessed()
+      << "\nHas Guessed: " << player.GetHasGuessed() << "\nIs Drawer: " << player.GetIsDrawer() << "\nScore: " << player.GetPersonalScore() << "\n";
     return os;
 }
