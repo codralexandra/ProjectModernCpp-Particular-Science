@@ -23,29 +23,23 @@ bool RegisterWindow::validateUserPassword(const std::string& m_password)
 {
 
 	bool allValid = std::regex_match(m_password, std::regex(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$)"));
-	if (!allValid) {
-		return false;
-	}
-	return true;
+
+	return allValid;
 }
 
 bool RegisterWindow::validateUserEmail(const std::string& m_email)
 {
-	bool emailValid;
-	emailValid = std::regex_match(m_email, std::regex(R"([_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4}))"));
-	if (!emailValid) {
-		return false;
-	}
-	return true;
+	bool emailValid = std::regex_match(m_email, std::regex(R"([_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4}))"));
+
+	return emailValid;
+}
+bool RegisterWindow::validateUsername(const std::string& m_username) {
+
+	bool isValid = std::regex_match(m_username, std::regex(R"(^(?=.*[A-Za-z]{3,})[A-Za-z\d]+$)"));
+
+	return isValid;
 }
 
-std::string RegisterWindow::QStringConversion(QString string)
-{
-	std::string convertedString="";
-	for (int i = 0; i < string.size(); i++)
-		convertedString = convertedString+ string[i].toLatin1();
-	return convertedString;
-}
 
 void RegisterWindow::onRegisterButtonClicked()
 {
@@ -54,38 +48,25 @@ void RegisterWindow::onRegisterButtonClicked()
 	std::string password{ ui.passwordInput->text().toUtf8() };
 	HashMethod pass;
 
-	if (validateUserPassword(password))
+	if (!validateUsername(username)  || !validateUserEmail(email) || !validateUserPassword(password))
 	{
-		//pass.HashMethod::Set(password);
+		//add error message like "Please ensure all fields are filled in before proceeding"
 	}
 	else
 	{
-		//add error -> with exit function
+		//pass.HashMethod::Set(password); probleme la hash
+		crow::json::wvalue jsonPayload;
+		jsonPayload["email"] = email;
+		jsonPayload["username"] = username;
+		jsonPayload["password"] = password;
+		std::string jsonString = jsonPayload.dump();
+
+		auto response = cpr::Put(
+			cpr::Url{ "http://localhost:18080/register" },
+			cpr::Body{ jsonString },
+			cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
+		);
 	}
-	if (!validateUserEmail(email))
-	{
-		//add error ->exit function
-	}
-	//add function verify username with database
-	/*
-	std::cout << "I installed cpr. Now, my server is the limit!:(\n";
-	std::string email;
-	std::string username;
-	std::string passw;
-	std::cin >> email >> username >> passw;*/
-
-	crow::json::wvalue jsonPayload;
-	jsonPayload["email"] = email;
-	jsonPayload["username"] = username;
-	jsonPayload["password"] = password;
-	std::string jsonString = jsonPayload.dump();
-
-	auto response = cpr::Put(
-		cpr::Url{ "http://localhost:18080/register" },
-		cpr::Body{ jsonString },
-		cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
-	);
-
 
 
 	//std::stringstream urlBuilder;

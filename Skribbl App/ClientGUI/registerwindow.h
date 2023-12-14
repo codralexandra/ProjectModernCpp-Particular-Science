@@ -24,5 +24,5 @@ private:
 	Ui::RegisterWindowClass ui;
 	bool validateUserPassword(const std::string& m_password);
 	bool validateUserEmail(const std::string& m_email);
-	std::string QStringConversion(QString string);
+	bool validateUsername(const std::string& m_username);
 };
