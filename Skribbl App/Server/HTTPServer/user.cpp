@@ -2,14 +2,14 @@ module user;
 using Scribble::User;
 import <regex>;
 
-User::User() : m_email(""), m_password(""), m_gameHistory(), m_personalBest(0), m_username("")
+User::User() : m_email(""), m_password(""), m_personalBest(0), m_username("")
 {
 
 }
 
 User::User(const std::string& email, const std::string& username, const std::string& password, 
-	const std::queue<std::pair<uint16_t, std::string>>& gameHistory, const uint16_t& personalBest) :
-	m_email(email),m_username(username), m_password(password), m_gameHistory(gameHistory), m_personalBest(personalBest)
+	 const uint16_t& personalBest) :
+	m_email(email),m_username(username), m_password(password),  m_personalBest(personalBest)
 {
 
 }
@@ -19,7 +19,7 @@ User& User::operator=(const User& user)
 	m_username = user.m_username;
 	m_email = user.m_email;
 	m_password = user.m_password;
-	m_gameHistory = user.m_gameHistory;
+	//m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
 	return *this;
 }
@@ -29,7 +29,7 @@ User::User(const User& user)
 	m_username = user.m_username;
 	m_email = user.m_email;
 	m_password = user.m_password;
-	m_gameHistory = user.m_gameHistory;
+	//m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
 }
 
@@ -75,10 +75,10 @@ std::string User::GetPassword() const
 	return m_password;
 }
 
-std::queue<std::pair<uint16_t, std::string>> User::GetGameHistory() const
-{
-	return m_gameHistory;
-}
+//std::queue<std::pair<uint16_t, std::string>> User::GetGameHistory() const
+//{
+//	return m_gameHistory;
+//}
 
 uint16_t User::GetPersonalBest() const
 {
@@ -100,29 +100,29 @@ void User::SetPassword(const std::string& password)
 	m_password = password;
 }
 
-void User::SetGameHistory(const std::queue<std::pair<uint16_t, std::string>>& gameHistory)
-{
-	m_gameHistory = gameHistory;
-}
+//void User::SetGameHistory(const std::queue<std::pair<uint16_t, std::string>>& gameHistory)
+//{
+//	m_gameHistory = gameHistory;
+//}
 
 void User::SetPersonalBest(const uint16_t& personalBest)
 {
 	m_personalBest = personalBest;
 }
 
-void User::AddGameToGameHistory(std::pair<uint16_t, std::string> game)
-{
-	std::cout << "ADD Game to History apelata\n";
-	if (m_gameHistory.size() >= 5)
-	{
-		m_gameHistory.pop();
-		m_gameHistory.push(game);
-	}
-	else
-	{
-		m_gameHistory.push(game);
-	}
-}
+//void User::AddGameToGameHistory(std::pair<uint16_t, std::string> game)
+//{
+//	std::cout << "ADD Game to History apelata\n";
+//	if (m_gameHistory.size() >= 5)
+//	{
+//		m_gameHistory.pop();
+//		m_gameHistory.push(game);
+//	}
+//	else
+//	{
+//		m_gameHistory.push(game);
+//	}
+//}
 
 //std::ostream& Scribble::operator<<(std::ostream& ostream, const User& user)
 //{
