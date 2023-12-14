@@ -48,9 +48,17 @@ void RegisterWindow::onRegisterButtonClicked()
 	std::string password{ ui.passwordInput->text().toUtf8() };
 	HashMethod pass;
 
-	if (!validateUsername(username) || !validateUserEmail(email) || !validateUserPassword(password))
+	if (!validateUserEmail(email))
 	{
-		//add error message like "Registration failed: Please ensure all fields are filled in before proceeding"
+		//ui.registerStateLabel->setText("Registration failed: Invalid email format. Please enter a valid email address (e.g., user@example.com).");
+	}
+	else if (!validateUsername(username))
+	{
+		//ui.registerStateLabel->setText("Registration failed: Invalid username. Username must contain at least 3 letters and can only include letters and numbers.");
+	}
+	else if (!validateUserPassword(password))
+	{
+		//ui.registerStateLabel->setText("Registration failed: Invalid password. Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.");
 	}
 	else
 	{
@@ -66,9 +74,7 @@ void RegisterWindow::onRegisterButtonClicked()
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
 		);
-		if (response.error) {
-			//ui.registerStateLabel->setText("Registration failed: Server is closed.");
-		}
+
 		if (response.status_code != 200)
 		{
 			if (response.status_code >= 400 && response.status_code < 500)

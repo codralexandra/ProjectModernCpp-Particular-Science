@@ -33,12 +33,17 @@ void LoginWindow::on_loginButton_clicked()
 {
 	std::string username{ ui.usernameInput->text().toUtf8() };
 	std::string password{ ui.passwordInput->text().toUtf8() };
-	if (!validateUsername(username) || !validateUserPassword(password))
+	if (!validateUsername(username))
 	{
-		//add error message like "Login failed: Please ensure all fields are filled in before proceeding"
+		ui.loginStateLabel->setText("Login failed: Invalid username. Username must contain at least 3 letters and can only include letters and numbers.");
+	}
+	else if (!validateUserPassword(password))
+	{
+		ui.loginStateLabel->setText("Login failed: Invalid password. Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.");
 	}
 	else
 	{
+		//pass.HashMethod::Set(password); probleme la hash
 		crow::json::wvalue jsonPayload;
 		jsonPayload["username"] = username;
 		jsonPayload["password"] = password;
@@ -50,14 +55,11 @@ void LoginWindow::on_loginButton_clicked()
 			cpr::Header{ { "Content-Type", "application/json" } }
 		);
 
-		if (response.error) {
-			ui.loginStateLabel->setText("Login failed: Server is closed.");
-		}
 		if (response.status_code != 200)
 		{
 			if (response.status_code >= 400 && response.status_code < 500)
 			{
-				ui.loginStateLabel->setText("Login failed: Incorrect username or password");
+				ui.loginStateLabel->setText("Login failed: Incorrect username or password.");
 			}
 			else if (response.status_code >= 500 && response.status_code < 600)
 			{
