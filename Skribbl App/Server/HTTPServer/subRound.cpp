@@ -17,13 +17,19 @@ const std::string SubRound::GetWord() const
 	return this->m_word;
 }
 
-void SubRound::StartSubRound(Scribble::Game& g)
+void SubRound::StartSubRound(Scribble::Game& g, Player p)
 {
 	std::cout << "Start SubRound apelata\n";
 	//Scribble::Player p = this->GetDrawer();
 	//SetWord("table");
-	
+	const double timeLimit = 60.0;
+	m_timer.start();
+	while (timer.elapsedSeconds() < timeLimit)
+	{
+		
 
+	}
+	m_timer.stop();
 
     //afisare cuv in functie de rol jucator
 	//start timer

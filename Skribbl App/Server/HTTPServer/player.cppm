@@ -15,25 +15,18 @@ namespace Scribble
 		Player(bool isDrawing);
 		Player(const Player& player);
 
-		Player(bool hasGuessed, bool hasDrawn, uint16_t timeGuessed,
-			bool isDrawing, bool hasTopScore, int16_t personalScore, uint16_t position, const std::string& email, const std::string& password,
+		Player(bool hasGuessed, uint16_t timeGuessed,
+			bool isDrawer, int16_t personalScore, const std::string& email, const std::string& password,
 			const std::queue<std::pair<uint16_t, std::string>> gameHistory, uint16_t personalBest);
 
-		void SetIsDrawing(bool isDrawing);
+		void SetIsDrawer(bool isDrawing);
 		void SetHasGuessed(bool hasGuessed);
-		void SetHasDrawn(bool hasDrawn);
 		void SetScore(int16_t newscore);
-		void SetPosition(uint16_t position);
-		void SetHasTopScore(bool topScore);
 
-		bool GetIsDrawing();
+		bool GetIsDrawer();
 		int16_t GetPersonalScore();
-		bool GetHasTopScore();
-		uint16_t GetPosition();
 		bool GetHasGuessed();
-		bool GetHasDrawn();
 		uint16_t GetTimeGuessed();
-
 
 
 		Player& operator = (const Player& player);
@@ -41,13 +34,11 @@ namespace Scribble
 		bool operator>(const Player& player) const;
 
 	private:
-		bool m_hasGuessed;
-		bool m_hasDrawn;
-		uint16_t m_timeGuessed;
-		bool m_isDrawing;
-		bool m_hasTopScore;
-		int16_t m_personalScore;
-		uint16_t m_position;
+		bool m_hasGuessed; //pt calculare scor
+		uint16_t m_timeGuessed; //pt calculare scor
+		bool m_isDrawer; // rol
+		int16_t m_personalScore; //ca sa tinem minte scorul
+		
 	};
 	export std::ostream& operator<<(std::ostream& os, Player& player);
 }
