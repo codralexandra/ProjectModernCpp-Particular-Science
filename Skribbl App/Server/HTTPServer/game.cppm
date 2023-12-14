@@ -28,11 +28,12 @@ namespace Scribble
 		//void updateHistoryPlayer();
 
 	private:
-		std::vector<Player> m_players;
+		//std::vector<Player> m_players;
+		std::vector<Player>m_players;
 		Difficulty m_difficulty;
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
-		Round r;
+		//Round r;
 	};
 
 }
