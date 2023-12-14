@@ -67,21 +67,21 @@ void RegisterWindow::onRegisterButtonClicked()
 			cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
 		);
 		if (response.error) {
-			//add error message like "Registration failed: Server is closed."
+			//ui.registerStateLabel->setText("Registration failed: Server is closed.");
 		}
 		if (response.status_code != 200)
 		{
 			if (response.status_code >= 400 && response.status_code < 500)
 			{
-				//add error message like "Registration failed: The email or username is already in use. Please try a different one."
+				//ui.registerStateLabel->setText("Registration failed: The email or username is already in use. Please try a different one.");
 			}
 			else if (response.status_code >= 500 && response.status_code < 600)
 			{
-				//add error message like "Registration failed: Network or server error. Please try again later."
+				//ui.registerStateLabel->setText("Registration failed: Network or server error. Please try again later.");
 			}
 			else
 			{
-				//add error message like "Registration failed: Unexpected error. Please try again later."
+				//ui.registerStateLabel->setText("Registration failed: Unexpected error. Please try again later.");
 			}
 		}
 		else

@@ -31,7 +31,6 @@ bool LoginWindow::validateUsername(const std::string& m_username) {
 
 void LoginWindow::on_loginButton_clicked()
 {
-	//pack user inputs
 	std::string username{ ui.usernameInput->text().toUtf8() };
 	std::string password{ ui.passwordInput->text().toUtf8() };
 	if (!validateUsername(username) || !validateUserPassword(password))
@@ -44,14 +43,15 @@ void LoginWindow::on_loginButton_clicked()
 		jsonPayload["username"] = username;
 		jsonPayload["password"] = password;
 		std::string jsonString = jsonPayload.dump();
-		//send to server to interogate user db
+
 		auto response = cpr::Put(
 			cpr::Url{ "http://localhost:18080/login" },
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } }
 		);
+
 		if (response.error) {
-			//add error message like "Login failed: Server is closed."
+			ui.loginStateLabel->setText("Login failed: Server is closed.");
 		}
 		if (response.status_code != 200)
 		{
@@ -61,11 +61,11 @@ void LoginWindow::on_loginButton_clicked()
 			}
 			else if (response.status_code >= 500 && response.status_code < 600)
 			{
-				//add error message like "Login failed: Network or server error. Please try again later."
+				ui.loginStateLabel->setText("Login failed: Network or server error. Please try again later.");
 			}
 			else
 			{
-				//add error message like "Login failed: Unexpected error. Please try again later."
+				ui.loginStateLabel->setText("Login failed: Unexpected error. Please try again later.");
 			}
 		}
 		else
