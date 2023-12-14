@@ -65,43 +65,7 @@ Player Game::Winner()
 
 }
 
-void Game::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
-{
-	std::cout << "Score Drawing apelata\n";
-	float average_time;
-	int sum_times = 0;
 
-	for (int i = 0; i < players_guessing.size(); i++)
-	{
-		if (players_guessing[i].GetIsDrawing() == false)
-			sum_times = players_guessing[i].GetTimeGuessed() + sum_times;
-	}
-
-	if (sum_times == 60 * players_guessing.size())
-		p.SetScore(p.GetPersonalScore() - 100);
-	else
-	{
-		average_time = sum_times / players_guessing.size();
-		p.SetScore(p.GetPersonalScore() + (60 - average_time) * 100 / 60);
-
-	}
-}
-void Game::Score_Player_Guessing(Scribble::Player& p, int timp)
-{
-	if (timp == 60)
-	{
-		p.SetScore(p.GetPersonalScore() - 50);
-	}
-	else if (timp < 30)
-	{
-		p.SetScore(p.GetPersonalScore() + 100);
-	}
-	else
-	{
-		int s = (60 - timp) * 100 / 30;
-		p.SetScore(p.GetPersonalScore() + s);
-	}
-}
 
 //void Scribble::Game::updateHistoryPlayer() //recheck
 //{

@@ -7,11 +7,11 @@ class Round
 public:
 	Round();
 	void StartRound(Scribble::Game& g);
-	void SetDrawer(const Scribble::Player& p);
-	Scribble::Player GetDrawer();
+	void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing);
+	void Score_Player_Guessing(Scribble::Player& p, int timp);
 
 private:
-	Scribble::Player m_CurrentDrawer;
+
 	SubRound* sb;
 
 };

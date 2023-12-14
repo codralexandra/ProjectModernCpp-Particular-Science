@@ -23,8 +23,7 @@ namespace Scribble
 		std::string getDate();
 
 		void Start_Game();
-		void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing);
-		void Score_Player_Guessing(Scribble::Player& p, int timp);
+		
 		Player Winner();
 		//void updateHistoryPlayer();
 

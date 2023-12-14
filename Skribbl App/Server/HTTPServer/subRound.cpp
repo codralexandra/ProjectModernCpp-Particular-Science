@@ -20,8 +20,6 @@ const std::string SubRound::GetWord() const
 void SubRound::StartSubRound(Scribble::Game& g, Player p)
 {
 	std::cout << "Start SubRound apelata\n";
-	//Scribble::Player p = this->GetDrawer();
-	//SetWord("table");
 	const double timeLimit = 60.0;
 	m_timer.start();
 	while (timer.elapsedSeconds() < timeLimit)
