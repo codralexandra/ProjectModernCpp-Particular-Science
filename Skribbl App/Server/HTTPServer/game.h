@@ -1,14 +1,11 @@
-module;
-export module game;
-import <iostream>;
-import <vector>;
-#include "Difficulty.h"; 
-import player;
-#include "round.h";
+#pragma once
+#include <iostream>
+#include <vector>
+#include "Difficulty.h"
+#include "player.h"
+#include "round.h"
 
-namespace Scribble
-{
-	export class Game
+ class Game
 	{
 	public:
 		Game();
@@ -16,24 +13,22 @@ namespace Scribble
 
 		void setPlayers(std::vector<Player> players);
 		void setWords(std::vector<std::string> words);
-		
+
 
 		std::vector<Player> getPlayers();
 		std::vector<std::string> getWords();
-		
+
 
 		void Start_Game();
-		
+
 		Player Winner();
 		//void updateHistoryPlayer();
 
 	private:
-		//std::vector<Player> m_players;
-		std::vector<Player>m_players;
+		std::vector<Player> m_players;
 		Difficulty m_difficulty;
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
-		//Round r;
+		Round r;
 	};
 
-}

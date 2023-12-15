@@ -1,17 +1,17 @@
 #include "SubRound.h"
-import player;
-using namespace Scribble;
+#include "player.h"
+
 #include <vector>
-//import game;
+
 
 class Round
 {
 public:
 	Round();
 	
-	void StartRound(std::vector<Scribble::Player>& p);
-	void Score_Player_Drawing(Scribble::Player& p, std::vector<Scribble::Player>players_guessing);
-	void Score_Player_Guessing(std::vector<Scribble::Player>& p);
+	void StartRound(std::vector<Player>& p);
+	void Score_Player_Drawing(Player& p, std::vector<Player>players_guessing);
+	void Score_Player_Guessing(std::vector<Player>& p);
 
 private:
 

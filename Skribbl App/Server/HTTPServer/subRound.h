@@ -1,8 +1,9 @@
 #include <string>
 
-import player;
+#include "player.h"
 
 #include "Timer.h"
+
 class SubRound
 {
 public:
@@ -11,7 +12,7 @@ public:
 
 	void SetWord(const std::string& cuv);
 	const std::string GetWord()const;
-	void StartSubRound(Scribble::Player p);
+	void StartSubRound(Player p);
 
 
 private:

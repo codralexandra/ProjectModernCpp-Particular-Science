@@ -6,7 +6,7 @@ Round::Round()
 	
 }
 
-void Round::StartRound(std::vector<Scribble::Player>& p)
+void Round::StartRound(std::vector<Player>& p)
 {
 	std::cout << "Start ROUND apelata\n";
 	for (int i = 0; i < p.size(); i++)
@@ -22,7 +22,7 @@ void Round::StartRound(std::vector<Scribble::Player>& p)
 	//end round
 }
 
-void Round::Score_Player_Drawing(Scribble::Player& p, std::vector<Scribble::Player>players_guessing)
+void Round::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 {
 	std::cout << "Score Drawing apelata\n";
 	float average_time;
@@ -44,7 +44,7 @@ void Round::Score_Player_Drawing(Scribble::Player& p, std::vector<Scribble::Play
 	}
 }
 
-void Round::Score_Player_Guessing(std::vector<Scribble::Player>& p)
+void Round::Score_Player_Guessing(std::vector<Player>& p)
 {
 	for (auto player : p)
 	{

@@ -18,7 +18,7 @@ const std::string SubRound::GetWord() const
 	return this->m_word;
 }
 
-void SubRound::StartSubRound( Scribble::Player p)
+void SubRound::StartSubRound( Player p)
 {
 	std::cout << "Start SubRound apelata\n";
 	const double timeLimit = 60.0;

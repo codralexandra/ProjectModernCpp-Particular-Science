@@ -1,6 +1,4 @@
-module player;
-using Scribble::Player;
-
+#include "player.h"
 
 Player::Player() :User()
 {
@@ -117,7 +115,7 @@ bool Player::operator > (const Player& player) const
     return this->m_personalScore > player.m_personalScore;
 }
 
-std::ostream& Scribble::operator<<(std::ostream& os, Player& player)
+std::ostream& operator<<(std::ostream& os, Player& player)
 {
     os << "username: "<<player.GetUsername() << "\nTime: " << player.GetTimeGuessed()
       << "\nHas Guessed: " << player.GetHasGuessed() << "\nIs Drawer: " << player.GetIsDrawer() << "\nScore: " << player.GetPersonalScore() << "\n";

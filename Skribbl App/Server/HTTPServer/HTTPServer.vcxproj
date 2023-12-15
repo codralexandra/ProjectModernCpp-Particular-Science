@@ -143,10 +143,8 @@
   <ItemGroup>
     <ClCompile Include="difficulty.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="game.cppm" />
     <ClCompile Include="gamedata.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="player.cppm" />
     <ClCompile Include="round.cpp" />
     <ClCompile Include="routing.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -162,7 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="difficulty.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="gamedata.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="round.h" />
     <ClInclude Include="routing.h" />
     <ClInclude Include="subRound.h" />

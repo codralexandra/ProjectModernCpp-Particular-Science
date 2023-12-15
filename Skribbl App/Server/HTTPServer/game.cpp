@@ -1,10 +1,9 @@
 
-module game;
-import <queue>;
-using namespace Scribble;
-import <iostream>;
-import <vector>;
-//#include "difficulty.h";
+#include <queue>
+#include "game.h"
+#include <iostream>
+#include <vector>
+#include "difficulty.h"
 
 Game::Game()
 {
@@ -26,7 +25,7 @@ void Game::setWords(std::vector<std::string> words)
 }
 
 
-std::vector<Scribble::Player> Scribble::Game::getPlayers()
+std::vector<Player> Game::getPlayers()
 {
 	return m_players;
 }
@@ -36,19 +35,19 @@ std::vector<std::string> Game::getWords()
 	return m_words;
 }
 
-//
-//void Game::Start_Game()
-//{
-//	std::cout << "Start Game apelata \n";
-//	int dim_runde = 4;
-//	for (int i = 0; i < dim_runde; i++)
-//	{
-//		r = new Round();
-//		r.start();
-//	}
-//	//stop game
-//	
-//}
+
+void Game::Start_Game()
+{
+	std::cout << "Start Game apelata \n";
+	int dim_runde = 4;
+	for (int i = 0; i < dim_runde; i++)
+	{
+		//r =new Round
+		r.StartRound(m_players);
+	}
+	//stop game
+	
+}
 
 Player Game::Winner()
 {
