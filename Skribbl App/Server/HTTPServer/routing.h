@@ -12,6 +12,9 @@ namespace http
 	{
 	public:
 		void Run(Storage& storage);
+		bool IsUnique(std::string email, std::string username, std::string password, Storage& storage);
+		bool AuthentificationCheck(std::string username, std::string password, Storage& storage);
+
 
 	private:
 		crow::response Register(const crow::request& req, Storage& storage)const;
