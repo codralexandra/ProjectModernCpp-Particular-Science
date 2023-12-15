@@ -13,7 +13,10 @@ SoundManager::SoundManager(QObject* parent)
 }
 
 SoundManager::~SoundManager()
-{}
+{
+	sound->stop();
+	delete sound;
+}
 
 void SoundManager::setVolume(uint32_t volume) {
 	currentVolume = qreal(volume) / 100.0;
@@ -28,4 +31,10 @@ void SoundManager::setMuted(bool muted) {
 		sound->setMuted(false);
 		sound->setVolume(currentVolume);
 	}
+}
+
+SoundManager& SoundManager::GetInstance()
+{
+	static SoundManager instance; // Static instance
+	return instance;
 }

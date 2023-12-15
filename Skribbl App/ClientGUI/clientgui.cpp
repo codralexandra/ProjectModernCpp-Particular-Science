@@ -1,8 +1,9 @@
 #include "clientgui.h"
 
 ClientGUI::ClientGUI(QWidget *parent)
-    : QMainWindow(parent), soundManager(new SoundManager(this))
+    : QMainWindow(parent)
 {
+    soundManager = &SoundManager::GetInstance();
     ui.setupUi(this);
     connect(ui.startRegisterButton, &QPushButton::clicked, this, &ClientGUI::on_startRegisterButton_clicked);
     connect(ui.startLoginButton, &QPushButton::clicked, this, &ClientGUI::on_startLoginButton_clicked);
