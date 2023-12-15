@@ -65,3 +65,14 @@ std::string Scribble::UserDB::GetEmail() const
 {
 	return m_email;
 }
+
+bool Scribble::UserDB::operator==(const UserDB& user) const
+{
+	if (this->m_email != user.m_email)
+		return false;
+	if (this->m_username != user.m_username)
+		return false;
+	if (this->m_password != user.m_password)
+		return false;
+	return true;
+}

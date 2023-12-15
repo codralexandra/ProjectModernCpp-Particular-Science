@@ -20,11 +20,15 @@ namespace Scribble
 		std::string GetUsername() const;
 		std::string GetPassword() const;
 		std::string GetEmail() const;
+		bool operator ==(const UserDB& user) const;
 
-	public:
+
+	private:
 		uint16_t m_id;
 		std::string m_email;
 		std::string m_username;
 		std::string m_password;
 	};
+
+
 }
