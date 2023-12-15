@@ -6,11 +6,13 @@ UserDB::UserDB()
 	m_id = -1;
 	m_username = "";
 	m_password = "";
+	m_email = "";
 }
 
-Scribble::UserDB::UserDB(const uint16_t id, const std::string& username, const std::string password)
+Scribble::UserDB::UserDB(const uint16_t id, const std::string& email, const std::string& username, const std::string password)
 {
 	m_id = id;
+	m_email = email;
 	m_username = username;
 	m_password = password;
 }
@@ -18,6 +20,7 @@ Scribble::UserDB::UserDB(const uint16_t id, const std::string& username, const s
 UserDB Scribble::UserDB::ConvertToUserDB(const Scribble::User& user)
 {
 	this->m_id = -1;
+	this->m_email = user.GetEmail();
 	this->m_username = user.GetUsername();
 	this->m_password = user.GetPassword();
 	return *this;
@@ -38,6 +41,11 @@ void Scribble::UserDB::SetPassword(const std::string& password)
 	this->m_password = password;
 }
 
+void Scribble::UserDB::SetEmail(const std::string& email)
+{
+	this->m_email = email;
+}
+
 uint16_t Scribble::UserDB::GetId() const
 {
 	return m_id;
@@ -51,4 +59,9 @@ std::string Scribble::UserDB::GetUsername() const
 std::string Scribble::UserDB::GetPassword() const
 {
 	return m_password;
+}
+
+std::string Scribble::UserDB::GetEmail() const
+{
+	return m_email;
 }

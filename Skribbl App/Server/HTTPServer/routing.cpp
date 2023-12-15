@@ -29,7 +29,7 @@ void Routing::Run(Storage& storage)
         if (isUnique)
         {
             uint16_t id = -1;
-            UserDB user(id, username, password);
+            UserDB user(id,email, username, password);
             storage.insert(user);
             return crow::response(200, "Registration successful");
         }
