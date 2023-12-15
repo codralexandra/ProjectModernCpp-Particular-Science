@@ -4,6 +4,7 @@
 #include "Difficulty.h"
 #include "player.h"
 #include "round.h"
+#include <memory>
 
  class Game
 	{
@@ -29,6 +30,6 @@
 		Difficulty m_difficulty;
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
-		Round r;
+		std::shared_ptr<Round> m_round;
 	};
 

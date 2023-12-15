@@ -1,6 +1,6 @@
 #include "SubRound.h"
 #include "player.h"
-
+#include <memory>
 #include <vector>
 
 
@@ -15,7 +15,7 @@ public:
 
 private:
 
-	SubRound* sb;
+	std::shared_ptr<SubRound> m_subRound;
 
 };
 

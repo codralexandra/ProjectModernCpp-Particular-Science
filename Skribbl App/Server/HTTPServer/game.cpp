@@ -42,8 +42,8 @@ void Game::Start_Game()
 	int dim_runde = 4;
 	for (int i = 0; i < dim_runde; i++)
 	{
-		//r =new Round
-		r.StartRound(m_players);
+		m_round.reset();
+		m_round->StartRound(m_players);
 	}
 	//stop game
 	

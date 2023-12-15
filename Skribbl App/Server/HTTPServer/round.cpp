@@ -1,6 +1,7 @@
 #include "Round.h"
 #include <iostream>
 
+
 Round::Round()
 {
 	
@@ -11,9 +12,9 @@ void Round::StartRound(std::vector<Player>& p)
 	std::cout << "Start ROUND apelata\n";
 	for (int i = 0; i < p.size(); i++)
 	{
-		sb = new SubRound();
+		m_subRound.reset();
 		p[i].SetIsDrawer(true);
-		sb->StartSubRound(p[i]);
+		m_subRound->StartSubRound(p[i]);
 		Score_Player_Drawing(p[i], p);
 		Score_Player_Guessing(p);
 		p[i].SetIsDrawer(false);

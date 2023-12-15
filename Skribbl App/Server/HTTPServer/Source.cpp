@@ -4,7 +4,7 @@
 #include "Word.h"
 #include "routing.h"
 #include <sqlite_orm/sqlite_orm.h>
-
+#include "game.h"
 using namespace http;
 #include <crow.h>
 #include "gamedata.h"
@@ -60,5 +60,15 @@ int main()
 
 	Routing r;
 	r.Run(db);
+
+	/*Game g;
+	Player p,q;
+	p.SetUsername("allala");
+	q.SetUsername("lalla");
+	std::vector<Player> v;
+	v.push_back(p);
+	v.push_back(q);
+	g.setPlayers(v);
+	g.Start_Game();*/
 	return 0;
 }
