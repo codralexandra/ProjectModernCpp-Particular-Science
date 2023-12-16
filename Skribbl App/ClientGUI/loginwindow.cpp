@@ -8,7 +8,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.backButton, &QPushButton::clicked, this, &LoginWindow::on_backButton_clicked);
-	connect(ui.loginButton, &QPushButton::clicked, this, &LoginWindow::on_loginButton_clicked);
+	connect(ui.loginButton, &QPushButton::clicked, this, &LoginWindow::onLoginButtonClicked);
 }
 
 LoginWindow::~LoginWindow()
@@ -29,7 +29,7 @@ bool LoginWindow::validateUsername(const std::string& m_username) {
 	return isValid;
 }
 
-void LoginWindow::on_loginButton_clicked()
+void LoginWindow::onLoginButtonClicked()
 {
 	std::string username{ ui.usernameInput->text().toUtf8() };
 	std::string password{ ui.passwordInput->text().toUtf8() };

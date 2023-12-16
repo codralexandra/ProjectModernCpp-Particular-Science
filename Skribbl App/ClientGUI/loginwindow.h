@@ -18,7 +18,7 @@ public:
 	LoginWindow(QWidget *parent = nullptr);
 	~LoginWindow();
 public slots:
-	void on_loginButton_clicked();
+	void onLoginButtonClicked();
 	void on_backButton_clicked();
 
 private:
