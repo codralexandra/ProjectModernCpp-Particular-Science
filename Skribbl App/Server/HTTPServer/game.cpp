@@ -46,7 +46,8 @@ void Game::Start_Game()
 		m_round->StartRound(m_players);
 	}
 	//stop game
-	
+	//clasament
+
 }
 
 Player Game::Winner()
