@@ -42,7 +42,7 @@ void Game::Start_Game()
 	int dim_runde = 4;
 	for (int i = 0; i < dim_runde; i++)
 	{
-		m_round.reset();
+		m_round.reset(new Round);
 		m_round->StartRound(m_players);
 	}
 	//stop game

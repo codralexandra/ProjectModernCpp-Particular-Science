@@ -15,7 +15,7 @@ public:
 
 private:
 
-	std::shared_ptr<SubRound> m_subRound;
+	std::unique_ptr<SubRound> m_subRound;
 
 };
 

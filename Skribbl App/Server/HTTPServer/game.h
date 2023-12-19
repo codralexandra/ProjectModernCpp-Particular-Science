@@ -30,6 +30,6 @@
 		Difficulty m_difficulty;
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
-		std::shared_ptr<Round> m_round;
+		std::unique_ptr<Round> m_round;
 	};
 

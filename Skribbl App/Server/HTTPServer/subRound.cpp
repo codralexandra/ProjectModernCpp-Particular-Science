@@ -21,7 +21,7 @@ const std::string SubRound::GetWord() const
 void SubRound::StartSubRound( Player p)
 {
 	std::cout << "Start SubRound apelata\n";
-	const double timeLimit = 60.0;
+	const double timeLimit = 2.0;
 	m_timer.start();
 	while (m_timer.elapsedSeconds() < timeLimit)
 	{

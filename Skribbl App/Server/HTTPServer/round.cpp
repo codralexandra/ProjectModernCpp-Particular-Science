@@ -12,7 +12,7 @@ void Round::StartRound(std::vector<Player>& p)
 	std::cout << "Start ROUND apelata\n";
 	for (int i = 0; i < p.size(); i++)
 	{
-		m_subRound.reset();
+		m_subRound.reset(new SubRound);
 		p[i].SetIsDrawer(true);
 		m_subRound->StartSubRound(p[i]);
 		Score_Player_Drawing(p[i], p);
@@ -47,6 +47,7 @@ void Round::Score_Player_Drawing(Player& p, std::vector<Player>players_guessing)
 
 void Round::Score_Player_Guessing(std::vector<Player>& p)
 {
+	std::cout << "Score guessing called\n";
 	for (auto player : p)
 	{
 		if (player.GetIsDrawer() == false)
