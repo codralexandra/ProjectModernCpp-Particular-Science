@@ -1,6 +1,6 @@
 #include "Round.h"
 #include <iostream>
-
+#include "Timer.h"
 
 Round::Round()
 {
@@ -9,12 +9,17 @@ Round::Round()
 
 void Round::StartRound(std::vector<Player>& p)
 {
+	Timer t;
+	const double timeLimit = 3.0;
 	std::cout << "Start ROUND apelata\n";
 	for (int i = 0; i < p.size(); i++)
 	{
 		m_subRound.reset(new SubRound);
 		p[i].SetIsDrawer(true);
 		m_subRound->StartSubRound(p[i]);
+		t.start();
+		while (t.elapsedSeconds() < timeLimit){}
+		t.stop();
 		Score_Player_Drawing(p[i], p);
 		Score_Player_Guessing(p);
 		p[i].SetIsDrawer(false);

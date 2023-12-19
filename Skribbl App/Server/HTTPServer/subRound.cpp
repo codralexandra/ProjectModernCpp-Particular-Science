@@ -28,23 +28,23 @@ void SubRound::StartSubRound( Player p)
 		{
 			m_word.ShowHint();
 		}
-		if (m_timer.elapsedSeconds() == 35.0)
+		else if (m_timer.elapsedSeconds() == 35.0)
 		{
 			m_word.ShowHint();
 		}
-		if (m_timer.elapsedSeconds() == 40.0)
+		else if (m_timer.elapsedSeconds() == 40.0)
 		{
 			m_word.ShowHint();
 		}
-		if (m_timer.elapsedSeconds() == 45.0)
+		else if (m_timer.elapsedSeconds() == 45.0)
 		{
 			m_word.ShowHint();
 		}
-		if (m_timer.elapsedSeconds() == 50.0)
+		else if (m_timer.elapsedSeconds() == 50.0)
 		{
 			m_word.ShowHint();
 		}
-		if (m_timer.elapsedSeconds() == 55.0)
+		else if (m_timer.elapsedSeconds() == 55.0)
 		{
 			m_word.ShowHint();
 		}
