@@ -24,6 +24,7 @@ void SubRound::StartSubRound( Player p)
 	m_timer.start();
 	while (m_timer.elapsedSeconds() < timeLimit)
 	{
+		//check
 		if (m_timer.elapsedSeconds() == 30.0)
 		{
 			m_word.ShowHint();

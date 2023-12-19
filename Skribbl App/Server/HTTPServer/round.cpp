@@ -15,13 +15,18 @@ void Round::StartRound(std::vector<Player>& p)
 	for (int i = 0; i < p.size(); i++)
 	{
 		m_subRound.reset(new SubRound);
+
 		p[i].SetIsDrawer(true);
 		m_subRound->StartSubRound(p[i]);
+		
 		t.start();
+		//reset la timer
 		while (t.elapsedSeconds() < timeLimit){}
 		t.stop();
+
 		Score_Player_Drawing(p[i], p);
 		Score_Player_Guessing(p);
+
 		p[i].SetIsDrawer(false);
 		
 	}
