@@ -6,14 +6,13 @@ SubRound::SubRound()
 
 }
 
-void SubRound::SetWord(const std::string& cuv)
+void SubRound::SetWord(const Word& cuv)
 {
 	std::cout << "Set Word apelata\n";
 	this->m_word = cuv;
 }
 
-
-const std::string SubRound::GetWord() const
+ Word SubRound::GetWord() const
 {
 	return this->m_word;
 }
@@ -25,7 +24,30 @@ void SubRound::StartSubRound( Player p)
 	m_timer.start();
 	while (m_timer.elapsedSeconds() < timeLimit)
 	{
-		
+		if (m_timer.elapsedSeconds() == 30.0)
+		{
+			m_word.ShowHint();
+		}
+		if (m_timer.elapsedSeconds() == 35.0)
+		{
+			m_word.ShowHint();
+		}
+		if (m_timer.elapsedSeconds() == 40.0)
+		{
+			m_word.ShowHint();
+		}
+		if (m_timer.elapsedSeconds() == 45.0)
+		{
+			m_word.ShowHint();
+		}
+		if (m_timer.elapsedSeconds() == 50.0)
+		{
+			m_word.ShowHint();
+		}
+		if (m_timer.elapsedSeconds() == 55.0)
+		{
+			m_word.ShowHint();
+		}
 
 	}
 	m_timer.stop();
