@@ -2,12 +2,10 @@
 #include <iostream>
 #include <ctime>
 
-
-
 Word::Word(const uint16_t& id,const std::string& value, const std::string& difficulty)
 	: m_id(id),m_value(value), m_difficulty(difficulty)
 {
-	m_numberHint = m_value.size() / 2;
+	m_numberHint= m_value.size() / 2 ;
 	for (int i = 0; i < m_value.size(); i++)
 	{
 		if (m_value[i] == '-')
@@ -64,16 +62,15 @@ void Word::SetId(const uint16_t& id)
 	m_id = id;
 }
 
-void Word::PrintPlayerDrawing()
+void Word::PrintPlayerDrawing() const
 {
 	std::cout << "The word is: " << m_value << std::endl;
 }
 
-void Word::PrintPlayerGuessing()
+void Word::PrintPlayerGuessing() const
 {
 	std::cout << "The word is: " << m_valueAux << std::endl;
 }
-
 
 void Word::ShowHint()
 {
@@ -83,7 +80,7 @@ void Word::ShowHint()
         std::cout << "Take a hint\n";
         srand(0);
         bool ok = false;
-        int randomPosition= rand() % m_valueAux.size();
+		int randomPosition=rand() % m_valueAux.size();
         while (m_valueAux[randomPosition] != '_')
         {
             randomPosition = rand() % m_valueAux.size();

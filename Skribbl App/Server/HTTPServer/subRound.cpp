@@ -53,5 +53,3 @@ void SubRound::StartSubRound( Player p)
 	//stop timer-> dispare widget
 	//end subround
 }
-
-

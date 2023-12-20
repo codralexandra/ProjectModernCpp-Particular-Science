@@ -31,8 +31,8 @@ public:
 	uint16_t getId() const;
 
 
-	void PrintPlayerDrawing();
-	void PrintPlayerGuessing();
+	void PrintPlayerDrawing() const;
+	void PrintPlayerGuessing() const;
 
 	void ShowHint();
 

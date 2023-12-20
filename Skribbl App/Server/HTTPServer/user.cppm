@@ -16,8 +16,8 @@ namespace Scribble
 		//friend std::ostream& operator<<(std::ostream& ostream, const User& user); //trebe facuta virtuala 
 		User& operator=(const User& user);
 		User(const User& user);
-		bool validateUserEmail();
-		bool validateUserPassword();
+		bool validateUserEmail() const;
+		bool validateUserPassword() const;
 		~User();
 
 		std::string GetEmail() const;

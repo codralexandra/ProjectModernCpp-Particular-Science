@@ -33,7 +33,7 @@ User::User(const User& user)
 	m_personalBest = user.m_personalBest;
 }
 
-bool User::validateUserEmail()
+bool User::validateUserEmail() const
 {
 	std::cout << "Validare Email apelata\n";
 	bool emailValid;
@@ -45,7 +45,7 @@ bool User::validateUserEmail()
 	return true;
 }
 
-bool User::validateUserPassword()
+bool User::validateUserPassword() const
 {
 	std::cout << "Validare Parola apelata\n";
 	bool allValid = std::regex_match(GetPassword(), std::regex(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$)"));
