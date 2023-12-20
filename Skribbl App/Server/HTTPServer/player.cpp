@@ -68,26 +68,26 @@ void Player::SetScore(int16_t newscore)
 
 
 
-bool Player::GetIsDrawer()
+bool Player::GetIsDrawer() const
 {
     return m_isDrawer;
 }
 
-int16_t Player::GetPersonalScore()
+int16_t Player::GetPersonalScore() const
 {
     return m_personalScore;
 }
 
 
 
-bool Player::GetHasGuessed()
+bool Player::GetHasGuessed() const
 {
     return m_hasGuessed;
 }
 
 
 
-uint16_t Player::GetTimeGuessed()
+uint16_t Player::GetTimeGuessed() const
 {
     return m_timeGuessed;
 }

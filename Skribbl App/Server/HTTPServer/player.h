@@ -21,10 +21,10 @@ import user;
 		void SetHasGuessed(bool hasGuessed);
 		void SetScore(int16_t newscore);
 
-		bool GetIsDrawer();
-		int16_t GetPersonalScore();
-		bool GetHasGuessed();
-		uint16_t GetTimeGuessed();
+		bool GetIsDrawer() const;
+		int16_t GetPersonalScore() const;
+		bool GetHasGuessed() const;
+		uint16_t GetTimeGuessed() const;
 
 
 		Player& operator = (const Player& player);

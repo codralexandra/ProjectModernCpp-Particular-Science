@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "difficulty.h"
+#include <ranges>
 
 Game::Game()
 {
@@ -52,7 +53,7 @@ void Game::Start_Game()
 
 Player Game::Winner()
 {
-	int maxim = 0;
+	/*int maxim = 0;
 	Player player_max;
 	for (int i = 0; i < m_players.size(); i++)
 	{
@@ -61,7 +62,13 @@ Player Game::Winner()
 			player_max = m_players[i];
 		}
 	}
-	return player_max;
+	return player_max;*/
+
+	std::ranges::sort(m_players, [](const Player& a, const Player& b) {
+		return a.GetPersonalScore()>b.GetPersonalScore();
+		});
+
+	return std::move(m_players[m_players.size() - 1]);
 
 }
 
