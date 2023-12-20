@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include "creategamewindow.h"
+
 
 class MainWindow : public QMainWindow
 {
@@ -17,4 +19,5 @@ private slots:
 
 private:
 	Ui::MainWindowClass ui;
+	CreateGameWindow* createGameWindow;
 };

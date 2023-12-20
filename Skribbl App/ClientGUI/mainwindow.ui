@@ -27,7 +27,7 @@
      <string>Join Game</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="createGameButton">
     <property name="geometry">
      <rect>
       <x>370</x>
