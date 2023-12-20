@@ -65,6 +65,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lobby.cpp">
+    <ClCompile Include="startwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawingwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="watchwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -88,6 +95,13 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="lobby.ui">
+    <QtUic Include="startwindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="drawingwidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="watchwidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -114,6 +128,13 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="lobby.h">
+    <QtMoc Include="startwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="drawingwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="watchwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
