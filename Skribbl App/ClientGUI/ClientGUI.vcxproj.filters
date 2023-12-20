@@ -64,6 +64,9 @@
     <ClCompile Include="creategamewindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="registerwindow.ui">
@@ -82,6 +85,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="creategamewindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="lobby.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -105,6 +111,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="creategamewindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="lobby.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

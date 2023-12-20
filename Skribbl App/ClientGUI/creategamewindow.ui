@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1150</width>
+    <width>1118</width>
     <height>683</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>CreateGameWindow</string>
   </property>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="difficultyBox">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -21,6 +21,12 @@
      <width>141</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="placeholderText">
+    <string/>
    </property>
    <item>
     <property name="text">
@@ -38,7 +44,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QPushButton" name="startGameButton">
+  <widget class="QPushButton" name="createLobbyButton">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -48,7 +54,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>START GAME DESU!</string>
+    <string>Create Lobby</string>
    </property>
   </widget>
  </widget>
