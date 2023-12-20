@@ -73,7 +73,9 @@ void LoginWindow::onLoginButtonClicked()
 		}
 		else
 		{
-			//open the main window
+			mainWindow = new MainWindow;
+			this->hide();
+			mainWindow->show();
 		}
 		
 	}

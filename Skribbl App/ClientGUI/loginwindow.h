@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "ui_loginwindow.h"
+#include "mainwindow.h"
 #include<regex>
 #include <cpr/cpr.h>
 #include <crow.h>
@@ -25,4 +26,5 @@ private:
 	Ui::LoginWindowClass ui;
 	bool validateUserPassword(const std::string& m_password);
 	bool validateUsername(const std::string& m_username);
+	MainWindow* mainWindow;
 };

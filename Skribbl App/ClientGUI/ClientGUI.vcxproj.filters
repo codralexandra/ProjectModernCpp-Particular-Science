@@ -58,6 +58,9 @@
     <ClCompile Include="soundmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="registerwindow.ui">
@@ -70,6 +73,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="settingswindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -87,6 +93,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="soundmanager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mainwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
