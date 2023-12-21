@@ -51,6 +51,7 @@ int main()
 	//app.port(18080).multithreaded().run();
 
 	Routing r;
+	r.SetGameExists(false);
 	r.Run(db);
 
 }

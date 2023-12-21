@@ -65,6 +65,26 @@ void Routing::Run(Storage& storage)
 		}
 			});
 
+	CROW_ROUTE(m_app, "/creategame")
+		.methods("POST"_method)
+		([this](const crow::request& req) {
+		if (m_gameExists)
+		{
+			return crow::response(400, "Game creation failed: A game is already in progress.");
+		}
+		else
+		{
+			crow::json::rvalue jsonData = crow::json::load(req.body);
+
+			if (!jsonData) {
+				return crow::response(400, "Invalid JSON format");
+			}
+			std::string dificulty = jsonData["dificulty"].s();
+			Game game;
+			return crow::response(200, "New game created successfully.");
+		}
+		});
+
 
 	m_app.port(18080).multithreaded().run();
 }
@@ -113,6 +133,16 @@ bool http::Routing::AuthentificationCheck(std::string username, std::string pass
 			return true;
 	}
 	return false;
+}
+
+bool http::Routing::GetGameExists() const
+{
+	return m_gameExists;
+}
+
+void http::Routing::SetGameExists(const bool& gameExists)
+{
+	m_gameExists = gameExists;
 }
 
 
