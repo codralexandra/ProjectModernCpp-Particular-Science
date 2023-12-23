@@ -1,55 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-    </Filter>
-    <Filter Include="Translation Files">
-      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
-      <Extensions>ts</Extensions>
-    </Filter>
-    <Filter Include="Sounds">
-      <UniqueIdentifier>{76a61d86-3edc-46ef-be6b-3f6c7c0e3dc9}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="clientgui.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtUic Include="clientgui.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtMoc Include="clientgui.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClCompile Include="clientgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="creategamewindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="registerwindow.cpp">
+    <ClCompile Include="drawingwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lobby.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="loginwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="userwindow.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="registerwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="settingswindow.cpp">
@@ -58,17 +31,10 @@
     <ClCompile Include="soundmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="creategamewindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lobby.cpp">
     <ClCompile Include="startwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="drawingwidget.cpp">
+    <ClCompile Include="userwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="watchwidget.cpp">
@@ -76,43 +42,28 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="registerwindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="loginwindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="userwindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="settingswindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="mainwindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="creategamewindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="lobby.ui">
-    <QtUic Include="startwindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="drawingwidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="watchwidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
+    <Media Include="Sounds\MainMenu.wav" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="registerwindow.h">
+    <QtMoc Include="clientgui.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="creategamewindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="drawingwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="lobby.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="loginwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="userwindow.h">
+    <QtMoc Include="mainwindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="registerwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="settingswindow.h">
@@ -121,17 +72,10 @@
     <QtMoc Include="soundmanager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="mainwindow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="creategamewindow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="lobby.h">
     <QtMoc Include="startwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="drawingwidget.h">
+    <QtMoc Include="userwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="watchwidget.h">
@@ -139,8 +83,54 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Sounds\MainMenu.wav">
-      <Filter>Sounds</Filter>
-    </Media>
+    <QtRcc Include="clientgui.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="watchwidget.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="clientgui.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="creategamewindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="drawingwidget.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="lobby.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="loginwindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="mainwindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="registerwindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="settingswindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="startwindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="userwindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{87121c48-9875-4a11-814d-8f449edb2558}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{cfc16765-3fb7-4ebc-a549-8079a3036778}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+    <Filter Include="UIs">
+      <UniqueIdentifier>{ee7465d5-c31b-46c5-91af-a4d691a1ab82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
