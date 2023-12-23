@@ -12,6 +12,8 @@ Lobby::~Lobby()
 void Lobby::SetGameID(const uint16_t & id)
 {
 	m_gameID = id;
+	ui.roomCode->setText(QString::number(id));
+	update();
 }
 
 void Lobby::SetDifficulty(const std::string& diff)
