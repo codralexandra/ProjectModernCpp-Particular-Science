@@ -23,7 +23,7 @@
 		void Start_Game();
 
 		Player Winner();
-		//void updateHistoryPlayer();
+		
 
 	private:
 		std::vector<Player> m_players;

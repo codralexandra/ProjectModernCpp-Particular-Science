@@ -1,4 +1,4 @@
-
+#include <random>
 #include <queue>
 #include "game.h"
 #include <iostream>
@@ -41,14 +41,21 @@ void Game::Start_Game()
 {
 	std::cout << "Start Game apelata \n";
 	int dim_runde = 4;
+	//populare vector de cuv in functie de dificultate
+
 	for (int i = 0; i < dim_runde; i++)
 	{
 		m_round.reset(new Round);
-		m_round->StartRound(m_players);
+		m_round->StartRound(m_players,m_words);
+		
 	}
 	//stop game
 	//clasament
-
+	
+	for (auto& player : m_players)
+	{
+		player.AddGameToGameHistory();
+	}
 }
 
 Player Game::Winner()
@@ -72,17 +79,3 @@ Player Game::Winner()
 
 }
 
-
-
-//void Scribble::Game::updateHistoryPlayer() //recheck
-//{
-//	std::cout << "Update Hostory Player apelata\n";
-//	std::queue<std::pair<uint16_t, std::string>> gameHistory;
-//	for (auto& player : m_players)
-//	{
-//		gameHistory = player.GetGameHistory();
-//		gameHistory.pop();
-//		player.SetGameHistory(gameHistory);
-//		player.AddGameToGameHistory({ player.GetPersonalBest(),player. });
-//	}
-//}

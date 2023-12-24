@@ -17,7 +17,7 @@ void SubRound::SetWord(const Word& cuv)
 	return this->m_word;
 }
 
-void SubRound::StartSubRound( Player p)
+void SubRound::StartSubRound(const Player& p, const std::string& word)
 {
 	std::cout << "Start SubRound apelata\n";
 	const double timeLimit = 45.0;
@@ -25,6 +25,7 @@ void SubRound::StartSubRound( Player p)
 	while (m_timer.elapsedSeconds() < timeLimit)
 	{
 		//check
+		
 		if (m_timer.elapsedSeconds() == 30.0)
 		{
 			m_word.ShowHint();
