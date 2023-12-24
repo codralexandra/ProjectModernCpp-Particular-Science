@@ -2,6 +2,7 @@
 #include <crow.h>
 #include <sqlite_orm/sqlite_orm.h>
 #include "Word.h"
+#include "Statistic.h"
 import userdb;
 namespace sql = sqlite_orm;
 using namespace Scribble;
@@ -24,6 +25,13 @@ inline auto CreateStorage(const std::string& filename)
 			sql::make_column("email", &UserDB::SetEmail, &UserDB::GetEmail),
 			sql::make_column("username", &UserDB::SetUsername, &UserDB::GetUsername),
 			sql::make_column("password", &UserDB::SetPassword, &UserDB::GetPassword)
+		),
+		sql::make_table(
+			"GameHistory",
+			//user id maybe ? ca sa putem sa le conectam
+			//sql::make_column("id", &GameHistoryDB::SetId, &GameHistoryDB::GetId, sql::primary_key().autoincrement()),
+			sql::make_column("username", &Statistic::SetUsername, &Statistic::GetUsername),
+			sql::make_column("score", &Statistic::SetScore, &Statistic::GetScore)
 		)
 		
 	);

@@ -22,7 +22,6 @@ Player::Player(const Player& player)
 {
     
     this->m_isDrawer = player.m_isDrawer;
-  
     this->m_personalScore = player.m_personalScore;
   
     this->m_hasGuessed = player.m_hasGuessed;

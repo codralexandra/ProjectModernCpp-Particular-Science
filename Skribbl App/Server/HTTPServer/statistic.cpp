@@ -14,7 +14,7 @@ void Statistic::SetUsername(const std::string& username)
 	this->m_username = username;
 }
 
-void Statistic::SetScore(uint16_t& score)
+void Statistic::SetScore(uint16_t score)
 {
 	this->m_score = score;
 }

@@ -9,7 +9,7 @@ public:
 
 	//setter
 	void SetUsername(const std::string& username);
-	void SetScore(uint16_t& score);
+	void SetScore(uint16_t score);
 	
 	//getter
 	std::string GetUsername() const;
@@ -18,6 +18,7 @@ public:
 private:
 	std::string m_username;
 	uint16_t m_score;
+	
 
 };
 
