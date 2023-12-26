@@ -98,7 +98,7 @@ bool http::Routing::IsUnique(std::string email, std::string username, std::strin
 	auto allUsers = storage.get_all<UserDB>();
 	if (allUsers.empty())
 		return true;
-	for (const auto& user : allUsers)
+	for (const UserDB& user : allUsers)
 	{
 		if (userToCheck == user)
 		{

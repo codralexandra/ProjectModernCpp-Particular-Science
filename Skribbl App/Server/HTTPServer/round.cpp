@@ -5,6 +5,7 @@
 #include <ranges>
 #include <numeric>
 #include <random>
+#include <cstdint>
 
 Round::Round()
 {
@@ -13,17 +14,20 @@ Round::Round()
 
 void Round::StartRound(std::vector<Player>& p,  std::vector< std::string>& word)
 {
+	//check the random part!!!
+
+
 	Timer t;
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	
-	int randPosition;
+	uint16_t randPosition;
 	const double timeLimit = 3.0;
 
 	std::cout << "Start ROUND apelata\n";
 	for (int i = 0; i < p.size(); i++)
 	{
-		std::uniform_real_distribution<int> dist(0, word.size());
+		std::uniform_real_distribution<> dist(0, word.size()); 
 		m_subRound.reset(new SubRound);
 
 		randPosition = dist(gen);
