@@ -34,7 +34,7 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 	jsonPayload["Difficulty"] = lobby->GetDifficulty();
 	std::string jsonString = jsonPayload.dump();
 	auto response = cpr::Put(
-		cpr::Url{ "http://localhost:18080/creategame" },
+		cpr::Url{ "http://localhost:18080/lobby" },
 		cpr::Body{ jsonString },
 		cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
 	);

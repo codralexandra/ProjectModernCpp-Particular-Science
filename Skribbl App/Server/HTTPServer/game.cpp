@@ -15,33 +15,38 @@ Game::Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::
 {
 }
 
-void Game::setPlayers(std::vector<Player> players)
+void Game::setPlayers(const std::vector<Player>& players)
 {
 	m_players = players;
 }
 
-void Game::setWords(std::vector<std::string> words)
+void Game::setWords(const std::vector<std::string>& words)
 {
 	m_words = words;
 }
 
-void Game::SetGameID(uint16_t id)
+void Game::SetGameID(const uint16_t& id)
 {
 	m_gameID = id;
 }
 
+void Game::AddPlayer(const Player& p)
+{
+	m_players.push_back(p);
+}
 
-std::vector<Player> Game::getPlayers()
+
+std::vector<Player> Game::getPlayers() const
 {
 	return m_players;
 }
 
-std::vector<std::string> Game::getWords()
+std::vector<std::string> Game::getWords() const
 {
 	return m_words;
 }
 
-uint16_t Game::GetGameID()
+uint16_t Game::GetGameID() const
 {
 	return m_gameID;
 }
@@ -56,12 +61,12 @@ void Game::Start_Game()
 	for (int i = 0; i < dim_runde; i++)
 	{
 		m_round.reset(new Round);
-		m_round->StartRound(m_players,m_words);
-		
+		m_round->StartRound(m_players, m_words);
+
 	}
 	//stop game
 	//clasament
-	
+
 	for (auto& player : m_players)
 	{
 		player.AddGameToGameHistory();
@@ -82,7 +87,7 @@ Player Game::Winner()
 	return player_max;
 
 	std::ranges::sort(m_players, [](const Player& a, const Player& b) {
-		return a.GetPersonalScore()>b.GetPersonalScore();
+		return a.GetPersonalScore() > b.GetPersonalScore();
 		});
 
 	return std::move(m_players[m_players.size() - 1]);

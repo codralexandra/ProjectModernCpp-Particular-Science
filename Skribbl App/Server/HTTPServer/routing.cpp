@@ -65,7 +65,7 @@ void Routing::Run(Storage& storage)
 		}
 			});
 
-	CROW_ROUTE(m_app, "/creategame")
+	CROW_ROUTE(m_app, "/lobby")
 		.methods("PUT"_method)
 		([this](const crow::request& req) {
 		if (m_gameExists)

@@ -12,13 +12,15 @@
 		Game();
 		Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date);
 
-		void setPlayers(std::vector<Player> players);
-		void setWords(std::vector<std::string> words);
-		void SetGameID(uint16_t id);
+		void setPlayers(const std::vector<Player>& players);
+		void setWords(const std::vector<std::string>& words);
+		void SetGameID(const uint16_t& id);
+		void AddPlayer(const Player& p);
 
-		std::vector<Player> getPlayers();
-		std::vector<std::string> getWords();
-		uint16_t GetGameID();
+
+		std::vector<Player> getPlayers() const;
+		std::vector<std::string> getWords() const;
+		uint16_t GetGameID() const;
 
 		void Start_Game();
 
