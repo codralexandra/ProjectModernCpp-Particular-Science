@@ -1,6 +1,8 @@
 #include "creategamewindow.h"
 #include <random>
 #include <ctime>
+#include <crow.h>
+#include <cpr/cpr.h>
 
 CreateGameWindow::CreateGameWindow(QWidget *parent)
 	: QWidget(parent)
@@ -27,4 +29,14 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 	this->close();
 	lobby->show();
 	lobby->SetGameID(id);
+	crow::json::wvalue jsonPayload;
+	jsonPayload["RoomCode"] = lobby->GetGameID();
+	jsonPayload["Difficulty"] = lobby->GetDifficulty();
+	std::string jsonString = jsonPayload.dump();
+	auto response = cpr::Put(
+		cpr::Url{ "http://localhost:18080/creategame" },
+		cpr::Body{ jsonString },
+		cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
+	);
+
 }

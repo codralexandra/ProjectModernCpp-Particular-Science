@@ -25,6 +25,11 @@ void Game::setWords(std::vector<std::string> words)
 	m_words = words;
 }
 
+void Game::SetGameID(uint16_t id)
+{
+	m_gameID = id;
+}
+
 
 std::vector<Player> Game::getPlayers()
 {
@@ -34,6 +39,11 @@ std::vector<Player> Game::getPlayers()
 std::vector<std::string> Game::getWords()
 {
 	return m_words;
+}
+
+uint16_t Game::GetGameID()
+{
+	return m_gameID;
 }
 
 

@@ -66,7 +66,7 @@ void Routing::Run(Storage& storage)
 			});
 
 	CROW_ROUTE(m_app, "/creategame")
-		.methods("POST"_method)
+		.methods("PUT"_method)
 		([this](const crow::request& req) {
 		if (m_gameExists)
 		{
@@ -79,8 +79,9 @@ void Routing::Run(Storage& storage)
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
-			std::string dificulty = jsonData["dificulty"].s();
+			std::string dificulty = jsonData["Difficulty"].s();
 			Game game;
+			game.SetGameID(jsonData["RoomCode"].i());
 			return crow::response(200, "New game created successfully.");
 		}
 		});
@@ -146,10 +147,3 @@ void http::Routing::SetGameExists(const bool& gameExists)
 }
 
 
-
-crow::response http::Routing::Register(const crow::request& req, Storage& storage) const
-{
-
-
-	return crow::response(200, "Received and processed JSON data");
-}

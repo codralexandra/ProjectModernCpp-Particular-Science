@@ -14,11 +14,11 @@
 
 		void setPlayers(std::vector<Player> players);
 		void setWords(std::vector<std::string> words);
-
+		void SetGameID(uint16_t id);
 
 		std::vector<Player> getPlayers();
 		std::vector<std::string> getWords();
-
+		uint16_t GetGameID();
 
 		void Start_Game();
 
@@ -31,5 +31,6 @@
 		static const uint16_t m_rounds = 4;
 		std::vector<std::string> m_words;
 		std::unique_ptr<Round> m_round;
+		uint16_t m_gameID;
 	};
 

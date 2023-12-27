@@ -19,9 +19,6 @@ namespace http
 		void SetGameExists(const bool& gameExists);
 
 	private:
-		crow::response Register(const crow::request& req, Storage& storage)const;
-
-	private:
 		crow::SimpleApp m_app;
 		bool m_gameExists;
 	};
