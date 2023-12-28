@@ -11,4 +11,4 @@ enum class Difficulty : uint8_t
 };
 
 std::string DifficultyTypeToString(Difficulty dif);
-
+Difficulty StringToDifficultyType(const std::string& difficultyString);

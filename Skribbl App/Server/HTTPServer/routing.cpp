@@ -79,9 +79,16 @@ void Routing::Run(Storage& storage)
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
-			std::string dificulty = jsonData["Difficulty"].s();
 			Game game;
+			Difficulty dificulty = StringToDifficultyType(jsonData["Difficulty"].s());
 			game.SetGameID(jsonData["RoomCode"].i());
+			std::string username = jsonData["Username"].s();
+			Player player;
+			player.SetUsername(username);
+			game.AddPlayer(player);
+			game.SetDifficulty(dificulty);
+			m_gameExists = true;
+
 			return crow::response(200, "New game created successfully.");
 		}
 		});

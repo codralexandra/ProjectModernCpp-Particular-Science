@@ -16,12 +16,13 @@
 		void setWords(const std::vector<std::string>& words);
 		void SetGameID(const uint16_t& id);
 		void AddPlayer(const Player& p);
+		void SetDifficulty(const Difficulty& difficulty);
 
 
 		std::vector<Player> getPlayers() const;
 		std::vector<std::string> getWords() const;
 		uint16_t GetGameID() const;
-
+		Difficulty GetDifficulty() const;
 		void Start_Game();
 
 		Player Winner();

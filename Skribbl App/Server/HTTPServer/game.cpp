@@ -35,6 +35,11 @@ void Game::AddPlayer(const Player& p)
 	m_players.push_back(p);
 }
 
+void Game::SetDifficulty(const Difficulty& difficulty)
+{
+	m_difficulty = difficulty;
+}
+
 
 std::vector<Player> Game::getPlayers() const
 {
@@ -49,6 +54,11 @@ std::vector<std::string> Game::getWords() const
 uint16_t Game::GetGameID() const
 {
 	return m_gameID;
+}
+
+Difficulty Game::GetDifficulty() const
+{
+	return m_difficulty;
 }
 
 

@@ -25,7 +25,7 @@ import user;
 		int16_t GetPersonalScore() const;
 		bool GetHasGuessed() const;
 		uint16_t GetTimeGuessed() const;
-
+		
 
 		Player& operator = (const Player& player);
 		bool operator<(const Player& player) const;
