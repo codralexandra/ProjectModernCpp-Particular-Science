@@ -74,6 +74,7 @@ void LoginWindow::onLoginButtonClicked()
 		else
 		{
 			mainWindow = new MainWindow;
+			mainWindow->SetUsername(username);
 			this->hide();
 			mainWindow->show();
 		}

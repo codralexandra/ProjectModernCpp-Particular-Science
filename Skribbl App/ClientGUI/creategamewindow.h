@@ -11,6 +11,8 @@ class CreateGameWindow : public QWidget
 public:
 	CreateGameWindow(QWidget *parent = nullptr);
 	~CreateGameWindow();
+	void SetUsername(const std::string& username);
+	std::string GetUsername()const;
 
 private slots:
 	void on_createLobbyButton_clicked();
@@ -18,4 +20,5 @@ private slots:
 private:
 	Ui::CreateGameWindowClass ui;
 	Lobby* lobby;
+	std::string m_username;
 };

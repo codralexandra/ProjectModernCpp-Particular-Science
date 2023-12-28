@@ -10,9 +10,20 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {}
 
+void MainWindow::SetUsername(const std::string & username)
+{
+	m_username = username;
+}
+
+std::string MainWindow::GetUsername() const
+{
+	return m_username;
+}
+
 void MainWindow::on_createButton_clicked()
 {
 	createGameWindow = new CreateGameWindow;
+	createGameWindow->SetUsername(m_username);
 	createGameWindow->show();
 }
 

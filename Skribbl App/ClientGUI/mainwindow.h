@@ -12,6 +12,9 @@ class MainWindow : public QMainWindow
 public:
 	MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
+	void SetUsername(const std::string& username);
+	std::string GetUsername()const;
+
 
 private slots:
 	void on_joinButton_clicked();
@@ -20,4 +23,5 @@ private slots:
 private:
 	Ui::MainWindowClass ui;
 	CreateGameWindow* createGameWindow;
+	std::string m_username;
 };

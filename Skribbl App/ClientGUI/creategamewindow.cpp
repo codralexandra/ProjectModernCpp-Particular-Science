@@ -13,6 +13,16 @@ CreateGameWindow::CreateGameWindow(QWidget *parent)
 CreateGameWindow::~CreateGameWindow()
 {}
 
+void CreateGameWindow::SetUsername(const std::string & username)
+{
+	m_username = username;
+}
+
+std::string CreateGameWindow::GetUsername() const
+{
+	return m_username;
+}
+
 
 void CreateGameWindow::on_createLobbyButton_clicked()
 {
@@ -32,6 +42,7 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 	crow::json::wvalue jsonPayload;
 	jsonPayload["RoomCode"] = lobby->GetGameID();
 	jsonPayload["Difficulty"] = lobby->GetDifficulty();
+	jsonPayload["Username"] = m_username;
 	std::string jsonString = jsonPayload.dump();
 	auto response = cpr::Put(
 		cpr::Url{ "http://localhost:18080/lobby" },
