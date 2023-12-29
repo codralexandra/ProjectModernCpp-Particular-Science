@@ -252,16 +252,6 @@
       </property>
      </spacer>
     </item>
-    <item row="0" column="2" alignment="Qt::AlignRight">
-     <widget class="QRadioButton" name="soundMuteCheck">
-      <property name="styleSheet">
-       <string notr="true">background : transparent</string>
-      </property>
-      <property name="text">
-       <string>Mute Sound</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">

@@ -19,7 +19,6 @@ private slots:
     void on_startRegisterButton_clicked();
     void on_startLoginButton_clicked();
     void on_exitButton_clicked();
-    void on_soundMuteCheck_toggled(bool checked);
     void on_settingsButton_clicked();
 
 private:

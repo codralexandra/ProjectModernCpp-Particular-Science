@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>SettingsWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0, x2:0.75, y2:0.79, stop:0 rgba(255, 190, 230, 255), stop:1 rgba(220, 217, 255, 255), x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 231, 251, 255), stop:1 rgba(210, 230, 255, 255));</string>
+  </property>
   <widget class="QSlider" name="songVolume">
    <property name="geometry">
     <rect>
@@ -51,14 +54,38 @@
   <widget class="QLabel" name="volumeValue">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>440</x>
      <y>90</y>
      <width>121</width>
      <height>16</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background : transparent</string>
+   </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>60</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent</string>
+   </property>
+   <property name="text">
+    <string>Music Volume</string>
    </property>
   </widget>
  </widget>

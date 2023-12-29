@@ -48,18 +48,18 @@
      <item>
       <widget class="QPushButton" name="startGameButton">
        <property name="styleSheet">
-        <string notr="true">#startLoginButton {
+        <string notr="true">#startGameButton {
     background-color: white;
     border: 2px solid #8f8f91;
     border-radius: 10px;
     padding: 5px 10px;
 }
 
-#startLoginButton:hover {
+#startGameButton:hover {
     background-color: #d3d3d3;
 }
 
-#startLoginButton:pressed {
+#startGameButton:pressed {
     background-color: #a9a9a9; 
     border: 2px solid #686868; 
 }</string>
@@ -72,18 +72,18 @@
      <item>
       <widget class="QPushButton" name="profileButton">
        <property name="styleSheet">
-        <string notr="true">#startRegisterButton {
+        <string notr="true">#profileButton {
     background-color: white;
     border: 2px solid #8f8f91;
     border-radius: 10px;
     padding: 5px 10px;
 }
 
-#startRegisterButton:hover {
+#profileButton:hover {
     background-color: #d3d3d3;
 }
 
-#startRegisterButton:pressed {
+#profileButton:pressed {
     background-color: #a9a9a9; 
     border: 2px solid #686868; 
 }</string>
