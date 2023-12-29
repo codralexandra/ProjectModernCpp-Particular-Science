@@ -25,7 +25,7 @@ void Routing::Run(Storage& storage)
 		std::string password = jsonData["password"].s();
 
 
-		bool isUnique = IsUnique(email,username,password,storage);
+		bool isUnique = IsUnique(email, username, password, storage);
 
 		if (isUnique)
 		{
@@ -44,7 +44,7 @@ void Routing::Run(Storage& storage)
 
 	CROW_ROUTE(m_app, "/login")
 		.methods("PUT"_method)
-		([this,&storage](const crow::request& req) {
+		([this, &storage](const crow::request& req) {
 
 		crow::json::rvalue jsonData = crow::json::load(req.body);
 
@@ -54,7 +54,7 @@ void Routing::Run(Storage& storage)
 
 		std::string username = jsonData["username"].s();
 		std::string password = jsonData["password"].s();
-		
+
 		bool isAuthenticated = AuthentificationCheck(username, password, storage);
 
 		if (isAuthenticated) {
@@ -86,14 +86,13 @@ void Routing::Run(Storage& storage)
 			id = distr(engine);
 
 			//create game
-			Game game;
 			Difficulty dificulty = StringToDifficultyType(jsonData["Difficulty"].s());
-			game.SetGameID(id);
+			m_game.SetGameID(id);
 			std::string username = jsonData["Username"].s();
 			Player player;
 			player.SetUsername(username);
-			game.AddPlayer(player);
-			game.SetDifficulty(dificulty);
+			m_game.AddPlayer(player);
+			m_game.SetDifficulty(dificulty);
 			m_gameExists = true;
 
 			//send gameId to the client
@@ -101,7 +100,39 @@ void Routing::Run(Storage& storage)
 			responseJson["gameId"] = id;
 			return crow::response(200, responseJson);
 		}
-		});
+			});
+
+	CROW_ROUTE(m_app, "/lobby")
+		.methods("GET"_method)
+		([this](const crow::request& req) {
+
+		crow::json::rvalue jsonData = crow::json::load(req.body);
+		if (!jsonData) {
+			return crow::response(400, "Invalid JSON format");
+		}
+		uint16_t id = jsonData["RoomCode"].i();
+		//if(id == )
+
+			});
+
+	CROW_ROUTE(m_app, "/playerjoined")
+		.methods("PUT"_method)
+		([this](const crow::request& req) {
+
+		crow::json::rvalue jsonData = crow::json::load(req.body);
+		if (!jsonData) {
+			return crow::response(400, "Invalid JSON format");
+		}
+		uint16_t id = jsonData["RoomCode"].i();
+		if (id != m_game.GetGameID())
+		{
+			return crow::response(401, "Room doesn't exist!");
+		}
+		Player p;
+		p.SetUsername(jsonData["username"].s());
+		m_game.AddPlayer(p);
+		return crow::response(400, "Joined Successfully");
+			});
 
 
 	m_app.port(18080).multithreaded().run();
@@ -109,7 +140,7 @@ void Routing::Run(Storage& storage)
 
 
 
-bool http::Routing::IsUnique(std::string email, std::string username, std::string password,Storage& storage)
+bool http::Routing::IsUnique(std::string email, std::string username, std::string password, Storage& storage)
 {
 	UserDB userToCheck(-1, email, username, password);
 

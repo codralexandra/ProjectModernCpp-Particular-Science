@@ -102,6 +102,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="creategamewindow.cpp" />
+    <ClCompile Include="joingame.cpp" />
     <ClCompile Include="lobby.cpp" />
     <ClCompile Include="drawingwidget.cpp" />
     <ClCompile Include="loginwindow.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="clientgui.cpp" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="creategamewindow.ui" />
+    <QtUic Include="joingame.ui" />
     <QtUic Include="lobby.ui" />
     <QtUic Include="drawingwidget.ui" />
     <QtUic Include="loginwindow.ui" />
@@ -166,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="watchwidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="joingame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

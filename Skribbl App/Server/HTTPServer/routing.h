@@ -22,6 +22,7 @@ namespace http
 	private:
 		crow::SimpleApp m_app;
 		bool m_gameExists;
+		Game m_game;
 	};
 }
 

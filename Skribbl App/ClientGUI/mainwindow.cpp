@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "joingame.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -29,5 +30,8 @@ void MainWindow::on_createButton_clicked()
 
 void MainWindow::on_joinButton_clicked()
 {
-
+	JoinGame* joinWindow = new JoinGame;
+	joinWindow->SetUsername(m_username);
+	//this->close();
+	joinWindow->show();
 }
