@@ -75,13 +75,20 @@ void Routing::Run(Storage& storage)
 		else
 		{
 			crow::json::rvalue jsonData = crow::json::load(req.body);
-
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
+
+			uint16_t id;
+			std::random_device RD; // random device to generate a seed for the random number engine
+			std::mt19937 engine(RD()); // Mersenne Twister pseudo-random number engine, seeded with the random device
+			std::uniform_int_distribution<> distr(0, 10); // uniform distribution for integers within [0, productions.size() - 1]
+			id = distr(engine);
+
+			//create game
 			Game game;
 			Difficulty dificulty = StringToDifficultyType(jsonData["Difficulty"].s());
-			game.SetGameID(jsonData["RoomCode"].i());
+			game.SetGameID(id);
 			std::string username = jsonData["Username"].s();
 			Player player;
 			player.SetUsername(username);
@@ -89,7 +96,10 @@ void Routing::Run(Storage& storage)
 			game.SetDifficulty(dificulty);
 			m_gameExists = true;
 
-			return crow::response(200, "New game created successfully.");
+			//send gameId to the client
+			crow::json::wvalue responseJson;
+			responseJson["gameId"] = id;
+			return crow::response(200, responseJson);
 		}
 		});
 

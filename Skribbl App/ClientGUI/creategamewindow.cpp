@@ -26,22 +26,11 @@ std::string CreateGameWindow::GetUsername() const
 
 void CreateGameWindow::on_createLobbyButton_clicked()
 {
-	lobby = new Lobby;
 	QString text(ui.difficultyBox->currentText());
-	std::string string{ text.toUtf8() };
-	lobby->SetDifficulty(string);
-	uint16_t id;
-	std::random_device RD; // random device to generate a seed for the random number engine
-	std::mt19937 engine(RD()); // Mersenne Twister pseudo-random number engine, seeded with the random device
-	std::uniform_int_distribution<> distr(0, 10); // uniform distribution for integers within [0, productions.size() - 1]
-
-	id = distr(engine);
-	this->close();
-	lobby->show();
-	lobby->SetGameID(id);
+	std::string string{ text.toUtf8() };;
 	crow::json::wvalue jsonPayload;
-	jsonPayload["RoomCode"] = lobby->GetGameID();
-	jsonPayload["Difficulty"] = lobby->GetDifficulty();
+
+	jsonPayload["Difficulty"] = string;
 	jsonPayload["Username"] = m_username;
 	std::string jsonString = jsonPayload.dump();
 	auto response = cpr::Put(
@@ -49,5 +38,35 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 		cpr::Body{ jsonString },
 		cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
 	);
-
+	
+	if (response.status_code == 200)
+	{
+		auto responseBody = crow::json::load(response.text);
+		if (!responseBody)
+		{
+			ui.errorLabel->setText("Invalid JSON format");
+		}
+		else
+		{
+			uint16_t id = responseBody["gameId"].i();
+			lobby = new Lobby;
+			lobby->SetGameID(id);
+			lobby->SetDifficulty(string);
+			this->close();
+			lobby->show();
+		}
+	}
+	else
+	{
+		if (!response.text.empty())
+		{
+			QString errorMessage = QString::fromUtf8(response.text);
+			ui.errorLabel->setText(errorMessage);
+		}
+		else
+		{
+			ui.errorLabel->setText("Game creation failed: Server is closed!");
+		}
+	}
+		
 }

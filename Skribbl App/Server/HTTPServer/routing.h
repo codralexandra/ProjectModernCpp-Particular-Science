@@ -4,6 +4,7 @@
 #include <sqlite_orm/sqlite_orm.h>
 #include "gamedata.h"
 #include "game.h"
+#include <random>
 
 import utils;
 
