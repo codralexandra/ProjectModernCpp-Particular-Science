@@ -3,6 +3,8 @@
 #include <QWidget>
 #include "ui_lobby.h"
 #include <string>
+#include <cpr/cpr.h>
+#include <crow.h>
 
 class Lobby : public QWidget
 {
@@ -16,6 +18,9 @@ public:
 
 	uint16_t GetGameID() const;
 	std::string GetDifficulty()const;
+	
+private slots:
+	void on_RefreshButton_clicked();
 
 private:
 	Ui::LobbyClass ui;
