@@ -20,7 +20,8 @@ Player::Player(bool isDrawing) :User()
 
 Player::Player(const Player& player)
 {
-    
+    this->SetEmail(player.GetEmail());
+    this->SetUsername(player.GetUsername());
     this->m_isDrawer = player.m_isDrawer;
     this->m_personalScore = player.m_personalScore;
   
@@ -93,6 +94,8 @@ uint16_t Player::GetTimeGuessed() const
 
 Player& Player::operator=(const Player& player)
 {
+    this->SetEmail(player.GetEmail());
+    this->SetUsername(player.GetUsername());
     this->m_isDrawer = player.m_isDrawer;
   
     this->m_personalScore = player.m_personalScore;

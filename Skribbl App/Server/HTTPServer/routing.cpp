@@ -89,9 +89,9 @@ void Routing::Run(Storage& storage)
 			Difficulty dificulty = StringToDifficultyType(jsonData["Difficulty"].s());
 			m_game.SetGameID(id);
 			std::string username = jsonData["Username"].s();
-			Player player;
-			player.SetUsername(username);
-			m_game.AddPlayer(player);
+			Player* player = new Player;
+			player->SetUsername(username);
+			m_game.AddPlayer(*player);
 			m_game.SetDifficulty(dificulty);
 			m_gameExists = true;
 
@@ -134,6 +134,19 @@ void Routing::Run(Storage& storage)
 		return crow::response(400, "Joined Successfully");
 			});
 
+	CROW_ROUTE(m_app, "/playerjoined")
+		.methods("GET"_method)
+		([this](const crow::request& req) {
+
+		crow::json::wvalue jsonResponse;
+		std::vector<std::string> playerNames;
+		for (const Player& p : m_game.getPlayers())
+		{
+			playerNames.push_back(p.GetUsername());
+		}
+		jsonResponse["players"] = playerNames;
+		return jsonResponse.dump();
+			});
 
 	m_app.port(18080).multithreaded().run();
 }
