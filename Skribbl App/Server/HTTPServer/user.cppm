@@ -2,7 +2,6 @@ module;
 export module user;
 import <string>;
 import "statistic.h";
-//#include "statistic.h"
 import <cstdint>;
 import <stack>;
 import <iostream>;
@@ -24,13 +23,13 @@ namespace Scribble
 		std::string GetEmail() const;
 		std::string GetUsername() const;
 		std::string GetPassword() const;
-		//std::stack<Statistic> GetGameHistory() const;
+		const std::stack<Statistic>& GetGameHistory() const;
 		uint16_t GetPersonalBest() const;
 
 		void SetEmail(const std::string& email);
 		void SetUsername(std::string username);
 		void SetPassword(const std::string& password);
-		//void SetGameHistory(const std::stack<Statistic>& gameHistory);
+		void SetGameHistory(const std::stack<Statistic>& gameHistory);
 		void SetPersonalBest(const uint16_t& personalBest);
 
 		void AddGameToGameHistory();
@@ -38,7 +37,6 @@ namespace Scribble
 		std::string m_username;
 		std::string m_email;
 		std::string m_password;
-		//Statistic* a=new Statistic("aa",12);
 		std::stack<Statistic> m_gameHistory;
 		uint16_t m_personalBest;
 	};

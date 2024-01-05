@@ -7,7 +7,7 @@ namespace Scribble
 	public:
 		Statistic();
 		Statistic(const std::string& username, uint16_t score);
-		~Statistic();
+		//~Statistic();
 
 		//setter
 		void SetUsername(const std::string& username);
