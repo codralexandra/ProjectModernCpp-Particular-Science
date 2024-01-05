@@ -19,10 +19,16 @@ namespace http
 		bool GetGameExists() const;
 		void SetGameExists(const bool& gameExists);
 
+		void SetGameMaster(const std::string& name);
+		std::string GetGameMaster() const;
+		bool IsGameMaster(const std::string& name);
+
+
 	private:
 		crow::SimpleApp m_app;
 		bool m_gameExists;
 		Game m_game;
+		std::string m_gameMaster;
 	};
 }
 

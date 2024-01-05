@@ -2,6 +2,7 @@
 import userdb;
 using namespace http;
 
+
 void Routing::Run(Storage& storage)
 {
 	CROW_ROUTE(m_app, "/")([]() {
@@ -215,6 +216,23 @@ bool http::Routing::GetGameExists() const
 void http::Routing::SetGameExists(const bool& gameExists)
 {
 	m_gameExists = gameExists;
+}
+
+void http::Routing::SetGameMaster(const std::string& name)
+{
+	m_gameMaster = name;
+}
+
+std::string http::Routing::GetGameMaster() const
+{
+	return m_gameMaster;
+}
+
+bool http::Routing::IsGameMaster(const std::string& name)
+{
+	if (m_gameMaster == name)
+		return true;
+	return false;
 }
 
 
