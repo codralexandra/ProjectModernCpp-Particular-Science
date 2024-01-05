@@ -13,7 +13,7 @@ public:
 
 	void SetWord(const Word& cuv);
 	Word GetWord()const;
-	void StartSubRound(const Player& p,const std::string& word);
+	void StartSubRound(const Player& p,const Word& word);
 
 
 private:

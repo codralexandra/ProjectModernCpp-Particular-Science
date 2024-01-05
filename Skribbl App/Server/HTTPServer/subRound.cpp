@@ -17,7 +17,7 @@ void SubRound::SetWord(const Word& cuv)
 	return this->m_word;
 }
 
-void SubRound::StartSubRound(const Player& p, const std::string& word)
+void SubRound::StartSubRound(const Player& p, const Word& word)
 {
 	std::cout << "Start SubRound apelata\n";
 	const double timeLimit = 45.0;

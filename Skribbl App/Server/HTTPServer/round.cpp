@@ -12,7 +12,7 @@ Round::Round()
 	
 }
 
-void Round::StartRound(std::vector<Player>& p,  std::vector< std::string>& word)
+void Round::StartRound(std::vector<Player>& p,  std::vector< Word>& word)
 {
 	//check the random part!!!
 
