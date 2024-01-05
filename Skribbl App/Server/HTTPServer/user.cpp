@@ -9,7 +9,7 @@ User::User() : m_email(""), m_password(""), m_personalBest(0), m_username("")
 }
 
 Scribble::User::User(const std::string& email, const std::string& username, const std::string& password
-	, const uint16_t& personalBest /*const std::stack<Statistic>& gameHistory*/):
+	, const uint16_t& personalBest, const std::stack<Statistic>& gameHistory):
 	m_email(email), m_username(username), m_password(password), m_personalBest(personalBest) //m_gameHistory(gameHistory)
 {
 

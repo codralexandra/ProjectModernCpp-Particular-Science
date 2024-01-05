@@ -1,6 +1,7 @@
 module;
 export module user;
 import <string>;
+import "statistic.h";
 //#include "statistic.h"
 import <cstdint>;
 import <stack>;
@@ -12,7 +13,7 @@ namespace Scribble
 	public:
 		User();
 		User(const std::string& email, const std::string& username, const std::string& password, 
-			 const uint16_t& personalBest /*const std::stack<Statistic>&gameHistory*/);
+			 const uint16_t& personalBest, const std::stack<Statistic>&gameHistory);
 		//friend std::ostream& operator<<(std::ostream& ostream, const User& user); //trebe facuta virtuala 
 		User& operator=(const User& user);
 		User(const User& user);
@@ -38,7 +39,7 @@ namespace Scribble
 		std::string m_email;
 		std::string m_password;
 		//Statistic* a=new Statistic("aa",12);
-		//std::stack<Statistic> m_gameHistory;
+		std::stack<Statistic> m_gameHistory;
 		uint16_t m_personalBest;
 	};
 }

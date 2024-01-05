@@ -81,6 +81,10 @@ void drawingWidget::continueDrawing(const QPointF& pos)
         currentLine->setPath(currentLinePath);
 
         sendPixelToServer(pos);
+        //daca se poate returna currentLinePath - sa se transmita pe sv
+        //daca nu, se creeaza un vector de puncte/linii
+        //ruta pt preluare in paint event - pt cei care ghicesc
+        //pt cel care deseneaza - ruta de exportare a desenului
     }
 }
 
@@ -125,23 +129,23 @@ void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload
             double receivedX = jsonPayload["x"].d();
             double receivedY = jsonPayload["y"].d();
 
-            updateDrawing(receivedX, receivedY, receivedPenColor, receivedPenWidth);
+           // updateDrawing(receivedX, receivedY, receivedPenColor, receivedPenWidth);
         }
     }
 }
-
-void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
-{
-    if (this->enable == false)
-    {
-        QGraphicsLineItem* receivedLine = new QGraphicsLineItem;
-
-        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-        receivedLine->setPen(pen);
-
-        QLineF line(currentLine->line().p1(), QPointF(x, y));
-        receivedLine->setLine(line);
-        scene()->addItem(receivedLine);
-        currentLine = receivedLine;
-    }
-}
+//
+//void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
+//{
+//    if (this->enable == false)
+//    {
+//        QGraphicsLineItem* receivedLine = new QGraphicsLineItem;
+//
+//        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+//        receivedLine->setPen(pen);
+//
+//        QLineF line(currentLine->line().p1(), QPointF(x, y));
+//        receivedLine->setLine(line);
+//        scene()->addItem(receivedLine);
+//        currentLine = receivedLine;
+//    }
+//}

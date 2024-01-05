@@ -61,7 +61,7 @@ protected:
 private:
     void sendPixelToServer(const QPointF& pos);
     void receivePixelFromServer(const crow::json::rvalue& jsonPayload);
-    void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
+   // void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
 
 
 private:
