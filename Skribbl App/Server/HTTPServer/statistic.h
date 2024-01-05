@@ -1,24 +1,26 @@
-
+#pragma once
 #include <string>
-class Statistic
+namespace Scribble
 {
-public:
-	Statistic();
-	Statistic(const std::string& username, uint16_t score);
-	~Statistic() = default;
+	class Statistic
+	{
+	public:
+		Statistic();
+		Statistic(const std::string& username, uint16_t score);
+		~Statistic();
 
-	//setter
-	void SetUsername(const std::string& username);
-	void SetScore(uint16_t score);
-	
-	//getter
-	std::string GetUsername() const;
-	uint16_t GetScore()const;
+		//setter
+		void SetUsername(const std::string& username);
+		void SetScore(uint16_t score);
 
-private:
-	std::string m_username;
-	uint16_t m_score;
-	
+		//getter
+		std::string GetUsername() const;
+		uint16_t GetScore()const;
 
-};
+	private:
+		std::string m_username;
+		uint16_t m_score;
 
+
+	};
+}

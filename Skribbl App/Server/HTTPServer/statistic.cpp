@@ -1,5 +1,5 @@
 #include "statistic.h"
-
+using namespace Scribble;
 Statistic::Statistic()
 {
 	//empty

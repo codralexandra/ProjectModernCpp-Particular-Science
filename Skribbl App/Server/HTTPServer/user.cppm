@@ -1,8 +1,9 @@
 module;
 export module user;
 import <string>;
+//#include "statistic.h"
 import <cstdint>;
-//import <stack>;
+import <stack>;
 import <iostream>;
 namespace Scribble
 {
@@ -36,6 +37,7 @@ namespace Scribble
 		std::string m_username;
 		std::string m_email;
 		std::string m_password;
+		//Statistic* a=new Statistic("aa",12);
 		//std::stack<Statistic> m_gameHistory;
 		uint16_t m_personalBest;
 	};
