@@ -8,7 +8,7 @@
 Lobby::Lobby(QWidget* parent)
     : QWidget(parent)
 {
-
+	m_state = LobbyState::Waiting;
     ui.setupUi(this);
 }
 

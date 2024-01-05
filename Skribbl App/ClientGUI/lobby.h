@@ -27,4 +27,5 @@ private:
 	Ui::LobbyClass ui;
 	uint16_t m_gameID;
 	std::string m_difficulty;
+	LobbyState m_state;
 };
