@@ -10,7 +10,7 @@ Game::Game()
 {
 }
 
-Game::Game(std::vector<Player> players, Difficulty difficulty, std::vector<std::string> words, std::string date) :
+Game::Game(std::vector<Player> players, Difficulty difficulty, std::vector<Word> words, std::string date) :
 	m_players{ players }, m_difficulty{ difficulty }, m_words{ words }
 {
 }
@@ -20,7 +20,7 @@ void Game::setPlayers(const std::vector<Player>& players)
 	m_players = players;
 }
 
-void Game::setWords(const std::vector<std::string>& words)
+void Game::setWords(const std::vector<Word>& words)
 {
 	m_words = words;
 }
@@ -46,7 +46,7 @@ std::vector<Player> Game::getPlayers() const
 	return m_players;
 }
 
-std::vector<std::string> Game::getWords() const
+std::vector<Word> Game::getWords() const
 {
 	return m_words;
 }
@@ -79,7 +79,7 @@ void Game::Start_Game()
 
 	for (auto& player : m_players)
 	{
-		player.AddGameToGameHistory();
+		//player.AddGameToGameHistory();
 	}
 }
 

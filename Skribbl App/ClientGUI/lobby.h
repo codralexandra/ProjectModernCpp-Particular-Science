@@ -20,7 +20,7 @@ public:
 	std::string GetDifficulty()const;
 	
 private slots:
-	void on_RefreshButton_clicked();
+	//void on_RefreshButton_clicked();
 
 private:
 	Ui::LobbyClass ui;

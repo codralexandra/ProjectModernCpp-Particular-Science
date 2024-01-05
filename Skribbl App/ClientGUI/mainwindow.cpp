@@ -26,12 +26,14 @@ void MainWindow::on_createButton_clicked()
 	createGameWindow = new CreateGameWindow;
 	createGameWindow->SetUsername(m_username);
 	createGameWindow->show();
+	this->hide();
 }
 
 void MainWindow::on_joinButton_clicked()
 {
 	JoinGame* joinWindow = new JoinGame;
 	joinWindow->SetUsername(m_username);
-	//this->close();
+	this->close();
 	joinWindow->show();
+	
 }
