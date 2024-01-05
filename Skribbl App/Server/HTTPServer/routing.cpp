@@ -166,20 +166,6 @@ bool http::Routing::IsUnique(std::string email, std::string username, std::strin
 		}
 	}
 	return true;
-
-	//Method 2 - more efficient but doesnt work
-
-	/*
-	auto emailCondition = sqlite_orm::c(&UserDB::GetEmail) == userToCheck.GetEmail();
-	auto usernameCondition = sqlite_orm::c(&UserDB::GetUsername) == userToCheck.GetUsername();
-	auto passwordCondition = sqlite_orm::c(&UserDB::GetPassword) == userToCheck.GetPassword();
-
-
-	auto matchingUsers = storage.get_all<UserDB>(
-		sqlite_orm::where(emailCondition) and
-		sqlite_orm::where(usernameCondition) &&
-		sqlite_orm::where(passwordCondition)
-	);*/
 }
 
 bool http::Routing::AuthentificationCheck(std::string username, std::string password, Storage& storage)
