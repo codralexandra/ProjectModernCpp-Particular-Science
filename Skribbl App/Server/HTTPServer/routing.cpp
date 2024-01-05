@@ -146,6 +146,32 @@ void Routing::Run(Storage& storage)
 		return jsonResponse.dump();
 			});
 
+	CROW_ROUTE(m_app, "/game")
+		.methods("PUT"_method)
+		([this](const crow::request& req) {
+
+		m_game.Start_Game();
+
+		return crow::response(200, "Game created!");
+			});
+
+	CROW_ROUTE(m_app, "/game/startround")
+		.methods("GET"_method)
+		([this](const crow::request& req) {
+
+		crow::json::rvalue jsonData = crow::json::load(req.body);
+		if (!jsonData) {
+			return crow::response(400, "Invalid JSON format");
+		}
+
+		std::string username = jsonData["Username"].s();
+
+		crow::json::wvalue responseJson;
+		//responseJson["word"] = ;
+		//responseJson["isDrawing"] = ;
+		return crow::response(200, responseJson);
+			});
+
 	m_app.port(18080).multithreaded().run();
 }
 
