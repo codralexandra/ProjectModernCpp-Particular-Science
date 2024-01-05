@@ -41,8 +41,11 @@ public:
         setOptimizationFlag(QGraphicsView::DontAdjustForAntialiasing, true);
     }
 
+    void setEnable();
     void setPenColor(QColor color);
     void setPenWidth(int width);
+
+    const bool getEnable() const;
 
     QColor getPenColor();
 
@@ -57,10 +60,17 @@ protected:
 
 private:
     void sendPixelToServer(const QPointF& pos);
+    void receivePixelFromServer(const crow::json::rvalue& jsonPayload);
+    void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
+
 
 private:
     QGraphicsPathItem* currentLine;
     QPainterPath currentLinePath;
     QColor penColor;
     int penWidth;
+    bool enable;
+
+    //enable= true -> desenator
+    //enable= false -> watcher
 };
