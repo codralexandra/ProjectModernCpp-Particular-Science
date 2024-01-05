@@ -111,9 +111,7 @@ void Routing::Run(Storage& storage)
 			return crow::response(400, "Invalid JSON format");
 		}
 		uint16_t id = jsonData["RoomCode"].i();
-		//if(id == )
-
-			});
+		});
 
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("PUT"_method)
