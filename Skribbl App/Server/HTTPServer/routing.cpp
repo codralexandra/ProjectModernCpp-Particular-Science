@@ -94,6 +94,7 @@ void Routing::Run(Storage& storage)
 			player->SetUsername(username);
 			m_game.AddPlayer(*player);
 			m_game.SetDifficulty(dificulty);
+			SetGameMaster(player->GetUsername());
 			m_gameExists = true;
 
 			//send gameId to the client
@@ -102,6 +103,9 @@ void Routing::Run(Storage& storage)
 			return crow::response(200, responseJson);
 		}
 			});
+	
+
+
 
 	CROW_ROUTE(m_app, "/lobby")
 		.methods("GET"_method)

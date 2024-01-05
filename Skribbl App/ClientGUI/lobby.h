@@ -5,6 +5,7 @@
 #include <string>
 #include <cpr/cpr.h>
 #include <crow.h>
+#include "lobbystate.h"
 
 class Lobby : public QWidget
 {
