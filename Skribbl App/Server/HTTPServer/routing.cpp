@@ -103,7 +103,7 @@ void Routing::Run(Storage& storage)
 			return crow::response(200, responseJson);
 		}
 			});
-	
+
 
 
 
@@ -116,7 +116,7 @@ void Routing::Run(Storage& storage)
 			return crow::response(400, "Invalid JSON format");
 		}
 		uint16_t id = jsonData["RoomCode"].i();
-		});
+			});
 
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("PUT"_method)
@@ -137,6 +137,8 @@ void Routing::Run(Storage& storage)
 		return crow::response(400, "Joined Successfully");
 			});
 
+
+	//revised
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("GET"_method)
 		([this](const crow::request& req) {
@@ -150,6 +152,9 @@ void Routing::Run(Storage& storage)
 		jsonResponse["players"] = playerNames;
 		return jsonResponse.dump();
 			});
+	//
+
+
 
 	CROW_ROUTE(m_app, "/game")
 		.methods("PUT"_method)
@@ -175,6 +180,29 @@ void Routing::Run(Storage& storage)
 		//responseJson["word"] = ;
 		//responseJson["isDrawing"] = ;
 		return crow::response(200, responseJson);
+			});
+
+
+	CROW_ROUTE(m_app, "/game/tryguess")
+		.methods("GET"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				std::string tryGuess = jsonData["Guess"].s();
+				crow::json::wvalue responseJson;
+				if (tryGuess == m_currentWord)
+				{
+					responseJson["ResponseMsg"] = "Accepted";
+					return crow::response(200, responseJson);
+				}
+				else
+				{
+					responseJson["ResponseMsg"] = "Denied";
+					return crow::response(200, responseJson);
+				}
 			});
 
 	m_app.port(18080).multithreaded().run();
@@ -237,6 +265,16 @@ bool http::Routing::IsGameMaster(const std::string& name)
 	if (m_gameMaster == name)
 		return true;
 	return false;
+}
+
+void http::Routing::SetCurrentWord(const std::string& word)
+{
+	m_currentWord = word;
+}
+
+std::string http::Routing::GetCurrentWord() const
+{
+	return m_currentWord;
 }
 
 
