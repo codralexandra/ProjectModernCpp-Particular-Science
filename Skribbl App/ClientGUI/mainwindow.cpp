@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "joingame.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {}
 
-void MainWindow::SetUsername(const std::string & username)
+void MainWindow::SetUsername(const std::string& username)
 {
 	m_username = username;
 }
@@ -39,10 +39,11 @@ void MainWindow::on_joinButton_clicked()
 	this->close();
 	m_gameMaster = false;
 	joinWindow->show();
-	
+
 }
 
 void MainWindow::on_profileButton_clicked()
 {
+	profileWindow.setUsername(m_username);
 	profileWindow.show();
 }
