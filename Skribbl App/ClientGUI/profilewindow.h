@@ -14,10 +14,12 @@ public:
 	profileWindow(QWidget *parent = nullptr);
 	~profileWindow();
 	void setUsername(std::string username);
+	
 public slots:
 	void on_refreshHistoryButton_clicked();
 
 private:
 	Ui::profileWindowClass ui;
 	std::string m_username;
+	float m_averageScore;
 };
