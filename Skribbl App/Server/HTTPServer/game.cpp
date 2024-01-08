@@ -82,9 +82,10 @@ void Game::Start_Game()
 	//stop game
 	//clasament
 
-	for (auto& player : m_players)
+	for (int i = 0; i < m_players.size(); i++)
 	{
-		//player.AddGameToGameHistory();
+
+	//player.AddGameToGameHistory();
 	}
 }
 
@@ -92,6 +93,8 @@ LobbyState Game::GetLobbyState()
 {
 	return m_lobbyState;
 }
+
+
 
 Player Game::Winner()
 {

@@ -159,11 +159,12 @@ void Routing::Run(Storage& storage)
 
 	CROW_ROUTE(m_app, "/game")
 		.methods("PUT"_method)
-		([this]() {
+		([this,&storage]() {
 		
 		if (m_game.getPlayers().size() > 1)
 		{
 			m_game.SetLobbyState(LobbyState::Starting);
+			PopulateVectorWords(storage);
 			m_game.Start_Game();
 			return crow::response(200, "Game created!");
 		}
@@ -310,3 +311,36 @@ std::string http::Routing::GetCurrentWord() const
 }
 
 
+void http::Routing::PopulateVectorWords(Storage& storage)
+{
+	std::vector<Word> wordsVector;
+	for (int i = 0; i < 4 * m_game.getPlayers().size(); i++)
+	{
+		Difficulty dif = m_game.GetDifficulty();
+		std::random_device RD;
+		std::mt19937 engine(RD());
+		int numberOfElements;
+		std::uniform_int_distribution<> distr;
+		if (dif == Difficulty::Easy)
+		{
+			distr = std::uniform_int_distribution<>(1, 200);
+
+		}
+		else if (dif == Difficulty::Medium)
+		{
+			distr = std::uniform_int_distribution<>(201, 400);
+
+		}
+		else {
+			distr = std::uniform_int_distribution<>(401, 500);
+		}
+		int id = distr(engine);
+		auto results = storage.get_all<Word>(sqlite_orm::where(sqlite_orm::c(&Word::getId) == id));
+		if (!results.empty())
+		{
+			const auto& row = results.front();
+			wordsVector.push_back(row);
+		}
+	}
+	m_game.setWords(wordsVector);
+}

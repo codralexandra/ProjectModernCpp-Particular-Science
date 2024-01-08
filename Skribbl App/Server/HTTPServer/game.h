@@ -29,6 +29,8 @@
 		void Start_Game();
 		LobbyState GetLobbyState();
 
+		std::vector<Word> PopulateVectorWords();
+
 		Player Winner();
 		
 

@@ -28,6 +28,8 @@ namespace http
 		void SetCurrentWord(const std::string& word);
 		std::string GetCurrentWord() const;
 
+		void PopulateVectorWords(Storage& storage);
+
 	private:
 		crow::SimpleApp m_app;
 		bool m_gameExists;
