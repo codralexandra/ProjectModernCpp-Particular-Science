@@ -81,9 +81,41 @@ bool Lobby::GetGameMaster() const
 	return m_gameMaster;
 }
 
+void Lobby::waitInLobby() {
+	cpr::Response response;
+	do {
+		response = cpr::Get(cpr::Url{ "http://localhost:18080/lobby/waiting" });
+	} while (response.status_code == 201);
+
+	// Use a thread-safe way to update the UI from here
+	if (response.status_code == 200) {
+		// Assuming you have a mechanism to run this on the main thread
+		QMetaObject::invokeMethod(this, "updateUI", Qt::QueuedConnection);
+	}
+}
+
+void Lobby::updateUI()
+{
+	this->close();
+	gameWindow.show();
+}
+void Lobby::PutOnWaiting() {
+	//std::thread waitingThread(&Lobby::waitInLobby,this);
+	//waitingThread.detach(); // Detach the thread to let it run independently
+	cpr::Response response;
+	do {
+		response = cpr::Get(cpr::Url{ "http://localhost:18080/lobby/waiting" });
+	} while (response.status_code == 201);
+	if (response.status_code == 200) {
+		// Assuming you have a mechanism to run this on the main thread
+		updateUI();
+	}
+}
+
+
 void sendRequest() {
 	auto response = cpr::Put(
-		cpr::Url{"http://localhost:18080/game"}
+		cpr::Url{ "http://localhost:18080/game" }
 	);
 }
 void Lobby::on_startGameButton_clicked()
@@ -93,5 +125,5 @@ void Lobby::on_startGameButton_clicked()
 	std::thread requestThread(sendRequest);
 	requestThread.detach();
 
-	
+
 }

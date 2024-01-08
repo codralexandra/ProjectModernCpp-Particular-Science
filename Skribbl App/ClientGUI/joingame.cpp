@@ -50,6 +50,7 @@ void JoinGame::on_joinGameButton_clicked()
 			this->close();
 			lobby->SetGameMaster(false);
 			lobby->show();
+			lobby->PutOnWaiting();
 		}
 
 		/*ui.errorMsg->clear();

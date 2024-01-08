@@ -22,6 +22,13 @@ public:
 	uint16_t GetGameID() const;
 	std::string GetDifficulty()const;
 	bool GetGameMaster() const;
+
+
+	void waitInLobby();
+
+	void updateUI();
+
+	void PutOnWaiting();
 	
 private slots:
 	void on_startGameButton_clicked();
