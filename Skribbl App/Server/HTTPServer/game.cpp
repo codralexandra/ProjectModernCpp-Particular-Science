@@ -40,6 +40,11 @@ void Game::SetDifficulty(const Difficulty& difficulty)
 	m_difficulty = difficulty;
 }
 
+void Game::SetLobbyState(const LobbyState& lobbystate)
+{
+	m_lobbyState = lobbystate;
+}
+
 
 std::vector<Player> Game::getPlayers() const
 {
@@ -81,6 +86,11 @@ void Game::Start_Game()
 	{
 		//player.AddGameToGameHistory();
 	}
+}
+
+LobbyState Game::GetLobbyState()
+{
+	return m_lobbyState;
 }
 
 Player Game::Winner()

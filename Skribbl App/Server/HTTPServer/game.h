@@ -6,6 +6,7 @@
 #include "round.h"
 #include <memory>
 #include "Word.h"
+#include "lobbystate.h"
 
  class Game
 	{
@@ -18,6 +19,7 @@
 		void SetGameID(const uint16_t& id);
 		void AddPlayer(const Player& p);
 		void SetDifficulty(const Difficulty& difficulty);
+		void SetLobbyState(const LobbyState& lobbystate);
 
 
 		std::vector<Player> getPlayers() const;
@@ -25,6 +27,7 @@
 		uint16_t GetGameID() const;
 		Difficulty GetDifficulty() const;
 		void Start_Game();
+		LobbyState GetLobbyState();
 
 		Player Winner();
 		
@@ -32,6 +35,7 @@
 	private:
 		std::vector<Player> m_players;
 		Difficulty m_difficulty;
+		LobbyState m_lobbyState;
 		static const uint16_t m_rounds = 4;
 		std::vector<Word> m_words;
 		std::unique_ptr<Round> m_round;

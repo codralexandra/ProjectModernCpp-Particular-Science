@@ -159,11 +159,20 @@ void Routing::Run(Storage& storage)
 
 	CROW_ROUTE(m_app, "/game")
 		.methods("PUT"_method)
-		([this](const crow::request& req) {
+		([this]() {
+		
+		if (m_gameExists)
+		{
+			m_game.SetLobbyState(LobbyState::Starting);
+			m_game.Start_Game();
+			return crow::response(200, "Game created!");
+		}
+		else
+		{
+			return crow::response(404, "Game not found");
+		}
 
-		m_game.Start_Game();
-
-		return crow::response(200, "Game created!");
+		
 			});
 
 	CROW_ROUTE(m_app, "/game/startround")
