@@ -144,6 +144,7 @@
     <ClCompile Include="difficulty.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gamedata.cpp" />
+    <ClCompile Include="lobbystate.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="round.cpp" />
     <ClCompile Include="routing.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="difficulty.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gamedata.h" />
+    <ClInclude Include="lobbystate.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="round.h" />
     <ClInclude Include="routing.h" />
