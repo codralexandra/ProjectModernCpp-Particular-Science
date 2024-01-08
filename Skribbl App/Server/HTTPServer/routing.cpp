@@ -189,6 +189,7 @@ void Routing::Run(Storage& storage)
 		
 		if (m_game.getPlayers().size() > 1)
 		{
+			PopulateVectorWords(storage);
 			m_game.SetLobbyState(LobbyState::Starting);
 			m_game.Start_Game(m_app);
 			return crow::response(200, "Game is finished");

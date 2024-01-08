@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QString>
 #include <qstringlist.h>
+#include<thread>
 
 Lobby::Lobby(QWidget* parent)
 	: QWidget(parent)
@@ -69,14 +70,17 @@ std::string Lobby::GetDifficulty() const
 	return m_difficulty;
 }
 
+void sendRequest() {
+	auto response = cpr::Put(
+		cpr::Url{"http://localhost:18080/game"}
+	);
+}
 void Lobby::on_startGameButton_clicked()
 {
-	auto response2 = cpr::Put(
-		cpr::Url{ "http://localhost:18080/game" }
-	);
-
-		this->close();
-		gameWindow.show();
+	this->close();
+	gameWindow.show();
+	std::thread requestThread(sendRequest);
+	requestThread.detach();
 
 	
 }
