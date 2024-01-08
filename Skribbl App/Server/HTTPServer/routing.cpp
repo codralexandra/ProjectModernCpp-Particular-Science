@@ -213,14 +213,29 @@ void Routing::Run(Storage& storage)
 		}
 			});
 
-	/*CROW_ROUTE(m_app, "/lobby/waiting")
+	CROW_ROUTE(m_app, "/lobby/waiting")
 		.methods("GET"_method)
 		([this]() {
-		return
+		
+		if (m_gameExists)
+		{
+			if (m_game.GetLobbyState() == LobbyState::Starting)
+			{
+				return crow::response(200, "Game has started");
+			}
+			else
+			{
+				return crow::response(201, "Game is still waiting");
+			}
+		}
+		else
+		{
+			return crow::response(404, "Game not found");
+		}
 		
 
 
-			});*/
+			});
 
 	CROW_ROUTE(m_app, "/game/startround")
 		.methods("PUT"_method)
