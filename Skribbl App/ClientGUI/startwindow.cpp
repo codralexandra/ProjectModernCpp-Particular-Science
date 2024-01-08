@@ -25,3 +25,12 @@ void StartWindow::WordToBeGuessed()
 		ui.wordLabel->setText(QString::fromStdString(jsonResponse.s()));
 	}
 }
+
+void StartWindow::updatePlayerRole(bool role)
+{
+	//get the role status from server here
+	//false -> guessing, true -> drawing
+	isDrawing = role;
+	ui.notDrawingWidget->setVisible(!role);
+	update();
+}

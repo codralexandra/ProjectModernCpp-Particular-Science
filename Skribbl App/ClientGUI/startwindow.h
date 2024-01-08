@@ -16,6 +16,8 @@ public:
 private:
 	void recievePixelFromServer();
 	void WordToBeGuessed();
+	void updatePlayerRole(bool role);
 private:
 	Ui::StartWindowClass ui;
+	bool isDrawing;
 };
