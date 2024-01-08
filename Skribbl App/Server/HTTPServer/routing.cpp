@@ -155,6 +155,20 @@ void Routing::Run(Storage& storage)
 			});
 	//
 
+	CROW_ROUTE(m_app, "/profile/addGameToGameHistory")
+		.methods("PUT"_method)
+		([this, &storage](const crow::request& req) {
+		crow::json::rvalue jsonResponse = crow::json::load(req.body);
+		std::string username = jsonResponse["username"].s();
+		int score = jsonResponse["score"].i();
+
+		Statistic s{ username,score };
+
+		storage.insert(s);
+
+		return crow::response(200, "Game added to game history");
+
+			});
 	
 
 	CROW_ROUTE(m_app, "/profile")
@@ -189,7 +203,6 @@ void Routing::Run(Storage& storage)
 		
 		if (m_game.getPlayers().size() > 1)
 		{
-			PopulateVectorWords(storage);
 			m_game.SetLobbyState(LobbyState::Starting);
 			m_game.Start_Game(m_app);
 			return crow::response(200, "Game is finished");
