@@ -160,7 +160,7 @@ void Routing::Run(Storage& storage)
 		([this, &storage](const crow::request& req) {
 		crow::json::rvalue jsonResponse = crow::json::load(req.body);
 		std::string username = jsonResponse["username"].s();
-		int score = jsonResponse["score"].i();
+		uint16_t score = jsonResponse["score"].i();
 
 		Statistic s{ username,score };
 

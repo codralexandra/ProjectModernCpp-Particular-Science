@@ -60,6 +60,7 @@ void Lobby::SetDifficulty(const std::string& diff)
 void Lobby::SetGameMaster(const bool& gameMaster)
 {
 	m_gameMaster = gameMaster;
+	ui.startGameButton->setVisible(m_gameMaster);
 }
 
 
