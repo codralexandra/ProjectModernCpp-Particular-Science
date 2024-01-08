@@ -135,6 +135,7 @@ void Routing::Run(Storage& storage)
 		Player p;
 		p.SetUsername(jsonData["username"].s());
 		m_game.AddPlayer(p);
+		return crow::response(200, "Gud");
 			});
 
 

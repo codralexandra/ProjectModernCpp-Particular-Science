@@ -119,33 +119,33 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
     }
 }
 
-void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload)
-{
-    if (this->enable == false)
-    {
-        if (jsonPayload) {
-            QString receivedPenColor = QString::fromStdString(jsonPayload["penColor"].s());
-            int receivedPenWidth = jsonPayload["penWidth"].i();
-            double receivedX = jsonPayload["x"].d();
-            double receivedY = jsonPayload["y"].d();
-
-            updateDrawing(receivedX, receivedY, receivedPenColor, receivedPenWidth);
-        }
-    }
-}
-
-void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
-{
-    if (this->enable == false)
-    {
-        QGraphicsEllipseItem* pixelItem = new QGraphicsEllipseItem(x, y, 1, 1);
-
-        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-        pixelItem->setPen(pen);
-
-        scene()->addItem(pixelItem);
-    }
-}
+//void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload)
+//{
+//    if (this->enable == false)
+//    {
+//        if (jsonPayload) {
+//            QString receivedPenColor = QString::fromStdString(jsonPayload["penColor"].s());
+//            int receivedPenWidth = jsonPayload["penWidth"].i();
+//            double receivedX = jsonPayload["x"].d();
+//            double receivedY = jsonPayload["y"].d();
+//
+//            updateDrawing(receivedX, receivedY, receivedPenColor, receivedPenWidth);
+//        }
+//    }
+//}
+//
+//void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
+//{
+//    if (this->enable == false)
+//    {
+//        QGraphicsEllipseItem* pixelItem = new QGraphicsEllipseItem(x, y, 1, 1);
+//
+//        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+//        pixelItem->setPen(pen);
+//
+//        scene()->addItem(pixelItem);
+//    }
+//}
 //
 //void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
 //{
