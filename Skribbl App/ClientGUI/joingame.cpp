@@ -45,14 +45,14 @@ void JoinGame::on_joinGameButton_clicked()
 		if (response2.status_code == 200)
 		{
 			crow::json::rvalue jsonResponse = crow::json::load(response2.text);
-			lobby->SetDifficulty(jsonResponse.s());
+			lobby->SetDifficulty(jsonResponse["Difficulty"].s());
 			lobby->SetGameID(ui.insertRoomCode->text().toInt());
 			this->close();
 			lobby->show();
 		}
 
-		ui.errorMsg->clear();
-		ui.errorMsg->setText(QString::fromStdString(response.status_line));
+		/*ui.errorMsg->clear();
+		ui.errorMsg->setText(QString::fromStdString(response.status_line));*/
 	}
 }
 

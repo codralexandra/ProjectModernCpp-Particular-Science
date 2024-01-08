@@ -161,7 +161,7 @@ void Routing::Run(Storage& storage)
 		.methods("PUT"_method)
 		([this]() {
 		
-		if (m_gameExists)
+		if (m_game.getPlayers().size() > 1)
 		{
 			m_game.SetLobbyState(LobbyState::Starting);
 			m_game.Start_Game();
@@ -171,9 +171,16 @@ void Routing::Run(Storage& storage)
 		{
 			return crow::response(404, "Game not found");
 		}
+			});
+
+	/*CROW_ROUTE(m_app, "/lobby/waiting")
+		.methods("GET"_method)
+		([this]() {
 
 		
-			});
+
+
+			});*/
 
 	CROW_ROUTE(m_app, "/game/startround")
 		.methods("PUT"_method)
