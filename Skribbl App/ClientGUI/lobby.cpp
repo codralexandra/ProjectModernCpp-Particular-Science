@@ -90,6 +90,7 @@ void Lobby::waitInLobby() {
 	// Use a thread-safe way to update the UI from here
 	if (response.status_code == 200) {
 		// Assuming you have a mechanism to run this on the main thread
+		this->close();
 		QMetaObject::invokeMethod(this, "updateUI", Qt::QueuedConnection);
 	}
 }
@@ -111,8 +112,6 @@ void Lobby::PutOnWaiting() {
 		updateUI();
 	}
 }
-
-
 void sendRequest() {
 	auto response = cpr::Put(
 		cpr::Url{ "http://localhost:18080/game" }

@@ -13,7 +13,7 @@ class Lobby : public QWidget
 	Q_OBJECT
 
 public:
-	Lobby(QWidget *parent = nullptr);
+	Lobby(QWidget* parent = nullptr);
 	~Lobby();
 	void SetGameID(const uint16_t& id);
 	void SetDifficulty(const std::string& diff);
@@ -23,13 +23,13 @@ public:
 	std::string GetDifficulty()const;
 	bool GetGameMaster() const;
 
-
 	void waitInLobby();
 
 	void updateUI();
 
 	void PutOnWaiting();
-	
+
+
 private slots:
 	void on_startGameButton_clicked();
 

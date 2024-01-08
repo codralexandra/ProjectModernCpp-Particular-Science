@@ -16,7 +16,7 @@
 		Game();
 		Game(std::vector<Player> players, Difficulty difficulty, std::vector<Word> words, std::string date);
 
-		void setPlayers(const std::vector<Player>& players);a
+		void setPlayers(const std::vector<Player>& players);
 		void setWords(const std::vector<Word>& words);
 		void SetGameID(const uint16_t& id);
 		void AddPlayer(const Player& p);

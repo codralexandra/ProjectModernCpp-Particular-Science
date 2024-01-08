@@ -139,7 +139,6 @@ void Routing::Run(Storage& storage)
 			});
 
 
-	//revised
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("GET"_method)
 		([this](const crow::request& req) {
