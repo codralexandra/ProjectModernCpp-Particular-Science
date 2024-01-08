@@ -2,7 +2,7 @@
 #include <string>
 namespace Scribble
 {
-	class Statistic
+	 class Statistic
 	{
 	public:
 		Statistic();
