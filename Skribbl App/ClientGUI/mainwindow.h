@@ -24,4 +24,5 @@ private:
 	Ui::MainWindowClass ui;
 	CreateGameWindow* createGameWindow;
 	std::string m_username;
+	bool m_gameMaster;
 };

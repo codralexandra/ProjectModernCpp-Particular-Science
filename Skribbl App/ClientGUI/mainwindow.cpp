@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+	m_gameMaster = false;
 	connect(ui.createGameButton, &QPushButton::clicked, this, &MainWindow::on_createButton_clicked);
 }
 
@@ -26,6 +27,7 @@ void MainWindow::on_createButton_clicked()
 	createGameWindow = new CreateGameWindow;
 	createGameWindow->SetUsername(m_username);
 	createGameWindow->show();
+	m_gameMaster = true;
 	this->hide();
 }
 
@@ -34,6 +36,7 @@ void MainWindow::on_joinButton_clicked()
 	JoinGame* joinWindow = new JoinGame;
 	joinWindow->SetUsername(m_username);
 	this->close();
+	m_gameMaster = false;
 	joinWindow->show();
 	
 }
