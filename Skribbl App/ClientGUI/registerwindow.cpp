@@ -7,6 +7,7 @@ RegisterWindow::RegisterWindow(QWidget* parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	ui.passwordInput->setEchoMode(QLineEdit::Password);
 	connect(ui.registerButton, &QPushButton::clicked, this, &RegisterWindow::onRegisterButtonClicked);
 	connect(ui.backButton, &QPushButton::clicked, this, &RegisterWindow::on_backButton_clicked);
 }

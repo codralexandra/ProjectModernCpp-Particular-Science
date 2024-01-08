@@ -43,6 +43,9 @@
     <ClCompile Include="joingame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="profilewindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Sounds\MainMenu.wav" />
@@ -87,6 +90,9 @@
     <QtMoc Include="joingame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="profilewindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="clientgui.qrc" />
@@ -126,6 +132,9 @@
       <Filter>UIs</Filter>
     </QtUic>
     <QtUic Include="joingame.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="profilewindow.ui">
       <Filter>UIs</Filter>
     </QtUic>
   </ItemGroup>

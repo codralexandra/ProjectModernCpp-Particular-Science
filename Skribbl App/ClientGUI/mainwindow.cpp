@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui.setupUi(this);
 	m_gameMaster = false;
 	connect(ui.createGameButton, &QPushButton::clicked, this, &MainWindow::on_createButton_clicked);
+	connect(ui.profileButton, &QPushButton::clicked, this, &MainWindow::on_profileButton_clicked);
 }
 
 MainWindow::~MainWindow()
@@ -39,4 +40,9 @@ void MainWindow::on_joinButton_clicked()
 	m_gameMaster = false;
 	joinWindow->show();
 	
+}
+
+void MainWindow::on_profileButton_clicked()
+{
+	profileWindow.show();
 }

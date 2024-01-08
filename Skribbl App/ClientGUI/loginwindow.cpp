@@ -7,6 +7,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	ui.passwordInput->setEchoMode(QLineEdit::Password);
 	connect(ui.backButton, &QPushButton::clicked, this, &LoginWindow::on_backButton_clicked);
 	connect(ui.loginButton, &QPushButton::clicked, this, &LoginWindow::onLoginButtonClicked);
 }
