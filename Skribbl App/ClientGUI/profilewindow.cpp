@@ -43,7 +43,13 @@ void profileWindow::on_refreshHistoryButton_clicked()
 			QString itemText = QString("Score: %1").arg(pair);
 			ui.historyList->addItem(itemText);
 		}
+
+		m_averageScore = std::accumulate(history.begin(), history.end(), 0.0) / history.size();
+
+		QString labelValue = QString::number(m_averageScore, 'f', 2); 
+		ui.averageScore->setText(labelValue);
+
 	}
-	
+
 	update();
 }
