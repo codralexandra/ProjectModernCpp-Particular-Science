@@ -36,7 +36,23 @@ void JoinGame::on_joinGameButton_clicked()
 		cpr::Header{ { "Content-Type", "application/json" } }
 
 	);
-	ui.errorMsg->clear();
-	ui.errorMsg->setText(QString::fromStdString(response.status_line));
+	if (response.status_code == 200)
+	{
+		Lobby* lobby = new Lobby;
+		auto response2 = cpr::Get(
+			cpr::Url{ "http://localhost:18080/game/difficulty" }
+		);
+		if (response2.status_code == 200)
+		{
+			crow::json::rvalue jsonResponse = crow::json::load(response2.text);
+			lobby->SetDifficulty(jsonResponse.s());
+			lobby->SetGameID(ui.insertRoomCode->text().toInt());
+			this->close();
+			lobby->show();
+		}
+
+		ui.errorMsg->clear();
+		ui.errorMsg->setText(QString::fromStdString(response.status_line));
+	}
 }
 
