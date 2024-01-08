@@ -91,8 +91,17 @@ void Game::Start_Game(crow::SimpleApp& m_app)
 
 	for (int i = 0; i < m_players.size(); i++)
 	{
+		crow::json::wvalue jsonPayload;
+		jsonPayload["username"] = m_players[i].GetUsername();
+		jsonPayload["score"] = m_players[i].GetPersonalScore();
+		std::string jsonString = jsonPayload.dump();
 
-	//player.AddGameToGameHistory();
+		auto response = cpr::Put(
+			cpr::Url{ "http://localhost:18080/profile/addGameToGameHistory" },
+			cpr::Body{ jsonString },
+			cpr::Header{ { "Content-Type", "application/json" } }
+		);
+
 	}
 }
 

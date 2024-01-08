@@ -15,6 +15,6 @@ void populateStorage(Storage& storage)
 
 
 	storage.insert_range(cuvinte.begin(), cuvinte.end());
-	//inserare pt word cum inserez user 
+
 
 }
