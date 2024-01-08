@@ -107,7 +107,7 @@ void Routing::Run(Storage& storage)
 
 
 
-	CROW_ROUTE(m_app, "/lobby")
+	/*CROW_ROUTE(m_app, "/lobby")
 		.methods("GET"_method)
 		([this](const crow::request& req) {
 
@@ -116,7 +116,8 @@ void Routing::Run(Storage& storage)
 			return crow::response(400, "Invalid JSON format");
 		}
 		uint16_t id = jsonData["RoomCode"].i();
-			});
+
+			});*/
 
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("PUT"_method)
@@ -134,7 +135,6 @@ void Routing::Run(Storage& storage)
 		Player p;
 		p.SetUsername(jsonData["username"].s());
 		m_game.AddPlayer(p);
-		return crow::response(400, "Joined Successfully");
 			});
 
 
@@ -166,7 +166,7 @@ void Routing::Run(Storage& storage)
 			});
 
 	CROW_ROUTE(m_app, "/game/startround")
-		.methods("GET"_method)
+		.methods("PUT"_method)
 		([this](const crow::request& req) {
 
 		crow::json::rvalue jsonData = crow::json::load(req.body);
@@ -184,7 +184,7 @@ void Routing::Run(Storage& storage)
 
 
 	CROW_ROUTE(m_app, "/game/tryguess")
-		.methods("GET"_method)
+		.methods("PUT"_method)
 		([this](const crow::request req)
 			{
 				crow::json::rvalue jsonData = crow::json::load(req.body);
@@ -202,6 +202,21 @@ void Routing::Run(Storage& storage)
 				{
 					responseJson["ResponseMsg"] = "Denied";
 					return crow::response(200, responseJson);
+				}
+			});
+	CROW_ROUTE(m_app, "/game/difficulty")
+		.methods("GET"_method)
+		([this]()
+			{
+				if (m_gameExists)
+				{
+					crow::json::wvalue responseJson;
+					responseJson["Difficulty"] = DifficultyTypeToString(m_game.GetDifficulty());
+					return crow::response(200, responseJson);
+				}
+				else
+				{
+					return crow::response(404, "Game not found");
 				}
 			});
 
