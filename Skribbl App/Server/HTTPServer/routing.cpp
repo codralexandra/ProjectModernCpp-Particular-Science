@@ -1,7 +1,7 @@
 #include "routing.h"
 import userdb;
 using namespace http;
-
+#include "statistic.h"
 
 void Routing::Run(Storage& storage)
 {
@@ -155,6 +155,32 @@ void Routing::Run(Storage& storage)
 			});
 	//
 
+	
+
+	CROW_ROUTE(m_app, "/profile")
+		.methods("PUT"_method)
+		([this,&storage](const crow::request& req) {
+		crow::json::rvalue jsonResponse=crow::json::load(req.body);
+		std::string username = jsonResponse["username"].s();
+		std::vector<int> gameHistory;
+		crow::json::wvalue jsonResponse2;
+
+
+		//inner join
+		
+		auto results = storage.select(( &UserDB::GetUsername, &Statistic::GetScore ),
+			sqlite_orm::inner_join<User>(sqlite_orm::on(sqlite_orm::is_equal(&UserDB::GetUsername, &Statistic::GetUsername))));
+
+
+		//result
+		for (const auto& result : results) {
+			
+			gameHistory.emplace_back(result);
+		}
+
+		jsonResponse2["gameHistory"] = gameHistory;
+		return crow::response(200,jsonResponse2);
+			});
 
 
 	CROW_ROUTE(m_app, "/game")

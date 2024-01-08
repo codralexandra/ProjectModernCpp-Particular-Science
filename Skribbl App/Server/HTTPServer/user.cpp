@@ -9,7 +9,7 @@ User::User() : m_email(""), m_password(""), m_personalBest(0), m_username("")
 }
 
 Scribble::User::User(const std::string& email, const std::string& username, const std::string& password
-	, const uint16_t& personalBest /*const std::stack<Statistic>& gameHistory*/) :
+	, const uint16_t& personalBest ) :
 	m_email(email), m_username(username), m_password(password), m_personalBest(personalBest) //m_gameHistory(gameHistory)
 {
 
@@ -21,7 +21,6 @@ User& User::operator=(const User& user)
 	m_username = user.m_username;
 	m_email = user.m_email;
 	m_password = user.m_password;
-	//m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
 	return *this;
 }
@@ -31,7 +30,6 @@ User::User(const User& user)
 	m_username = user.m_username;
 	m_email = user.m_email;
 	m_password = user.m_password;
-	//m_gameHistory = user.m_gameHistory;
 	m_personalBest = user.m_personalBest;
 }
 
@@ -74,11 +72,6 @@ std::string User::GetPassword() const
 	return m_password;
 }
 
-//const std::stack<Statistic>& User::GetGameHistory() const
-//{
-//	return m_gameHistory;
-//}
-
 uint16_t User::GetPersonalBest() const
 {
 	return m_personalBest;
@@ -98,11 +91,6 @@ void User::SetPassword(const std::string& password)
 {
 	m_password = password;
 }
-
-//void User::SetGameHistory(const std::stack<Statistic>& gameHistory)
-//{
-//	m_gameHistory = gameHistory;
-//}
 
 void User::SetPersonalBest(const uint16_t& personalBest)
 {
