@@ -53,6 +53,7 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 			lobby->SetGameID(id);
 			lobby->SetDifficulty(string);
 			this->close();
+			lobby->SetGameMaster(true);
 			lobby->show();
 		}
 	}

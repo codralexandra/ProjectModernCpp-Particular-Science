@@ -57,6 +57,11 @@ void Lobby::SetDifficulty(const std::string& diff)
 	m_difficulty = diff;
 }
 
+void Lobby::SetGameMaster(const bool& gameMaster)
+{
+	m_gameMaster = gameMaster;
+}
+
 
 
 uint16_t Lobby::GetGameID() const
@@ -68,6 +73,11 @@ uint16_t Lobby::GetGameID() const
 std::string Lobby::GetDifficulty() const
 {
 	return m_difficulty;
+}
+
+bool Lobby::GetGameMaster() const
+{
+	return m_gameMaster;
 }
 
 void sendRequest() {

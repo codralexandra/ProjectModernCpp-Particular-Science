@@ -48,6 +48,7 @@ void JoinGame::on_joinGameButton_clicked()
 			lobby->SetDifficulty(jsonResponse["Difficulty"].s());
 			lobby->SetGameID(ui.insertRoomCode->text().toInt());
 			this->close();
+			lobby->SetGameMaster(false);
 			lobby->show();
 		}
 

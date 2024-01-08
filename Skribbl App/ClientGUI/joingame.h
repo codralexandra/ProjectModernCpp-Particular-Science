@@ -21,5 +21,4 @@ private slots:
 private:
 	Ui::JoinGameClass ui;
 	std::string m_username;
-	
 };

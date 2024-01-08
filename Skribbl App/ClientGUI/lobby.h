@@ -17,9 +17,11 @@ public:
 	~Lobby();
 	void SetGameID(const uint16_t& id);
 	void SetDifficulty(const std::string& diff);
+	void SetGameMaster(const bool& gameMaster);
 
 	uint16_t GetGameID() const;
 	std::string GetDifficulty()const;
+	bool GetGameMaster() const;
 	
 private slots:
 	void on_startGameButton_clicked();
@@ -30,4 +32,5 @@ private:
 	std::string m_difficulty;
 	LobbyState m_state;
 	StartWindow gameWindow;
+	bool m_gameMaster;
 };
