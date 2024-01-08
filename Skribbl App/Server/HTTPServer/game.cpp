@@ -6,6 +6,7 @@
 #include "difficulty.h"
 #include <ranges>
 
+
 Game::Game()
 {
 }
@@ -67,8 +68,14 @@ Difficulty Game::GetDifficulty() const
 }
 
 
-void Game::Start_Game()
+void Game::Start_Game(crow::SimpleApp& m_app)
 {
+	CROW_ROUTE(m_app, "/game/startgame")
+		.methods("GET"_method)
+		([this]() {
+
+		return crow::response(200, "The game has started");
+			});
 	std::cout << "Start Game apelata \n";
 	int dim_runde = 4;
 	//populare vector de cuv in functie de dificultate

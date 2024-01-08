@@ -164,20 +164,19 @@ void Routing::Run(Storage& storage)
 		if (m_game.getPlayers().size() > 1)
 		{
 			m_game.SetLobbyState(LobbyState::Starting);
-			PopulateVectorWords(storage);
-			m_game.Start_Game();
-			return crow::response(200, "Game created!");
+			m_game.Start_Game(m_app);
+			return crow::response(200, "Game is finished");
 		}
 		else
 		{
-			return crow::response(404, "Game not found");
+			return crow::response(400, "Not enough players!");
 		}
 			});
 
 	/*CROW_ROUTE(m_app, "/lobby/waiting")
 		.methods("GET"_method)
 		([this]() {
-
+		return
 		
 
 

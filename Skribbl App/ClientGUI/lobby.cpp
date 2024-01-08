@@ -74,17 +74,9 @@ void Lobby::on_startGameButton_clicked()
 	auto response2 = cpr::Put(
 		cpr::Url{ "http://localhost:18080/game" }
 	);
-	if (response2.status_code == 200)
-	{
+
 		this->close();
 		gameWindow.show();
-	}
-	else if (response2.status_code == 404)
-	{
-		//error Game does not exist
-	}
-	else
-	{
-		//error server closed
-	}
+
+	
 }

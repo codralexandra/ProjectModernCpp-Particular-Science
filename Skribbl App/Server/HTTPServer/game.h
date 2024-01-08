@@ -7,6 +7,8 @@
 #include <memory>
 #include "Word.h"
 #include "lobbystate.h"
+#include <crow.h>
+#include <cpr/cpr.h>
 
  class Game
 	{
@@ -26,7 +28,7 @@
 		std::vector<Word> getWords() const;
 		uint16_t GetGameID() const;
 		Difficulty GetDifficulty() const;
-		void Start_Game();
+		void Start_Game(crow::SimpleApp& m_app);
 		LobbyState GetLobbyState();
 
 		std::vector<Word> PopulateVectorWords();
