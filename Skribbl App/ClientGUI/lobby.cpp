@@ -6,10 +6,11 @@
 #include <qstringlist.h>
 
 Lobby::Lobby(QWidget* parent)
-    : QWidget(parent)
+	: QWidget(parent)
 {
 	m_state = LobbyState::Waiting;
-    ui.setupUi(this);
+	ui.setupUi(this);
+	connect(ui.startGameButton, &QPushButton::clicked, this, &Lobby::on_startGameButton_clicked);
 }
 
 Lobby::~Lobby()
@@ -43,10 +44,10 @@ Lobby::~Lobby()
 //}
 
 
-void Lobby::SetGameID(const uint16_t & id)
+void Lobby::SetGameID(const uint16_t& id)
 {
 	m_gameID = id;
-    ui.roomCode->setText(QString::number(id));
+	ui.roomCode->setText(QString::number(id));
 	update();
 }
 
@@ -66,4 +67,11 @@ uint16_t Lobby::GetGameID() const
 std::string Lobby::GetDifficulty() const
 {
 	return m_difficulty;
+}
+
+void Lobby::on_startGameButton_clicked()
+{
+	//connect to server
+	this->close();
+	gameWindow.show();
 }

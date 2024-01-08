@@ -6,6 +6,7 @@
 #include <cpr/cpr.h>
 #include <crow.h>
 #include "lobbystate.h"
+#include "startwindow.h"
 
 class Lobby : public QWidget
 {
@@ -21,11 +22,12 @@ public:
 	std::string GetDifficulty()const;
 	
 private slots:
-	//void on_RefreshButton_clicked();
+	void on_startGameButton_clicked();
 
 private:
 	Ui::LobbyClass ui;
 	uint16_t m_gameID;
 	std::string m_difficulty;
 	LobbyState m_state;
+	StartWindow gameWindow;
 };
