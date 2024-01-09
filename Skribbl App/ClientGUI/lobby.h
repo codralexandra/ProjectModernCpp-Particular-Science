@@ -29,6 +29,11 @@ public:
 
 	void PutOnWaiting();
 
+	void setUIUpdateFunction(const std::function<void()>& func);
+	void threadFuntion();
+
+public slots:
+	void updateGameWindow();
 
 private slots:
 	void on_startGameButton_clicked();
@@ -40,4 +45,5 @@ private:
 	LobbyState m_state;
 	StartWindow gameWindow;
 	bool m_gameMaster;
+	std::function<void()> uiUpdateFunction;
 };

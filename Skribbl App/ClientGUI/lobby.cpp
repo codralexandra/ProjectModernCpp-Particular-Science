@@ -5,6 +5,7 @@
 #include <QString>
 #include <qstringlist.h>
 #include<thread>
+#include <functional>
 
 Lobby::Lobby(QWidget* parent)
 	: QWidget(parent)
@@ -80,37 +81,52 @@ bool Lobby::GetGameMaster() const
 {
 	return m_gameMaster;
 }
+//void Lobby::threadFuntion() {
+//	Lobby lobbyInstance; // Declaration and initialization
+//	lobbyInstance.setUIUpdateFunction(std::bind(&Lobby::updateGameWindow, &lobbyInstance));
+//	lobbyInstance.PutOnWaiting();
+//}
+//void Lobby::updateGameWindow() {
+//	// Code to update the UI, like showing the game window
+//	gameWindow.show();
+//}
 
+//void Lobby::waitInLobby() {
+//	cpr::Response response;
+//	do {
+//		response = cpr::Get(cpr::Url{"http://localhost:18080/lobby/waiting"});
+//	} while (response.status_code == 201);
+//
+//	if (response.status_code == 200) {
+//		if (uiUpdateFunction) {
+//			uiUpdateFunction();
+//		}
+//	}
+//}
 void Lobby::waitInLobby() {
 	cpr::Response response;
 	do {
-		response = cpr::Get(cpr::Url{ "http://localhost:18080/lobby/waiting" });
+		response = cpr::Get(cpr::Url{"http://localhost:18080/lobby/waiting"});
 	} while (response.status_code == 201);
 
-	// Use a thread-safe way to update the UI from here
 	if (response.status_code == 200) {
-		// Assuming you have a mechanism to run this on the main thread
-		this->close();
-		QMetaObject::invokeMethod(this, "updateUI", Qt::QueuedConnection);
+		// Schedule updateGameWindow to be called in the main thread
+		QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
 	}
 }
 
-void Lobby::updateUI()
-{
+void Lobby::updateGameWindow() {
+	// This method is now safely executed in the main thread
 	this->close();
 	gameWindow.show();
 }
+
+//void Lobby::setUIUpdateFunction(const std::function<void()>& func) {
+//	uiUpdateFunction = func;
+//}
 void Lobby::PutOnWaiting() {
-	//std::thread waitingThread(&Lobby::waitInLobby,this);
-	//waitingThread.detach(); // Detach the thread to let it run independently
-	cpr::Response response;
-	do {
-		response = cpr::Get(cpr::Url{ "http://localhost:18080/lobby/waiting" });
-	} while (response.status_code == 201);
-	if (response.status_code == 200) {
-		// Assuming you have a mechanism to run this on the main thread
-		updateUI();
-	}
+	std::thread waitingThread(&Lobby::waitInLobby, this);
+	waitingThread.detach();
 }
 void sendRequest() {
 	auto response = cpr::Put(
