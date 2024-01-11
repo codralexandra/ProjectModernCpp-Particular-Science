@@ -12,6 +12,8 @@ public:
 	Word(const uint16_t& id, const std::string& value, const std::string& difficulty);
 	Word();
 	~Word() = default;
+	Word(const Word& word);
+	Word(Word&& word) noexcept;
 
 	//setter
 	void SetValue(const std::string& value);
@@ -25,6 +27,11 @@ public:
 	std::string GetValueAux() const;
 	uint16_t GetId() const;
 
+	//operators
+	Word& operator=(const Word& other);
+	Word& operator=(Word&& other) noexcept;
+
+
 	//print
 	void PrintPlayerDrawing() const;
 	void PrintPlayerGuessing() const;
@@ -35,7 +42,7 @@ public:
 private:
 	std::string m_value;
 	std::string m_difficulty;
-	uint16_t m_numberHint;  
+	uint16_t m_numberHint;
 	std::string m_valueAux;
 	uint16_t m_id;
 };
