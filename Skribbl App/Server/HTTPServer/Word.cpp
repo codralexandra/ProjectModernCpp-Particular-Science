@@ -18,41 +18,41 @@ Word::Word()
 {
 	 m_value = "";
 	 m_difficulty="";
-	 m_numberHint = 0;  ///initializare const
+	 m_numberHint = 0; 
 	 m_valueAux= "";
 	 m_id = -1;
 }
-void Word::setValue(const std::string& value)
+void Word::SetValue(const std::string& value)
 {
 	this->m_value = value;
 }
 
-void Word::setDifficulty(const std::string& difficulty)
+void Word::SetDifficulty(const std::string& difficulty)
 {
 	this->m_difficulty = difficulty;
 }
 
-std::string Word::getDifficulty() const
+std::string Word::GetDifficulty() const
 {
 	return m_difficulty;
 }
 
-std::string Word::getValue() const
+std::string Word::GetValue() const
 {
 	return m_value;
 }
 
-uint16_t Word::getNumberHint() const
+uint16_t Word::GetNumberHint() const
 {
 	return m_numberHint;
 }
 
-std::string Word::getValueAux() const 
+std::string Word::GetValueAux() const 
 {
 	return m_valueAux;
 }
 
-uint16_t Word::getId() const
+uint16_t Word::GetId() const
 {
     return m_id;
 }

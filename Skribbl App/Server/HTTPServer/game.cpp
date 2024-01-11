@@ -11,17 +11,17 @@ Game::Game()
 {
 }
 
-Game::Game(std::unordered_map<std::string, Player> players, Difficulty difficulty, std::vector<Word> words, std::string date) :
+Game::Game(const std::unordered_map<std::string, Player>& players,const Difficulty& difficulty,const std::vector<Word>& words,const std::string& date) :
 	m_players{ players }, m_difficulty{ difficulty }, m_words{ words }
 {
 }
 
-void Game::setPlayers(const std::unordered_map<std::string,Player>& players)
+void Game::SetPlayers(const std::unordered_map<std::string,Player>& players)
 {
 	m_players = players;
 }
 
-void Game::setWords(const std::vector<Word>& words)
+void Game::SetWords(const std::vector<Word>& words)
 {
 	m_words = words;
 }
@@ -47,12 +47,12 @@ void Game::SetLobbyState(const LobbyState& lobbystate)
 }
 
 
-std::unordered_map<std::string, Player> Game::getPlayers() const
+std::unordered_map<std::string, Player> Game::GetPlayers() const
 {
 	return m_players;
 }
 
-std::vector<Word> Game::getWords() const
+std::vector<Word> Game::GetWords() const
 {
 	return m_words;
 }
@@ -68,19 +68,18 @@ Difficulty Game::GetDifficulty() const
 }
 
 
-void Game::Start_Game(crow::SimpleApp& m_app)
+void Game::StartGame(crow::SimpleApp& m_app)
 {
-	int dim_runde = 4;
-	//populare vector de cuv in functie de dificultate
-
-	for (int i = 0; i < dim_runde; i++)
+	//start game
+	for (int i = 0; i < m_rounds; i++)
 	{
 		m_round.reset(new Round);
 		m_round->StartRound(m_players, m_words, m_app);
 
 	}
 	//stop game
-	//clasament
+	
+	
 
 	for (const auto& it : m_players)
 	{
@@ -97,6 +96,7 @@ void Game::Start_Game(crow::SimpleApp& m_app)
 		);
 
 	}
+	//clasament
 }
 
 LobbyState Game::GetLobbyState()
@@ -105,7 +105,7 @@ LobbyState Game::GetLobbyState()
 }
 
 
-auto Game:: getHighestScorer() {
+auto Game:: GetHighestScorer() {
 	
 	auto comparator = [](const auto& playerPair1, const auto& playerPair2) {
 		return playerPair1.second.GetPersonalScore() > playerPair2.second.GetPersonalScore();

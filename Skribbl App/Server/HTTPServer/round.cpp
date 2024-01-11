@@ -15,8 +15,6 @@ Round::Round()
 void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< Word>& word, crow::SimpleApp& m_app)
 {
 	//check the random part!!!
-
-
 	Timer t;
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -36,7 +34,7 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		std::cout << "\n Role set \n";
 		std::cout << "Start Game apelata \n";
 		crow::json::wvalue jsonPayload;
-		jsonPayload["word"] = word[randPosition].getValue();
+		jsonPayload["word"] = word[randPosition].GetValue();
 		std::string jsonString = jsonPayload.dump();
 
 		auto response = cpr::Put(

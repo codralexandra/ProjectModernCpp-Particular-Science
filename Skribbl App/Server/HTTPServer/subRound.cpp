@@ -3,7 +3,7 @@
 
 SubRound::SubRound()
 {
-
+	//empty
 }
 
 void SubRound::SetWord(const Word& cuv)
@@ -12,7 +12,7 @@ void SubRound::SetWord(const Word& cuv)
 	this->m_word = cuv;
 }
 
- Word SubRound::GetWord() const
+Word SubRound::GetWord() const
 {
 	return this->m_word;
 }
@@ -46,12 +46,4 @@ void SubRound::StartSubRound(const Player& p, const Word& word)
 	}
 	m_timer.stop();
 
-
-
-
-    //afisare cuv in functie de rol jucator
-	//start timer
-	//desen/ghicit
-	//stop timer-> dispare widget
-	//end subround
 }

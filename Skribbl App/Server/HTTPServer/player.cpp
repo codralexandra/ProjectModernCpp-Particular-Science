@@ -3,15 +3,13 @@
 Player::Player() :User()
 {
     m_isDrawer = false;
-
     m_personalScore = 0;
     m_hasGuessed = false;
     m_timeGuessed = 60;
 }
 
-Player::Player(bool isDrawing) :User()
+Player::Player(bool& isDrawing) :User()
 {
-
     m_isDrawer = isDrawing;
     m_personalScore = 0;
     m_hasGuessed = false;
@@ -24,56 +22,50 @@ Player::Player(const Player& player)
     this->SetUsername(player.GetUsername());
     this->m_isDrawer = player.m_isDrawer;
     this->m_personalScore = player.m_personalScore;
-  
     this->m_hasGuessed = player.m_hasGuessed;
     this->m_timeGuessed = player.m_timeGuessed;
 }
 
-Player::Player(bool hasGuessed, uint16_t timeGuessed,
-    bool isDrawer,  int16_t personalScore,  const std::string& email, const std::string& password,
-     uint16_t personalBest)
+Player::Player(bool& hasGuessed, uint16_t& timeGuessed,
+    bool& isDrawer,  uint16_t& personalScore,  const std::string& email, const std::string& password,
+     uint16_t& personalBest)
 {
     SetEmail(email);
-   
     SetPassword(password);
     SetPersonalBest(personalBest);
     this->m_isDrawer = isDrawer;
-  
     this->m_personalScore = personalScore;
-  
     this->m_hasGuessed = hasGuessed;
     this->m_timeGuessed = timeGuessed;
 }
 
 
-void Player::SetIsDrawer(bool isDrawing)
+void Player::SetIsDrawer(bool& isDrawing)
 {
     m_isDrawer = isDrawing;
 }
 
-void Player::SetHasGuessed(bool hasGuessed)
+void Player::SetHasGuessed(bool& hasGuessed)
 {
     m_hasGuessed = hasGuessed;
 }
 
-
-
-void Player::SetScore(int16_t newscore)
+void Player::SetScore(const uint16_t& newscore)
 {
     m_personalScore = newscore;
 }
 
-
-
-
-
+void Player::SetIsDrawer(bool&& isDrawing)
+{
+    m_isDrawer = isDrawing;
+}
 
 bool Player::GetIsDrawer() const
 {
     return m_isDrawer;
 }
 
-int16_t Player::GetPersonalScore() const
+uint16_t Player::GetPersonalScore() const
 {
     return m_personalScore;
 }

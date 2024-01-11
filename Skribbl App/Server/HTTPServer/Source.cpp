@@ -39,9 +39,9 @@ int main()
 		for (const auto& word : db.iterate<Word>())
 		{
 			crow::json::wvalue wordJson{
-				{"id", word.getId()},
-				{ "name",word.getValue()},
-				{ "difficulty",word.getDifficulty()}
+				{"id", word.GetId()},
+				{ "name",word.GetValue()},
+				{ "difficulty",word.GetDifficulty()}
 
 			};
 			wordsJson.push_back(wordJson);

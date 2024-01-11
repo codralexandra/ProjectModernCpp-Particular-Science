@@ -1,6 +1,6 @@
 #include "lobbystate.h"
 
-std::string LobbyStateTypeToString(LobbyState state)
+std::string LobbyStateTypeToString(const LobbyState& state)
 {
 	switch (state)
 	{

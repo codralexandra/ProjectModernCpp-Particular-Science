@@ -10,11 +10,9 @@ void populateStorage(Storage& storage)
 		uint16_t id = -1;
 		in >> word >> dif;
 		Word w{id, word,dif };
-		cuvinte.push_back(w);
+		cuvinte.emplace_back(w);
 	}
 
-
 	storage.insert_range(cuvinte.begin(), cuvinte.end());
-
-
+	in.close();
 }

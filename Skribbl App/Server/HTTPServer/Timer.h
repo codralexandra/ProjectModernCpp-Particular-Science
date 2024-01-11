@@ -8,6 +8,7 @@
 class Timer
 {
 public:
+	Timer();
 	void start();
 	void stop();
 	double elapsedMilliseconds();
@@ -16,6 +17,6 @@ public:
 private:
 	std::chrono::time_point<std::chrono::system_clock> m_StartTime;
 	std::chrono::time_point<std::chrono::system_clock> m_EndTime;
-	bool  m_bRunning = false;
+	bool  m_bRunning;
 };
 

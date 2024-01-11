@@ -5,13 +5,13 @@ namespace Scribble
 	 class Statistic
 	{
 	public:
+		//constructors
 		Statistic();
-		Statistic(const std::string& username, uint16_t score);
-		//~Statistic();
-
+		Statistic(const std::string& username, uint16_t& score);
+		
 		//setter
 		void SetUsername(const std::string& username);
-		void SetScore(uint16_t score);
+		void SetScore(uint16_t& score);
 
 		//getter
 		std::string GetUsername() const;

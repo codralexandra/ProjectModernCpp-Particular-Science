@@ -1,6 +1,6 @@
 #include "difficulty.h"
 
-std::string DifficultyTypeToString(Difficulty dif)
+std::string DifficultyTypeToString(const Difficulty& dif)
 {
 	switch (dif)
 	{

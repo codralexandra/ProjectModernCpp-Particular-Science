@@ -1,5 +1,10 @@
 #include "Timer.h"
 
+Timer::Timer(): m_bRunning{false}
+{
+	//empty
+}
+
 void Timer::start()
 {
 	m_StartTime = std::chrono::system_clock::now();

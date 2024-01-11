@@ -10,5 +10,5 @@ enum class LobbyState
 	Starting
 };
 
-std::string LobbyStateTypeToString(LobbyState state);
+std::string LobbyStateTypeToString(const LobbyState& state);
 LobbyState StringToLobbyState(const std::string& stateString);

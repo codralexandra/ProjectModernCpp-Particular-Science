@@ -5,14 +5,14 @@ import <regex>;
 
 User::User() : m_email(""), m_password(""), m_personalBest(0), m_username("")
 {
-
+	//empty
 }
 
 Scribble::User::User(const std::string& email, const std::string& username, const std::string& password
 	, const uint16_t& personalBest ) :
-	m_email(email), m_username(username), m_password(password), m_personalBest(personalBest) //m_gameHistory(gameHistory)
+	m_email(email), m_username(username), m_password(password), m_personalBest(personalBest) 
 {
-
+	//empty
 }
 
 
@@ -33,7 +33,7 @@ User::User(const User& user)
 	m_personalBest = user.m_personalBest;
 }
 
-bool User::validateUserEmail() const
+bool User::ValidateUserEmail() const
 {
 	std::cout << "Validare Email apelata\n";
 	bool emailValid;
@@ -45,7 +45,7 @@ bool User::validateUserEmail() const
 	return true;
 }
 
-bool User::validateUserPassword() const
+bool User::ValidateUserPassword() const
 {
 	std::cout << "Validare Parola apelata\n";
 	bool allValid = std::regex_match(GetPassword(), std::regex(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$)"));
@@ -82,7 +82,7 @@ void User::SetEmail(const std::string& email)
 	m_email = email;
 }
 
-void User::SetUsername(std::string username)
+void User::SetUsername(const std::string& username)
 {
 	m_username = username;
 }
@@ -97,12 +97,6 @@ void User::SetPersonalBest(const uint16_t& personalBest)
 	m_personalBest = personalBest;
 }
 
-//void User::AddGameToGameHistory()
-//{
-//	std::cout << "ADD Game to History apelata\n";
-//	Statistic stat(m_username, m_personalBest);
-//	m_gameHistory.push(std::move(stat));
-//}
 
 //std::ostream& Scribble::operator<<(std::ostream& ostream, const User& user)
 //{

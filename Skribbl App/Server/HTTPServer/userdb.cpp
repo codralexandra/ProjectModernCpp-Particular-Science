@@ -9,7 +9,7 @@ UserDB::UserDB()
 	m_email = "";
 }
 
-Scribble::UserDB::UserDB(const uint16_t id, const std::string& email, const std::string& username, const std::string password)
+Scribble::UserDB::UserDB(const uint16_t& id, const std::string& email, const std::string& username, const std::string& password)
 {
 	m_id = id;
 	m_email = email;

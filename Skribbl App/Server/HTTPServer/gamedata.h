@@ -15,9 +15,9 @@ inline auto CreateStorage(const std::string& filename)
 		filename,
 		sql::make_table(
 			"Word",
-			sql::make_column("id", &Word::SetId, &Word::getId, sql::primary_key().autoincrement()),
-			sql::make_column("name", &Word::setValue, &Word::getValue),
-			sql::make_column("difficulty", &Word::setDifficulty, &Word::getDifficulty)
+			sql::make_column("id", &Word::SetId, &Word::GetId, sql::primary_key().autoincrement()),
+			sql::make_column("name", &Word::SetValue, &Word::GetValue),
+			sql::make_column("difficulty", &Word::SetDifficulty, &Word::GetDifficulty)
 		),
 		sql::make_table(
 			"User",
@@ -28,7 +28,6 @@ inline auto CreateStorage(const std::string& filename)
 		),
 		sql::make_table(
 			"GameHistory",
-			//user id maybe ? ca sa putem sa le conectam
 			//sql::make_column("id", &GameHistoryDB::SetId, &GameHistoryDB::GetId, sql::primary_key().autoincrement()),
 			sql::make_column("username", &Statistic::SetUsername, &Statistic::GetUsername),
 			sql::make_column("score", &Statistic::SetScore, &Statistic::GetScore)

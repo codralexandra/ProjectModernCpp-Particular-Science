@@ -8,34 +8,37 @@ import user;
  class Player : public Scribble::User
 	{
 	public:
-
+		//constructors
 		Player();
-		Player(bool isDrawing);
+		Player(bool& isDrawing);
 		Player(const Player& player);
+		Player(bool& hasGuessed, uint16_t& timeGuessed,
+			bool& isDrawer, uint16_t& personalScore, const std::string& email, const std::string& password,
+			uint16_t& personalBest);
 
-		Player(bool hasGuessed, uint16_t timeGuessed,
-			bool isDrawer, int16_t personalScore, const std::string& email, const std::string& password,
-			uint16_t personalBest);
+		//setter
+		void SetIsDrawer(bool& isDrawing);
+		void SetIsDrawer(bool&& isDrawing);
+		void SetHasGuessed(bool& hasGuessed);
+		void SetScore(const uint16_t& newscore);
 
-		void SetIsDrawer(bool isDrawing);
-		void SetHasGuessed(bool hasGuessed);
-		void SetScore(int16_t newscore);
-
+		//getter
 		bool GetIsDrawer() const;
-		int16_t GetPersonalScore() const;
+		uint16_t GetPersonalScore() const;
 		bool GetHasGuessed() const;
 		uint16_t GetTimeGuessed() const;
 		
-
+		//operators
 		Player& operator = (const Player& player);
 		bool operator<(const Player& player) const;
 		bool operator>(const Player& player) const;
+
 
 	private:
 		bool m_hasGuessed; //pt calculare scor
 		uint16_t m_timeGuessed; //pt calculare scor
 		bool m_isDrawer; // rol
-		int16_t m_personalScore; //ca sa tinem minte scorul
+		uint16_t m_personalScore; //ca sa tinem minte scorul
 
 	};
  // std::ostream& operator<<(std::ostream& os, Player& player);

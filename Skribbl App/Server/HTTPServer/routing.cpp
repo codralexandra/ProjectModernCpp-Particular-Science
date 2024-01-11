@@ -164,7 +164,7 @@ void Routing::Run(Storage& storage)
 
 		crow::json::wvalue jsonResponse;
 		std::vector<std::string> playerNames;
-		for (const auto& p : m_game.getPlayers())
+		for (const auto& p : m_game.GetPlayers())
 		{
 			playerNames.push_back(p.first);
 		}
@@ -219,11 +219,11 @@ void Routing::Run(Storage& storage)
 		.methods("PUT"_method)
 		([this,&storage]() {
 		
-		if (m_game.getPlayers().size() > 1)
+		if (m_game.GetPlayers().size() > 1)
 		{
 			m_game.SetLobbyState(LobbyState::Starting);
 			PopulateVectorWords(storage);
-			m_game.Start_Game(m_app);
+			m_game.StartGame(m_app);
 			return crow::response(200, "Game is finished");
 		}
 		else
@@ -270,7 +270,7 @@ void Routing::Run(Storage& storage)
 		crow::json::wvalue responseJson;
 		responseJson["word"] = m_currentWord;
 		bool isDrawing = false;
-		for (auto& p : m_game.getPlayers())
+		for (auto& p : m_game.GetPlayers())
 		{
 			if (p.first == username && p.second.GetIsDrawer())
 			{
@@ -423,7 +423,7 @@ std::string http::Routing::GetCurrentWord() const
 void http::Routing::PopulateVectorWords(Storage& storage)
 {
 	std::vector<Word> wordsVector;
-	for (int i = 0; i < 4 * m_game.getPlayers().size(); i++)
+	for (int i = 0; i < 4 * m_game.GetPlayers().size(); i++)
 	{
 		Difficulty dif = m_game.GetDifficulty();
 		std::random_device RD;
@@ -444,12 +444,12 @@ void http::Routing::PopulateVectorWords(Storage& storage)
 			distr = std::uniform_int_distribution<>(401, 500);
 		}
 		int id = distr(engine);
-		auto results = storage.get_all<Word>(sqlite_orm::where(sqlite_orm::c(&Word::getId) == id));
+		auto results = storage.get_all<Word>(sqlite_orm::where(sqlite_orm::c(&Word::GetId) == id));
 		if (!results.empty())
 		{
 			const auto& row = results.front();
 			wordsVector.emplace_back(row);
 		}
 	}
-	m_game.setWords(wordsVector);
+	m_game.SetWords(wordsVector);
 }
