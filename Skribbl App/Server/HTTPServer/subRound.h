@@ -9,6 +9,7 @@ public:
 
 	//constructors
 	SubRound();
+	
 
 	//setter
 	void SetWord(const Word& cuv);

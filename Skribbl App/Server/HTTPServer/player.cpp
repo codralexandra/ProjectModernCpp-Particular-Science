@@ -40,12 +40,12 @@ Player::Player(bool& hasGuessed, uint16_t& timeGuessed,
 }
 
 
-void Player::SetIsDrawer(bool& isDrawing)
+void Player::SetIsDrawer(bool isDrawing)
 {
     m_isDrawer = isDrawing;
 }
 
-void Player::SetHasGuessed(bool& hasGuessed)
+void Player::SetHasGuessed(bool hasGuessed)
 {
     m_hasGuessed = hasGuessed;
 }
@@ -55,10 +55,10 @@ void Player::SetScore(const uint16_t& newscore)
     m_personalScore = newscore;
 }
 
-void Player::SetIsDrawer(bool&& isDrawing)
-{
-    m_isDrawer = isDrawing;
-}
+//void Player::SetIsDrawer(bool&& isDrawing)
+//{
+//    m_isDrawer = isDrawing;
+//}
 
 bool Player::GetIsDrawer() const
 {

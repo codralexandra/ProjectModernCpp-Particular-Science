@@ -309,7 +309,7 @@ void Routing::Run(Storage& storage)
 				crow::json::wvalue responseJson;
 				if (tryGuess == m_currentWord)
 				{
-					m_game.getPlayers()[username].SetHasGuessed(true);
+					m_game.GetPlayers()[username].SetHasGuessed(true);
 					return crow::response(200, "Guessed");
 				}
 				else

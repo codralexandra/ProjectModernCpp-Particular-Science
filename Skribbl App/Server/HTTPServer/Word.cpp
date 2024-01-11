@@ -75,11 +75,12 @@ Word& Word::operator=(const Word& other)
 {
 	if (this != &other)
 	{
-		this->m_id = other.m_id;
-		this->m_difficulty = other.m_difficulty;
 		this->m_value.clear();
 		m_valueAux.clear();
-		m_value = other.m_value;
+
+		this->m_id = other.m_id;
+		this->m_difficulty = other.m_difficulty;
+		m_value =other.m_value;
 		m_valueAux = other.m_valueAux;
 		m_numberHint = other.m_numberHint;
 	}
@@ -91,13 +92,17 @@ Word& Word::operator=(Word&& other) noexcept
 {
 	if (this != &other)
 	{
-		this->m_id = other.m_id;
-		this->m_difficulty = other.m_difficulty;
-		this->m_value.clear();
+	    m_value.clear();
 		m_valueAux.clear();
-		m_value = other.m_value;
-		m_valueAux = other.m_valueAux;
+		m_id = 0;
+		m_difficulty.clear();
+
+		m_id = other.m_id;
+		m_difficulty = std::move(other.m_difficulty);
+		m_value = std::move(other.m_value);
+		m_valueAux = std::move(other.m_valueAux);
 		m_numberHint = other.m_numberHint;
+
 		other.m_id = -1;
 		other.m_difficulty.clear();
 		other.m_value.clear();

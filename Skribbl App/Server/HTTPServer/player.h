@@ -17,9 +17,9 @@ import user;
 			uint16_t& personalBest);
 
 		//setter
-		void SetIsDrawer(bool& isDrawing);
-		void SetIsDrawer(bool&& isDrawing);
-		void SetHasGuessed(bool& hasGuessed);
+		void SetIsDrawer(bool isDrawing);
+		//void SetIsDrawer(bool&& isDrawing);
+		void SetHasGuessed(bool hasGuessed);
 		void SetScore(const uint16_t& newscore);
 
 		//getter

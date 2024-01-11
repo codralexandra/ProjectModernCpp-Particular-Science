@@ -16,8 +16,10 @@ namespace Scribble
 		~User() = default;
 		User(const User& user);
 
+
 		//operators
 		User& operator=(const User& user);
+		User& operator=(User&& user)noexcept;
 		
 		//validation
 		bool ValidateUserEmail() const;
