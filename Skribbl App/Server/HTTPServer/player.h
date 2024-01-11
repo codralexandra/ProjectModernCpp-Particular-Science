@@ -8,13 +8,15 @@ import user;
  class Player : public Scribble::User
 	{
 	public:
-		//constructors
+		//constructors and destructor
 		Player();
 		Player(bool& isDrawing);
 		Player(const Player& player);
+		//Player(Player&& other);
 		Player(bool& hasGuessed, uint16_t& timeGuessed,
 			bool& isDrawer, uint16_t& personalScore, const std::string& email, const std::string& password,
 			uint16_t& personalBest);
+		~Player() = default;
 
 		//setter
 		void SetIsDrawer(bool isDrawing);
@@ -30,6 +32,7 @@ import user;
 		
 		//operators
 		Player& operator = (const Player& player);
+		//Player& operator=(Player&& other)noexcept;
 		bool operator<(const Player& player) const;
 		bool operator>(const Player& player) const;
 
