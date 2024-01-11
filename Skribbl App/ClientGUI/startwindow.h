@@ -4,6 +4,7 @@
 #include "ui_startwindow.h"
 #include <cpr/cpr.h>
 #include <crow.h>
+#include"drawingwidget.h"
 
 class StartWindow : public QMainWindow
 {
@@ -25,4 +26,5 @@ private:
 	Ui::StartWindowClass ui;
 	bool isDrawing;
 	std::string m_username;
+	drawingWidget* enableDrawing;
 };

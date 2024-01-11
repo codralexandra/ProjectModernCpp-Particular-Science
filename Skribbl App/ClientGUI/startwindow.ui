@@ -41,7 +41,7 @@ padding: 2px 4px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="drawingView">
+   <widget class="drawingWidget" name="drawingView">
     <property name="geometry">
      <rect>
       <x>135</x>
@@ -179,6 +179,13 @@ padding: 2px 4px;</string>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>drawingWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>drawingwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

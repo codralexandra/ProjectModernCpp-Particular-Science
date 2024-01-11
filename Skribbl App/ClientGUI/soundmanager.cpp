@@ -14,8 +14,6 @@ SoundManager::SoundManager(QObject* parent)
 
 SoundManager::~SoundManager()
 {
-	sound->stop();
-	delete sound;
 }
 
 void SoundManager::setVolume(uint32_t volume) {

@@ -5,6 +5,7 @@ StartWindow::StartWindow(QWidget* parent)
 {
 
 	ui.setupUi(this);
+	enableDrawing = ui.drawingView;
 }
 
 StartWindow::~StartWindow()
@@ -77,17 +78,24 @@ void StartWindow::updatePlayerRole(crow::json::rvalue jsonBody)
 {
 	//get the role status from server here
 	//false -> guessing, true -> drawing
-	if (jsonBody["isDrawing"].b() == false)
+	isDrawing = jsonBody["isDrawing"].b();
+	if (!isDrawing)
 	{
 
 		ui.notDrawingWidget->setEnabled(true);
 		ui.drawingView->setEnabled(false);
+		enableDrawing->setEnable(false);
 	}
 	else
 	{
 		ui.notDrawingWidget->setEnabled(false);
+		ui.notDrawingWidget->setVisible(false);
 		ui.centralWidget->setEnabled(true);
+		enableDrawing->setEnable(true);
 	}
-	ui.wordLabel->setText(QString::fromStdString(jsonBody["word"].s()));
+	std::string word = "dfdshb";
+	ui.wordLabel->setEnabled(true);
+	ui.wordLabel->setText(QString::fromStdString(word));
 	update();
+	this->repaint();
 }

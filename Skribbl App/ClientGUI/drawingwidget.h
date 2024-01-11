@@ -41,7 +41,7 @@ public:
         setOptimizationFlag(QGraphicsView::DontAdjustForAntialiasing, true);
     }
 
-    void setEnable();
+    void setEnable(const bool& isDrawing);
     void setPenColor(QColor color);
     void setPenWidth(int width);
 
@@ -59,7 +59,7 @@ protected:
     void finishDrawing();
 
 private:
-    void sendPixelToServer(const QPointF& pos);
+    /*void sendPixelToServer(const QPointF& pos);*/
     //void receivePixelFromServer(const crow::json::rvalue& jsonPayload);
    // void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
 
