@@ -31,6 +31,8 @@ public:
 
 	void setUIUpdateFunction(const std::function<void()>& func);
 	void threadFuntion();
+	void SetUsername(const std::string& name);
+	std::string GetUsername() const;
 
 public slots:
 	void updateGameWindow();
@@ -46,4 +48,5 @@ private:
 	StartWindow gameWindow;
 	bool m_gameMaster;
 	std::function<void()> uiUpdateFunction;
+	std::string m_username;
 };

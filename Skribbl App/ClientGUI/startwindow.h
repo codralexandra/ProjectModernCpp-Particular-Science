@@ -12,12 +12,17 @@ class StartWindow : public QMainWindow
 public:
 	StartWindow(QWidget *parent = nullptr);
 	~StartWindow();
+	void SetUsername(const std::string& name);
+	std::string GetUsername() const;
+	void connectionToRoute();
 
 private:
 	void recievePixelFromServer();
 	void WordToBeGuessed();
-	void updatePlayerRole(bool role);
+	void updatePlayerRole();
+
 private:
 	Ui::StartWindowClass ui;
 	bool isDrawing;
+	std::string m_username;
 };

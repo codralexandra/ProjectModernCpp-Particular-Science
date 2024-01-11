@@ -12,7 +12,7 @@ Round::Round()
 	
 }
 
-void Round::StartRound(std::vector<Player>& p,  std::vector< Word>& word)
+void Round::StartRound(std::vector<Player>& p,  std::vector< Word>& word, crow::SimpleApp& m_app)
 {
 	//check the random part!!!
 
@@ -33,6 +33,8 @@ void Round::StartRound(std::vector<Player>& p,  std::vector< Word>& word)
 		randPosition = dist(gen);
 
 		p[i].SetIsDrawer(true);
+		std::cout << "\n Role set \n";
+		std::cout << "Start Game apelata \n";
 		m_subRound->StartSubRound(p[i],word[randPosition]);
 		
 		word.erase(word.begin() + randPosition, word.begin() + randPosition + 1);

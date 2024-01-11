@@ -70,20 +70,13 @@ Difficulty Game::GetDifficulty() const
 
 void Game::Start_Game(crow::SimpleApp& m_app)
 {
-	CROW_ROUTE(m_app, "/game/startgame")
-		.methods("GET"_method)
-		([this]() {
-
-		return crow::response(200, "The game has started");
-			});
-	std::cout << "Start Game apelata \n";
 	int dim_runde = 4;
 	//populare vector de cuv in functie de dificultate
 
 	for (int i = 0; i < dim_runde; i++)
 	{
 		m_round.reset(new Round);
-		m_round->StartRound(m_players, m_words);
+		m_round->StartRound(m_players, m_words, m_app);
 
 	}
 	//stop game

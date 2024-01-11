@@ -19,7 +19,15 @@ Lobby::~Lobby()
 {}
 
 
+void Lobby::SetUsername(const std::string& name)
+{
+	m_username = name;
+}
 
+std::string Lobby::GetUsername() const
+{
+	return m_username;
+}
 //Will be needed
 //void Lobby::on_RefreshButton_clicked()
 //{
@@ -118,6 +126,8 @@ void Lobby::waitInLobby() {
 void Lobby::updateGameWindow() {
 	// This method is now safely executed in the main thread
 	this->close();
+	gameWindow.SetUsername(m_username);
+	gameWindow.connectionToRoute();
 	gameWindow.show();
 }
 
@@ -135,10 +145,11 @@ void sendRequest() {
 }
 void Lobby::on_startGameButton_clicked()
 {
-	this->close();
-	gameWindow.show();
-	std::thread requestThread(sendRequest);
-	requestThread.detach();
+	std::thread waitingThread([this] {
+		sendRequest();  // Send the initial request to start the game
+		waitInLobby();  // Then wait in the lobby
+		});
+	waitingThread.detach();
 
 
 }

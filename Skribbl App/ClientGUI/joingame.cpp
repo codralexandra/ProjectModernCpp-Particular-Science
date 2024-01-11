@@ -49,6 +49,7 @@ void JoinGame::on_joinGameButton_clicked()
 			lobby->SetGameID(ui.insertRoomCode->text().toInt());
 			this->close();
 			lobby->SetGameMaster(false);
+			lobby->SetUsername(m_username);
 			lobby->show();
 			lobby->PutOnWaiting();
 		}

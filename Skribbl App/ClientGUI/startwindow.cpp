@@ -14,6 +14,52 @@ void StartWindow::recievePixelFromServer()
 
 }
 
+void StartWindow::SetUsername(const std::string& name)
+{
+	m_username = name;
+}
+
+std::string StartWindow::GetUsername() const
+{
+	return m_username;
+}
+
+void StartWindow::connectionToRoute()
+{
+	crow::json::wvalue jsonPayload;
+	jsonPayload["username"] = m_username;
+	std::string jsonString = jsonPayload.dump();
+	auto response = cpr::Get(
+		cpr::Url{ "http://localhost:18080/game/startround" },
+		cpr::Body{ jsonString },
+		cpr::Header{ { "Content-Type", "application/json" } }
+	);
+	if (response.status_code == 200)
+	{
+		auto responseBody = crow::json::load(response.text);
+		if (!responseBody)
+		{
+			//error
+		}
+		else
+		{
+			isDrawing = responseBody["isDrawing"].b();
+			updatePlayerRole();
+		}
+	}
+	else
+	{
+		if (!response.text.empty())
+		{
+			//error
+		}
+		else
+		{
+			//error
+		}
+	}
+}
+
 void StartWindow::WordToBeGuessed()
 {
 	auto response = cpr::Get(cpr::Url{ "http://localhost:18080/game/word" });
@@ -26,11 +72,11 @@ void StartWindow::WordToBeGuessed()
 	}
 }
 
-void StartWindow::updatePlayerRole(bool role)
+
+void StartWindow::updatePlayerRole()
 {
 	//get the role status from server here
 	//false -> guessing, true -> drawing
-	isDrawing = role;
-	ui.notDrawingWidget->setVisible(!role);
+	ui.notDrawingWidget->setVisible(!isDrawing);
 	update();
 }

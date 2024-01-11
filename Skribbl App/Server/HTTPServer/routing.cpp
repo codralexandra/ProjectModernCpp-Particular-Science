@@ -138,6 +138,25 @@ void Routing::Run(Storage& storage)
 		return crow::response(200, "Gud");
 			});
 
+	/*CROW_ROUTE(m_app, "/game/role")
+		.methods("GET"_method)
+		([this](const crow::request& req) {
+
+
+		crow::json::rvalue jsonData = crow::json::load(req.body);
+		if (!jsonData) {
+			return crow::response(400, "Invalid JSON format");
+		}
+		std::string username = jsonData["username"].s();
+		for (Player p : m_game.getPlayers())
+		{
+			if (p.GetUsername() == username && p.GetIsDrawer())
+			{
+				return crow::response(200, "Drawing");
+			}
+			}
+		return crow::response(201, "Not Drawing");
+			});*/
 
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("GET"_method)
@@ -238,7 +257,7 @@ void Routing::Run(Storage& storage)
 			});
 
 	CROW_ROUTE(m_app, "/game/startround")
-		.methods("PUT"_method)
+		.methods("GET"_method)
 		([this](const crow::request& req) {
 
 		crow::json::rvalue jsonData = crow::json::load(req.body);
@@ -246,11 +265,19 @@ void Routing::Run(Storage& storage)
 			return crow::response(400, "Invalid JSON format");
 		}
 
-		std::string username = jsonData["Username"].s();
+		std::string username = jsonData["username"].s();
 
 		crow::json::wvalue responseJson;
 		//responseJson["word"] = ;
-		//responseJson["isDrawing"] = ;
+		bool isDrawing = false;
+		for (Player p : m_game.getPlayers())
+		{
+			if (p.GetUsername() == username && p.GetIsDrawer())
+			{
+				isDrawing = true;
+			}
+		}
+		responseJson["isDrawing"] = isDrawing;
 		return crow::response(200, responseJson);
 			});
 
