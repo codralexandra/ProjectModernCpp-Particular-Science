@@ -6,6 +6,7 @@
 #include <qstringlist.h>
 #include<thread>
 #include <functional>
+#include<chrono>
 
 Lobby::Lobby(QWidget* parent)
 	: QWidget(parent)
@@ -127,8 +128,10 @@ void Lobby::updateGameWindow() {
 	// This method is now safely executed in the main thread
 	this->close();
 	gameWindow.SetUsername(m_username);
-	gameWindow.connectionToRoute();
-	gameWindow.show();
+		gameWindow.connectionToRoute();
+		gameWindow.show();
+
+
 }
 
 //void Lobby::setUIUpdateFunction(const std::function<void()>& func) {

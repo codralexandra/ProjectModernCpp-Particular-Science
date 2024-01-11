@@ -6,6 +6,7 @@ StartWindow::StartWindow(QWidget* parent)
 
 	ui.setupUi(this);
 	enableDrawing = ui.drawingView;
+	ui.textEdit->setText("Test string");
 }
 
 StartWindow::~StartWindow()
@@ -46,6 +47,7 @@ void StartWindow::connectionToRoute()
 		else
 		{
 			updatePlayerRole(responseBody);
+			//update();
 		}
 	}
 	else
@@ -69,7 +71,7 @@ void StartWindow::WordToBeGuessed()
 		// If the request was successful (status code 200)
 		// Parse the JSON response
 		crow::json::rvalue jsonResponse = crow::json::load(response.text);
-		ui.wordLabel->setText(QString::fromStdString(jsonResponse.s()));
+		//ui.wordLabel->setText(QString::fromStdString(jsonResponse.s()));
 	}
 }
 
@@ -93,9 +95,12 @@ void StartWindow::updatePlayerRole(crow::json::rvalue jsonBody)
 		ui.centralWidget->setEnabled(true);
 		enableDrawing->setEnable(true);
 	}
-	std::string word = "dfdshb";
-	ui.wordLabel->setEnabled(true);
-	ui.wordLabel->setText(QString::fromStdString(word));
+	std::string word = jsonBody["word"].s();
+	QString qword = QString::fromUtf8(word.c_str());
+	ui.textEdit->setText(qword);
+	//ui.wordLabel->setVisible(true);
+	//ui.wordLabel->setEnabled(true);
+	//update();
+	//this->repaint();
 	update();
-	this->repaint();
 }

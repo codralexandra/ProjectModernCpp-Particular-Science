@@ -317,6 +317,20 @@ void Routing::Run(Storage& storage)
 					return crow::response(200, responseJson);
 				}
 			});
+
+	CROW_ROUTE(m_app, "/game/getword")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				m_currentWord = jsonData["word"].s();
+				crow::json::wvalue responseJson;
+				return crow::response(200, "Word is ok");
+			});
+
 	CROW_ROUTE(m_app, "/game/difficulty")
 		.methods("GET"_method)
 		([this]()

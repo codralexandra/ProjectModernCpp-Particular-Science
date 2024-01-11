@@ -40,7 +40,7 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		std::string jsonString = jsonPayload.dump();
 
 		auto response = cpr::Put(
-			cpr::Url{ "http://localhost:18080/profile/game/getword" },
+			cpr::Url{ "http://localhost:18080/game/getword" },
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } }
 		);
