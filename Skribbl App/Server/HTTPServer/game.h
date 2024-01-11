@@ -9,14 +9,15 @@
 #include "lobbystate.h"
 #include <crow.h>
 #include <cpr/cpr.h>
+#include <unordered_map>
 
  class Game
 	{
 	public:
 		Game();
-		Game(std::vector<Player> players, Difficulty difficulty, std::vector<Word> words, std::string date);
+		Game(std::unordered_map<std::string,Player> players, Difficulty difficulty, std::vector<Word> words, std::string date);
 
-		void setPlayers(const std::vector<Player>& players);
+		void setPlayers(const std::unordered_map<std::string,Player>& players);
 		void setWords(const std::vector<Word>& words);
 		void SetGameID(const uint16_t& id);
 		void AddPlayer(const Player& p);
@@ -24,7 +25,7 @@
 		void SetLobbyState(const LobbyState& lobbystate);
 
 
-		std::vector<Player> getPlayers() const;
+		std::unordered_map<std::string,Player> getPlayers() const;
 		std::vector<Word> getWords() const;
 		uint16_t GetGameID() const;
 		Difficulty GetDifficulty() const;
@@ -33,11 +34,11 @@
 
 		
 
-		Player Winner();
+		auto getHighestScorer();
 		
 
 	private:
-		std::vector<Player> m_players;
+		std::unordered_map<std::string,Player> m_players;
 		Difficulty m_difficulty;
 		LobbyState m_lobbyState;
 		static const uint16_t m_rounds = 4;

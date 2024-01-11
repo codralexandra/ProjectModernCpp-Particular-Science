@@ -11,12 +11,12 @@ Game::Game()
 {
 }
 
-Game::Game(std::vector<Player> players, Difficulty difficulty, std::vector<Word> words, std::string date) :
+Game::Game(std::unordered_map<std::string, Player> players, Difficulty difficulty, std::vector<Word> words, std::string date) :
 	m_players{ players }, m_difficulty{ difficulty }, m_words{ words }
 {
 }
 
-void Game::setPlayers(const std::vector<Player>& players)
+void Game::setPlayers(const std::unordered_map<std::string,Player>& players)
 {
 	m_players = players;
 }
@@ -33,7 +33,7 @@ void Game::SetGameID(const uint16_t& id)
 
 void Game::AddPlayer(const Player& p)
 {
-	m_players.push_back(p);
+	m_players[p.GetUsername()] = p;
 }
 
 void Game::SetDifficulty(const Difficulty& difficulty)
@@ -47,7 +47,7 @@ void Game::SetLobbyState(const LobbyState& lobbystate)
 }
 
 
-std::vector<Player> Game::getPlayers() const
+std::unordered_map<std::string, Player> Game::getPlayers() const
 {
 	return m_players;
 }
@@ -82,11 +82,12 @@ void Game::Start_Game(crow::SimpleApp& m_app)
 	//stop game
 	//clasament
 
-	for (int i = 0; i < m_players.size(); i++)
+	for (const auto& it : m_players)
 	{
+
 		crow::json::wvalue jsonPayload;
-		jsonPayload["username"] = m_players[i].GetUsername();
-		jsonPayload["score"] = m_players[i].GetPersonalScore();
+		jsonPayload["username"] = it.first;
+		jsonPayload["score"] = it.second.GetPersonalScore();
 		std::string jsonString = jsonPayload.dump();
 
 		auto response = cpr::Put(
@@ -104,25 +105,13 @@ LobbyState Game::GetLobbyState()
 }
 
 
+auto Game:: getHighestScorer() {
+	
+	auto comparator = [](const auto& playerPair1, const auto& playerPair2) {
+		return playerPair1.second.GetPersonalScore() > playerPair2.second.GetPersonalScore();
+		};
 
-Player Game::Winner()
-{
-	/*int maxim = 0;
-	Player player_max;
-	for (int i = 0; i < m_players.size(); i++)
-	{
-		if (m_players[i].GetPersonalScore() > maxim) {
-			maxim = m_players[i].GetPersonalScore();
-			player_max = m_players[i];
-		}
-	}
-	return player_max;*/
+	auto maxScoreIt = std::max_element(m_players.begin(), m_players.end(), comparator);
 
-	std::ranges::sort(m_players, [](const Player& a, const Player& b) {
-		return a.GetPersonalScore() > b.GetPersonalScore();
-		});
-
-	return std::move(m_players[m_players.size() - 1]);
-
+	return maxScoreIt;
 }
-

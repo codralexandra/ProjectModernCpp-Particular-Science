@@ -164,9 +164,9 @@ void Routing::Run(Storage& storage)
 
 		crow::json::wvalue jsonResponse;
 		std::vector<std::string> playerNames;
-		for (const Player& p : m_game.getPlayers())
+		for (const auto& p : m_game.getPlayers())
 		{
-			playerNames.push_back(p.GetUsername());
+			playerNames.push_back(p.first);
 		}
 		jsonResponse["players"] = playerNames;
 		return jsonResponse.dump();
@@ -270,9 +270,9 @@ void Routing::Run(Storage& storage)
 		crow::json::wvalue responseJson;
 		responseJson["word"] = m_currentWord;
 		bool isDrawing = false;
-		for (Player p : m_game.getPlayers())
+		for (auto& p : m_game.getPlayers())
 		{
-			if (p.GetUsername() == username && p.GetIsDrawer())
+			if (p.first == username && p.second.GetIsDrawer())
 			{
 				isDrawing = true;
 			}
