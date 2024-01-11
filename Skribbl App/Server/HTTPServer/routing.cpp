@@ -305,17 +305,18 @@ void Routing::Run(Storage& storage)
 					return crow::response(400, "Invalid JSON format");
 				}
 				std::string tryGuess = jsonData["Guess"].s();
+				std::string username = jsonData["username"].s();
 				crow::json::wvalue responseJson;
 				if (tryGuess == m_currentWord)
 				{
-					responseJson["ResponseMsg"] = "Accepted";
-					return crow::response(200, responseJson);
+					m_game.getPlayers()[username].SetHasGuessed(true);
+					return crow::response(200, "Guessed");
 				}
 				else
 				{
-					responseJson["ResponseMsg"] = "Denied";
-					return crow::response(200, responseJson);
+					return crow::response(201, "Wrong");
 				}
+
 			});
 
 	CROW_ROUTE(m_app, "/game/getword")
