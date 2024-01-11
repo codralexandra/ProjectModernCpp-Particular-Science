@@ -448,7 +448,7 @@ void http::Routing::PopulateVectorWords(Storage& storage)
 		if (!results.empty())
 		{
 			const auto& row = results.front();
-			wordsVector.push_back(row);
+			wordsVector.emplace_back(row);
 		}
 	}
 	m_game.setWords(wordsVector);
