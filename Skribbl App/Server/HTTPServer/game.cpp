@@ -16,6 +16,31 @@ Game::Game(const std::unordered_map<std::string, Player>& players,const Difficul
 {
 }
 
+Game::Game(const Game& other)
+{
+	m_players = other.m_players;
+	m_difficulty = other.m_difficulty;
+	m_lobbyState = other.m_lobbyState;
+	m_words = other.m_words;
+	//m_round = (other.m_round) ? std::make_unique<Round>(*other.m_round) : nullptr;
+	m_gameID = other.m_gameID;
+
+}
+
+Game::Game(Game&& other)
+{
+	m_players = std::move(other.m_players);
+	m_difficulty = std::move(other.m_difficulty);
+	m_lobbyState = std::move(other.m_lobbyState);
+	
+	m_words = std::move(other.m_words);
+
+	// Move the ownership of 'other.m_round' to 'm_round'
+	m_round = std::move(other.m_round);
+
+	m_gameID = other.m_gameID;
+}
+
 void Game::SetPlayers(const std::unordered_map<std::string,Player>& players)
 {
 	m_players = players;
@@ -44,6 +69,52 @@ void Game::SetDifficulty(const Difficulty& difficulty)
 void Game::SetLobbyState(const LobbyState& lobbystate)
 {
 	m_lobbyState = lobbystate;
+}
+
+Game& Game::operator=(const Game& other)
+{
+	if (this != &other) {
+		// Release resources owned by 'this' (if needed)
+		// ...
+
+		// Copy the values of members from 'other' to 'this'
+		m_players = other.m_players;
+		m_difficulty = other.m_difficulty;
+		m_lobbyState = other.m_lobbyState;
+		m_words = other.m_words;
+
+		// Optionally, create a new Round based on 'other.m_round' (deep copy)
+		//m_round = (other.m_round) ? std::make_unique<Round>(*other.m_round) : nullptr;
+
+		m_gameID = other.m_gameID;
+
+		// Optionally, copy other members if needed
+		// ...
+	}
+	return *this;
+}
+
+Game& Game::operator=(Game&& other) noexcept
+{
+	if (this != &other) {
+		// Release resources owned by 'this' (if needed)
+		// ...
+
+		// Move values from 'other' to 'this'
+		m_players = std::move(other.m_players);
+		m_difficulty = std::move(other.m_difficulty);
+		m_lobbyState = std::move(other.m_lobbyState);
+		m_words = std::move(other.m_words);
+
+		// Move the ownership of 'other.m_round' to 'm_round'
+		m_round = std::move(other.m_round);
+
+		m_gameID = other.m_gameID;
+
+		// Optionally, move other members if needed
+		// ...
+	}
+	return *this;
 }
 
 

@@ -16,7 +16,10 @@
 	public:
 		//constructors
 		Game();
+		~Game() = default;
 		Game(const std::unordered_map<std::string,Player>& players,const Difficulty& difficulty, const std::vector<Word>& words, const std::string& date);
+		Game(const Game& other);
+		Game(Game&& other);
 
 		//setter
 		void SetPlayers(const std::unordered_map<std::string,Player>& players);
@@ -24,6 +27,10 @@
 		void SetGameID(const uint16_t& id);
 		void SetDifficulty(const Difficulty& difficulty);
 		void SetLobbyState(const LobbyState& lobbystate);
+
+		//operators
+		Game& operator=(const Game& other);
+		Game& operator=(Game&& other)noexcept;
 
 		//getter
 		std::unordered_map<std::string,Player> GetPlayers() const;
