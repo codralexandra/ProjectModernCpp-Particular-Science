@@ -268,7 +268,7 @@ void Routing::Run(Storage& storage)
 		std::string username = jsonData["username"].s();
 
 		crow::json::wvalue responseJson;
-		//responseJson["word"] = ;
+		responseJson["word"] = m_currentWord;
 		bool isDrawing = false;
 		for (Player p : m_game.getPlayers())
 		{
@@ -281,6 +281,20 @@ void Routing::Run(Storage& storage)
 		return crow::response(200, responseJson);
 			});
 
+	CROW_ROUTE(m_app, "/game/startround")
+		.methods("PUT"_method)
+		([this](const crow::request& req) 
+			{
+
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+
+				std::string m_currentword = jsonData["word"].s();
+
+				return crow::response(200, "Word is ok!");
+			});
 
 	CROW_ROUTE(m_app, "/game/tryguess")
 		.methods("PUT"_method)

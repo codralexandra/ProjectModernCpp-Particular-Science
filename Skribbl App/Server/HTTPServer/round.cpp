@@ -35,6 +35,15 @@ void Round::StartRound(std::vector<Player>& p,  std::vector< Word>& word, crow::
 		p[i].SetIsDrawer(true);
 		std::cout << "\n Role set \n";
 		std::cout << "Start Game apelata \n";
+		crow::json::wvalue jsonPayload;
+		jsonPayload["word"] = word[randPosition].getValue();
+		std::string jsonString = jsonPayload.dump();
+
+		auto response = cpr::Put(
+			cpr::Url{ "http://localhost:18080/profile/game/getword" },
+			cpr::Body{ jsonString },
+			cpr::Header{ { "Content-Type", "application/json" } }
+		);
 		m_subRound->StartSubRound(p[i],word[randPosition]);
 		
 		word.erase(word.begin() + randPosition, word.begin() + randPosition + 1);
