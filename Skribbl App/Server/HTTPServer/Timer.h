@@ -9,6 +9,7 @@ class Timer
 {
 public:
 	Timer();
+	~Timer()=default;
 	void start();
 	void stop();
 	double elapsedMilliseconds();
