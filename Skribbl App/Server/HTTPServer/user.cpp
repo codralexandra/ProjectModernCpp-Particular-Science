@@ -44,6 +44,7 @@ User& User::operator=(User && user) noexcept
 		user.m_email.clear();
 		user.m_password.clear();
 		user.m_personalBest = 0;
+		user.m_username.clear();
 	}
 	return *this;
 }
@@ -54,6 +55,13 @@ User::User(const User& user)
 	m_email = user.m_email;
 	m_password = user.m_password;
 	m_personalBest = user.m_personalBest;
+}
+
+Scribble::User::User(User&& other) noexcept:m_email(other.m_email), m_username(other.m_username), m_password(other.m_password), m_personalBest(other.m_personalBest)
+{
+	other.m_email.clear();
+	other.m_password.clear();
+	other.m_personalBest = 0;
 }
 
 bool User::ValidateUserEmail() const

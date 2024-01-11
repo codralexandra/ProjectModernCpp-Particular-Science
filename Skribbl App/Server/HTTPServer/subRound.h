@@ -7,9 +7,18 @@ class SubRound
 {
 public:
 
-	//constructors
+	//constructors and destructors
 	SubRound();
-	
+	SubRound(const Word& word, const Timer& timer);
+	~SubRound() = default;
+	SubRound(const SubRound& other);
+	SubRound(const SubRound&& other) noexcept;
+
+
+	//operators
+	SubRound& operator=(const SubRound& other);
+	SubRound& operator=(SubRound&& other);
+
 
 	//setter
 	void SetWord(const Word& cuv);
@@ -18,7 +27,7 @@ public:
 	Word GetWord()const;
 
 
-	void StartSubRound(const Player& p,const Word& word);
+	void StartSubRound(const Player& p, const Word& word);
 
 
 private:

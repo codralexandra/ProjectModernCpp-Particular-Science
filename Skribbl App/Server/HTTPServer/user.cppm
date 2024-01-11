@@ -15,7 +15,7 @@ namespace Scribble
 			 const uint16_t& personalBest);
 		~User() = default;
 		User(const User& user);
-
+		User(User&& other)noexcept;
 
 		//operators
 		User& operator=(const User& user);
