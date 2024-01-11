@@ -3,6 +3,7 @@
 StartWindow::StartWindow(QWidget* parent)
 	: QMainWindow(parent)
 {
+
 	ui.setupUi(this);
 }
 
@@ -43,8 +44,7 @@ void StartWindow::connectionToRoute()
 		}
 		else
 		{
-			isDrawing = responseBody["isDrawing"].b();
-			updatePlayerRole();
+			updatePlayerRole(responseBody);
 		}
 	}
 	else
@@ -73,10 +73,21 @@ void StartWindow::WordToBeGuessed()
 }
 
 
-void StartWindow::updatePlayerRole()
+void StartWindow::updatePlayerRole(crow::json::rvalue jsonBody)
 {
 	//get the role status from server here
 	//false -> guessing, true -> drawing
-	ui.notDrawingWidget->setVisible(!isDrawing);
+	if (jsonBody["isDrawing"].b() == false)
+	{
+
+		ui.notDrawingWidget->setEnabled(true);
+		ui.drawingView->setEnabled(false);
+	}
+	else
+	{
+		ui.notDrawingWidget->setEnabled(false);
+		ui.centralWidget->setEnabled(true);
+	}
+	ui.wordLabel->setText(QString::fromStdString(jsonBody["word"].s()));
 	update();
 }

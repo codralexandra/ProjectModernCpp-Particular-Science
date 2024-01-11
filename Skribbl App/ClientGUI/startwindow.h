@@ -15,11 +15,11 @@ public:
 	void SetUsername(const std::string& name);
 	std::string GetUsername() const;
 	void connectionToRoute();
-
-private:
-	void recievePixelFromServer();
 	void WordToBeGuessed();
-	void updatePlayerRole();
+	void recievePixelFromServer();
+	void updatePlayerRole(crow::json::rvalue jsonBody);
+
+
 
 private:
 	Ui::StartWindowClass ui;
