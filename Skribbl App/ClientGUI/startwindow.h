@@ -19,6 +19,7 @@ public:
 	void WordToBeGuessed();
 	void recievePixelFromServer();
 	void updatePlayerRole(crow::json::rvalue jsonBody);
+	void on_guessButton_clicked();
 
 
 

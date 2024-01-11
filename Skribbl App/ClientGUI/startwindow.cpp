@@ -6,12 +6,46 @@ StartWindow::StartWindow(QWidget* parent)
 
 	ui.setupUi(this);
 	enableDrawing = ui.drawingView;
-	ui.textEdit->setText("Test string");
+	connect(ui.guessButton, &QPushButton::clicked, this, &StartWindow::on_guessButton_clicked);
 }
 
 StartWindow::~StartWindow()
 {}
 
+void StartWindow::on_guessButton_clicked()
+{
+	crow::json::wvalue jsonPayload;
+	jsonPayload["username"] = m_username;
+	std::string word { ui.wordInput->text().toUtf8() };
+	for (char& c : word) {
+		c = std::tolower(c);
+	}
+	if (!word.empty()) {
+		word[0] = std::toupper(word[0]);
+	}
+	jsonPayload["Guess"] = word;
+	std::string jsonString = jsonPayload.dump();
+	auto response = cpr::Put(
+		cpr::Url{ "http://localhost:18080/game/tryguess" },
+		cpr::Body{ jsonString },
+		cpr::Header{ { "Content-Type", "application/json" } }
+	);
+	if (response.status_code == 200)
+	{
+		ui.rightResponseLabel->setText("You guessed the word!");
+		ui.notDrawingWidget->setEnabled(false);
+		ui.notDrawingWidget->setVisible(false);
+		ui.centralWidget->setEnabled(true);
+	}
+	else if (response.status_code == 201)
+	{
+		ui.wrongResponseLabel->setText("The word is wrong!");
+	}
+	else
+	{
+		//error
+	}
+}
 void StartWindow::recievePixelFromServer()
 {
 
