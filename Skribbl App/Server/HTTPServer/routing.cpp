@@ -3,6 +3,16 @@ import userdb;
 using namespace http;
 #include "statistic.h"
 
+
+struct DrawingPoint {
+	std::string color;
+	int penWidth;
+	double x;
+	double y;
+	// Add more fields as needed
+};
+
+
 void Routing::Run(Storage& storage)
 {
 	CROW_ROUTE(m_app, "/")([]() {
@@ -379,21 +389,29 @@ void Routing::Run(Storage& storage)
 				}
 			});
 
-	/*CROW_ROUTE(m_app, "/game/pixel")
+	CROW_ROUTE(m_app, "/game/pixel")
 		.methods("PUT"_method)
 		([this](const crow::request req)
 			{
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData)
+				DrawingPoint drawingPoint;
+				if (req.body.size() >= sizeof(int) + sizeof(float) * 2 + sizeof(char))
 				{
-					return crow::response(400, "Invalid JSON format");
+					std::memcpy(&drawingPoint.penWidth, req.body.data(), sizeof(int));
+					std::memcpy(&drawingPoint.x, req.body.data() + sizeof(int), sizeof(double));
+					std::memcpy(&drawingPoint.y, req.body.data() + sizeof(int) + sizeof(double), sizeof(double));
+
+					// Extract color (up to 256 characters)
+					char colorBuffer[256];
+					std::memcpy(colorBuffer, req.body.data() + sizeof(int) + sizeof(double) * 2, sizeof(char) * 256);
+					drawingPoint.color.assign(colorBuffer, strnlen(colorBuffer, 256));
+
+					return crow::response(200);
 				}
-				m_pixel.first = jsonData["x"].d();
-				m_pixel.second = jsonData["y"].d();
-				m_penWidth = jsonData["penWidth"].d();
-				m_penColor = jsonData["penColor"].s();
-				return crow::response(200, "Pixel transmitted!");
-			});*/
+				else
+				{
+					return crow::response(400,"Invalid Binary Data");
+				}
+			});
 
 	m_app.port(18080).multithreaded().run();
 }
