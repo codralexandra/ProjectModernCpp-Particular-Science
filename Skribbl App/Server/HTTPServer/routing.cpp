@@ -370,6 +370,16 @@ void Routing::Run(Storage& storage)
 					responseJson["isDrawing"] = false;
 					responseJson["word"] = m_currentWord;
 				}
+				if (m_isPixel)
+				{
+					m_isPixel = false;
+					responseJson["x"] = m_x;
+					responseJson["y"] = m_y;
+					responseJson["penWidth"] = m_penWidth;
+					responseJson["color"] = m_color;
+
+				}
+
 				//for (const auto& pair : m_game.GetPlayers()) {
 				//	const Player& p = pair.second; // Access the Player object from the key-value pair
 				//	if (p.GetUsername() == username && p.GetIsDrawer()) {
@@ -403,12 +413,13 @@ void Routing::Run(Storage& storage)
 				if (!jsonData) {
 					return crow::response(400, "Invalid JSON format");
 				}
-				std::string color = jsonData["color"].s();
-				int penWidth = jsonData["penWidth"].i();
-				int x = jsonData["x"].i();
-				int y = jsonData["y"].i();
+				m_color = jsonData["color"].s();
+				m_penWidth = jsonData["penWidth"].i();
+				m_x = jsonData["x"].d();
+				m_y = jsonData["y"].d();
+				m_isPixel = true;
+				//std::cout << "\n" << x << " " << y << " " << penWidth << " " << color << "\n";
 				return crow::response(200, "Pixel recived");
-				std::cout << "\n" << x << " " << y << " " << penWidth << " " << color << "\n";
 				//DrawingPoint drawingPoint;
 				//if (req.body.size() >= sizeof(int) + sizeof(float) * 2 + sizeof(char))
 				//{

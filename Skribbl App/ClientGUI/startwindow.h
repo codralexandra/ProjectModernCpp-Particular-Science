@@ -26,11 +26,13 @@ public:
 	void onUpdateTextEdit(const QString& text);
 	void onUpdateRole(bool isDrawing);
 	void onUpdateGuess();
+	void onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
 
 signals:
 	void updateTextEdit(const QString& text);
 	void updateRole(bool isDrawing);
 	void updateGuess();
+	void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
 
 private slots:
 	void handleThemeChanged(const QString& styleSheet);

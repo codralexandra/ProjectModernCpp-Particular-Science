@@ -128,21 +128,30 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
         /*QByteArray binaryData;
         QDataStream stream(&binaryData, QIODevice::WriteOnly);
         stream << drawingPoint.color << drawingPoint.penWidth << drawingPoint.position;*/
-       /* crow::json::wvalue jsonPayload;
-        jsonPayload["x"] = pos.x();
-        jsonPayload["y"] = pos.y();
+        crow::json::wvalue jsonPayload;
+        jsonPayload["x"] = static_cast<double>(pos.x());;
+        jsonPayload["y"] = static_cast<double>(pos.y());;
         jsonPayload["penWidth"] = penWidth;
-        jsonPayload["color"] = penColor.name().toStdString();;
+        jsonPayload["color"] = penColor.name().toUtf8();
         std::string jsonString = jsonPayload.dump();
 
         auto response = cpr::Put(
             cpr::Url{ "http://localhost:18080/game/pixel" },
             cpr::Body{ jsonString},
             cpr::Header{ { "Content-Type", "application/json" } }
-        );*/
+        );
     }
 }
 
+
+void drawingWidget::receivePixelFromServer(double x, double y, const QString& penColor, uint32_t penWidth)
+{
+    if (this->enable == false)
+   
+    {
+            updateDrawing(x, y, penColor, penWidth);
+        }
+}
 //void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload)
 //{
 //    if (this->enable == false)
@@ -158,18 +167,18 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
 //    }
 //}
 //
-//void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
-//{
-//    if (this->enable == false)
-//    {
-//        QGraphicsEllipseItem* pixelItem = new QGraphicsEllipseItem(x, y, 1, 1);
-//
-//        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-//        pixelItem->setPen(pen);
-//
-//        scene()->addItem(pixelItem);
-//    }
-//}
+void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
+{
+    if (this->enable == false)
+    {
+        QGraphicsEllipseItem* pixelItem = new QGraphicsEllipseItem(x, y, 1, 1);
+
+        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+        pixelItem->setPen(pen);
+
+        scene()->addItem(pixelItem);
+    }
+}
 //
 //void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
 //{

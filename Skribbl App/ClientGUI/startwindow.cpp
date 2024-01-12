@@ -14,6 +14,7 @@ StartWindow::StartWindow(QWidget* parent)
 	connect(this, &StartWindow::updateTextEdit, this, &StartWindow::onUpdateTextEdit);
 	connect(this, &StartWindow::updateRole, this, &StartWindow::onUpdateRole);
 	connect(this, &StartWindow::updateGuess, this, &StartWindow::onUpdateGuess);
+	connect(this, &StartWindow::updateDrawing, this, &StartWindow::onUpdateDrawing);
 	this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
@@ -181,6 +182,9 @@ void StartWindow::onUpdateTextEdit(const QString& text) {
 	ui.textEdit->setText(text);
 	//update();
 }
+void StartWindow::onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth) {
+	enableDrawing->receivePixelFromServer(x,y,penColor, penWidth);
+}
 
 void StartWindow::onUpdateGuess() {
 	ui.rightResponseLabel->setText("You guessed the word!");
@@ -285,6 +289,13 @@ void StartWindow::waitInLobby() {
 			std::string word = responseBody["word"].s();
 			QString qword = QString::fromUtf8(word.c_str());
 			emit updateTextEdit(qword);
+		}
+		if (responseBody.has("x")) {
+			double x = responseBody["x"].d();
+			double y = responseBody["y"].d();
+			int width = responseBody["penWidth"].i();
+			std::string color = responseBody["color"].s();
+			emit updateDrawing(x, y, QString::fromStdString(color), width);
 		}
 		//add pixel
 	} while (response.status_code == 200);
