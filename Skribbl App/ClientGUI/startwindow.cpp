@@ -44,9 +44,13 @@ void StartWindow::on_guessButton_clicked()
 	{
 		ui.wrongResponseLabel->setText("The word is wrong!");
 	}
+	else if(response.status_code==203)
+	{
+		ui.wrongResponseLabel->setText("The word is already guessed!");
+	}
 	else
 	{
-		//error
+		//empty
 	}
 }
 void StartWindow::recievePixelFromServer()

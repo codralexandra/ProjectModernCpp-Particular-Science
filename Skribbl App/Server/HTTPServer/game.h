@@ -27,6 +27,7 @@
 		void SetGameID(const uint16_t& id);
 		void SetDifficulty(const Difficulty& difficulty);
 		void SetLobbyState(const LobbyState& lobbystate);
+		void SetPlayerHasGuessed(const std::string& username, bool hasGuessed, const uint16_t& time);
 
 		//operators
 		Game& operator=(const Game& other);

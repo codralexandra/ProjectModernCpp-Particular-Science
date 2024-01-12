@@ -317,15 +317,21 @@ void Routing::Run(Storage& storage)
 				std::string tryGuess = jsonData["Guess"].s();
 				std::string username = jsonData["username"].s();
 				crow::json::wvalue responseJson;
-				if (tryGuess == m_wordDrawer)
+				if (m_game.GetPlayers()[username].GetHasGuessed()==false)
 				{
-					m_game.GetPlayers()[username].SetHasGuessed(true);
-					return crow::response(200, "Guessed");
+					if (tryGuess == m_wordDrawer)
+					{
+						uint16_t m_time = 0;
+						m_game.SetPlayerHasGuessed(username, true, m_time);
+						return crow::response(200, "Guessed");
+					}
 				}
 				else
 				{
-					return crow::response(201, "Wrong");
+					return crow::response(203, "Already guessed");
 				}
+					
+				return crow::response(201, "Wrong");
 
 			});
 
