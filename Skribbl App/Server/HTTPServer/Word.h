@@ -39,6 +39,7 @@ public:
 	//print
 	void PrintPlayerDrawing() const;
 	void PrintPlayerGuessing() const;
+	void UpdateAux(const std::string& word);
 
 	
 	void fillvalueAux();

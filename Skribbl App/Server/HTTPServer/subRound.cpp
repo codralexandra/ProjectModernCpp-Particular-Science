@@ -102,8 +102,12 @@ void SubRound::ShowHint(Word & word)
 		}
 		std::cout << "This is the hint\n";
 		std::cout << randomPosition << " " << word.GetValue()[randomPosition] << std::endl;
-		word.GetValueAux()[randomPosition] = word.GetValue()[randomPosition];
+		std::string newAux = word.GetValueAux();
+		newAux[randomPosition] = word.GetValue()[randomPosition];
+		std::cout << "\nnewAux:" << newAux<<"\n";
+		
 		word.SetNumberHints(word.GetNumberHint()-1);
+		word.UpdateAux(newAux);
 	}
 	crow::json::wvalue jsonPayload;
 	jsonPayload["currentword"] = word.GetValueAux();
@@ -117,5 +121,6 @@ void SubRound::ShowHint(Word & word)
 		cpr::Header{ { "Content-Type", "application/json" } }
 	);
 	std::cout << "This is the word with hints: " << word.GetValueAux() << std::endl;
+	
 
 }

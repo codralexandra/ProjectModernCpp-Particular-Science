@@ -122,6 +122,7 @@ void Word::SetId(const uint16_t& id)
 
 void Word::SetAuxiliar(const std::string& value)
 {
+	m_numberHint = 2;
 	std::string aux;
 	for (int i = 0; i < m_value.size(); i++)
 	{
@@ -130,7 +131,6 @@ void Word::SetAuxiliar(const std::string& value)
 		else
 		{
 			aux += '_';
-			aux += ' ';
 		}
 	}
 	this->m_valueAux = aux;
@@ -155,6 +155,11 @@ void Word::PrintPlayerDrawing() const
 void Word::PrintPlayerGuessing() const
 {
 	std::cout << "The word is: " << m_valueAux << std::endl;
+}
+
+void Word::UpdateAux(const std::string& word)
+{
+	m_valueAux = word;
 }
 
 
