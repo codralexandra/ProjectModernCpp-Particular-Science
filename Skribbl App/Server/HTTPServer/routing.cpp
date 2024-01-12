@@ -307,7 +307,7 @@ void Routing::Run(Storage& storage)
 				std::string tryGuess = jsonData["Guess"].s();
 				std::string username = jsonData["username"].s();
 				crow::json::wvalue responseJson;
-				if (tryGuess == m_currentWord)
+				if (tryGuess == m_wordDrawer)
 				{
 					m_game.GetPlayers()[username].SetHasGuessed(true);
 					return crow::response(200, "Guessed");
@@ -327,9 +327,40 @@ void Routing::Run(Storage& storage)
 				if (!jsonData) {
 					return crow::response(400, "Invalid JSON format");
 				}
-				m_currentWord = jsonData["word"].s();
-				crow::json::wvalue responseJson;
+				m_currentWord = jsonData["currentword"].s();
+				m_wordDrawer = jsonData["wordDrawer"].s();
+				std::cout << "\n" << m_wordDrawer << "\n";
 				return crow::response(200, "Word is ok");
+			});
+
+	CROW_ROUTE(m_app, "/game/package")
+		.methods("GET"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				crow::json::wvalue responseJson;
+				std::string username = jsonData["username"].s();
+				if (m_game.GetPlayers()[username].GetIsDrawer())
+				{
+					responseJson["isDrawing"] = true;
+					responseJson["word"] = m_wordDrawer;
+					std::cout << "\n" << m_wordDrawer << "\n";
+				}
+				else
+				{
+					responseJson["isDrawing"] = false;
+					responseJson["word"] = m_currentWord;
+				}
+				//for (const auto& pair : m_game.GetPlayers()) {
+				//	const Player& p = pair.second; // Access the Player object from the key-value pair
+				//	if (p.GetUsername() == username && p.GetIsDrawer()) {
+				//		return crow::response(200, "Drawing");
+				//	}
+				//}
+				return crow::response(200, responseJson);
 			});
 
 	CROW_ROUTE(m_app, "/game/difficulty")
@@ -452,5 +483,6 @@ void http::Routing::PopulateVectorWords(Storage& storage)
 			wordsVector.emplace_back(row);
 		}
 	}
+	//for(word)
 	m_game.SetWords(wordsVector);
 }

@@ -37,6 +37,7 @@ public:
 	void PrintPlayerGuessing() const;
 
 	void ShowHint();
+	void fillvalueAux();
 
 
 private:

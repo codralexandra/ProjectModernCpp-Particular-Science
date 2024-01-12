@@ -1,6 +1,8 @@
 #include "Word.h"
 #include <iostream>
 #include <ctime>
+#include <crow.h>
+#include <cpr/cpr.h>
 
 Word::Word(const uint16_t& id, const std::string& value, const std::string& difficulty)
 	: m_id(id), m_value(value), m_difficulty(difficulty)
@@ -18,7 +20,7 @@ Word::Word()
 {
 	m_value = "";
 	m_difficulty = "";
-	m_numberHint = 0;
+	m_numberHint = 2;
 	m_valueAux = "";
 	m_id = -1;
 }
@@ -107,7 +109,7 @@ Word& Word::operator=(Word&& other) noexcept
 		other.m_difficulty.clear();
 		other.m_value.clear();
 		other.m_valueAux.clear();
-		other.m_numberHint = 0;
+		other.m_numberHint = 2;
 	}
 
 	return *this;
@@ -128,6 +130,7 @@ void Word::PrintPlayerGuessing() const
 	std::cout << "The word is: " << m_valueAux << std::endl;
 }
 
+
 void Word::ShowHint()
 {
 	std::cout << "ShowHint apelata\n";
@@ -146,5 +149,27 @@ void Word::ShowHint()
 		m_valueAux[randomPosition] = m_value[randomPosition];
 		m_numberHint -= 1;
 	}
+	crow::json::wvalue jsonPayload;
+	jsonPayload["currentword"] = m_valueAux;
+	std::cout << "\n" << m_valueAux << "\n";
+	jsonPayload["wordDrawer"] = m_value;
+	std::string jsonString = jsonPayload.dump();
+
+	auto response = cpr::Put(
+		cpr::Url{ "http://localhost:18080/game/getword" },
+		cpr::Body{ jsonString },
+		cpr::Header{ { "Content-Type", "application/json" } }
+	);
 	std::cout << "This is the word with hints: " << m_valueAux << std::endl;
+}
+
+void Word::fillvalueAux()
+{
+	for (int i = 0; i < m_value.size(); i++)
+	{
+		if (m_value[i] == '-')
+			m_valueAux += ' ';
+		else
+			m_valueAux += '_';
+	}
 }

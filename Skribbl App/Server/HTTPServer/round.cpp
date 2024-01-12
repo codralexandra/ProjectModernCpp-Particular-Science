@@ -34,7 +34,10 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		std::cout << "\n Role set \n";
 		std::cout << "Start Game apelata \n";
 		crow::json::wvalue jsonPayload;
-		jsonPayload["word"] = word[randPosition].GetValue();
+		std::cout << "\n" << word[randPosition].GetValue() << "\n";
+		std::cout << "\n" << word[randPosition].GetValueAux() << "\n";
+		jsonPayload["wordDrawer"] = word[randPosition].GetValue();
+		jsonPayload["currentword"] = word[randPosition].GetValueAux();
 		std::string jsonString = jsonPayload.dump();
 
 		auto response = cpr::Put(

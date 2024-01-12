@@ -35,7 +35,8 @@ namespace http
 		bool m_gameExists;
 		Game m_game;
 		std::string m_gameMaster;
-		std::string m_currentWord; 
+		std::string m_currentWord;
+		std::string m_wordDrawer;
 	};
 }
 

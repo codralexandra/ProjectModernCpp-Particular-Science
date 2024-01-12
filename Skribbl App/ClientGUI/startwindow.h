@@ -18,8 +18,10 @@ public:
 	void connectionToRoute();
 	void WordToBeGuessed();
 	void recievePixelFromServer();
-	void updatePlayerRole(crow::json::rvalue jsonBody);
+	void updatePlayerRole();
 	void on_guessButton_clicked();
+	void waitInLobby();
+	void updateStartWindow();
 
 
 

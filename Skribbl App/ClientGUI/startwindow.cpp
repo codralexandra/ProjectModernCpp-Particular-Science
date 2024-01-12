@@ -1,4 +1,5 @@
 #include "startwindow.h"
+#include<thread>;
 
 StartWindow::StartWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -61,40 +62,71 @@ std::string StartWindow::GetUsername() const
 	return m_username;
 }
 
+void StartWindow::updateStartWindow() {
+	// This method is now safely executed in the main thread
+
+
+}
+
+void StartWindow::waitInLobby() {
+	cpr::Response response;
+	//do{
+		crow::json::wvalue jsonPayload;
+		jsonPayload["username"] = m_username;
+		std::string jsonString = jsonPayload.dump();
+		response = cpr::Get(cpr::Url{ "http://localhost:18080/game/package" },
+			cpr::Body{ jsonString },
+			cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
+		);
+		auto responseBody = crow::json::load(response.text);
+		if (responseBody.has("isDrawing")) {
+			isDrawing = responseBody["isDrawing"].b();
+			updatePlayerRole();
+		}
+		if(responseBody.has("word")){
+			std::string word = responseBody["word"].s();
+	         QString qword = QString::fromUtf8(word.c_str());
+			 ui.textEdit->setText(qword);
+			 update();
+		}
+		//add pixel
+	//} while (response.status_code == 200);
+
+	if (response.status_code == 201) {
+		// Schedule updateGameWindow to be called in the main thread
+		//QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
+	}
+}
+
 void StartWindow::connectionToRoute()
 {
-	crow::json::wvalue jsonPayload;
-	jsonPayload["username"] = m_username;
-	std::string jsonString = jsonPayload.dump();
-	auto response = cpr::Get(
-		cpr::Url{ "http://localhost:18080/game/startround" },
-		cpr::Body{ jsonString },
-		cpr::Header{ { "Content-Type", "application/json" } }
-	);
-	if (response.status_code == 200)
-	{
-		auto responseBody = crow::json::load(response.text);
-		if (!responseBody)
-		{
-			//error
-		}
-		else
-		{
-			updatePlayerRole(responseBody);
-			//update();
-		}
-	}
-	else
-	{
-		if (!response.text.empty())
-		{
-			//error
-		}
-		else
-		{
-			//error
-		}
-	}
+	//std::thread waitingThread(&StartWindow::waitInLobby, this);
+	//waitingThread.detach();
+	waitInLobby();
+	//if (response.status_code == 200)
+	//{
+	//	auto responseBody = crow::json::load(response.text);
+	//	if (!responseBody)
+	//	{
+	//		//error
+	//	}
+	//	else
+	//	{
+	//		updatePlayerRole(responseBody);
+	//		//update();
+	//	}
+	//}
+	//else
+	//{
+	//	if (!response.text.empty())
+	//	{
+	//		//error
+	//	}
+	//	else
+	//	{
+	//		//error
+	//	}
+	//}
 }
 
 void StartWindow::WordToBeGuessed()
@@ -110,14 +142,12 @@ void StartWindow::WordToBeGuessed()
 }
 
 
-void StartWindow::updatePlayerRole(crow::json::rvalue jsonBody)
+void StartWindow::updatePlayerRole()
 {
 	//get the role status from server here
 	//false -> guessing, true -> drawing
-	isDrawing = jsonBody["isDrawing"].b();
 	if (!isDrawing)
 	{
-
 		ui.notDrawingWidget->setEnabled(true);
 		ui.drawingView->setEnabled(false);
 		enableDrawing->setEnable(false);
@@ -129,12 +159,8 @@ void StartWindow::updatePlayerRole(crow::json::rvalue jsonBody)
 		ui.centralWidget->setEnabled(true);
 		enableDrawing->setEnable(true);
 	}
-	std::string word = jsonBody["word"].s();
+	/*std::string word = jsonBody["word"].s();
 	QString qword = QString::fromUtf8(word.c_str());
-	ui.textEdit->setText(qword);
-	//ui.wordLabel->setVisible(true);
-	//ui.wordLabel->setEnabled(true);
-	//update();
-	//this->repaint();
+	ui.textEdit->setText(qword);*/
 	update();
 }
