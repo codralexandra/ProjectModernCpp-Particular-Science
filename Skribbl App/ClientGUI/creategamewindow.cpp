@@ -58,6 +58,7 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 			lobby->SetUsername(m_username);
 			lobby->SetGameMaster(true);
 			lobby->show();
+			lobby->setStyleSheet(themeManager->getCurrentStyleSheet());
 		}
 	}
 	else

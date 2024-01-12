@@ -13,6 +13,7 @@ StartWindow::StartWindow(QWidget* parent)
 	connect(this, &StartWindow::updateTextEdit, this, &StartWindow::onUpdateTextEdit);
 	connect(this, &StartWindow::updateRole, this, &StartWindow::onUpdateRole);
 	connect(this, &StartWindow::updateGuess, this, &StartWindow::onUpdateGuess);
+	this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 StartWindow::~StartWindow()

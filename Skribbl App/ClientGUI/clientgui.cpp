@@ -39,5 +39,6 @@ void ClientGUI::on_settingsButton_clicked()
 }
 
 void ClientGUI::handleThemeChanged(const QString& styleSheet) {
+	qDebug() << "Received stylesheet:" << styleSheet;
 	this->setStyleSheet(styleSheet);
 }

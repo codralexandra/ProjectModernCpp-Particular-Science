@@ -137,8 +137,7 @@ void Lobby::updateGameWindow() {
 	gameWindow.SetUsername(m_username);
 		gameWindow.connectionToRoute();
 		gameWindow.show();
-
-
+		gameWindow.setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 //void Lobby::setUIUpdateFunction(const std::function<void()>& func) {
