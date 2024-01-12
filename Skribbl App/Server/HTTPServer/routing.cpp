@@ -378,7 +378,7 @@ void Routing::Run(Storage& storage)
 				}
 			});
 
-	CROW_ROUTE(m_app, "/game/pixel")
+	/*CROW_ROUTE(m_app, "/game/pixel")
 		.methods("PUT"_method)
 		([this](const crow::request req)
 			{
@@ -392,7 +392,7 @@ void Routing::Run(Storage& storage)
 				m_penWidth = jsonData["penWidth"].d();
 				m_penColor = jsonData["penColor"].s();
 				return crow::response(200, "Pixel transmitted!");
-			});
+			});*/
 
 	m_app.port(18080).multithreaded().run();
 }

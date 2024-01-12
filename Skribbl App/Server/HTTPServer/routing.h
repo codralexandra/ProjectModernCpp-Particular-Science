@@ -36,6 +36,7 @@ namespace http
 		Game m_game;
 		std::string m_gameMaster;
 		std::string m_currentWord; 
+		std::string m_wordDrawer;
 		std::pair<double, double> m_pixel;
 		std::string m_penWidth;
 		std::string m_penColor;
