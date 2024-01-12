@@ -5,10 +5,11 @@
 
 SubRound::SubRound()
 {
-	//empty
+	m_guessed = false;
+	m_timeGuessed = 60;
 }
 
-SubRound::SubRound(const Word& word, const Timer& timer) : m_timer(timer), m_word(word)
+SubRound::SubRound(const Word& word, const Timer& timer) : m_timer(timer), m_word(word),m_guessed(false),m_timeGuessed(60)
 {
 	//empty
 }
@@ -17,18 +18,25 @@ SubRound::SubRound(const SubRound& other)
 {
 	m_word = other.m_word;
 	m_timer = other.m_timer;
+	m_guessed = other.m_guessed;
+	m_timeGuessed = other.m_timeGuessed;
+
 }
 
 SubRound::SubRound(const SubRound&& other) noexcept
 {
 	m_word = std::move(other.m_word);
 	m_timer = std::move(other.m_timer);
+	m_guessed = std::move(other.m_guessed);
+	m_timeGuessed = std::move(other.m_timeGuessed);
 }
 
 SubRound& SubRound::operator=(const SubRound& other)
 {
 	this->m_word = other.m_word;
 	this->m_timer = other.m_timer;
+	m_guessed = other.m_guessed;
+	m_timeGuessed = other.m_timeGuessed;
 	return*this;
 }
 
@@ -51,12 +59,32 @@ void SubRound::SetWord(const Word& cuv)
 	this->m_word = cuv;
 }
 
+void SubRound::SetGuessed(bool value)
+{
+	m_guessed = value;
+}
+
+void SubRound::SetTime(const double& time)
+{
+	m_timeGuessed = time;
+}
+
 Word SubRound::GetWord() const
 {
 	return this->m_word;
 }
 
-void SubRound::StartSubRound(const Player& p,Word& word)
+bool SubRound::GetGuessed() const
+{
+	return m_guessed;
+}
+
+double SubRound::GetTimeGuessed() const
+{
+	return m_timeGuessed;
+}
+
+void SubRound::StartSubRound(Player& p,Word& word)
 {
 	std::cout << "Start SubRound apelata\n";
 	const double timeLimit = 60.0;
@@ -64,26 +92,28 @@ void SubRound::StartSubRound(const Player& p,Word& word)
 	m_timer.start();
 	while (m_timer.elapsedSeconds() < timeLimit)
 	{
-		//check
+		if (m_guessed == true && m_timeGuessed == 60)
+		{
+			m_timeGuessed = m_timer.elapsedSeconds();
+	    }
 
 		if (m_timer.elapsedSeconds() == 30.0)
 		{
 			ShowHint(word);
 		}
-
 		else if (m_timer.elapsedSeconds() == 40.0)
 		{
 			ShowHint(word);
 		}
-
 		else if (m_timer.elapsedSeconds() == 50.0)
 		{
 			ShowHint(word);
 		}
 
-
 	}
+
 	m_timer.stop();
+	p.SetTimeGuessed(m_timeGuessed);
 
 }
 

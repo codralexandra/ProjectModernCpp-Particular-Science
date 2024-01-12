@@ -22,16 +22,22 @@ public:
 
 	//setter
 	void SetWord(const Word& cuv);
+	void SetGuessed(bool value);
+	void SetTime(const double& time);
 
 	//getter
 	Word GetWord()const;
+	bool GetGuessed()const;
+	double GetTimeGuessed()const;
 
 
-	void StartSubRound(const Player& p, Word& word);
+	void StartSubRound(Player& p, Word& word);
 	void ShowHint(Word& word);
 
 
 private:
+	bool m_guessed;
+	double m_timeGuessed;
 	Word m_word;
 	Timer m_timer;
 };
