@@ -176,7 +176,10 @@ void Game::StartGame(crow::SimpleApp& m_app)
 		);
 
 	}
+	//update personal best
+	UpdatePersonalBest();
 	//clasament
+
 }
 
 void Game::UpdateWords()
@@ -185,6 +188,19 @@ void Game::UpdateWords()
 	{
 		word.SetAuxiliar(word.GetValue());
 		word.SetNumberHints(word.GetValue());
+	}
+
+}
+
+void Game::UpdatePersonalBest()
+{
+
+	for (auto& playerPair : m_players)
+	{
+		if (playerPair.second.GetPersonalBest() < playerPair.second.GetPersonalScore())
+		{
+			playerPair.second.SetPersonalBest(playerPair.second.GetPersonalBest());
+		}
 	}
 
 }

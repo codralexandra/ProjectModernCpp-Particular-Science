@@ -46,6 +46,7 @@
 		void StartGame(crow::SimpleApp& m_app);
 
 		void UpdateWords();
+		void UpdatePersonalBest();
 
 
 	private:
