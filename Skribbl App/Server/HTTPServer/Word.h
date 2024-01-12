@@ -19,6 +19,10 @@ public:
 	void SetValue(const std::string& value);
 	void SetDifficulty(const std::string& difficulty);
 	void SetId(const uint16_t& id);
+	void SetAuxiliar(const std::string& value);
+	void SetNumberHints(const std::string& value);
+	void SetNumberHints(int nr);
+
 
 	//getter
 	std::string GetDifficulty() const;
@@ -29,14 +33,14 @@ public:
 
 	//operators
 	Word& operator=(const Word& other);
-	Word& operator=(Word&& other) noexcept;
+	//Word& operator=(Word&& other) noexcept;
 
 
 	//print
 	void PrintPlayerDrawing() const;
 	void PrintPlayerGuessing() const;
 
-	void ShowHint();
+	
 	void fillvalueAux();
 
 

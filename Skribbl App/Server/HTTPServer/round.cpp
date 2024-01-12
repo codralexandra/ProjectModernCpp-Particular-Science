@@ -29,15 +29,17 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		m_subRound.reset(new SubRound);
 
 		randPosition = dist(gen);
+		int random = randPosition;
 
 		it.second.SetIsDrawer(true);
 		std::cout << "\n Role set \n";
 		std::cout << "Start Game apelata \n";
+
 		crow::json::wvalue jsonPayload;
-		std::cout << "\n" << word[randPosition].GetValue() << "\n";
-		std::cout << "\n" << word[randPosition].GetValueAux() << "\n";
-		jsonPayload["wordDrawer"] = word[randPosition].GetValue();
-		jsonPayload["currentword"] = word[randPosition].GetValueAux();
+		std::cout << "\n" << word[random].GetValue() << "\n";
+		std::cout << "\n" << word[random].GetValueAux() << "\n";
+		jsonPayload["wordDrawer"] = word[random].GetValue();
+		jsonPayload["currentword"] = word[random].GetValueAux();
 		std::string jsonString = jsonPayload.dump();
 
 		auto response = cpr::Put(
@@ -45,9 +47,9 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } }
 		);
-		m_subRound->StartSubRound(it.second,word[randPosition]);
+		m_subRound->StartSubRound(it.second,word[random]);
 		
-		word.erase(word.begin() + randPosition, word.begin() + randPosition + 1);
+		word.erase(word.begin() + random, word.begin() + random + 1);
 		t.start();
 		//reset la timer
 		while (t.elapsedSeconds() < timeLimit){}

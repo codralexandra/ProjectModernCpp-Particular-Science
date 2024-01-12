@@ -90,35 +90,62 @@ Word& Word::operator=(const Word& other)
 	return *this;
 }
 
-Word& Word::operator=(Word&& other) noexcept
-{
-	if (this != &other)
-	{
-	    m_value.clear();
-		m_valueAux.clear();
-		m_id = 0;
-		m_difficulty.clear();
-
-		m_id = other.m_id;
-		m_difficulty = std::move(other.m_difficulty);
-		m_value = std::move(other.m_value);
-		m_valueAux = std::move(other.m_valueAux);
-		m_numberHint = other.m_numberHint;
-
-		other.m_id = -1;
-		other.m_difficulty.clear();
-		other.m_value.clear();
-		other.m_valueAux.clear();
-		other.m_numberHint = 2;
-	}
-
-	return *this;
-}
+//Word& Word::operator=(Word&& other) noexcept
+//{
+//	if (this != &other)
+//	{
+//	    m_value.clear();
+//		m_valueAux.clear();
+//		m_id = 0;
+//		m_difficulty.clear();
+//
+//		m_id = other.m_id;
+//		m_difficulty = std::move(other.m_difficulty);
+//		m_value = std::move(other.m_value);
+//		m_valueAux = std::move(other.m_valueAux);
+//		m_numberHint = other.m_numberHint;
+//
+//		other.m_id = -1;
+//		other.m_difficulty.clear();
+//		other.m_value.clear();
+//		other.m_valueAux.clear();
+//		other.m_numberHint = 2;
+//	}
+//
+//	return *this;
+//}
 
 void Word::SetId(const uint16_t& id)
 {
 	m_id = id;
 }
+
+void Word::SetAuxiliar(const std::string& value)
+{
+	std::string aux;
+	for (int i = 0; i < m_value.size(); i++)
+	{
+		if (m_value[i] == '-')
+			aux += ' ';
+		else
+		{
+			aux += '_';
+			aux += ' ';
+		}
+	}
+	this->m_valueAux = aux;
+}
+
+void Word::SetNumberHints(const std::string& value)
+{
+	m_numberHint = m_value.size() / 2;
+}
+
+void Word::SetNumberHints(int nr)
+{
+	m_numberHint = nr;
+}
+
 
 void Word::PrintPlayerDrawing() const
 {
@@ -131,37 +158,7 @@ void Word::PrintPlayerGuessing() const
 }
 
 
-void Word::ShowHint()
-{
-	std::cout << "ShowHint apelata\n";
-	if (m_numberHint > 0)
-	{
-		std::cout << "Take a hint\n";
-		srand(0);
-		bool ok = false;
-		int randomPosition = rand() % m_valueAux.size();
-		while (m_valueAux[randomPosition] != '_')
-		{
-			randomPosition = rand() % m_valueAux.size();
-		}
-		std::cout << "This is the hint\n";
-		std::cout << randomPosition << " " << m_value[randomPosition] << std::endl;
-		m_valueAux[randomPosition] = m_value[randomPosition];
-		m_numberHint -= 1;
-	}
-	crow::json::wvalue jsonPayload;
-	jsonPayload["currentword"] = m_valueAux;
-	std::cout << "\n" << m_valueAux << "\n";
-	jsonPayload["wordDrawer"] = m_value;
-	std::string jsonString = jsonPayload.dump();
 
-	auto response = cpr::Put(
-		cpr::Url{ "http://localhost:18080/game/getword" },
-		cpr::Body{ jsonString },
-		cpr::Header{ { "Content-Type", "application/json" } }
-	);
-	std::cout << "This is the word with hints: " << m_valueAux << std::endl;
-}
 
 void Word::fillvalueAux()
 {

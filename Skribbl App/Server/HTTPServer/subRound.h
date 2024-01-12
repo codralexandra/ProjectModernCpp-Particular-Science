@@ -17,7 +17,7 @@ public:
 
 	//operators
 	SubRound& operator=(const SubRound& other);
-	SubRound& operator=(SubRound&& other);
+	//SubRound& operator=(SubRound&& other);
 
 
 	//setter
@@ -27,7 +27,8 @@ public:
 	Word GetWord()const;
 
 
-	void StartSubRound(const Player& p, const Word& word);
+	void StartSubRound(const Player& p, Word& word);
+	void ShowHint(Word& word);
 
 
 private:

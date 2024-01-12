@@ -30,7 +30,7 @@
 
 		//operators
 		Game& operator=(const Game& other);
-		Game& operator=(Game&& other)noexcept;
+		//Game& operator=(Game&& other)noexcept;
 
 		//getter
 		std::unordered_map<std::string,Player> GetPlayers() const;
@@ -43,6 +43,9 @@
 		auto GetHighestScorer();
 		void AddPlayer(const Player& p);
 		void StartGame(crow::SimpleApp& m_app);
+
+		void UpdateWords();
+
 
 	private:
 		std::unordered_map<std::string,Player> m_players;

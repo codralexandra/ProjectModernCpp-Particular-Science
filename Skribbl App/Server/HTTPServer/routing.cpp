@@ -222,6 +222,7 @@ void Routing::Run(Storage& storage)
 		{
 			m_game.SetLobbyState(LobbyState::Starting);
 			PopulateVectorWords(storage);
+			m_game.UpdateWords();
 			m_game.StartGame(m_app);
 			return crow::response(200, "Game is finished");
 		}

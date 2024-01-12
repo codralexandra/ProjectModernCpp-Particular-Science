@@ -1,5 +1,7 @@
 #include "SubRound.h"
 #include <iostream>
+#include <crow.h>
+#include <cpr/cpr.h>
 
 SubRound::SubRound()
 {
@@ -30,18 +32,18 @@ SubRound& SubRound::operator=(const SubRound& other)
 	return*this;
 }
 
-SubRound& SubRound::operator=(SubRound&& other)
-{
-	if (this != &other) {
-		// Move-assign the Word object
-		m_word = std::move(other.m_word);
-
-		// Move-assign the Timer object
-		m_timer = std::move(other.m_timer);
-
-	}
-	return *this;
-}
+//SubRound& SubRound::operator=(SubRound&& other)noexcept
+//{
+//	if (this != &other) {
+//		// Move-assign the Word object
+//		m_word = std::move(other.m_word);
+//
+//		// Move-assign the Timer object
+//		m_timer = std::move(other.m_timer);
+//
+//	}
+//	return *this;
+//}
 
 void SubRound::SetWord(const Word& cuv)
 {
@@ -54,7 +56,7 @@ Word SubRound::GetWord() const
 	return this->m_word;
 }
 
-void SubRound::StartSubRound(const Player& p, const Word& word)
+void SubRound::StartSubRound(const Player& p,Word& word)
 {
 	std::cout << "Start SubRound apelata\n";
 	const double timeLimit = 60.0;
@@ -66,21 +68,54 @@ void SubRound::StartSubRound(const Player& p, const Word& word)
 
 		if (m_timer.elapsedSeconds() == 30.0)
 		{
-			m_word.ShowHint();
+			ShowHint(word);
 		}
 
 		else if (m_timer.elapsedSeconds() == 40.0)
 		{
-			m_word.ShowHint();
+			ShowHint(word);
 		}
 
 		else if (m_timer.elapsedSeconds() == 50.0)
 		{
-			m_word.ShowHint();
+			ShowHint(word);
 		}
 
 
 	}
 	m_timer.stop();
+
+}
+
+void SubRound::ShowHint(Word & word)
+{
+	std::cout << "ShowHint apelata\n";
+	if (word.GetNumberHint() > 0)
+	{
+		std::cout << "Take a hint\n";
+		srand(0);
+		bool ok = false;
+		int randomPosition = rand() % word.GetValueAux().size();
+		while (word.GetValueAux()[randomPosition] != '_')
+		{
+			randomPosition = rand() % word.GetValueAux().size();
+		}
+		std::cout << "This is the hint\n";
+		std::cout << randomPosition << " " << word.GetValue()[randomPosition] << std::endl;
+		word.GetValueAux()[randomPosition] = word.GetValue()[randomPosition];
+		word.SetNumberHints(word.GetNumberHint()-1);
+	}
+	crow::json::wvalue jsonPayload;
+	jsonPayload["currentword"] = word.GetValueAux();
+	std::cout << "\n" << word.GetValueAux() << "\n";
+	jsonPayload["wordDrawer"] = word.GetValue();
+	std::string jsonString = jsonPayload.dump();
+
+	auto response = cpr::Put(
+		cpr::Url{ "http://localhost:18080/game/getword" },
+		cpr::Body{ jsonString },
+		cpr::Header{ { "Content-Type", "application/json" } }
+	);
+	std::cout << "This is the word with hints: " << word.GetValueAux() << std::endl;
 
 }
