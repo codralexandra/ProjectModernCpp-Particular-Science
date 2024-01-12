@@ -112,6 +112,7 @@
     <ClCompile Include="settingswindow.cpp" />
     <ClCompile Include="soundmanager.cpp" />
     <ClCompile Include="startwindow.cpp" />
+    <ClCompile Include="thememanager.cpp" />
     <ClCompile Include="userwindow.cpp" />
     <ClCompile Include="watchwidget.cpp" />
     <QtRcc Include="clientgui.qrc" />
@@ -176,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="profilewindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="thememanager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

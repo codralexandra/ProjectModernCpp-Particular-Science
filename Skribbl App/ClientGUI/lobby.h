@@ -7,6 +7,7 @@
 #include <crow.h>
 #include "lobbystate.h"
 #include "startwindow.h"
+#include "thememanager.h";
 
 class Lobby : public QWidget
 {
@@ -39,6 +40,7 @@ public slots:
 
 private slots:
 	void on_startGameButton_clicked();
+	void handleThemeChanged(const QString& styleSheet);
 
 private:
 	Ui::LobbyClass ui;
@@ -49,4 +51,5 @@ private:
 	bool m_gameMaster;
 	std::function<void()> uiUpdateFunction;
 	std::string m_username;
+	ThemeManager* themeManager;
 };

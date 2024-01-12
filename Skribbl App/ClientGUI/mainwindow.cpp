@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget* parent)
 	ui.setupUi(this);
 	connect(ui.createGameButton, &QPushButton::clicked, this, &MainWindow::on_createButton_clicked);
 	connect(ui.profileButton, &QPushButton::clicked, this, &MainWindow::on_profileButton_clicked);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &MainWindow::handleThemeChanged);
 }
 
 MainWindow::~MainWindow()
@@ -43,4 +45,9 @@ void MainWindow::on_profileButton_clicked()
 {
 	profileWindow.setUsername(m_username);
 	profileWindow.show();
+}
+
+void MainWindow::handleThemeChanged(const QString& styleSheet)
+{
+	this->setStyleSheet(styleSheet);
 }

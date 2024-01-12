@@ -8,6 +8,8 @@ CreateGameWindow::CreateGameWindow(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &CreateGameWindow::handleThemeChanged);
 }
 
 CreateGameWindow::~CreateGameWindow()
@@ -71,4 +73,8 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 		}
 	}
 		
+}
+
+void CreateGameWindow::handleThemeChanged(const QString& styleSheet) {
+	this->setStyleSheet(styleSheet);
 }

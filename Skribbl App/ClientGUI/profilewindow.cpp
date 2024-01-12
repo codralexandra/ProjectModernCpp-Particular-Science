@@ -7,6 +7,8 @@ profileWindow::profileWindow(QWidget* parent)
 	QScrollArea* scrollArea = new QScrollArea;
 	scrollArea->setWidgetResizable(true);
 	scrollArea->setWidget(ui.historyList);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &profileWindow::handleThemeChanged);
 }
 
 profileWindow::~profileWindow()
@@ -52,4 +54,9 @@ void profileWindow::on_refreshHistoryButton_clicked()
 	}
 
 	update();
+}
+
+void profileWindow::handleThemeChanged(const QString& styleSheet)
+{
+	this->setStyleSheet(styleSheet);
 }

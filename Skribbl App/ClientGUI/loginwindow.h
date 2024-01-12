@@ -10,6 +10,7 @@
 #include <numeric>
 #include <sstream>
 #include <string>
+#include "thememanager.h"
 
 class LoginWindow : public QWidget
 {
@@ -21,10 +22,13 @@ public:
 public slots:
 	void onLoginButtonClicked();
 	void on_backButton_clicked();
+private slots:
+	void handleThemeChanged(const QString& styleSheet);
 
 private:
 	Ui::LoginWindowClass ui;
 	bool validateUserPassword(const std::string& m_password);
 	bool validateUsername(const std::string& m_username);
 	MainWindow* mainWindow;
+	ThemeManager* themeManager;
 };

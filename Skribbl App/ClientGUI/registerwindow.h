@@ -9,6 +9,8 @@
 #include <numeric>
 #include <sstream>
 #include <string>
+#include "thememanager.h";
+
 class RegisterWindow : public QWidget
 {
 	Q_OBJECT
@@ -19,10 +21,12 @@ public:
 	private slots:
 		void onRegisterButtonClicked();
 		void on_backButton_clicked();
+		void handleThemeChanged(const QString& styleSheet);
 
 private:
 	Ui::RegisterWindowClass ui;
 	bool validateUserPassword(const std::string& m_password);
 	bool validateUserEmail(const std::string& m_email);
 	bool validateUsername(const std::string& m_username);
+	ThemeManager* themeManager;
 };

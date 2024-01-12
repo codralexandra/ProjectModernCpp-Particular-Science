@@ -8,6 +8,8 @@ StartWindow::StartWindow(QWidget* parent)
 	ui.setupUi(this);
 	enableDrawing = ui.drawingView;
 	connect(ui.guessButton, &QPushButton::clicked, this, &StartWindow::on_guessButton_clicked);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &StartWindow::handleThemeChanged);
 }
 
 StartWindow::~StartWindow()
@@ -163,4 +165,8 @@ void StartWindow::updatePlayerRole()
 	QString qword = QString::fromUtf8(word.c_str());
 	ui.textEdit->setText(qword);*/
 	update();
+}
+
+void StartWindow::handleThemeChanged(const QString& styleSheet) {
+	this->setStyleSheet(styleSheet);
 }

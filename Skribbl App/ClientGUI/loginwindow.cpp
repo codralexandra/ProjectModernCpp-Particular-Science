@@ -10,6 +10,8 @@ LoginWindow::LoginWindow(QWidget *parent)
 	ui.passwordInput->setEchoMode(QLineEdit::Password);
 	connect(ui.backButton, &QPushButton::clicked, this, &LoginWindow::on_backButton_clicked);
 	connect(ui.loginButton, &QPushButton::clicked, this, &LoginWindow::onLoginButtonClicked);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &LoginWindow::handleThemeChanged);
 }
 
 LoginWindow::~LoginWindow()
@@ -86,4 +88,9 @@ void LoginWindow::onLoginButtonClicked()
 void LoginWindow::on_backButton_clicked()
 {
 	this->close();
+}
+
+void LoginWindow::handleThemeChanged(const QString& styleSheet)
+{
+	this->setStyleSheet(styleSheet);
 }

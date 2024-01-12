@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "ui_creategamewindow.h"
 #include "lobby.h";
+#include "thememanager.h"
 
 class CreateGameWindow : public QWidget
 {
@@ -16,9 +17,11 @@ public:
 
 private slots:
 	void on_createLobbyButton_clicked();
+	void handleThemeChanged(const QString& styleSheet);
 
 private:
 	Ui::CreateGameWindowClass ui;
 	Lobby* lobby;
 	std::string m_username;
+	ThemeManager* themeManager;
 };

@@ -14,6 +14,8 @@ Lobby::Lobby(QWidget* parent)
 	m_state = LobbyState::Waiting;
 	ui.setupUi(this);
 	connect(ui.startGameButton, &QPushButton::clicked, this, &Lobby::on_startGameButton_clicked);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &Lobby::handleThemeChanged);
 }
 
 Lobby::~Lobby()
@@ -29,6 +31,11 @@ std::string Lobby::GetUsername() const
 {
 	return m_username;
 }
+void Lobby::handleThemeChanged(const QString& styleSheet)
+{
+	this->setStyleSheet(styleSheet);
+}
+
 //Will be needed
 //void Lobby::on_RefreshButton_clicked()
 //{

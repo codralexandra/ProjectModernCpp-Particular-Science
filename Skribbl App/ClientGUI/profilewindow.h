@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <cpr/cpr.h>
 #include <crow.h>
+#include "thememanager.h";
 
 class profileWindow : public QWidget
 {
@@ -18,8 +19,12 @@ public:
 public slots:
 	void on_refreshHistoryButton_clicked();
 
+private slots:
+	void handleThemeChanged(const QString& styleSheet);
+
 private:
 	Ui::profileWindowClass ui;
 	std::string m_username;
 	float m_averageScore;
+	ThemeManager* themeManager;
 };

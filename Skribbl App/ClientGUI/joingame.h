@@ -4,6 +4,7 @@
 #include "ui_joingame.h"
 #include <string>
 #include "lobby.h"
+#include "thememanager.h"
 
 class JoinGame : public QWidget
 {
@@ -17,8 +18,10 @@ public:
 
 private slots:
 	void on_joinGameButton_clicked();
+	void handleThemeChanged(const QString& styleSheet);
 
 private:
 	Ui::JoinGameClass ui;
 	std::string m_username;
+	ThemeManager* themeManager;
 };

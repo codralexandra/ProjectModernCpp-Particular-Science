@@ -10,6 +10,8 @@ RegisterWindow::RegisterWindow(QWidget* parent)
 	ui.passwordInput->setEchoMode(QLineEdit::Password);
 	connect(ui.registerButton, &QPushButton::clicked, this, &RegisterWindow::onRegisterButtonClicked);
 	connect(ui.backButton, &QPushButton::clicked, this, &RegisterWindow::on_backButton_clicked);
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &RegisterWindow::handleThemeChanged);
 }
 
 RegisterWindow::~RegisterWindow()
@@ -96,4 +98,9 @@ void RegisterWindow::onRegisterButtonClicked()
 			//open the main window
 		}
 	}
+}
+
+void RegisterWindow::handleThemeChanged(const QString& styleSheet)
+{
+	this->setStyleSheet(styleSheet);
 }

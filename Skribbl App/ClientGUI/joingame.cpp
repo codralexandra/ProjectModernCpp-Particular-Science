@@ -7,6 +7,8 @@ JoinGame::JoinGame(QWidget* parent)
 {
 	ui.setupUi(this);
 	//connect(ui.joinGameButton,)
+	themeManager = &ThemeManager::instance();
+	connect(themeManager, &ThemeManager::themeChanged, this, &JoinGame::handleThemeChanged);
 }
 
 JoinGame::~JoinGame()
@@ -20,6 +22,11 @@ void JoinGame::SetUsername(const std::string& name)
 std::string JoinGame::GetUsername() const
 {
 	return m_username;
+}
+
+void JoinGame::handleThemeChanged(const QString& styleSheet)
+{
+	this->setStyleSheet(styleSheet);
 }
 
 void JoinGame::on_joinGameButton_clicked()
