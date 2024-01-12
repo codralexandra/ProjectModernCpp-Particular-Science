@@ -68,27 +68,22 @@ void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Playe
 {
 	std::cout << "Score Drawing apelata\n";
 
-	auto it = players_guessing.find(p.GetUsername());
-	if (it != players_guessing.end()) {
-		
-		it->second.SetScore(0);
-	}
-
+	
 	auto firstIt = players_guessing.begin();
 	auto lastIt = players_guessing.end();
 
-	auto totalScore = std::accumulate(firstIt, lastIt, 0,
+	auto totalTime = std::accumulate(firstIt, lastIt, 0,
 		[](int sum, const std::pair<const std::string, Player>& playerPair) {
 			const Player& player = playerPair.second;
-			return (!player.GetIsDrawer()) ? sum + player.GetPersonalScore() : sum;
+			return (!player.GetIsDrawer()) ? sum + player.GetTimeGuessed() : sum;
 		}
 	);
 	
-	if (totalScore == 60 * (players_guessing.size()-1))
+	if (totalTime %60==0)
 		p.SetScore(p.GetPersonalScore() - 100);
 	else
 	{
-		p.SetScore(p.GetPersonalScore() + (60 - (totalScore / players_guessing.size())) * 100 / 60);
+		p.SetScore(p.GetPersonalScore() + (60 - ((totalTime-p.GetTimeGuessed()) / (players_guessing.size()-1))) * 100 / 60);
 
 	}
 }
