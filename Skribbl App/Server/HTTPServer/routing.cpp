@@ -171,7 +171,6 @@ void Routing::Run(Storage& storage)
 		jsonResponse["players"] = playerNames;
 		return jsonResponse.dump();
 			});
-	//
 
 	CROW_ROUTE(m_app, "/profile/addGameToGameHistory")
 		.methods("PUT"_method)
@@ -187,31 +186,31 @@ void Routing::Run(Storage& storage)
 		return crow::response(200, "Game added to game history");
 
 			});
-	
+
 
 	CROW_ROUTE(m_app, "/profile")
 		.methods("PUT"_method)
-		([this,&storage](const crow::request& req) {
-		crow::json::rvalue jsonResponse=crow::json::load(req.body);
+		([this, &storage](const crow::request& req) {
+		crow::json::rvalue jsonResponse = crow::json::load(req.body);
 		std::string username = jsonResponse["username"].s();
 		std::vector<int> gameHistory;
 		crow::json::wvalue jsonResponse2;
 
 
 		//inner join
-		
-		auto results = storage.select(( &UserDB::GetUsername, &Statistic::GetScore ),
+
+		auto results = storage.select((&UserDB::GetUsername, &Statistic::GetScore),
 			sqlite_orm::inner_join<User>(sqlite_orm::on(sqlite_orm::is_equal(&UserDB::GetUsername, &Statistic::GetUsername))));
 
 
 		//result
 		for (const auto& result : results) {
-			
+
 			gameHistory.emplace_back(result);
 		}
 
 		jsonResponse2["gameHistory"] = gameHistory;
-		return crow::response(200,jsonResponse2);
+		return crow::response(200, jsonResponse2);
 			});
 
 
@@ -235,7 +234,7 @@ void Routing::Run(Storage& storage)
 	CROW_ROUTE(m_app, "/lobby/waiting")
 		.methods("GET"_method)
 		([this]() {
-		
+
 		if (m_gameExists)
 		{
 			if (m_game.GetLobbyState() == LobbyState::Starting)
@@ -251,7 +250,7 @@ void Routing::Run(Storage& storage)
 		{
 			return crow::response(404, "Game not found");
 		}
-		
+
 
 
 			});
@@ -283,7 +282,7 @@ void Routing::Run(Storage& storage)
 
 	CROW_ROUTE(m_app, "/game/startround")
 		.methods("PUT"_method)
-		([this](const crow::request& req) 
+		([this](const crow::request& req)
 			{
 
 				crow::json::rvalue jsonData = crow::json::load(req.body);
@@ -377,6 +376,22 @@ void Routing::Run(Storage& storage)
 				{
 					return crow::response(404, "Game not found");
 				}
+			});
+
+	CROW_ROUTE(m_app, "/game/pixel")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData)
+				{
+					return crow::response(400, "Invalid JSON format");
+				}
+				m_pixel.first = jsonData["x"].d();
+				m_pixel.second = jsonData["y"].d();
+				m_penWidth = jsonData["penWidth"].d();
+				m_penColor = jsonData["penColor"].s();
+				return crow::response(200, "Pixel transmitted!");
 			});
 
 	m_app.port(18080).multithreaded().run();

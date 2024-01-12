@@ -79,7 +79,7 @@ void drawingWidget::continueDrawing(const QPointF& pos)
         currentLinePath.lineTo(pos);
         currentLine->setPath(currentLinePath);
 
-        //sendPixelToServer(pos);
+        sendPixelToServer(pos);
         //daca se poate returna currentLinePath - sa se transmita pe sv
         //daca nu, se creeaza un vector de puncte/linii
         //ruta pt preluare in paint event - pt cei care ghicesc
@@ -99,24 +99,24 @@ void drawingWidget::finishDrawing()
     }
 }
 
-//void drawingWidget::sendPixelToServer(const QPointF& pos)
-//{
-//    if (this->enable == true)
-//    {
-//        crow::json::wvalue jsonPayload;
-//        jsonPayload["penColor"] = penColor.name().toStdString();
-//        jsonPayload["penWidth"] = penWidth;
-//        jsonPayload["x"] = pos.x();
-//        jsonPayload["y"] = pos.y();
-//        std::string jsonString = jsonPayload.dump();
-//
-//        auto response = cpr::Put(
-//            cpr::Url{ "http://localhost:18080/game/sendpixel" },
-//            cpr::Body{ jsonString },
-//            cpr::Header{ { "Content-Type", "application/json" } }
-//        );
-//    }
-//}
+void drawingWidget::sendPixelToServer(const QPointF& pos)
+{
+    if (this->enable == true)
+    {
+        crow::json::wvalue jsonPayload;
+        jsonPayload["penColor"] = penColor.name().toUtf8();
+        jsonPayload["penWidth"] = penWidth;
+        jsonPayload["x"] = static_cast<double>(pos.x());
+        jsonPayload["y"] = static_cast<double>(pos.y());
+        std::string jsonString = jsonPayload.dump();
+
+        auto response = cpr::Put(
+            cpr::Url{ "http://localhost:18080/game/pixel" },
+            cpr::Body{ jsonString },
+            cpr::Header{ { "Content-Type", "application/json" } }
+        );
+    }
+}
 
 //void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload)
 //{
