@@ -321,7 +321,7 @@ void Routing::Run(Storage& storage)
 				{
 					if (tryGuess == m_wordDrawer)
 					{
-						m_game.getRoundRef().getSubRoundRef().SetGuessed(true);
+						m_game.GetRoundRef().GetSubRoundRef().SetGuessed(true);
 						m_game.SetPlayerHasGuessed(username, true);
 						return crow::response(200, "Guessed");
 					}
@@ -500,7 +500,7 @@ void http::Routing::PopulateVectorWords(Storage& storage)
 		Difficulty dif = m_game.GetDifficulty();
 		std::random_device RD;
 		std::mt19937 engine(RD());
-		int numberOfElements;
+		
 		std::uniform_int_distribution<> distr;
 		if (dif == Difficulty::Easy)
 		{

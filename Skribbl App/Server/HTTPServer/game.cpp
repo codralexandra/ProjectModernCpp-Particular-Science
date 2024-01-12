@@ -75,7 +75,7 @@ void Game::SetPlayerHasGuessed(const std::string& username,bool hasGuessed)
 {
 	m_players[username].SetHasGuessed(hasGuessed);
 }
-Round& Game::getRoundRef()
+Round& Game::GetRoundRef()
 {
 	return *m_round;
 }
@@ -206,7 +206,7 @@ void Game::UpdatePersonalBest()
 }
 
 
-LobbyState Game::GetLobbyState()
+LobbyState Game::GetLobbyState() const
 {
 	return m_lobbyState;
 }

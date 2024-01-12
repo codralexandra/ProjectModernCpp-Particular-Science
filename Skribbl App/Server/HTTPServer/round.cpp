@@ -12,7 +12,7 @@ Round::Round()
 	
 }
 
-SubRound& Round::getSubRoundRef()
+SubRound& Round::GetSubRoundRef()
 {
 	return *m_subRound;
 }

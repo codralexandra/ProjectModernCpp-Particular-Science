@@ -38,8 +38,8 @@
 		std::vector<Word> GetWords() const;
 		uint16_t GetGameID() const;
 		Difficulty GetDifficulty() const;
-		LobbyState GetLobbyState();
-		Round& getRoundRef();
+		LobbyState GetLobbyState() const;
+		Round& GetRoundRef();
 
 		auto GetHighestScorer();
 		void AddPlayer(const Player& p);
