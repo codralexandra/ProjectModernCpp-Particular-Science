@@ -47,6 +47,12 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } }
 		);
+
+		for (auto& player : p)
+		{
+			player.second.SetHasGuessed(false);
+			player.second.SetTimeGuessed(60);
+		}
 		m_subRound->StartSubRound(it.second,word[random]);
 		
 		word.erase(word.begin() + random, word.begin() + random + 1);

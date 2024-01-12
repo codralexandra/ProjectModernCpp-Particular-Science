@@ -20,7 +20,7 @@ import user;
 
 		//setter
 		void SetIsDrawer(bool isDrawing);
-		//void SetIsDrawer(bool&& isDrawing);
+		void SetTimeGuessed(uint16_t time);
 		void SetHasGuessed(bool hasGuessed);
 		void SetScore(const uint16_t& newscore);
 

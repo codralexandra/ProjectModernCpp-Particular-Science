@@ -70,7 +70,10 @@ uint16_t Player::GetPersonalScore() const
     return m_personalScore;
 }
 
-
+void Player::SetTimeGuessed(uint16_t time)
+{
+    m_timeGuessed = time;
+}
 
 bool Player::GetHasGuessed() const
 {
