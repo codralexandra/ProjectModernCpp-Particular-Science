@@ -19,10 +19,18 @@ public:
 	void connectionToRoute();
 	void WordToBeGuessed();
 	void recievePixelFromServer();
-	void updatePlayerRole();
+	//void updatePlayerRole();
 	void on_guessButton_clicked();
 	void waitInLobby();
 	void updateStartWindow();
+	void onUpdateTextEdit(const QString& text);
+	void onUpdateRole(bool isDrawing);
+	void onUpdateGuess();
+
+signals:
+	void updateTextEdit(const QString& text);
+	void updateRole(bool isDrawing);
+	void updateGuess();
 
 private slots:
 	void handleThemeChanged(const QString& styleSheet);

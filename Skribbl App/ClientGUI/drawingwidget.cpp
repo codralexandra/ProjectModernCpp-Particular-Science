@@ -45,6 +45,11 @@ void drawingWidget::setPenWidth(int width)
     penWidth = width;
 }
 
+void drawingWidget::clearWidget()
+{
+    //clear();
+}
+
 const bool drawingWidget::getEnable() const
 {
     return this->enable;
