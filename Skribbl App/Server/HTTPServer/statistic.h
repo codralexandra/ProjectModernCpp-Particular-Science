@@ -18,14 +18,17 @@ namespace Scribble
 		//setter
 		void SetUsername(const std::string& username);
 		void SetScore(uint16_t& score);
+		void SetId(uint16_t id);
 
 		//getter
 		std::string GetUsername() const;
 		uint16_t GetScore()const;
+		uint16_t GetId()const;
 
 	private:
 		std::string m_username;
 		uint16_t m_score;
+		uint16_t m_id;
 
 
 	};
