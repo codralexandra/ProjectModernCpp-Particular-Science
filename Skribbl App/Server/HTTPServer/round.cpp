@@ -56,7 +56,7 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		for (auto& player : p)
 		{
 			player.second.SetHasGuessed(false);
-			player.second.SetTimeGuessed(60);
+			player.second.SetTimeGuessed(60.0);
 		}
 		m_subRound->StartSubRound(it.second,word[random]);
 		
@@ -83,18 +83,18 @@ void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Playe
 	auto firstIt = players_guessing.begin();
 	auto lastIt = players_guessing.end();
 
-	auto totalTime = std::accumulate(firstIt, lastIt, 0,
-		[](int sum, const std::pair<const std::string, Player>& playerPair) {
+	auto totalTime = std::accumulate(firstIt, lastIt, 0.0,
+		[](double sum, const std::pair<const std::string, Player>& playerPair) {
 			const Player& player = playerPair.second;
 			return (!player.GetIsDrawer()) ? sum + player.GetTimeGuessed() : sum;
 		}
 	);
 	
-	if (totalTime %60==0)
+	if (totalTime==(60.0*(players_guessing.size()-1)))
 		p.SetScore(p.GetPersonalScore() - 100);
 	else
 	{
-		p.SetScore(p.GetPersonalScore() + (60 - ((totalTime-p.GetTimeGuessed()) / (players_guessing.size()-1))) * 100 / 60);
+		p.SetScore(p.GetPersonalScore() + (60 - (totalTime / (players_guessing.size()-1))) * 100 / 60);
 
 	}
 }

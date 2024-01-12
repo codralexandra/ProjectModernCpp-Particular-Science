@@ -13,22 +13,22 @@ import user;
 		Player(bool& isDrawing);
 		Player(const Player& player);
 		//Player(Player&& other);
-		Player(bool& hasGuessed, uint16_t& timeGuessed,
+		Player(bool& hasGuessed, double& timeGuessed,
 			bool& isDrawer, uint16_t& personalScore, const std::string& email, const std::string& password,
 			uint16_t& personalBest);
 		~Player() = default;
 
 		//setter
 		void SetIsDrawer(bool isDrawing);
-		void SetTimeGuessed(uint16_t time);
+		void SetTimeGuessed(double time);
 		void SetHasGuessed(bool hasGuessed);
-		void SetScore(const uint16_t& newscore);
+		void SetScore(const double& newscore);
 
 		//getter
 		bool GetIsDrawer() const;
-		uint16_t GetPersonalScore() const;
+		double GetPersonalScore() const;
 		bool GetHasGuessed() const;
-		uint16_t GetTimeGuessed() const;
+		double GetTimeGuessed() const;
 		
 		//operators
 		Player& operator = (const Player& player);
@@ -39,9 +39,9 @@ import user;
 
 	private:
 		bool m_hasGuessed; //pt calculare scor
-		uint16_t m_timeGuessed; //pt calculare scor
+		double m_timeGuessed; //pt calculare scor
 		bool m_isDrawer; // rol
-		uint16_t m_personalScore; //ca sa tinem minte scorul
+		double m_personalScore; //ca sa tinem minte scorul
 
 	};
  // std::ostream& operator<<(std::ostream& os, Player& player);

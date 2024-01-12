@@ -94,6 +94,7 @@ void SubRound::StartSubRound(Player& p,Word& word)
 	{
 		if (m_guessed == true && m_timeGuessed == 60)
 		{
+			std::cout << "Time saved\n";
 			m_timeGuessed = m_timer.elapsedSeconds();
 			std::cout << "\nTime saved!\n";
 			std::cout << "\n" << m_timeGuessed << "\n";
@@ -115,8 +116,10 @@ void SubRound::StartSubRound(Player& p,Word& word)
 	}
 
 	m_timer.stop();
+
 	p.SetTimeGuessed(m_timeGuessed);
 	std::cout << "\n" << p.GetTimeGuessed() << "\n";
+
 
 }
 
