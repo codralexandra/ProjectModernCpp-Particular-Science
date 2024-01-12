@@ -64,9 +64,15 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 	//end round
 }
 
-void Round::Score_Player_Drawing(Player& p,const std::unordered_map<std::string,Player>&players_guessing)
+void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Player>&players_guessing)
 {
 	std::cout << "Score Drawing apelata\n";
+
+	auto it = players_guessing.find(p.GetUsername());
+	if (it != players_guessing.end()) {
+		
+		it->second.SetScore(0);
+	}
 
 	auto firstIt = players_guessing.begin();
 	auto lastIt = players_guessing.end();
@@ -78,7 +84,7 @@ void Round::Score_Player_Drawing(Player& p,const std::unordered_map<std::string,
 		}
 	);
 	
-	if (totalScore == 60 * players_guessing.size())
+	if (totalScore == 60 * (players_guessing.size()-1))
 		p.SetScore(p.GetPersonalScore() - 100);
 	else
 	{
