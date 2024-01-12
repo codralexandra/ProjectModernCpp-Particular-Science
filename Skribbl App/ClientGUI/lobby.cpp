@@ -16,6 +16,7 @@ Lobby::Lobby(QWidget* parent)
 	connect(ui.startGameButton, &QPushButton::clicked, this, &Lobby::on_startGameButton_clicked);
 	themeManager = &ThemeManager::instance();
 	connect(themeManager, &ThemeManager::themeChanged, this, &Lobby::handleThemeChanged);
+	this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 Lobby::~Lobby()

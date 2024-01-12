@@ -34,6 +34,14 @@ signals:
 
 private slots:
 	void handleThemeChanged(const QString& styleSheet);
+	void on_blackButton_clicked();
+	void on_redButton_clicked();
+	void on_blueButton_clicked();
+	void on_greenButton_clicked();
+	void on_yellowButton_clicked();
+	void on_pinkButton_clicked();
+	void on_purpleButton_clicked();
+	void on_brownButton_clicked();
 
 private:
 	Ui::StartWindowClass ui;

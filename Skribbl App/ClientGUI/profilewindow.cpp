@@ -4,9 +4,6 @@ profileWindow::profileWindow(QWidget* parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	QScrollArea* scrollArea = new QScrollArea;
-	scrollArea->setWidgetResizable(true);
-	scrollArea->setWidget(ui.historyList);
 	themeManager = &ThemeManager::instance();
 	connect(themeManager, &ThemeManager::themeChanged, this, &profileWindow::handleThemeChanged);
 }
@@ -19,10 +16,10 @@ void profileWindow::setUsername(std::string username)
 	m_username = username;
 }
 
-void profileWindow::on_refreshHistoryButton_clicked()
+void profileWindow::on_refreshHistoryButton_clicked()//remake for new widgets
 {
 	//delete previous history
-	ui.historyList->clear();
+	//ui.historyList->clear();
 
 	//send username to server
 	crow::json::wvalue jsonPayload;

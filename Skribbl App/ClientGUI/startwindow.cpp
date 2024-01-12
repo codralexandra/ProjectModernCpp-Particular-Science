@@ -1,5 +1,6 @@
 #include "startwindow.h"
 #include<thread>;
+#include <qcolor.h>
 
 StartWindow::StartWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -23,7 +24,7 @@ void StartWindow::on_guessButton_clicked()
 {
 	crow::json::wvalue jsonPayload;
 	jsonPayload["username"] = m_username;
-	std::string word { ui.wordInput->text().toUtf8() };
+	std::string word{ ui.wordInput->text().toUtf8() };
 	for (char& c : word) {
 		c = std::tolower(c);
 	}
@@ -45,7 +46,7 @@ void StartWindow::on_guessButton_clicked()
 	{
 		ui.wrongResponseLabel->setText("The word is wrong!");
 	}
-	else if(response.status_code==203)
+	else if (response.status_code == 203)
 	{
 		ui.wrongResponseLabel->setText("The word is already guessed!");
 	}
@@ -188,6 +189,46 @@ void StartWindow::onUpdateGuess() {
 	update();
 }
 
+void StartWindow::on_blackButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(0, 0, 0));
+}
+
+void StartWindow::on_redButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(255, 0, 0));
+}
+
+void StartWindow::on_blueButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(52, 152, 219));
+}
+
+void StartWindow::on_greenButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(0, 128, 0));
+}
+
+void StartWindow::on_yellowButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(255, 255, 0));
+}
+
+void StartWindow::on_pinkButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(255, 192, 203));
+}
+
+void StartWindow::on_purpleButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(128, 0, 128));
+}
+
+void StartWindow::on_brownButton_clicked()
+{
+	enableDrawing->setPenColor(QColor(150, 75, 0));
+}
+
 void StartWindow::onUpdateRole(bool isDrawing) {
 	if (!isDrawing)
 	{
@@ -195,6 +236,16 @@ void StartWindow::onUpdateRole(bool isDrawing) {
 		ui.drawingView->setEnabled(false);
 		enableDrawing->setEnable(false);
 		ui.notDrawingWidget->setVisible(true);
+		ui.blackButton->setVisible(false);
+		ui.redButton->setVisible(false);
+		ui.blueButton->setVisible(false);
+		ui.greenButton->setVisible(false);
+		ui.yellowButton->setVisible(false);
+		ui.pinkButton->setVisible(false);
+		ui.purpleButton->setVisible(false);
+		ui.brownButton->setVisible(false);
+		ui.widthSlider->setVisible(false);
+		enableDrawing->clearWidget();
 	}
 	else
 	{
@@ -202,6 +253,16 @@ void StartWindow::onUpdateRole(bool isDrawing) {
 		ui.notDrawingWidget->setEnabled(false);
 		ui.notDrawingWidget->setVisible(false);
 		enableDrawing->setEnable(true);
+		ui.blackButton->setVisible(true);
+		ui.redButton->setVisible(true);
+		ui.blueButton->setVisible(true);
+		ui.greenButton->setVisible(true);
+		ui.yellowButton->setVisible(true);
+		ui.pinkButton->setVisible(true);
+		ui.purpleButton->setVisible(true);
+		ui.brownButton->setVisible(true);
+		ui.widthSlider->setVisible(true);
+		ui.drawingView->clearWidget();
 	}
 
 }
