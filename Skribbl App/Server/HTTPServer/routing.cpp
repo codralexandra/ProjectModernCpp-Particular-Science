@@ -321,8 +321,8 @@ void Routing::Run(Storage& storage)
 				{
 					if (tryGuess == m_wordDrawer)
 					{
-						uint16_t m_time = 0;
-						m_game.SetPlayerHasGuessed(username, true, m_time);
+						m_game.getRoundRef().getSubRoundRef().SetGuessed(true);
+						m_game.SetPlayerHasGuessed(username, true);
 						return crow::response(200, "Guessed");
 					}
 				}

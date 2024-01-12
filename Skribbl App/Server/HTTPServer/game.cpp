@@ -71,10 +71,13 @@ void Game::SetLobbyState(const LobbyState& lobbystate)
 	m_lobbyState = lobbystate;
 }
 
-void Game::SetPlayerHasGuessed(const std::string& username,bool hasGuessed, const uint16_t& time)
+void Game::SetPlayerHasGuessed(const std::string& username,bool hasGuessed)
 {
 	m_players[username].SetHasGuessed(hasGuessed);
-	//m_players[username].SetTimeGuessed(time);
+}
+Round& Game::getRoundRef()
+{
+	return *m_round;
 }
 
 Game& Game::operator=(const Game& other)

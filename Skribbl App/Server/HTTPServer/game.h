@@ -27,7 +27,7 @@
 		void SetGameID(const uint16_t& id);
 		void SetDifficulty(const Difficulty& difficulty);
 		void SetLobbyState(const LobbyState& lobbystate);
-		void SetPlayerHasGuessed(const std::string& username, bool hasGuessed, const uint16_t& time);
+		void SetPlayerHasGuessed(const std::string& username, bool hasGuessed);
 
 		//operators
 		Game& operator=(const Game& other);
@@ -39,7 +39,7 @@
 		uint16_t GetGameID() const;
 		Difficulty GetDifficulty() const;
 		LobbyState GetLobbyState();
-
+		Round& getRoundRef();
 
 		auto GetHighestScorer();
 		void AddPlayer(const Player& p);

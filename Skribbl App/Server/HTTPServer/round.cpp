@@ -12,6 +12,11 @@ Round::Round()
 	
 }
 
+SubRound& Round::getSubRoundRef()
+{
+	return *m_subRound;
+}
+
 void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< Word>& word, crow::SimpleApp& m_app)
 {
 	//check the random part!!!
