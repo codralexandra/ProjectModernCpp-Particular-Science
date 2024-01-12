@@ -199,8 +199,8 @@ void Routing::Run(Storage& storage)
 
 		//inner join
 
-		auto results = storage.select((&UserDB::GetUsername, &Statistic::GetScore),
-			sqlite_orm::inner_join<User>(sqlite_orm::on(sqlite_orm::is_equal(&UserDB::GetUsername, &Statistic::GetUsername))));
+		auto results = storage.select((&Statistic::GetUsername, &Statistic::GetScore),
+			sqlite_orm::where(sqlite_orm::is_equal(username, &Statistic::GetUsername)));
 
 
 		//result

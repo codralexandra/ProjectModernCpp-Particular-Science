@@ -40,16 +40,25 @@ void profileWindow::on_refreshHistoryButton_clicked()
 	{
 		crow::json::rvalue jsonResponse = crow::json::load(response.text);
 		std::vector<int> history =
-			std::vector<int>{ jsonResponse["history"].begin(),jsonResponse["history"].end() };
-		for (const auto& pair : history) {
-			QString itemText = QString("Score: %1").arg(pair);
-			ui.historyList->addItem(itemText);
+			std::vector<int>{ jsonResponse["gameHistory"].begin(),jsonResponse["gameHistory"].end() };
+		
+		QString itemText;
+		for (const auto& pair : history)
+		{
+			itemText += QString("Score: ");
+			itemText += QString::number(pair);
+			itemText += '\n';
+			
 		}
+
+
+		ui.history->setText(itemText);
 
 		m_averageScore = std::accumulate(history.begin(), history.end(), 0.0) / history.size();
 
 		QString labelValue = QString::number(m_averageScore, 'f', 2); 
-		ui.averageScore->setText(labelValue);
+		
+		ui.average->setText(labelValue);
 
 	}
 
