@@ -377,7 +377,6 @@ void Routing::Run(Storage& storage)
 					responseJson["y"] = m_y;
 					responseJson["penWidth"] = m_penWidth;
 					responseJson["color"] = m_color;
-
 				}
 
 				//for (const auto& pair : m_game.GetPlayers()) {

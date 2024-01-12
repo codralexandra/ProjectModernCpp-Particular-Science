@@ -184,7 +184,7 @@ void StartWindow::onUpdateTextEdit(const QString& text) {
 }
 void StartWindow::onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth) {
 	enableDrawing->receivePixelFromServer(x,y,penColor, penWidth);
-}
+} 
 
 void StartWindow::onUpdateGuess() {
 	ui.rightResponseLabel->setText("You guessed the word!");
@@ -270,6 +270,9 @@ void StartWindow::onUpdateRole(bool isDrawing) {
 	}
 
 }
+
+
+
 void StartWindow::waitInLobby() {
 	cpr::Response response;
 	do {
