@@ -44,7 +44,7 @@ public:
 	void setEnable(const bool& isDrawing);
 	void setPenColor(QColor color);
 	void setPenWidth(int width);
-	void clearWidget();
+	//void clearWidget();
 
 	const bool getEnable() const;
 

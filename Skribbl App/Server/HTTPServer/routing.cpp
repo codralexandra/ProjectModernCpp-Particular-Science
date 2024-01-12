@@ -399,24 +399,38 @@ void Routing::Run(Storage& storage)
 		.methods("PUT"_method)
 		([this](const crow::request req)
 			{
-				DrawingPoint drawingPoint;
-				if (req.body.size() >= sizeof(int) + sizeof(float) * 2 + sizeof(char))
-				{
-					std::memcpy(&drawingPoint.penWidth, req.body.data(), sizeof(int));
-					std::memcpy(&drawingPoint.x, req.body.data() + sizeof(int), sizeof(double));
-					std::memcpy(&drawingPoint.y, req.body.data() + sizeof(int) + sizeof(double), sizeof(double));
-
-					// Extract color (up to 256 characters)
-					char colorBuffer[256];
-					std::memcpy(colorBuffer, req.body.data() + sizeof(int) + sizeof(double) * 2, sizeof(char) * 256);
-					drawingPoint.color.assign(colorBuffer, strnlen(colorBuffer, 256));
-
-					return crow::response(200);
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
 				}
-				else
-				{
-					return crow::response(400,"Invalid Binary Data");
-				}
+				std::string color = jsonData["color"].s();
+				int penWidth = jsonData["penWidth"].i();
+				int x = jsonData["x"].i();
+				int y = jsonData["y"].i();
+				return crow::response(200, "Pixel recived");
+				std::cout << "\n" << x << " " << y << " " << penWidth << " " << color << "\n";
+				//DrawingPoint drawingPoint;
+				//if (req.body.size() >= sizeof(int) + sizeof(float) * 2 + sizeof(char))
+				//{
+				//	std::memcpy(&drawingPoint.penWidth, req.body.data(), sizeof(int));
+				//	std::memcpy(&drawingPoint.x, req.body.data() + sizeof(int), sizeof(double));
+				//	std::memcpy(&drawingPoint.y, req.body.data() + sizeof(int) + sizeof(double), sizeof(double));
+
+
+				//	// Extract color (up to 256 characters)
+				//	char colorBuffer[256];
+				//	std::memcpy(colorBuffer, req.body.data() + sizeof(int) + sizeof(double) * 2, sizeof(char) * 256);
+				//	drawingPoint.color.assign(colorBuffer, strnlen(colorBuffer, 256));
+
+				//	std::cout << "\n" << drawingPoint.color << " " << drawingPoint.penWidth << " " << drawingPoint.color << " " << drawingPoint.x << " " << drawingPoint.x << "\n";
+
+				//	return crow::response(200);
+				//}
+				//else
+				//{
+				//	return crow::response(400,"Invalid Binary Data");
+				//}
+				
 			});
 
 	m_app.port(18080).multithreaded().run();

@@ -245,7 +245,7 @@ void StartWindow::onUpdateRole(bool isDrawing) {
 		ui.purpleButton->setVisible(false);
 		ui.brownButton->setVisible(false);
 		ui.widthSlider->setVisible(false);
-		enableDrawing->clearWidget();
+		//enableDrawing->clearWidget();
 	}
 	else
 	{
@@ -262,7 +262,7 @@ void StartWindow::onUpdateRole(bool isDrawing) {
 		ui.purpleButton->setVisible(true);
 		ui.brownButton->setVisible(true);
 		ui.widthSlider->setVisible(true);
-		ui.drawingView->clearWidget();
+		//ui.drawingView->clearWidget();
 	}
 
 }

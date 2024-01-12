@@ -45,10 +45,10 @@ void drawingWidget::setPenWidth(int width)
     penWidth = width;
 }
 
-void drawingWidget::clearWidget()
-{
-    this->clearWidget();
-}
+//void drawingWidget::clearWidget()
+//{
+//    this->clearWidget();
+//}
 
 const bool drawingWidget::getEnable() const
 {
@@ -119,21 +119,27 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
     if (this->enable == true)
     {
 
-        DrawingPoint drawingPoint;
+        /*DrawingPoint drawingPoint;
         drawingPoint.color = penColor.name();
         drawingPoint.penWidth = penWidth;
-        drawingPoint.position = pos;
+        drawingPoint.position = pos;*/
 
         // Serialize to binary data using QByteArray and QDataStream
-        QByteArray binaryData;
+        /*QByteArray binaryData;
         QDataStream stream(&binaryData, QIODevice::WriteOnly);
-        stream << drawingPoint.color << drawingPoint.penWidth << drawingPoint.position;
+        stream << drawingPoint.color << drawingPoint.penWidth << drawingPoint.position;*/
+       /* crow::json::wvalue jsonPayload;
+        jsonPayload["x"] = pos.x();
+        jsonPayload["y"] = pos.y();
+        jsonPayload["penWidth"] = penWidth;
+        jsonPayload["color"] = penColor.name().toStdString();;
+        std::string jsonString = jsonPayload.dump();
 
         auto response = cpr::Put(
             cpr::Url{ "http://localhost:18080/game/pixel" },
-            cpr::Body{ binaryData.data(),size_t(binaryData.size())},
+            cpr::Body{ jsonString},
             cpr::Header{ { "Content-Type", "application/json" } }
-        );
+        );*/
     }
 }
 
