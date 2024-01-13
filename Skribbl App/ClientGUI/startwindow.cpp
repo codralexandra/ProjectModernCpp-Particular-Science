@@ -1,6 +1,7 @@
 #include "startwindow.h"
 #include<thread>;
 #include <qcolor.h>
+#include<chrono>
 
 StartWindow::StartWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -71,72 +72,7 @@ std::string StartWindow::GetUsername() const
 	return m_username;
 }
 
-//void StartWindow::updateStartWindow() {
-//	// This method is now safely executed in the main thread
-//
-//
-//}
 
-//void StartWindow::waitInLobby() {
-//	cpr::Response response;
-//	//do{
-//		crow::json::wvalue jsonPayload;
-//		jsonPayload["username"] = m_username;
-//		std::string jsonString = jsonPayload.dump();
-//		response = cpr::Get(cpr::Url{ "http://localhost:18080/game/package" },
-//			cpr::Body{ jsonString },
-//			cpr::Header{ { "Content-Type", "application/json" } } // Specify JSON content type
-//		);
-//		auto responseBody = crow::json::load(response.text);
-//		if (responseBody.has("isDrawing")) {
-//			isDrawing = responseBody["isDrawing"].b();
-//			updatePlayerRole();
-//		}
-//		if(responseBody.has("word")){
-//			std::string word = responseBody["word"].s();
-//	         QString qword = QString::fromUtf8(word.c_str());
-//			 ui.textEdit->setText(qword);
-//			 update();
-//		}
-//		//add pixel
-//	//} while (response.status_code == 200);
-//
-//	if (response.status_code == 201) {
-//		// Schedule updateGameWindow to be called in the main thread
-//		//QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
-//	}
-//}
-
-//void StartWindow::connectionToRoute()
-//{
-//	//std::thread waitingThread(&StartWindow::waitInLobby, this);
-//	//waitingThread.detach();
-//	waitInLobby();
-//	//if (response.status_code == 200)
-//	//{
-//	//	auto responseBody = crow::json::load(response.text);
-//	//	if (!responseBody)
-//	//	{
-//	//		//error
-//	//	}
-//	//	else
-//	//	{
-//	//		updatePlayerRole(responseBody);
-//	//		//update();
-//	//	}
-//	//}
-//	//else
-//	//{
-//	//	if (!response.text.empty())
-//	//	{
-//	//		//error
-//	//	}
-//	//	else
-//	//	{
-//	//		//error
-//	//	}
-//	//}
-//}
 
 void StartWindow::WordToBeGuessed()
 {
@@ -182,8 +118,8 @@ void StartWindow::onUpdateTextEdit(const QString& text) {
 	ui.textEdit->setText(text);
 	//update();
 }
-void StartWindow::onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth) {
-	enableDrawing->receivePixelFromServer(x,y,penColor, penWidth);
+void StartWindow::onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine) {
+	enableDrawing->receivePixelFromServer(x,y,penColor, penWidth,newLine);
 }
 
 void StartWindow::onUpdateGuess() {
@@ -291,11 +227,34 @@ void StartWindow::waitInLobby() {
 			emit updateTextEdit(qword);
 		}
 		if (responseBody.has("x")) {
-			double x = responseBody["x"].d();
-			double y = responseBody["y"].d();
-			int width = responseBody["penWidth"].i();
-			std::string color = responseBody["color"].s();
-			emit updateDrawing(x, y, QString::fromStdString(color), width);
+			const auto& xValues = responseBody["x"];
+			const auto& yValues = responseBody["y"];
+			const auto& widths = responseBody["penWidth"];
+			const auto& colors = responseBody["color"];
+			const auto& newLines = responseBody["newLine"];
+
+			for (size_t i = 0; i < xValues.size(); ++i) {
+				double x = xValues[i].d();
+				double y = yValues[i].d();
+				int width = widths[i].i();
+				std::string color = colors[i].s();
+				std::string newLineString = newLines[i].s();
+				bool newLine = (newLineString[0] == '1');
+				QString qColor = color.c_str();;
+				// Emit signal for each drawing point
+				emit updateDrawing(x, y, qColor, width, newLine);
+			}
+			
+		}
+		if (isDrawing == true)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(63000));
+			isDrawing = false;
+			emit updateRole(isDrawing);
+		}
+		else
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		}
 		//add pixel
 	} while (response.status_code == 200);
@@ -305,6 +264,20 @@ void StartWindow::waitInLobby() {
 		//QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
 	}
 }
+//void StartWindow::fastRoute()
+//{
+//	std::thread waitingThread(&StartWindow::waitInLobby, this);
+//	//std::thread waitingThread2(&StartWindow::waitInLobby, this);
+//	//std::thread waitingThread3(&StartWindow::waitInLobby, this);
+//	/*for (int i = 4; i >= 0; i++)
+//	{
+//		std::thread waitingThread(&StartWindow::waitInLobby, this);
+//		waitingThread.detach();
+//	}*/
+//	waitingThread.detach();
+//	//waitingThread2.detach();
+//	//waitingThread3.detach();
+//}
 void StartWindow::connectionToRoute()
 {
 	std::thread waitingThread(&StartWindow::waitInLobby, this);

@@ -36,7 +36,6 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		randPosition = dist(gen);
 		int random = randPosition;
 
-		it.second.SetIsDrawer(true);
 		std::cout << "\n Role set \n";
 		std::cout << "Start Game apelata \n";
 
@@ -52,7 +51,7 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 			cpr::Body{ jsonString },
 			cpr::Header{ { "Content-Type", "application/json" } }
 		);
-
+		it.second.SetIsDrawer(true);
 		for (auto& player : p)
 		{
 			player.second.SetHasGuessed(false);

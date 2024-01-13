@@ -26,13 +26,14 @@ public:
 	void onUpdateTextEdit(const QString& text);
 	void onUpdateRole(bool isDrawing);
 	void onUpdateGuess();
-	void onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
+	void onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine);
+	void fastRoute();
 
 signals:
 	void updateTextEdit(const QString& text);
 	void updateRole(bool isDrawing);
 	void updateGuess();
-	void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
+	void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine);
 
 private slots:
 	void handleThemeChanged(const QString& styleSheet);
@@ -51,4 +52,6 @@ private:
 	std::string m_username;
 	drawingWidget* enableDrawing;
 	ThemeManager* themeManager;
+	double m_x;
+	double m_y;
 };

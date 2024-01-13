@@ -13,9 +13,17 @@
 #include <numeric>
 #include <sstream>
 #include <string>
+#include<chrono>
 
 class drawingWidget : public QGraphicsView
 {
+	struct DrawingPoint {
+		QString color;
+		int penWidth;
+		double x;
+		double y;
+		// Add more fields as needed
+	};
 	Q_OBJECT
 
 public:
@@ -61,8 +69,8 @@ protected:
 
 public:
 	void sendPixelToServer(const QPointF& pos);
-	void receivePixelFromServer(double x, double y, const QString& penColor, uint32_t penWidth);
-    void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth);
+	void receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidth,bool newLine1);
+    void updateDrawing(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1);
 
 
 private:
@@ -71,7 +79,9 @@ private:
 	QColor penColor;
 	int penWidth;
 	bool enable;
-
+	bool newLine;
+	bool newLineForDrawing;
+	DrawingPoint lastPixel;
 	//enable= true -> desenator
 	//enable= false -> watcher
 };

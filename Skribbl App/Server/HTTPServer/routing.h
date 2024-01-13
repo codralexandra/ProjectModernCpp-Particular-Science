@@ -5,13 +5,23 @@
 #include "gamedata.h"
 #include "game.h"
 #include <random>
+#include<queue>
 
 import utils;
 
 namespace http
 {
+
 	class Routing
 	{
+		struct DrawingPoint {
+			std::string color;
+			int penWidth;
+			double x;
+			double y;
+			std::string newLine;
+			// Add more fields as needed
+		};
 	public:
 		void Run(Storage& storage);
 
@@ -45,6 +55,7 @@ namespace http
 		int m_x;
 		int m_y;
 		bool m_isPixel;
+		std::queue<DrawingPoint> m_pixelQueue;
 	};
 }
 

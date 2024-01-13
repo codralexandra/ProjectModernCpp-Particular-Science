@@ -1,14 +1,17 @@
 #include "drawingwidget.h"
 #include <qbytearray.h>
 #include<qdatastream.h>
+#include<thread>
+#include <QBrush> 
+#include <QColor>
+#include <QGraphicsEllipseItem>
+
+//drawingWidget::drawingWidget(QWidget* parent)
+//{
+//    connect(this, &drawingWidget::updateDrawingInstant, this, &drawingWidget::onUpdateDrawingInstant);
+//}
 
 
-struct DrawingPoint {
-    QString color;
-    int penWidth;
-    QPointF position;
-    // Add more fields as needed
-};
 
 void drawingWidget::mousePressEvent(QMouseEvent* event)
 {
@@ -91,16 +94,25 @@ void drawingWidget::continueDrawing(const QPointF& pos)
 {
     if (this->enable == true)
     {
-        currentLinePath.lineTo(pos);
-        currentLine->setPath(currentLinePath);
+        if (currentLine)
+        {
+            currentLinePath.lineTo(pos);
+            currentLine->setPath(currentLinePath);
 
-        sendPixelToServer(pos);
+            std::thread waitingThread([this, pos] {
+                sendPixelToServer(pos);
+                });
+            waitingThread.detach();
+        }
         //daca se poate returna currentLinePath - sa se transmita pe sv
         //daca nu, se creeaza un vector de puncte/linii
         //ruta pt preluare in paint event - pt cei care ghicesc
         //pt cel care deseneaza - ruta de exportare a desenului
     }
 }
+
+
+
 
 void drawingWidget::finishDrawing()
 {
@@ -111,6 +123,8 @@ void drawingWidget::finishDrawing()
             scene()->removeItem(currentLine);
         }
         currentLine = nullptr;
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        newLine = !newLine;
     }
 }
 
@@ -128,11 +142,13 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
         /*QByteArray binaryData;
         QDataStream stream(&binaryData, QIODevice::WriteOnly);
         stream << drawingPoint.color << drawingPoint.penWidth << drawingPoint.position;*/
+
         crow::json::wvalue jsonPayload;
         jsonPayload["x"] = static_cast<double>(pos.x());;
         jsonPayload["y"] = static_cast<double>(pos.y());;
         jsonPayload["penWidth"] = penWidth;
         jsonPayload["color"] = penColor.name().toUtf8();
+        jsonPayload["newLine"] = newLine;
         std::string jsonString = jsonPayload.dump();
 
         auto response = cpr::Put(
@@ -144,12 +160,12 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
 }
 
 
-void drawingWidget::receivePixelFromServer(double x, double y, const QString& penColor, uint32_t penWidth)
+void drawingWidget::receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidthbool, bool newLine1)
 {
     if (this->enable == false)
    
     {
-            updateDrawing(x, y, penColor, penWidth);
+            updateDrawing(x, y, penColor1, penWidth, newLine1);
         }
 }
 //void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload)
@@ -167,16 +183,55 @@ void drawingWidget::receivePixelFromServer(double x, double y, const QString& pe
 //    }
 //}
 //
-void drawingWidget::updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth)
+void drawingWidget::updateDrawing(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1)
 {
     if (this->enable == false)
     {
-        QGraphicsEllipseItem* pixelItem = new QGraphicsEllipseItem(x, y, 1, 1);
+        //double ellipseWidth = 3.0;  // Example width
+        //double ellipseHeight = 3.0; // Example height
 
-        QPen pen(QColor(penColor), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-        pixelItem->setPen(pen);
+        //// Create a QGraphicsEllipseItem with specified dimensions
+        //QGraphicsEllipseItem* pixelItem = new QGraphicsEllipseItem(x - ellipseWidth / 2, y - ellipseHeight / 2, ellipseWidth, ellipseHeight);
 
-        scene()->addItem(pixelItem);
+        //// Create a pen for the outline
+        //QPen pen(QColor(penColor1), penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+        //pixelItem->setPen(pen);
+
+        //// Create a brush for the fill color
+        //QColor color(penColor1);
+        //QBrush brush(color);
+        //pixelItem->setBrush(brush);
+
+        //// Add the ellipse item to the scene
+        //scene()->addItem(pixelItem);
+        if (newLine1 == newLineForDrawing && !lastPixel.color.isEmpty())
+        {
+            QColor color(penColor1);
+            QPen pen(color, penWidth);
+            QBrush brush(color);
+            QGraphicsLineItem* lineItem = new QGraphicsLineItem(QLineF(QPointF(lastPixel.x,lastPixel.y), QPointF(x, y)));
+            lineItem->setPen(pen);
+            scene()->addItem(lineItem);
+            lastPixel.color = penColor1;
+            lastPixel.penWidth = penWidth;
+            lastPixel.x = x;
+            lastPixel.y = y;
+        }
+        else
+        {
+            newLineForDrawing = newLine1;
+            lastPixel.color = penColor1;
+            lastPixel.penWidth = penWidth;
+            lastPixel.x = x;
+            lastPixel.y = y;
+        }
+        /*QGraphicsEllipseItem* ellipseItem = new QGraphicsEllipseItem(x, y, 3, 3);
+        QColor color(penColor1);
+        QPen pen(color, penWidth);
+        QBrush brush(color);
+        ellipseItem->setPen(pen);
+        ellipseItem->setBrush(brush);
+        scene()->addItem(ellipseItem);*/
     }
 }
 //

@@ -2,16 +2,7 @@
 import userdb;
 using namespace http;
 #include "statistic.h"
-
-
-struct DrawingPoint {
-	std::string color;
-	int penWidth;
-	double x;
-	double y;
-	// Add more fields as needed
-};
-
+#include<thread>
 
 void Routing::Run(Storage& storage)
 {
@@ -370,22 +361,37 @@ void Routing::Run(Storage& storage)
 					responseJson["isDrawing"] = false;
 					responseJson["word"] = m_currentWord;
 				}
-				if (m_isPixel)
-				{
-					m_isPixel = false;
-					responseJson["x"] = m_x;
-					responseJson["y"] = m_y;
-					responseJson["penWidth"] = m_penWidth;
-					responseJson["color"] = m_color;
-
+				if (!m_pixelQueue.empty())
+					{
+					std::queue<DrawingPoint> copyQueue = m_pixelQueue;
+						//m_isPixel = false;
+					std::vector<double> x;
+					std::vector<double> y;
+					std::vector<int> penWidth;
+					std::vector<std::string> color;
+					std::vector<std::string> newLine;
+					while (!copyQueue.empty())
+					{
+						DrawingPoint point = copyQueue.front();
+						copyQueue.pop();
+						m_pixelQueue.pop();
+						x.push_back(point.x);
+						y.push_back(point.y);
+						color.push_back(point.color);
+						penWidth.push_back(point.penWidth);
+						newLine.push_back(point.newLine);
+ 					}
+					//cout << x.size();
+					/*DrawingPoint point = m_pixelQueue.front();
+					m_pixelQueue.pop();*/
+					responseJson["x"] = x;
+					responseJson["y"] = y;
+					responseJson["penWidth"] = penWidth;
+					responseJson["color"] = color;
+					responseJson["newLine"] = newLine;
+					std::cout << "\n\n TRIMIS \n\n";
 				}
 
-				//for (const auto& pair : m_game.GetPlayers()) {
-				//	const Player& p = pair.second; // Access the Player object from the key-value pair
-				//	if (p.GetUsername() == username && p.GetIsDrawer()) {
-				//		return crow::response(200, "Drawing");
-				//	}
-				//}
 				return crow::response(200, responseJson);
 			});
 
@@ -413,12 +419,20 @@ void Routing::Run(Storage& storage)
 				if (!jsonData) {
 					return crow::response(400, "Invalid JSON format");
 				}
-				m_color = jsonData["color"].s();
+				DrawingPoint point;
+				point.color = jsonData["color"].s();
+				point.penWidth  = jsonData["penWidth"].i();
+				point.x = jsonData["x"].d();
+				point.y = jsonData["y"].d();
+				bool newLineBool = jsonData["newLine"].b();
+				point.newLine = newLineBool ? "1" : "0";
+				/*m_color = jsonData["color"].s();
 				m_penWidth = jsonData["penWidth"].i();
 				m_x = jsonData["x"].d();
-				m_y = jsonData["y"].d();
+				m_y = jsonData["y"].d();*/
+				m_pixelQueue.push(point);
 				m_isPixel = true;
-				//std::cout << "\n" << x << " " << y << " " << penWidth << " " << color << "\n";
+				std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color <<" "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
 				return crow::response(200, "Pixel recived");
 				//DrawingPoint drawingPoint;
 				//if (req.body.size() >= sizeof(int) + sizeof(float) * 2 + sizeof(char))
