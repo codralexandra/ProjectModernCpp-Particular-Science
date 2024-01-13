@@ -257,7 +257,7 @@ void StartWindow::waitInLobby() {
 		}
 		else
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(1));
+			std::this_thread::sleep_for(std::chrono::milliseconds(250));
 		}
 		//add pixel
 	} while (response.status_code == 200);
