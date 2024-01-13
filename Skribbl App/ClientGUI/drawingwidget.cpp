@@ -143,6 +143,11 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
         QDataStream stream(&binaryData, QIODevice::WriteOnly);
         stream << drawingPoint.color << drawingPoint.penWidth << drawingPoint.position;*/
 
+
+       //cand se incheie o linie, se trimite o cord(-1,1) -> usor de identificat pe ceilalti clienti
+
+
+
         crow::json::wvalue jsonPayload;
         jsonPayload["x"] = static_cast<double>(pos.x());;
         jsonPayload["y"] = static_cast<double>(pos.y());;
@@ -185,6 +190,8 @@ void drawingWidget::receivePixelFromServer(double x, double y, const QString& pe
 //
 void drawingWidget::updateDrawing(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1)
 {
+
+    //copiat logica ca la fereastra desenatorului
     if (this->enable == false)
     {
         //double ellipseWidth = 3.0;  // Example width

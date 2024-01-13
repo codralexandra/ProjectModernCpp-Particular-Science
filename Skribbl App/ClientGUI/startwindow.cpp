@@ -206,6 +206,9 @@ void StartWindow::onUpdateRole(bool isDrawing) {
 	}
 
 }
+
+
+
 void StartWindow::waitInLobby() {
 	cpr::Response response;
 	do {
