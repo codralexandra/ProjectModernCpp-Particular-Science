@@ -19,7 +19,6 @@ SubRound& Round::GetSubRoundRef()
 
 void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< Word>& word, crow::SimpleApp& m_app)
 {
-	//check the random part!!!
 	Timer t;
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -78,7 +77,6 @@ void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Playe
 {
 	std::cout << "Score Drawing apelata\n";
 
-	
 	auto firstIt = players_guessing.begin();
 	auto lastIt = players_guessing.end();
 

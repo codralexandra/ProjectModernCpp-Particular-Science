@@ -87,7 +87,6 @@ bool User::ValidateUserPassword() const
 	return true;
 }
 
-
 std::string User::GetEmail() const
 {
 	return m_email;

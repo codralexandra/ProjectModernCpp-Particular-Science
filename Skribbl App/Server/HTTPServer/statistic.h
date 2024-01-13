@@ -9,7 +9,7 @@ namespace Scribble
 		Statistic();
 		Statistic(const std::string& username, uint16_t& score);
 		Statistic(const Statistic& other);
-		Statistic(Statistic&& other);
+		Statistic(Statistic&& other) noexcept;
 		~Statistic() = default;
 
 		//operators

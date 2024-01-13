@@ -28,11 +28,7 @@ int main()
 		populateStorage(db);
 	}
 	crow::SimpleApp app;
-	CROW_ROUTE(app, "/")([]() {
-
-		return "MEAW";
-		}
-	);
+	
 	CROW_ROUTE(app, "/words")([&db]() {
 
 		std::vector<crow::json::wvalue>wordsJson;
@@ -48,7 +44,6 @@ int main()
 		}
 		return crow::json::wvalue(wordsJson);
 		});
-	//app.port(18080).multithreaded().run();
 
 	Routing r;
 	r.SetGameExists(false);

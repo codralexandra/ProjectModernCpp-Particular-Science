@@ -146,7 +146,6 @@ void Word::SetNumberHints(int nr)
 	m_numberHint = nr;
 }
 
-
 void Word::PrintPlayerDrawing() const
 {
 	std::cout << "The word is: " << m_value << std::endl;
@@ -161,9 +160,6 @@ void Word::UpdateAux(const std::string& word)
 {
 	m_valueAux = word;
 }
-
-
-
 
 void Word::fillvalueAux()
 {

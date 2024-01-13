@@ -5,23 +5,20 @@ using namespace http;
 #include<thread>
 
 void Routing::Run(Storage& storage)
-{
-	CROW_ROUTE(m_app, "/")([]() {
-		return "This is an example app of crow and sql-orm";
-		});
-
+{	
+	//--------------------------
+	//     REGISTER AND LOGIN
+	//--------------------------
 
 	CROW_ROUTE(m_app, "/register")
 		.methods("POST"_method)
 		([this, &storage](const crow::request& req) {
 		crow::json::rvalue jsonData = crow::json::load(req.body);
 
-		// Check if the JSON data was parsed successfully
 		if (!jsonData) {
 			return crow::response(400, "Invalid JSON format");
 		}
 
-		// Access JSON data fields (e.g., email, username, password)
 		std::string email = jsonData["email"].s();
 		std::string username = jsonData["username"].s();
 		std::string password = jsonData["password"].s();
@@ -41,7 +38,6 @@ void Routing::Run(Storage& storage)
 			return crow::response(409, "Registration failed: username/email already exists.");
 		}
 			});
-
 
 
 	CROW_ROUTE(m_app, "/login")
@@ -67,6 +63,9 @@ void Routing::Run(Storage& storage)
 		}
 			});
 
+	//--------------------------
+	//   CREATE AND JOIN GAME
+	//--------------------------
 	CROW_ROUTE(m_app, "/lobby")
 		.methods("PUT"_method)
 		([this](const crow::request& req) {
@@ -82,12 +81,12 @@ void Routing::Run(Storage& storage)
 			}
 
 			uint16_t id;
-			std::random_device RD; // random device to generate a seed for the random number engine
-			std::mt19937 engine(RD()); // Mersenne Twister pseudo-random number engine, seeded with the random device
-			std::uniform_int_distribution<> distr(0, 10); // uniform distribution for integers within [0, productions.size() - 1]
+			std::random_device RD; 
+			std::mt19937 engine(RD()); 
+			std::uniform_int_distribution<> distr(0, 10); 
 			id = distr(engine);
 
-			//create game
+			
 			Difficulty dificulty = StringToDifficultyType(jsonData["Difficulty"].s());
 			m_game.SetGameID(id);
 			std::string username = jsonData["Username"].s();
@@ -98,27 +97,13 @@ void Routing::Run(Storage& storage)
 			SetGameMaster(player->GetUsername());
 			m_gameExists = true;
 
-			//send gameId to the client
+			
 			crow::json::wvalue responseJson;
 			responseJson["gameId"] = id;
 			return crow::response(200, responseJson);
 		}
 			});
 
-
-
-
-	/*CROW_ROUTE(m_app, "/lobby")
-		.methods("GET"_method)
-		([this](const crow::request& req) {
-
-		crow::json::rvalue jsonData = crow::json::load(req.body);
-		if (!jsonData) {
-			return crow::response(400, "Invalid JSON format");
-		}
-		uint16_t id = jsonData["RoomCode"].i();
-
-			});*/
 
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("PUT"_method)
@@ -139,25 +124,6 @@ void Routing::Run(Storage& storage)
 		return crow::response(200, "Gud");
 			});
 
-	/*CROW_ROUTE(m_app, "/game/role")
-		.methods("GET"_method)
-		([this](const crow::request& req) {
-
-
-		crow::json::rvalue jsonData = crow::json::load(req.body);
-		if (!jsonData) {
-			return crow::response(400, "Invalid JSON format");
-		}
-		std::string username = jsonData["username"].s();
-		for (Player p : m_game.getPlayers())
-		{
-			if (p.GetUsername() == username && p.GetIsDrawer())
-			{
-				return crow::response(200, "Drawing");
-			}
-			}
-		return crow::response(201, "Not Drawing");
-			});*/
 
 	CROW_ROUTE(m_app, "/playerjoined")
 		.methods("GET"_method)
@@ -173,6 +139,10 @@ void Routing::Run(Storage& storage)
 		return jsonResponse.dump();
 			});
 
+
+	//--------------------------
+	// GAME HISTORY AND PROFILE
+	//--------------------------
 	CROW_ROUTE(m_app, "/profile/addGameToGameHistory")
 		.methods("PUT"_method)
 		([this, &storage](const crow::request& req) {
@@ -197,14 +167,9 @@ void Routing::Run(Storage& storage)
 		std::vector<int> gameHistory;
 		crow::json::wvalue jsonResponse2;
 
-
-		//inner join
-
 		auto results = storage.select((&Statistic::GetUsername, &Statistic::GetScore),
 			sqlite_orm::where(sqlite_orm::is_equal(username, &Statistic::GetUsername)));
 
-
-		//result
 		for (const auto& result : results) {
 
 			gameHistory.emplace_back(result);
@@ -214,11 +179,39 @@ void Routing::Run(Storage& storage)
 		return crow::response(200, jsonResponse2);
 			});
 
+	//--------------------------
+	//      DRAWING WIDGET
+	//--------------------------
+
+	CROW_ROUTE(m_app, "/game/pixel")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				DrawingPoint point;
+				point.color = jsonData["color"].s();
+				point.penWidth = jsonData["penWidth"].i();
+				point.x = jsonData["x"].d();
+				point.y = jsonData["y"].d();
+				bool newLineBool = jsonData["newLine"].b();
+				point.newLine = newLineBool ? "1" : "0";
+				m_pixelQueue.push(point);
+				m_isPixel = true;
+				std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color << " " << m_pixelQueue.size() << " " << point.newLine << "\n";
+				return crow::response(200, "Pixel recived");
+			});
+
+	//--------------------------
+	//      GAME STATUS
+	//--------------------------
 
 	CROW_ROUTE(m_app, "/game")
 		.methods("PUT"_method)
-		([this,&storage]() {
-		
+		([this, &storage]() {
+
 		if (m_game.GetPlayers().size() > 1)
 		{
 			m_game.SetLobbyState(LobbyState::Starting);
@@ -252,10 +245,75 @@ void Routing::Run(Storage& storage)
 		{
 			return crow::response(404, "Game not found");
 		}
+			});
+
+	CROW_ROUTE(m_app, "/game/difficulty")
+		.methods("GET"_method)
+		([this]()
+			{
+				if (m_gameExists)
+				{
+					crow::json::wvalue responseJson;
+					responseJson["Difficulty"] = DifficultyTypeToString(m_game.GetDifficulty());
+					return crow::response(200, responseJson);
+				}
+				else
+				{
+					return crow::response(404, "Game not found");
+				}
+			});
 
 
+	//--------------------------
+	//          WORD 
+	//--------------------------
+
+	CROW_ROUTE(m_app, "/game/tryguess")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				std::string tryGuess = jsonData["Guess"].s();
+				std::string username = jsonData["username"].s();
+				crow::json::wvalue responseJson;
+				if (m_game.GetPlayers()[username].GetHasGuessed() == false)
+				{
+					if (tryGuess == m_wordDrawer)
+					{
+						m_game.GetRoundRef().GetSubRoundRef().SetGuessed(true);
+						m_game.SetPlayerHasGuessed(username, true);
+						return crow::response(200, "Guessed");
+					}
+				}
+				else
+				{
+					return crow::response(203, "Already guessed");
+				}
+
+				return crow::response(201, "Wrong");
 
 			});
+
+	CROW_ROUTE(m_app, "/game/getword")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				m_currentWord = jsonData["currentword"].s();
+				m_wordDrawer = jsonData["wordDrawer"].s();
+				std::cout << "\n" << m_wordDrawer << "\n";
+				return crow::response(200, "Word is ok");
+			});
+
+	//--------------------------
+	//          IDK EXPLAIN
+	//--------------------------
 
 	CROW_ROUTE(m_app, "/game/startround")
 		.methods("GET"_method)
@@ -296,50 +354,6 @@ void Routing::Run(Storage& storage)
 
 				return crow::response(200, "Word is ok!");
 			});
-
-	CROW_ROUTE(m_app, "/game/tryguess")
-		.methods("PUT"_method)
-		([this](const crow::request req)
-			{
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData) {
-					return crow::response(400, "Invalid JSON format");
-				}
-				std::string tryGuess = jsonData["Guess"].s();
-				std::string username = jsonData["username"].s();
-				crow::json::wvalue responseJson;
-				if (m_game.GetPlayers()[username].GetHasGuessed()==false)
-				{
-					if (tryGuess == m_wordDrawer)
-					{
-						m_game.GetRoundRef().GetSubRoundRef().SetGuessed(true);
-						m_game.SetPlayerHasGuessed(username, true);
-						return crow::response(200, "Guessed");
-					}
-				}
-				else
-				{
-					return crow::response(203, "Already guessed");
-				}
-					
-				return crow::response(201, "Wrong");
-
-			});
-
-	CROW_ROUTE(m_app, "/game/getword")
-		.methods("PUT"_method)
-		([this](const crow::request req)
-			{
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData) {
-					return crow::response(400, "Invalid JSON format");
-				}
-				m_currentWord = jsonData["currentword"].s();
-				m_wordDrawer = jsonData["wordDrawer"].s();
-				std::cout << "\n" << m_wordDrawer << "\n";
-				return crow::response(200, "Word is ok");
-			});
-
 	CROW_ROUTE(m_app, "/game/package")
 		.methods("GET"_method)
 		([this](const crow::request req)
@@ -362,9 +376,8 @@ void Routing::Run(Storage& storage)
 					responseJson["word"] = m_currentWord;
 				}
 				if (!m_pixelQueue.empty())
-					{
+				{
 					std::queue<DrawingPoint> copyQueue = m_pixelQueue;
-						//m_isPixel = false;
 					std::vector<double> x;
 					std::vector<double> y;
 					std::vector<int> penWidth;
@@ -380,10 +393,7 @@ void Routing::Run(Storage& storage)
 						color.push_back(point.color);
 						penWidth.push_back(point.penWidth);
 						newLine.push_back(point.newLine);
- 					}
-					//cout << x.size();
-					/*DrawingPoint point = m_pixelQueue.front();
-					m_pixelQueue.pop();*/
+					}
 					responseJson["x"] = x;
 					responseJson["y"] = y;
 					responseJson["penWidth"] = penWidth;
@@ -395,73 +405,8 @@ void Routing::Run(Storage& storage)
 				return crow::response(200, responseJson);
 			});
 
-	CROW_ROUTE(m_app, "/game/difficulty")
-		.methods("GET"_method)
-		([this]()
-			{
-				if (m_gameExists)
-				{
-					crow::json::wvalue responseJson;
-					responseJson["Difficulty"] = DifficultyTypeToString(m_game.GetDifficulty());
-					return crow::response(200, responseJson);
-				}
-				else
-				{
-					return crow::response(404, "Game not found");
-				}
-			});
-
-	CROW_ROUTE(m_app, "/game/pixel")
-		.methods("PUT"_method)
-		([this](const crow::request req)
-			{
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData) {
-					return crow::response(400, "Invalid JSON format");
-				}
-				DrawingPoint point;
-				point.color = jsonData["color"].s();
-				point.penWidth  = jsonData["penWidth"].i();
-				point.x = jsonData["x"].d();
-				point.y = jsonData["y"].d();
-				bool newLineBool = jsonData["newLine"].b();
-				point.newLine = newLineBool ? "1" : "0";
-				/*m_color = jsonData["color"].s();
-				m_penWidth = jsonData["penWidth"].i();
-				m_x = jsonData["x"].d();
-				m_y = jsonData["y"].d();*/
-				m_pixelQueue.push(point);
-				m_isPixel = true;
-				std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color <<" "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
-				return crow::response(200, "Pixel recived");
-				//DrawingPoint drawingPoint;
-				//if (req.body.size() >= sizeof(int) + sizeof(float) * 2 + sizeof(char))
-				//{
-				//	std::memcpy(&drawingPoint.penWidth, req.body.data(), sizeof(int));
-				//	std::memcpy(&drawingPoint.x, req.body.data() + sizeof(int), sizeof(double));
-				//	std::memcpy(&drawingPoint.y, req.body.data() + sizeof(int) + sizeof(double), sizeof(double));
-
-
-				//	// Extract color (up to 256 characters)
-				//	char colorBuffer[256];
-				//	std::memcpy(colorBuffer, req.body.data() + sizeof(int) + sizeof(double) * 2, sizeof(char) * 256);
-				//	drawingPoint.color.assign(colorBuffer, strnlen(colorBuffer, 256));
-
-				//	std::cout << "\n" << drawingPoint.color << " " << drawingPoint.penWidth << " " << drawingPoint.color << " " << drawingPoint.x << " " << drawingPoint.x << "\n";
-
-				//	return crow::response(200);
-				//}
-				//else
-				//{
-				//	return crow::response(400,"Invalid Binary Data");
-				//}
-				
-			});
-
 	m_app.port(18080).multithreaded().run();
 }
-
-
 
 bool http::Routing::IsUnique(std::string email, std::string username, std::string password, Storage& storage)
 {
@@ -530,7 +475,6 @@ std::string http::Routing::GetCurrentWord() const
 	return m_currentWord;
 }
 
-
 void http::Routing::PopulateVectorWords(Storage& storage)
 {
 	std::vector<Word> wordsVector;
@@ -539,7 +483,7 @@ void http::Routing::PopulateVectorWords(Storage& storage)
 		Difficulty dif = m_game.GetDifficulty();
 		std::random_device RD;
 		std::mt19937 engine(RD());
-		
+
 		std::uniform_int_distribution<> distr;
 		if (dif == Difficulty::Easy)
 		{
@@ -562,6 +506,6 @@ void http::Routing::PopulateVectorWords(Storage& storage)
 			wordsVector.emplace_back(row);
 		}
 	}
-	//for(word)
+	
 	m_game.SetWords(wordsVector);
 }

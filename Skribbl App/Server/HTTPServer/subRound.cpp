@@ -116,10 +116,8 @@ void SubRound::StartSubRound(Player& p,Word& word)
 	}
 
 	m_timer.stop();
-
 	p.SetTimeGuessed(m_timeGuessed);
 	std::cout << "\n" << p.GetTimeGuessed() << "\n";
-
 
 }
 

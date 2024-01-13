@@ -80,8 +80,6 @@ bool Player::GetHasGuessed() const
     return m_hasGuessed;
 }
 
-
-
 double Player::GetTimeGuessed() const
 {
     return m_timeGuessed;
@@ -92,9 +90,7 @@ Player& Player::operator=(const Player& player)
     this->SetEmail(player.GetEmail());
     this->SetUsername(player.GetUsername());
     this->m_isDrawer = player.m_isDrawer;
-  
     this->m_personalScore = player.m_personalScore;
- 
     this->m_hasGuessed = player.m_hasGuessed;
     this->m_timeGuessed = player.m_timeGuessed;
     return *this;

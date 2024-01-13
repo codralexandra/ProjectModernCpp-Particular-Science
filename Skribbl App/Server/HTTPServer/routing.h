@@ -20,7 +20,7 @@ namespace http
 			double x;
 			double y;
 			std::string newLine;
-			// Add more fields as needed
+			
 		};
 	public:
 		void Run(Storage& storage);
@@ -48,7 +48,6 @@ namespace http
 		std::string m_currentWord; 
 		std::string m_wordDrawer;
 		std::pair<double, double> m_pixel;
-		//std::string m_penWidth;
 		std::string m_penColor;
 		std::string m_color;
 		int m_penWidth;

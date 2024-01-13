@@ -15,7 +15,7 @@ Scribble::Statistic::Statistic(const Statistic& other):m_username(other.m_userna
 	//empty
 }
 
-Scribble::Statistic::Statistic(Statistic&& other)
+Scribble::Statistic::Statistic(Statistic&& other) noexcept
 {
 	m_username = std::move(other.m_username);
 	m_score = std::move(other.m_score);

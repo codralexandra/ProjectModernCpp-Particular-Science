@@ -1,7 +1,6 @@
 module;
 export module user;
 import <string>;
-//import "statistic.h";
 import <cstdint>;
 import <iostream>;
 namespace Scribble
@@ -19,7 +18,7 @@ namespace Scribble
 
 		//operators
 		User& operator=(const User& user);
-		User& operator=(User&& user)noexcept;
+		//User& operator=(User&& user)noexcept;
 		
 		//validation
 		bool ValidateUserEmail() const;
@@ -36,7 +35,6 @@ namespace Scribble
 		void SetUsername(const std::string& username);
 		void SetPassword(const std::string& password);
 		void SetPersonalBest(const uint16_t& personalBest);
-
 
 
 		//friend std::ostream& operator<<(std::ostream& ostream, const User& user); //trebe facuta virtuala 

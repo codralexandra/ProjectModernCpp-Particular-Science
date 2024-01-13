@@ -45,6 +45,7 @@
 		void AddPlayer(const Player& p);
 		void StartGame(crow::SimpleApp& m_app);
 
+		//updates
 		void UpdateWords();
 		void UpdatePersonalBest();
 
