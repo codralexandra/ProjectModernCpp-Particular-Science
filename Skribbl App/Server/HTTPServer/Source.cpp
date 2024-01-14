@@ -7,6 +7,7 @@
 #include "game.h"
 #include <crow.h>
 #include "gamedata.h"
+#include "Color.h"
 namespace sql = sqlite_orm;
 using namespace http;
 
@@ -29,23 +30,7 @@ int main()
 	}
 	crow::SimpleApp app;
 	
-	CROW_ROUTE(app, "/words")([&db]() {
-
-		std::vector<crow::json::wvalue>wordsJson;
-		for (const auto& word : db.iterate<Word>())
-		{
-			crow::json::wvalue wordJson{
-				{"id", word.GetId()},
-				{ "name",word.GetValue()},
-				{ "difficulty",word.GetDifficulty()}
-
-			};
-			wordsJson.push_back(wordJson);
-		}
-		return crow::json::wvalue(wordsJson);
-		});
-
-	Routing r;
+	http::Routing<Color> r;
 	r.SetGameExists(false);
 	r.Run(db);
 

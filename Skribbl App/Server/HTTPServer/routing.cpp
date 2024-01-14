@@ -4,7 +4,7 @@ using namespace http;
 #include "statistic.h"
 #include<thread>
 
-void Routing::Run(Storage& storage)
+void http::Routing<Color>::Run(Storage& storage)
 {	
 	//--------------------------
 	//     REGISTER AND LOGIN
@@ -392,7 +392,8 @@ void Routing::Run(Storage& storage)
 	m_app.port(18080).multithreaded().run();
 }
 
-bool http::Routing::IsUnique(std::string email, std::string username, std::string password, Storage& storage)
+template <>
+bool http::Routing<Color>::IsUnique(std::string email, std::string username, std::string password, Storage& storage)
 {
 	UserDB userToCheck(-1, email, username, password);
 
@@ -409,7 +410,8 @@ bool http::Routing::IsUnique(std::string email, std::string username, std::strin
 	return true;
 }
 
-bool http::Routing::AuthentificationCheck(std::string username, std::string password, Storage& storage)
+template <>
+bool http::Routing<Color>::AuthentificationCheck(std::string username, std::string password, Storage& storage)
 {
 
 	UserDB userToCheck(-1, "", username, password);
@@ -422,44 +424,46 @@ bool http::Routing::AuthentificationCheck(std::string username, std::string pass
 	return false;
 }
 
-bool http::Routing::GetGameExists() const
+bool http::Routing<Color>::GetGameExists() const
 {
 	return m_gameExists;
 }
 
-void http::Routing::SetGameExists(const bool& gameExists)
+void http::Routing<Color>::SetGameExists(const bool& gameExists)
 {
 	m_gameExists = gameExists;
 }
 
-void http::Routing::SetGameMaster(const std::string& name)
+template <>
+void http::Routing<Color>::SetGameMaster(const std::string& name)
 {
 	m_gameMaster = name;
 }
 
-std::string http::Routing::GetGameMaster() const
+std::string http::Routing<Color>::GetGameMaster() const
 {
 	return m_gameMaster;
 }
 
-bool http::Routing::IsGameMaster(const std::string& name)
+bool http::Routing<Color>::IsGameMaster(const std::string& name)
 {
 	if (m_gameMaster == name)
 		return true;
 	return false;
 }
 
-void http::Routing::SetCurrentWord(const std::string& word)
+void http::Routing<Color>::SetCurrentWord(const std::string& word)
 {
 	m_currentWord = word;
 }
 
-std::string http::Routing::GetCurrentWord() const
+std::string http::Routing<Color>::GetCurrentWord() const
 {
 	return m_currentWord;
 }
 
-void http::Routing::PopulateVectorWords(Storage& storage)
+template <>
+void http::Routing<Color>::PopulateVectorWords(Storage& storage)
 {
 	std::vector<Word> wordsVector;
 	for (int i = 0; i < 4 * m_game.GetPlayers().size(); i++)

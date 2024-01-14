@@ -6,21 +6,24 @@
 #include "game.h"
 #include <random>
 #include<queue>
+#include "Color.h"
 
 import utils;
 
 namespace http
 {
-
+	template <typename T>
 	class Routing
 	{
+		
 		struct DrawingPoint {
-			//std::string color;
+			
+			T color;
 			int penWidth;
 			double x;
 			double y;
 			int newLine;
-			// Add more fields as needed
+			
 		};
 	public:
 		void Run(Storage& storage);
@@ -48,8 +51,6 @@ namespace http
 		std::string m_currentWord; 
 		std::string m_wordDrawer;
 		std::pair<double, double> m_pixel;
-		std::string m_penColor;
-		std::string m_color;
 		int m_penWidth;
 		int m_x;
 		int m_y;
