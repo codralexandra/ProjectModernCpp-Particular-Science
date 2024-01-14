@@ -211,7 +211,3 @@ auto Game:: GetHighestScorer() {
 	return maxScoreIt;
 }
 
-void Game::SetPlayerReceivedPixels(const std::string& username, bool received)
-{
-	m_players[username].SetHasReceivedPixels(received);
-}

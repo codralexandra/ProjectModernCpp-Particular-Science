@@ -24,4 +24,5 @@ private:
 	Lobby* lobby;
 	std::string m_username;
 	ThemeManager* themeManager;
+	QString stylesheet;
 };

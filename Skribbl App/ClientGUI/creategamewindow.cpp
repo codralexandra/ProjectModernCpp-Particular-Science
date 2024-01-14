@@ -10,6 +10,7 @@ CreateGameWindow::CreateGameWindow(QWidget *parent)
 	ui.setupUi(this);
 	themeManager = &ThemeManager::instance();
 	connect(themeManager, &ThemeManager::themeChanged, this, &CreateGameWindow::handleThemeChanged);
+	this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 CreateGameWindow::~CreateGameWindow()
@@ -58,7 +59,7 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 			lobby->SetUsername(m_username);
 			lobby->SetGameMaster(true);
 			lobby->show();
-			lobby->setStyleSheet(themeManager->getCurrentStyleSheet());
+			lobby->setStyleSheet(stylesheet);
 		}
 	}
 	else
@@ -78,4 +79,6 @@ void CreateGameWindow::on_createLobbyButton_clicked()
 
 void CreateGameWindow::handleThemeChanged(const QString& styleSheet) {
 	this->setStyleSheet(styleSheet);
+	this->stylesheet = styleSheet;
+
 }

@@ -59,10 +59,7 @@ void Player::SetScore(const double& newscore)
     m_personalScore = newscore;
 }
 
-void Player::SetHasReceivedPixels(bool received)
-{
-    m_hasReceivedPixels = received;
-}
+
 
 //void Player::SetIsDrawer(bool&& isDrawing)
 //{
@@ -94,10 +91,6 @@ double Player::GetTimeGuessed() const
     return m_timeGuessed;
 }
 
-bool Player::GetHasReceivedPixels() const
-{
-    return m_hasReceivedPixels;
-}
 
 Player& Player::operator=(const Player& player)
 {
