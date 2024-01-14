@@ -67,6 +67,11 @@ void Game::SetLobbyState(const LobbyState& lobbystate)
 	m_lobbyState = lobbystate;
 }
 
+void Game::SetPlayerReceivedPixels(const std::string& username,bool received)
+{
+	m_players[username].SetHasReceivedPixels(received);
+}
+
 void Game::SetPlayerHasGuessed(const std::string& username,bool hasGuessed)
 {
 	m_players[username].SetHasGuessed(hasGuessed);

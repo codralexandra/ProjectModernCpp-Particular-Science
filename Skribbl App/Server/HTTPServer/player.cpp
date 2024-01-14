@@ -6,6 +6,7 @@ Player::Player() :User()
     m_personalScore = 0;
     m_hasGuessed = false;
     m_timeGuessed = 60.0;
+    m_hasReceivedPixels = false;
 }
 
 Player::Player(bool& isDrawing) :User()
@@ -14,6 +15,7 @@ Player::Player(bool& isDrawing) :User()
     m_personalScore = 0;
     m_hasGuessed = false;
     m_timeGuessed = 60.0;
+    m_hasReceivedPixels = false;
 }
 
 Player::Player(const Player& player)
@@ -24,11 +26,12 @@ Player::Player(const Player& player)
     this->m_personalScore = player.m_personalScore;
     this->m_hasGuessed = player.m_hasGuessed;
     this->m_timeGuessed = player.m_timeGuessed;
+    this->m_hasReceivedPixels = player.m_hasReceivedPixels;
 }
 
 Player::Player(bool& hasGuessed, double& timeGuessed,
     bool& isDrawer,  uint16_t& personalScore,  const std::string& email, const std::string& password,
-     uint16_t& personalBest)
+     uint16_t& personalBest, bool& hasReceivedPixels)
 {
     SetEmail(email);
     SetPassword(password);
@@ -37,6 +40,7 @@ Player::Player(bool& hasGuessed, double& timeGuessed,
     this->m_personalScore = personalScore;
     this->m_hasGuessed = hasGuessed;
     this->m_timeGuessed = timeGuessed;
+    this->m_hasReceivedPixels = hasReceivedPixels;
 }
 
 
@@ -53,6 +57,11 @@ void Player::SetHasGuessed(bool hasGuessed)
 void Player::SetScore(const double& newscore)
 {
     m_personalScore = newscore;
+}
+
+void Player::SetHasReceivedPixels(bool received)
+{
+    m_hasReceivedPixels = received;
 }
 
 //void Player::SetIsDrawer(bool&& isDrawing)
@@ -85,6 +94,11 @@ double Player::GetTimeGuessed() const
     return m_timeGuessed;
 }
 
+bool Player::GetHasReceivedPixels() const
+{
+    return m_hasReceivedPixels;
+}
+
 Player& Player::operator=(const Player& player)
 {
     this->SetEmail(player.GetEmail());
@@ -93,6 +107,7 @@ Player& Player::operator=(const Player& player)
     this->m_personalScore = player.m_personalScore;
     this->m_hasGuessed = player.m_hasGuessed;
     this->m_timeGuessed = player.m_timeGuessed;
+    this->m_hasReceivedPixels = player.m_hasReceivedPixels;
     return *this;
 }
 

@@ -233,17 +233,17 @@ void StartWindow::waitInLobby() {
 			const auto& xValues = responseBody["x"];
 			const auto& yValues = responseBody["y"];
 			const auto& widths = responseBody["penWidth"];
-			const auto& colors = responseBody["color"];
+			//const auto& colors = responseBody["color"];
 			const auto& newLines = responseBody["newLine"];
 
 			for (size_t i = 0; i < xValues.size(); ++i) {
 				double x = xValues[i].d();
 				double y = yValues[i].d();
 				int width = widths[i].i();
-				std::string color = colors[i].s();
-				std::string newLineString = newLines[i].s();
-				bool newLine = (newLineString[0] == '1');
-				QString qColor = color.c_str();;
+				//std::string color = colors[i].s();
+				int newLineInt = newLines[i].i();
+				bool newLine = (newLineInt == 1);
+				QString qColor = "#000000";
 				// Emit signal for each drawing point
 				emit updateDrawing(x, y, qColor, width, newLine);
 			}

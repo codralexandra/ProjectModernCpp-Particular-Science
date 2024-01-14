@@ -290,7 +290,7 @@ void Routing::Run(Storage& storage)
 					responseJson["word"] = m_currentWord;
 				}
 				if (!m_pixelQueue.empty())
-				{
+					{
 					m_game.SetPlayerReceivedPixels(username, true);
 					//std::cout<<"\n\n\n\n\n\n\n"<<m_game.GetPlayers()[username].GetHasReceivedPixels()<<"\n\n\n\n\n\n\n";
 					std::queue<DrawingPoint> copyQueue = m_pixelQueue;
@@ -308,7 +308,7 @@ void Routing::Run(Storage& storage)
 						m_pixelQueue = std::queue<DrawingPoint>();
 						for (auto& p : m_game.GetPlayers())
 						{
-							m_game.SetPlayerReceivedPixels(p.first, false);
+							m_game.SetPlayerReceivedPixels(p.first , false);
 						}
 					}
 					std::vector<double> x;
@@ -335,7 +335,7 @@ void Routing::Run(Storage& storage)
 					responseJson["penWidth"] = penWidth;
 					//responseJson["color"] = color;
 					responseJson["newLine"] = newLine;
-					std::cout << "\n\n TRIMIS " << username << "\n\n";
+					std::cout << "\n\n TRIMIS "<<username<<"\n\n";
 				}
 
 				return crow::response(200, responseJson);

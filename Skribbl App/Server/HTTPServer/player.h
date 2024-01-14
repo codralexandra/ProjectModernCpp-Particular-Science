@@ -15,7 +15,7 @@ import user;
 		//Player(Player&& other);
 		Player(bool& hasGuessed, double& timeGuessed,
 			bool& isDrawer, uint16_t& personalScore, const std::string& email, const std::string& password,
-			uint16_t& personalBest);
+			uint16_t& personalBest, bool& hasReceivedPixels);
 		~Player() = default;
 
 		//setter
