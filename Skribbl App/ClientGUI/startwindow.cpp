@@ -152,9 +152,8 @@ void StartWindow::onUpdateGuess() {
 		}
 		for (int i = 0; i < playerScores.size(); i++)
 		{
-			itemText += QString("Username: ");
 			itemText += QString::fromUtf8(playerUsernames[i]);
-			itemText += QString(" - ");
+			itemText += QString(" ");
 			itemText += QString::number(playerScores[i]);
 			itemText += '\n';
 
@@ -164,7 +163,7 @@ void StartWindow::onUpdateGuess() {
 
 		std::string winner = playerUsernames[0];
 
-		QString winnerLabel = QString("Congratulations!") + QString::fromUtf8(winner) + QString("has won!");
+		QString winnerLabel = QString("Congratulations! ") + QString::fromUtf8(winner) + QString(" has won!");
 
 		scoreWindow->SetWinnerLabelText(QString::fromStdString(winner));
 		scoreWindow->getPlayerScores(crow::json::load(response.text));
