@@ -44,7 +44,7 @@
 
 		auto GetHighestScorer();
 		void AddPlayer(const Player& p);
-		void StartGame(crow::SimpleApp& m_app);
+		void StartGame(crow::SimpleApp& m_app,const Difficulty& dif);
 
 		//updates
 		void UpdateWords();

@@ -17,7 +17,7 @@ SubRound& Round::GetSubRoundRef()
 	return *m_subRound;
 }
 
-void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< Word>& word, crow::SimpleApp& m_app)
+void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< Word>& word, crow::SimpleApp& m_app,const Difficulty& dif)
 {
 	Timer t;
 	std::random_device rd;
@@ -56,7 +56,7 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 			player.second.SetHasGuessed(false);
 			player.second.SetTimeGuessed(60.0);
 		}
-		m_subRound->StartSubRound(it.second,word[random]);
+		m_subRound->StartSubRound(it.second,word[random],dif);
 		
 		word.erase(word.begin() + random, word.begin() + random + 1);
 		t.start();

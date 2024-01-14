@@ -2,6 +2,7 @@
 #include "player.h"
 #include "Timer.h"
 #include "Word.h"
+#include "difficulty.h"
 
 class SubRound
 {
@@ -31,7 +32,7 @@ public:
 	double GetTimeGuessed()const;
 
 
-	void StartSubRound(Player& p, Word& word);
+	void StartSubRound(Player& p, Word& word,const Difficulty& dif);
 	void ShowHint(Word& word);
 
 

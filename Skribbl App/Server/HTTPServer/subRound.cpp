@@ -3,6 +3,7 @@
 #include <crow.h>
 #include <cpr/cpr.h>
 
+
 SubRound::SubRound()
 {
 	m_guessed = false;
@@ -84,7 +85,7 @@ double SubRound::GetTimeGuessed() const
 	return m_timeGuessed;
 }
 
-void SubRound::StartSubRound(Player& p,Word& word)
+void SubRound::StartSubRound(Player& p,Word& word,const Difficulty& dif)
 {
 	std::cout << "Start SubRound apelata\n";
 	const double timeLimit = 60.0;
@@ -100,15 +101,15 @@ void SubRound::StartSubRound(Player& p,Word& word)
 			std::cout << "\n" << m_timeGuessed << "\n";
 	    }
 
-		if (m_timer.elapsedSeconds() == 30.0)
+		if (m_timer.elapsedSeconds() == 30.0 && dif==Difficulty::Easy)
 		{
 			ShowHint(word);
 		}
-		else if (m_timer.elapsedSeconds() == 40.0)
+		else if (m_timer.elapsedSeconds() == 40.0 && (dif == Difficulty::Easy || dif== Difficulty::Medium))
 		{
 			ShowHint(word);
 		}
-		else if (m_timer.elapsedSeconds() == 50.0)
+		else if (m_timer.elapsedSeconds() == 50.0 && (dif == Difficulty::Easy || dif== Difficulty::Medium))
 		{
 			ShowHint(word);
 		}

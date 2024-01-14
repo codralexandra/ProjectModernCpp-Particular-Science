@@ -225,7 +225,7 @@ void http::Routing<Color>::Run(Storage& storage)
 			m_game.SetLobbyState(LobbyState::Starting);
 			PopulateVectorWords(storage);
 			m_game.UpdateWords();
-			m_game.StartGame(m_app);
+			m_game.StartGame(m_app,m_game.GetDifficulty());
 			return crow::response(200, "Game is finished");
 		}
 		else

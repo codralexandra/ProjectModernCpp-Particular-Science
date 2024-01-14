@@ -138,13 +138,13 @@ Difficulty Game::GetDifficulty() const
 	return m_difficulty;
 }
 
-void Game::StartGame(crow::SimpleApp& m_app)
+void Game::StartGame(crow::SimpleApp& m_app,const Difficulty& dif)
 {
 	//start game
 	for (int i = 0; i < m_rounds; i++)
 	{
 		m_round.reset(new Round);
-		m_round->StartRound(m_players, m_words, m_app);
+		m_round->StartRound(m_players, m_words, m_app,dif);
 
 	}
 	//stop game
