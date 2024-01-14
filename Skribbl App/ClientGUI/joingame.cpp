@@ -9,6 +9,7 @@ JoinGame::JoinGame(QWidget* parent)
 	//connect(ui.joinGameButton,)
 	themeManager = &ThemeManager::instance();
 	connect(themeManager, &ThemeManager::themeChanged, this, &JoinGame::handleThemeChanged);
+	this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 JoinGame::~JoinGame()

@@ -28,6 +28,7 @@
 		void SetDifficulty(const Difficulty& difficulty);
 		void SetLobbyState(const LobbyState& lobbystate);
 		void SetPlayerHasGuessed(const std::string& username, bool hasGuessed);
+		void SetPlayerReceivedPixels(const std::string& username, bool received);
 
 		//operators
 		Game& operator=(const Game& other);

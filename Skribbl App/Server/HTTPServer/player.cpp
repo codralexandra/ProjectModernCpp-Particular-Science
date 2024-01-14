@@ -114,3 +114,11 @@ std::ostream& operator<<(std::ostream& os, Player& player)
       << "\nHas Guessed: " << player.GetHasGuessed() << "\nIs Drawer: " << player.GetIsDrawer() << "\nScore: " << player.GetPersonalScore() << "\n";
     return os;
 }
+void Player::SetHasReceivedPixels(bool received)
+{
+    m_hasReceivedPixels = received;
+}
+bool Player::GetHasReceivedPixels() const
+{
+    return m_hasReceivedPixels;
+}

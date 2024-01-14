@@ -23,12 +23,15 @@ import user;
 		void SetTimeGuessed(double time);
 		void SetHasGuessed(bool hasGuessed);
 		void SetScore(const double& newscore);
+		void SetHasReceivedPixels(bool received);
 
 		//getter
 		bool GetIsDrawer() const;
 		double GetPersonalScore() const;
 		bool GetHasGuessed() const;
 		double GetTimeGuessed() const;
+		bool GetHasReceivedPixels() const;
+
 		
 		//operators
 		Player& operator = (const Player& player);
@@ -42,6 +45,7 @@ import user;
 		double m_timeGuessed; //pt calculare scor
 		bool m_isDrawer; // rol
 		double m_personalScore; //ca sa tinem minte scorul
+		bool m_hasReceivedPixels;
 
 	};
  // std::ostream& operator<<(std::ostream& os, Player& player);

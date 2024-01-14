@@ -192,16 +192,21 @@ void Routing::Run(Storage& storage)
 					return crow::response(400, "Invalid JSON format");
 				}
 				DrawingPoint point;
-				point.color = jsonData["color"].s();
+				//point.color = jsonData["color"].s();
 				point.penWidth = jsonData["penWidth"].i();
 				point.x = jsonData["x"].d();
 				point.y = jsonData["y"].d();
 				bool newLineBool = jsonData["newLine"].b();
-				point.newLine = newLineBool ? "1" : "0";
+				point.newLine = newLineBool ? 1 : 0;
+				/*m_color = jsonData["color"].s();
+				m_penWidth = jsonData["penWidth"].i();
+				m_x = jsonData["x"].d();
+				m_y = jsonData["y"].d();*/
 				m_pixelQueue.push(point);
 				m_isPixel = true;
-				std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color << " " << m_pixelQueue.size() << " " << point.newLine << "\n";
+				//std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color <<" "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
 				return crow::response(200, "Pixel recived");
+
 			});
 
 	//--------------------------
@@ -286,29 +291,51 @@ void Routing::Run(Storage& storage)
 				}
 				if (!m_pixelQueue.empty())
 				{
+					m_game.SetPlayerReceivedPixels(username, true);
+					//std::cout<<"\n\n\n\n\n\n\n"<<m_game.GetPlayers()[username].GetHasReceivedPixels()<<"\n\n\n\n\n\n\n";
 					std::queue<DrawingPoint> copyQueue = m_pixelQueue;
+					bool emptyThePixelQueue = true;
+					for (auto& p : m_game.GetPlayers())
+					{
+						//std::cout << p.second.GetUsername() << " " << p.second.GetHasReceivedPixels() << "\n";
+						if (!p.second.GetHasReceivedPixels() && !p.second.GetIsDrawer())
+						{
+							emptyThePixelQueue = false;
+						}
+					}
+					if (emptyThePixelQueue)
+					{
+						m_pixelQueue = std::queue<DrawingPoint>();
+						for (auto& p : m_game.GetPlayers())
+						{
+							m_game.SetPlayerReceivedPixels(p.first, false);
+						}
+					}
 					std::vector<double> x;
 					std::vector<double> y;
 					std::vector<int> penWidth;
-					std::vector<std::string> color;
-					std::vector<std::string> newLine;
+					//std::vector<std::string> color;
+					std::vector<int> newLine;
 					while (!copyQueue.empty())
 					{
 						DrawingPoint point = copyQueue.front();
 						copyQueue.pop();
-						m_pixelQueue.pop();
+						//m_pixelQueue.pop();
 						x.push_back(point.x);
 						y.push_back(point.y);
-						color.push_back(point.color);
+						//color.push_back(point.color);
 						penWidth.push_back(point.penWidth);
 						newLine.push_back(point.newLine);
 					}
+					//cout << x.size();
+					/*DrawingPoint point = m_pixelQueue.front();
+					m_pixelQueue.pop();*/
 					responseJson["x"] = x;
 					responseJson["y"] = y;
 					responseJson["penWidth"] = penWidth;
-					responseJson["color"] = color;
+					//responseJson["color"] = color;
 					responseJson["newLine"] = newLine;
-					std::cout << "\n\n TRIMIS \n\n";
+					std::cout << "\n\n TRIMIS " << username << "\n\n";
 				}
 
 				return crow::response(200, responseJson);

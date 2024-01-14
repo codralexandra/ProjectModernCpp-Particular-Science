@@ -15,12 +15,12 @@ namespace http
 	class Routing
 	{
 		struct DrawingPoint {
-			std::string color;
+			//std::string color;
 			int penWidth;
 			double x;
 			double y;
-			std::string newLine;
-			
+			int newLine;
+			// Add more fields as needed
 		};
 	public:
 		void Run(Storage& storage);
