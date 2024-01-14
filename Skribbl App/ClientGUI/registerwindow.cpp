@@ -95,7 +95,10 @@ void RegisterWindow::onRegisterButtonClicked()
 		}
 		else
 		{
-			//open the main window
+			mainWindow = new MainWindow;
+			mainWindow->SetUsername(username);
+			this->hide();
+			mainWindow->show();
 		}
 	}
 }

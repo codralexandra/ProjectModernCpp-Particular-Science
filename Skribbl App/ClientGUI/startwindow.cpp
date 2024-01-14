@@ -122,7 +122,7 @@ void StartWindow::onUpdateTextEdit(const QString& text) {
 	//update();
 }
 void StartWindow::onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine) {
-	enableDrawing->receivePixelFromServer(x,y,penColor, penWidth,newLine);
+	enableDrawing->receivePixelFromServer(x, y, penColor, penWidth, newLine);
 }
 
 void StartWindow::onUpdateGuess() {
@@ -250,7 +250,7 @@ void StartWindow::waitInLobby() {
 				// Emit signal for each drawing point
 				emit updateDrawing(x, y, qColor, width, newLine);
 			}
-			
+
 		}
 		if (isDrawing == true)
 		{
@@ -284,9 +284,24 @@ void StartWindow::waitInLobby() {
 //	//waitingThread2.detach();
 //	//waitingThread3.detach();
 //}
+void StartWindow::clearDrawingSlot()
+{
+	enableDrawing->clearWidget();
+	ui.drawingView->clearWidget();
+}
+void StartWindow::clearDrawingFunction()
+{
+	while (true)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(63000));
+		emit clearDrawingSignal();;
+	}
+}
 void StartWindow::connectionToRoute()
 {
 	std::thread waitingThread(&StartWindow::waitInLobby, this);
 	waitingThread.detach();
+	std::thread clearDrawing(&StartWindow::clearDrawingFunction, this);
+	clearDrawing.detach();
 }
 

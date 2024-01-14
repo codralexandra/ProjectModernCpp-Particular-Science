@@ -52,6 +52,7 @@ public:
 	void setEnable(const bool& isDrawing);
 	void setPenColor(QColor color);
 	void setPenWidth(int width);
+	void clearWidget();
 	//void clearWidget();
 
 	const bool getEnable() const;
@@ -69,8 +70,8 @@ protected:
 
 public:
 	void sendPixelToServer(const QPointF& pos);
-	void receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidth,bool newLine1);
-    void updateDrawing(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1);
+	void receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1);
+	void updateDrawing(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1);
 
 
 private:

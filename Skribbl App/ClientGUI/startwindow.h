@@ -29,12 +29,15 @@ public:
 	void onUpdateGuess();
 	void onUpdateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine);
 	void fastRoute();
+	void clearDrawingFunction();
+	void clearDrawingSlot();
 
 signals:
 	void updateTextEdit(const QString& text);
 	void updateRole(bool isDrawing);
 	void updateGuess();
 	void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine);
+	void clearDrawingSignal();
 
 private slots:
 	void handleThemeChanged(const QString& styleSheet);

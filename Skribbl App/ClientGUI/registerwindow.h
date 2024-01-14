@@ -10,18 +10,19 @@
 #include <sstream>
 #include <string>
 #include "thememanager.h";
+#include "mainwindow.h"
 
 class RegisterWindow : public QWidget
 {
 	Q_OBJECT
 
 public:
-	RegisterWindow(QWidget *parent = nullptr);
+	RegisterWindow(QWidget* parent = nullptr);
 	~RegisterWindow();
-	private slots:
-		void onRegisterButtonClicked();
-		void on_backButton_clicked();
-		void handleThemeChanged(const QString& styleSheet);
+private slots:
+	void onRegisterButtonClicked();
+	void on_backButton_clicked();
+	void handleThemeChanged(const QString& styleSheet);
 
 private:
 	Ui::RegisterWindowClass ui;
@@ -29,4 +30,5 @@ private:
 	bool validateUserEmail(const std::string& m_email);
 	bool validateUsername(const std::string& m_username);
 	ThemeManager* themeManager;
-};
+	MainWindow* mainWindow;
+};	

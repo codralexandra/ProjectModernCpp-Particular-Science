@@ -127,6 +127,12 @@ void drawingWidget::finishDrawing()
         newLine = !newLine;
     }
 }
+void drawingWidget::clearWidget()
+{
+    if (scene()) {
+        scene()->clear();
+    }
+}
 
 void drawingWidget::sendPixelToServer(const QPointF& pos)
 {
@@ -144,7 +150,7 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
         stream << drawingPoint.color << drawingPoint.penWidth << drawingPoint.position;*/
 
 
-       //cand se incheie o linie, se trimite o cord(-1,1) -> usor de identificat pe ceilalti clienti
+        //cand se incheie o linie, se trimite o cord(-1,1) -> usor de identificat pe ceilalti clienti
 
 
 
@@ -152,7 +158,7 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
         jsonPayload["x"] = static_cast<double>(pos.x());;
         jsonPayload["y"] = static_cast<double>(pos.y());;
         jsonPayload["penWidth"] = penWidth;
-       // jsonPayload["color"] = penColor.name().toUtf8();
+        //  jsonPayload["color"] = penColor.name().toUtf8();
         jsonPayload["newLine"] = newLine;
         std::string jsonString = jsonPayload.dump();
 
@@ -168,10 +174,10 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
 void drawingWidget::receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidthbool, bool newLine1)
 {
     if (this->enable == false)
-   
+
     {
-            updateDrawing(x, y, penColor1, penWidth, newLine1);
-        }
+        updateDrawing(x, y, penColor1, penWidth, newLine1);
+    }
 }
 //void drawingWidget::receivePixelFromServer(const crow::json::rvalue& jsonPayload)
 //{
@@ -216,7 +222,7 @@ void drawingWidget::updateDrawing(double x, double y, const QString& penColor1, 
             QColor color(penColor1);
             QPen pen(color, penWidth);
             QBrush brush(color);
-            QGraphicsLineItem* lineItem = new QGraphicsLineItem(QLineF(QPointF(lastPixel.x,lastPixel.y), QPointF(x, y)));
+            QGraphicsLineItem* lineItem = new QGraphicsLineItem(QLineF(QPointF(lastPixel.x, lastPixel.y), QPointF(x, y)));
             lineItem->setPen(pen);
             scene()->addItem(lineItem);
             lastPixel.color = penColor1;

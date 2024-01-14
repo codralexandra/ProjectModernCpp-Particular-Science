@@ -79,7 +79,10 @@ void http::Routing<Color>::Run(Storage& storage)
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
-
+			if (m_game.GetPlayers().size() <= 1)
+			{
+				return crow::response(400, "Not enough players");
+			}
 			uint16_t id;
 			std::random_device RD; 
 			std::mt19937 engine(RD()); 
