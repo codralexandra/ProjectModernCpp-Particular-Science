@@ -33,7 +33,7 @@ public:
 
 	//operators
 	Word& operator=(const Word& other);
-	//Word& operator=(Word&& other) noexcept;
+	Word& operator=(Word&& other) noexcept;
 
 
 	//print
