@@ -35,6 +35,16 @@ void ScoreWindow::getPlayerScores(crow::json::rvalue jsonPackage)
 	update();
 }
 
+void ScoreWindow::SetScoreListText(const QString& str)
+{
+	ui.scoreList->setText(str);
+}
+
+void ScoreWindow::SetWinnerLabelText(const QString& str)
+{
+	ui.winnerLabel->setText(str);
+}
+
 void ScoreWindow::handleThemeChange(const QString& styleSheet)
 {
 	this->setStyleSheet(styleSheet);

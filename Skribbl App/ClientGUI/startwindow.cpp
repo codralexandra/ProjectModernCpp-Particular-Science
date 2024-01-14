@@ -266,7 +266,27 @@ void StartWindow::waitInLobby() {
 		if (responseBody.has("GameEnded"))
 		{
 			ScoreWindow* scoreWindow = new ScoreWindow;
-			auto response = cpr::Get(cpr::Url{ "http://localhost/game/playerScores" });
+			//auto response = cpr::Get(cpr::Url{ "http://localhost/game/playerScores" });
+			std::vector<std::string>playerUsernames{ responseBody["playersUsernames"].begin(),responseBody["playersUsernames"].end() };
+			std::vector<int>playerScores{ responseBody["playerScores"].begin(),responseBody["playerScores"].end() };
+			QString itemText;
+			for (int i = 0; i < playerScores.size(); i++)
+			{
+				itemText += QString("Username: ");
+				itemText += QString::fromUtf8(playerUsernames[i]);
+				itemText += QString(" - ");
+				itemText += QString::number(playerScores[i]);
+				itemText += '\n';
+
+			}
+
+			scoreWindow->SetScoreListText(itemText);
+
+			std::string winner = playerUsernames[0];
+
+			QString winnerLabel = QString("Congratulations!") + QString::fromUtf8(winner) + QString("has won!");
+
+			scoreWindow->SetWinnerLabelText(QString::fromStdString(winner));
 			scoreWindow->getPlayerScores(crow::json::load(response.text));
 			scoreWindow->show();
 			//this->close();

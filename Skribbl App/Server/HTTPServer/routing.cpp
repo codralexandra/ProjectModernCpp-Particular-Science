@@ -359,6 +359,15 @@ void http::Routing<Color>::Run(Storage& storage)
 				if (m_game.GetGameEnded() == true)
 				{
 					responseJson["GameState"] = true;
+					std::vector<int> playerScores;
+					std::vector<std::string> playersUsernames;
+					for (const auto& it : m_game.GetPlayers())
+					{
+						playerScores.push_back(it.second.GetPersonalScore());
+						playersUsernames.push_back(it.first);
+					}
+					responseJson["playerScores"] = playerScores;
+					responseJson["playersUsernames"] = playersUsernames;
 					return crow::response(202, responseJson);
 				}
 				return crow::response(200, responseJson);
