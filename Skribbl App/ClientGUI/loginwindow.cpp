@@ -78,6 +78,7 @@ void LoginWindow::onLoginButtonClicked()
 		{
 			mainWindow = new MainWindow;
 			mainWindow->SetUsername(username);
+			mainWindow->setStyleSheet(themeManager->getCurrentStyleSheet());
 			this->hide();
 			mainWindow->show();
 		}

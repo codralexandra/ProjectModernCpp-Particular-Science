@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(ui.profileButton, &QPushButton::clicked, this, &MainWindow::on_profileButton_clicked);
 	themeManager = &ThemeManager::instance();
 	connect(themeManager, &ThemeManager::themeChanged, this, &MainWindow::handleThemeChanged);
-	this->setStyleSheet(themeManager->getCurrentStyleSheet());
+	//this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 MainWindow::~MainWindow()
