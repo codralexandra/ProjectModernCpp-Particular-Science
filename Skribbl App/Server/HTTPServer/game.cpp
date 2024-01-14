@@ -94,28 +94,28 @@ Game& Game::operator=(const Game& other)
 	return *this;
 }
 
-//Game& Game::operator=(Game&& other) noexcept
-//{
-//	if (this != &other) {
-//		// Release resources owned by 'this' (if needed)
-//		// ...
-//
-//		// Move values from 'other' to 'this'
-//		m_players = std::move(other.m_players);
-//		m_difficulty = std::move(other.m_difficulty);
-//		m_lobbyState = std::move(other.m_lobbyState);
-//		m_words = std::move(other.m_words);
-//
-//		// Move the ownership of 'other.m_round' to 'm_round'
-//		m_round = std::move(other.m_round);
-//
-//		m_gameID = other.m_gameID;
-//
-//		// Optionally, move other members if needed
-//		// ...
-//	}
-//	return *this;
-//}
+Game& Game::operator=(Game&& other) noexcept
+{
+	if (this != &other) {
+		// Release resources owned by 'this' (if needed)
+		// ...
+
+		// Move values from 'other' to 'this'
+		m_players = std::move(other.m_players);
+		m_difficulty = std::move(other.m_difficulty);
+		m_lobbyState = std::move(other.m_lobbyState);
+		m_words = std::move(other.m_words);
+
+		// Move the ownership of 'other.m_round' to 'm_round'
+		m_round = std::move(other.m_round);
+
+		m_gameID = other.m_gameID;
+
+		// Optionally, move other members if needed
+		// ...
+	}
+	return *this;
+}
 
 
 std::unordered_map<std::string, Player> Game::GetPlayers() const

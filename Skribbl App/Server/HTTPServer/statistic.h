@@ -14,7 +14,7 @@ namespace Scribble
 
 		//operators
 		Statistic& operator=(const Statistic& other);
-		//Statistic& operator=(Statistic&& other)noexcept;
+		Statistic& operator=(Statistic&& other)noexcept;
 		//setter
 		void SetUsername(const std::string& username);
 		void SetScore(uint16_t& score);

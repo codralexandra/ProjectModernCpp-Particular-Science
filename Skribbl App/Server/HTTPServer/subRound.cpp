@@ -41,18 +41,18 @@ SubRound& SubRound::operator=(const SubRound& other)
 	return*this;
 }
 
-//SubRound& SubRound::operator=(SubRound&& other)noexcept
-//{
-//	if (this != &other) {
-//		// Move-assign the Word object
-//		m_word = std::move(other.m_word);
-//
-//		// Move-assign the Timer object
-//		m_timer = std::move(other.m_timer);
-//
-//	}
-//	return *this;
-//}
+SubRound& SubRound::operator=(SubRound&& other)noexcept
+{
+	if (this != &other) {
+		// Move-assign the Word object
+		m_word = std::move(other.m_word);
+
+		// Move-assign the Timer object
+		m_timer = std::move(other.m_timer);
+
+	}
+	return *this;
+}
 
 void SubRound::SetWord(const Word& cuv)
 {

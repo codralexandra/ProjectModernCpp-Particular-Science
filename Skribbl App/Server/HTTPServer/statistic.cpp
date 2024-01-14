@@ -35,16 +35,16 @@ Statistic& Scribble::Statistic::operator=(const Statistic& other)
 	return *this;
 }
 
-//Statistic& Scribble::Statistic::operator=(Statistic&& other) noexcept
-//{
-//	if (this != &other) {
-//		
-//		m_username = std::move(other.m_username);
-//		m_score = std::move(other.m_score);
-//
-//	}
-//	return *this;
-//}
+Statistic& Scribble::Statistic::operator=(Statistic&& other) noexcept
+{
+	if (this != &other) {
+		
+		m_username = std::move(other.m_username);
+		m_score = std::move(other.m_score);
+
+	}
+	return *this;
+}
 
 void Statistic::SetUsername(const std::string& username)
 {

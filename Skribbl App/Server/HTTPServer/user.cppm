@@ -18,7 +18,7 @@ namespace Scribble
 
 		//operators
 		User& operator=(const User& user);
-		//User& operator=(User&& user)noexcept;
+		User& operator=(User&& user)noexcept;
 		
 		//validation
 		bool ValidateUserEmail() const;

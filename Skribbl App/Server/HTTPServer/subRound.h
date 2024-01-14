@@ -18,7 +18,7 @@ public:
 
 	//operators
 	SubRound& operator=(const SubRound& other);
-	//SubRound& operator=(SubRound&& other);
+	SubRound& operator=(SubRound&& other)noexcept;
 
 
 	//setter

@@ -90,30 +90,30 @@ Word& Word::operator=(const Word& other)
 	return *this;
 }
 
-//Word& Word::operator=(Word&& other) noexcept
-//{
-//	if (this != &other)
-//	{
-//	    m_value.clear();
-//		m_valueAux.clear();
-//		m_id = 0;
-//		m_difficulty.clear();
-//
-//		m_id = other.m_id;
-//		m_difficulty = std::move(other.m_difficulty);
-//		m_value = std::move(other.m_value);
-//		m_valueAux = std::move(other.m_valueAux);
-//		m_numberHint = other.m_numberHint;
-//
-//		other.m_id = -1;
-//		other.m_difficulty.clear();
-//		other.m_value.clear();
-//		other.m_valueAux.clear();
-//		other.m_numberHint = 2;
-//	}
-//
-//	return *this;
-//}
+Word& Word::operator=(Word&& other) noexcept
+{
+	if (this != &other)
+	{
+	    m_value.clear();
+		m_valueAux.clear();
+		m_id = 0;
+		m_difficulty.clear();
+
+		m_id = other.m_id;
+		m_difficulty = std::move(other.m_difficulty);
+		m_value = std::move(other.m_value);
+		m_valueAux = std::move(other.m_valueAux);
+		m_numberHint = other.m_numberHint;
+
+		other.m_id = -1;
+		other.m_difficulty.clear();
+		other.m_value.clear();
+		other.m_valueAux.clear();
+		other.m_numberHint = 2;
+	}
+
+	return *this;
+}
 
 void Word::SetId(const uint16_t& id)
 {

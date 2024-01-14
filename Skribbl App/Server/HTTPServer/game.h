@@ -32,7 +32,7 @@
 
 		//operators
 		Game& operator=(const Game& other);
-		//Game& operator=(Game&& other)noexcept;
+	    Game& operator=(Game&& other)noexcept;
 
 		//getter
 		std::unordered_map<std::string,Player> GetPlayers() const;

@@ -12,7 +12,7 @@ import user;
 		Player();
 		Player(bool& isDrawing);
 		Player(const Player& player);
-		//Player(Player&& other);
+		Player(Player&& other);
 		Player(bool& hasGuessed, double& timeGuessed,
 			bool& isDrawer, uint16_t& personalScore, const std::string& email, const std::string& password,
 			uint16_t& personalBest, bool& hasReceivedPixels);
@@ -35,7 +35,7 @@ import user;
 		
 		//operators
 		Player& operator = (const Player& player);
-		//Player& operator=(Player&& other)noexcept;
+		Player& operator=(Player&& other)noexcept;
 		bool operator<(const Player& player) const;
 		bool operator>(const Player& player) const;
 

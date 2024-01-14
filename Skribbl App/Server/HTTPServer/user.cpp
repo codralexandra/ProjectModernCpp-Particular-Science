@@ -25,29 +25,29 @@ User& User::operator=(const User& user)
 	return *this;
 }
 
-//User& User::operator=(User && user) noexcept
-//{
-//	if (this != &user) 
-//	{
-//		// Clear the existing data
-//		m_username.clear();
-//		m_password.clear();
-//		m_personalBest = 0;
-//
-//		// Move data from 'user' to 'this'
-//		m_username = std::move(user.m_username);
-//		m_email = std::move(user.m_email);
-//		m_password = std::move(user.m_password);
-//		m_personalBest = user.m_personalBest;
-//
-//		// Clear 'user'
-//		user.m_email.clear();
-//		user.m_password.clear();
-//		user.m_personalBest = 0;
-//		user.m_username.clear();
-//	}
-//	return *this;
-//}
+User& User::operator=(User && user) noexcept
+{
+	if (this != &user) 
+	{
+		// Clear the existing data
+		m_username.clear();
+		m_password.clear();
+		m_personalBest = 0;
+
+		// Move data from 'user' to 'this'
+		m_username = std::move(user.m_username);
+		m_email = std::move(user.m_email);
+		m_password = std::move(user.m_password);
+		m_personalBest = user.m_personalBest;
+
+		// Clear 'user'
+		user.m_email.clear();
+		user.m_password.clear();
+		user.m_personalBest = 0;
+		user.m_username.clear();
+	}
+	return *this;
+}
 
 User::User(const User& user)
 {
