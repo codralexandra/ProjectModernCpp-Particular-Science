@@ -64,8 +64,9 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 		while (t.elapsedSeconds() < timeLimit){}
 		t.stop();
 
-		Score_Player_Drawing(it.second, p);
 		Score_Player_Guessing(p);
+		Score_Player_Drawing(it.second, p);
+		
 
 		it.second.SetIsDrawer(false);
 		
@@ -75,10 +76,9 @@ void Round::StartRound(std::unordered_map<std::string,Player>& p,  std::vector< 
 
 void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Player>&players_guessing)
 {
-	std::cout << "Score Drawing apelata\n";
-
-	auto firstIt = players_guessing.begin();
-	auto lastIt = players_guessing.end();
+	
+	auto firstIt = std::ranges::begin(players_guessing);
+	auto lastIt = std::ranges::end(players_guessing);
 
 	auto totalTime = std::accumulate(firstIt, lastIt, 0.0,
 		[](double sum, const std::pair<const std::string, Player>& playerPair) {
@@ -94,6 +94,7 @@ void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Playe
 		p.SetScore(p.GetPersonalScore() + (60 - (totalTime / (players_guessing.size()-1))) * 100 / 60);
 
 	}
+	std::cout << p.GetPersonalScore();
 }
 
 void Round::Score_Player_Guessing(std::unordered_map<std::string,Player>& p)
@@ -101,6 +102,8 @@ void Round::Score_Player_Guessing(std::unordered_map<std::string,Player>& p)
 	std::cout << "Score guessing called\n";
 	for (auto &player : p)
 	{
+		std::cout << "Time for player: " << player.second.GetUsername() << " " << player.second.GetTimeGuessed()<<" and last score\n";
+		std::cout << player.second.GetPersonalScore()<<std::endl;
 		if (player.second.GetIsDrawer() == false)
 		{
 			if (player.second.GetTimeGuessed() == 60)
@@ -116,5 +119,6 @@ void Round::Score_Player_Guessing(std::unordered_map<std::string,Player>& p)
 				player.second.SetScore(player.second.GetPersonalScore() + ((60 - player.second.GetTimeGuessed()) * 100 / 30));
 			}
 		}
+		std::cout << player.second.GetPersonalScore();
 	}
 }
