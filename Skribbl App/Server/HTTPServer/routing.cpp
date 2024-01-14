@@ -79,13 +79,17 @@ void http::Routing<Color>::Run(Storage& storage)
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
+			if (m_game.GetPlayers().size() < 1)
+			{
+				return crow::response(400, "Not enough players");
+			}
 			uint16_t id;
 			std::random_device RD; 
 			std::mt19937 engine(RD()); 
 			std::uniform_int_distribution<> distr(0, 10); 
 			id = distr(engine);
 
-			
+
 			Difficulty dificulty = StringToDifficultyType(jsonData["Difficulty"].s());
 			m_game.SetGameID(id);
 			std::string username = jsonData["Username"].s();
@@ -96,7 +100,7 @@ void http::Routing<Color>::Run(Storage& storage)
 			SetGameMaster(player->GetUsername());
 			m_gameExists = true;
 
-			
+
 			crow::json::wvalue responseJson;
 			responseJson["gameId"] = id;
 			return crow::response(200, responseJson);
@@ -178,6 +182,22 @@ void http::Routing<Color>::Run(Storage& storage)
 		return crow::response(200, jsonResponse2);
 			});
 
+	
+	CROW_ROUTE(m_app, "/game/playerScores").methods("GET"_method)([this]() {
+		crow::json::wvalue jsonSendPackage;
+		std::vector<int> playerScores;
+		std::vector<std::string> playersUsernames;
+		for(const auto& it : m_game.GetPlayers())
+		{
+			playerScores.push_back(it.second.GetPersonalScore());
+			playersUsernames.push_back(it.first);
+		}
+		jsonSendPackage["playerScores"] = playerScores;
+		jsonSendPackage["playersUsernames"] = playersUsernames;
+		return crow::response(200, jsonSendPackage);
+		});
+		
+
 	//--------------------------
 	//      DRAWING WIDGET
 	//--------------------------
@@ -203,7 +223,7 @@ void http::Routing<Color>::Run(Storage& storage)
 				m_y = jsonData["y"].d();*/
 				m_pixelQueue.push(point);
 				m_isPixel = true;
-				std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
+				//std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color <<" "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
 				return crow::response(200, "Pixel recived");
 
 			});
@@ -289,7 +309,7 @@ void http::Routing<Color>::Run(Storage& storage)
 					responseJson["word"] = m_currentWord;
 				}
 				if (!m_pixelQueue.empty())
-					{
+				{
 					m_game.SetPlayerReceivedPixels(username, true);
 					//std::cout<<"\n\n\n\n\n\n\n"<<m_game.GetPlayers()[username].GetHasReceivedPixels()<<"\n\n\n\n\n\n\n";
 					std::queue<DrawingPoint> copyQueue = m_pixelQueue;
@@ -307,7 +327,7 @@ void http::Routing<Color>::Run(Storage& storage)
 						m_pixelQueue = std::queue<DrawingPoint>();
 						for (auto& p : m_game.GetPlayers())
 						{
-							m_game.SetPlayerReceivedPixels(p.first , false);
+							m_game.SetPlayerReceivedPixels(p.first, false);
 						}
 					}
 					std::vector<double> x;
@@ -334,9 +354,13 @@ void http::Routing<Color>::Run(Storage& storage)
 					responseJson["penWidth"] = penWidth;
 					//responseJson["color"] = color;
 					responseJson["newLine"] = newLine;
-					std::cout << "\n\n TRIMIS "<<username<<"\n\n";
+					std::cout << "\n\n TRIMIS " << username << "\n\n";
 				}
-
+				if (m_game.GetGameEnded() == true)
+				{
+					responseJson["GameState"] = true;
+					return crow::response(202, responseJson);
+				}
 				return crow::response(200, responseJson);
 			});
 
@@ -493,6 +517,6 @@ void http::Routing<Color>::PopulateVectorWords(Storage& storage)
 			wordsVector.emplace_back(row);
 		}
 	}
-	
+
 	m_game.SetWords(wordsVector);
 }

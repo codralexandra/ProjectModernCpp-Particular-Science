@@ -13,7 +13,7 @@ class ScoreWindow : public QMainWindow
 public:
 	ScoreWindow(QWidget *parent = nullptr);
 	~ScoreWindow();
-	void getPlayerScores(crow::json::wvalue jsonPackage);
+	void getPlayerScores(crow::json::rvalue jsonPackage);
 
 private slots:
 	void on_closeButton_clicked();

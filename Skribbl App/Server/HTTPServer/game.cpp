@@ -138,6 +138,18 @@ Difficulty Game::GetDifficulty() const
 	return m_difficulty;
 }
 
+
+void Game::SetGameEnded(const bool& state)
+{
+	m_gameEnded = state;
+}
+
+bool Game::GetGameEnded() const
+{
+	return m_gameEnded;
+}
+
+
 void Game::StartGame(crow::SimpleApp& m_app,const Difficulty& dif)
 {
 	//start game
@@ -149,7 +161,7 @@ void Game::StartGame(crow::SimpleApp& m_app,const Difficulty& dif)
 	}
 	//stop game
 	
-	
+	m_gameEnded = true;
 
 	for (const auto& it : m_players)
 	{

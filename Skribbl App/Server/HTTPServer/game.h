@@ -30,6 +30,11 @@
 		void SetPlayerHasGuessed(const std::string& username, bool hasGuessed);
 		void SetPlayerReceivedPixels(const std::string& username, bool received);
 
+
+		void SetGameEnded(const bool& state);
+		bool GetGameEnded() const;
+
+
 		//operators
 		Game& operator=(const Game& other);
 	    Game& operator=(Game&& other)noexcept;
@@ -59,5 +64,6 @@
 		std::vector<Word> m_words;
 		std::unique_ptr<Round> m_round;
 		uint16_t m_gameID;
+		bool m_gameEnded ;
 	};
 

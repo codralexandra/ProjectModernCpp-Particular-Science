@@ -263,6 +263,14 @@ void StartWindow::waitInLobby() {
 		{
 			std::this_thread::sleep_for(std::chrono::milliseconds(250));
 		}
+		if (responseBody.has("GameEnded"))
+		{
+			ScoreWindow* scoreWindow = new ScoreWindow;
+			auto response = cpr::Get(cpr::Url{ "http://localhost/game/playerScores" });
+			scoreWindow->getPlayerScores(crow::json::load(response.text));
+			scoreWindow->show();
+			//this->close();
+		}
 		//add pixel
 	} while (response.status_code == 200);
 
