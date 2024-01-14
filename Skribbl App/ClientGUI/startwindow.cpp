@@ -17,6 +17,9 @@ StartWindow::StartWindow(QWidget* parent)
 	connect(this, &StartWindow::updateGuess, this, &StartWindow::onUpdateGuess);
 	connect(this, &StartWindow::updateDrawing, this, &StartWindow::onUpdateDrawing);
 	this->setStyleSheet(themeManager->getCurrentStyleSheet());
+	ui.widthSlider->setMinimum(0);
+	ui.widthSlider->setMaximum(10);
+	connect(ui.widthSlider, &QSlider::valueChanged, ui.drawingView, &drawingWidget::setPenWidth);
 }
 
 StartWindow::~StartWindow()

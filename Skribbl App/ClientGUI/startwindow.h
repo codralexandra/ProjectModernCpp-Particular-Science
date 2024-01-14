@@ -6,6 +6,7 @@
 #include <crow.h>
 #include"drawingwidget.h"
 #include "thememanager.h"
+#include "ScoreWindow.h"
 
 class StartWindow : public QMainWindow
 {
@@ -54,4 +55,5 @@ private:
 	ThemeManager* themeManager;
 	double m_x;
 	double m_y;
+	ScoreWindow* scoreWindow;
 };
