@@ -263,97 +263,6 @@ void Routing::Run(Storage& storage)
 				}
 			});
 
-
-	//--------------------------
-	//          WORD 
-	//--------------------------
-
-	CROW_ROUTE(m_app, "/game/tryguess")
-		.methods("PUT"_method)
-		([this](const crow::request req)
-			{
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData) {
-					return crow::response(400, "Invalid JSON format");
-				}
-				std::string tryGuess = jsonData["Guess"].s();
-				std::string username = jsonData["username"].s();
-				crow::json::wvalue responseJson;
-				if (m_game.GetPlayers()[username].GetHasGuessed() == false)
-				{
-					if (tryGuess == m_wordDrawer)
-					{
-						m_game.GetRoundRef().GetSubRoundRef().SetGuessed(true);
-						m_game.SetPlayerHasGuessed(username, true);
-						return crow::response(200, "Guessed");
-					}
-				}
-				else
-				{
-					return crow::response(203, "Already guessed");
-				}
-
-				return crow::response(201, "Wrong");
-
-			});
-
-	CROW_ROUTE(m_app, "/game/getword")
-		.methods("PUT"_method)
-		([this](const crow::request req)
-			{
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData) {
-					return crow::response(400, "Invalid JSON format");
-				}
-				m_currentWord = jsonData["currentword"].s();
-				m_wordDrawer = jsonData["wordDrawer"].s();
-				std::cout << "\n" << m_wordDrawer << "\n";
-				return crow::response(200, "Word is ok");
-			});
-
-	//--------------------------
-	//          IDK EXPLAIN
-	//--------------------------
-
-	CROW_ROUTE(m_app, "/game/startround")
-		.methods("GET"_method)
-		([this](const crow::request& req) {
-
-		crow::json::rvalue jsonData = crow::json::load(req.body);
-		if (!jsonData) {
-			return crow::response(400, "Invalid JSON format");
-		}
-
-		std::string username = jsonData["username"].s();
-
-		crow::json::wvalue responseJson;
-		responseJson["word"] = m_currentWord;
-		bool isDrawing = false;
-		for (auto& p : m_game.GetPlayers())
-		{
-			if (p.first == username && p.second.GetIsDrawer())
-			{
-				isDrawing = true;
-			}
-		}
-		responseJson["isDrawing"] = isDrawing;
-		return crow::response(200, responseJson);
-			});
-
-	CROW_ROUTE(m_app, "/game/startround")
-		.methods("PUT"_method)
-		([this](const crow::request& req)
-			{
-
-				crow::json::rvalue jsonData = crow::json::load(req.body);
-				if (!jsonData) {
-					return crow::response(400, "Invalid JSON format");
-				}
-
-				std::string m_currentword = jsonData["word"].s();
-
-				return crow::response(200, "Word is ok!");
-			});
 	CROW_ROUTE(m_app, "/game/package")
 		.methods("GET"_method)
 		([this](const crow::request req)
@@ -403,6 +312,54 @@ void Routing::Run(Storage& storage)
 				}
 
 				return crow::response(200, responseJson);
+			});
+
+
+	//--------------------------
+	//          WORD 
+	//--------------------------
+
+	CROW_ROUTE(m_app, "/game/tryguess")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				std::string tryGuess = jsonData["Guess"].s();
+				std::string username = jsonData["username"].s();
+				crow::json::wvalue responseJson;
+				if (m_game.GetPlayers()[username].GetHasGuessed() == false)
+				{
+					if (tryGuess == m_wordDrawer)
+					{
+						m_game.GetRoundRef().GetSubRoundRef().SetGuessed(true);
+						m_game.SetPlayerHasGuessed(username, true);
+						return crow::response(200, "Guessed");
+					}
+				}
+				else
+				{
+					return crow::response(203, "Already guessed");
+				}
+
+				return crow::response(201, "Wrong");
+
+			});
+
+	CROW_ROUTE(m_app, "/game/getword")
+		.methods("PUT"_method)
+		([this](const crow::request req)
+			{
+				crow::json::rvalue jsonData = crow::json::load(req.body);
+				if (!jsonData) {
+					return crow::response(400, "Invalid JSON format");
+				}
+				m_currentWord = jsonData["currentword"].s();
+				m_wordDrawer = jsonData["wordDrawer"].s();
+				std::cout << "\n" << m_wordDrawer << "\n";
+				return crow::response(200, "Word is ok");
 			});
 
 	m_app.port(18080).multithreaded().run();
