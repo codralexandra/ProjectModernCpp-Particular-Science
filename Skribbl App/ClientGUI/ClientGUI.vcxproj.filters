@@ -49,6 +49,9 @@
     <ClCompile Include="thememanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Sounds\MainMenu.wav" />
@@ -99,6 +102,9 @@
     <QtMoc Include="thememanager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ScoreWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="clientgui.qrc" />
@@ -141,6 +147,9 @@
       <Filter>UIs</Filter>
     </QtUic>
     <QtUic Include="profilewindow.ui">
+      <Filter>UIs</Filter>
+    </QtUic>
+    <QtUic Include="ScoreWindow.ui">
       <Filter>UIs</Filter>
     </QtUic>
   </ItemGroup>

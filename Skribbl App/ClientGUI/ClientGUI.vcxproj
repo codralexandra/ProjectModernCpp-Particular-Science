@@ -109,6 +109,7 @@
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="profilewindow.cpp" />
     <ClCompile Include="registerwindow.cpp" />
+    <ClCompile Include="ScoreWindow.cpp" />
     <ClCompile Include="settingswindow.cpp" />
     <ClCompile Include="soundmanager.cpp" />
     <ClCompile Include="startwindow.cpp" />
@@ -128,6 +129,7 @@
     <QtUic Include="mainwindow.ui" />
     <QtUic Include="profilewindow.ui" />
     <QtUic Include="registerwindow.ui" />
+    <QtUic Include="ScoreWindow.ui" />
     <QtUic Include="settingswindow.ui" />
     <QtUic Include="startwindow.ui" />
     <QtUic Include="userwindow.ui" />
@@ -180,6 +182,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="thememanager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ScoreWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
