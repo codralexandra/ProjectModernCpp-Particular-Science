@@ -171,7 +171,7 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
 }
 
 
-void drawingWidget::receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidthbool, bool newLine1)
+void drawingWidget::receivePixelFromServer(double x, double y, const QString& penColor1, uint32_t penWidth, bool newLine1)
 {
     if (this->enable == false)
 

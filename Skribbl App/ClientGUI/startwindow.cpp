@@ -16,6 +16,7 @@ StartWindow::StartWindow(QWidget* parent)
 	connect(this, &StartWindow::updateRole, this, &StartWindow::onUpdateRole);
 	connect(this, &StartWindow::updateGuess, this, &StartWindow::onUpdateGuess);
 	connect(this, &StartWindow::updateDrawing, this, &StartWindow::onUpdateDrawing);
+	connect(this, &StartWindow::clearDrawingSignal, this, &StartWindow::clearDrawingSlot);
 	this->setStyleSheet(themeManager->getCurrentStyleSheet());
 	ui.widthSlider->setMinimum(0);
 	ui.widthSlider->setMaximum(10);
@@ -294,7 +295,7 @@ void StartWindow::clearDrawingFunction()
 	while (true)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(63000));
-		emit clearDrawingSignal();;
+		emit clearDrawingSignal();
 	}
 }
 void StartWindow::connectionToRoute()

@@ -79,10 +79,6 @@ void http::Routing<Color>::Run(Storage& storage)
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
-			if (m_game.GetPlayers().size() <= 1)
-			{
-				return crow::response(400, "Not enough players");
-			}
 			uint16_t id;
 			std::random_device RD; 
 			std::mt19937 engine(RD()); 
@@ -207,7 +203,7 @@ void http::Routing<Color>::Run(Storage& storage)
 				m_y = jsonData["y"].d();*/
 				m_pixelQueue.push(point);
 				m_isPixel = true;
-				//std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " " << point.color <<" "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
+				std::cout << "\n" << point.x << " " << point.y << " " << point.penWidth << " "<< m_pixelQueue.size() <<" " << point.newLine<<"\n";
 				return crow::response(200, "Pixel recived");
 
 			});
