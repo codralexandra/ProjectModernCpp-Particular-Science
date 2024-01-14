@@ -34,7 +34,7 @@ Game::Game(Game&& other)
 	m_lobbyState = std::move(other.m_lobbyState);
 	m_words = std::move(other.m_words);
 	m_round = std::move(other.m_round);
-	m_gameID = other.m_gameID;
+	m_gameID = std::move(other.m_gameID);
 }
 
 void Game::SetPlayers(const std::unordered_map<std::string,Player>& players)
@@ -97,9 +97,7 @@ Game& Game::operator=(const Game& other)
 Game& Game::operator=(Game&& other) noexcept
 {
 	if (this != &other) {
-		// Release resources owned by 'this' (if needed)
-		// ...
-
+		
 		// Move values from 'other' to 'this'
 		m_players = std::move(other.m_players);
 		m_difficulty = std::move(other.m_difficulty);
@@ -111,8 +109,6 @@ Game& Game::operator=(Game&& other) noexcept
 
 		m_gameID = other.m_gameID;
 
-		// Optionally, move other members if needed
-		// ...
 	}
 	return *this;
 }
