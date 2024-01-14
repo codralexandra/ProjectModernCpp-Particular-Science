@@ -30,7 +30,7 @@ int main()
 	}
 	crow::SimpleApp app;
 	
-	http::Routing<Color> r;
+	http::Routing<int> r;
 	r.SetGameExists(false);
 	r.Run(db);
 

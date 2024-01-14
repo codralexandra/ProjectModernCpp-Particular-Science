@@ -4,7 +4,7 @@ using namespace http;
 #include "statistic.h"
 #include<thread>
 
-void http::Routing<Color>::Run(Storage& storage)
+void http::Routing<int>::Run(Storage& storage)
 {	
 	//--------------------------
 	//     REGISTER AND LOGIN
@@ -211,7 +211,7 @@ void http::Routing<Color>::Run(Storage& storage)
 					return crow::response(400, "Invalid JSON format");
 				}
 				DrawingPoint point;
-				//point.color = jsonData["color"].s();
+				point.color = HexStringToColorPosition(jsonData["color"].s());
 				point.penWidth = jsonData["penWidth"].i();
 				point.x = jsonData["x"].d();
 				point.y = jsonData["y"].d();
@@ -309,40 +309,41 @@ void http::Routing<Color>::Run(Storage& storage)
 					responseJson["word"] = m_currentWord;
 				}
 				if (!m_pixelQueue.empty())
-				{
-					m_game.SetPlayerReceivedPixels(username, true);
+					{
+					//m_game.SetPlayerReceivedPixels(username, true);
 					//std::cout<<"\n\n\n\n\n\n\n"<<m_game.GetPlayers()[username].GetHasReceivedPixels()<<"\n\n\n\n\n\n\n";
 					std::queue<DrawingPoint> copyQueue = m_pixelQueue;
-					bool emptyThePixelQueue = true;
-					for (auto& p : m_game.GetPlayers())
-					{
-						//std::cout << p.second.GetUsername() << " " << p.second.GetHasReceivedPixels() << "\n";
-						if (!p.second.GetHasReceivedPixels() && !p.second.GetIsDrawer())
-						{
-							emptyThePixelQueue = false;
-						}
-					}
-					if (emptyThePixelQueue)
+					//bool emptyThePixelQueue = true;
+					//for (auto& p : m_game.GetPlayers())
+					//{
+					//	//std::cout << p.second.GetUsername() << " " << p.second.GetHasReceivedPixels() << "\n";
+					//	if (!p.second.GetHasReceivedPixels() && !p.second.GetIsDrawer())
+					//	{
+					//		emptyThePixelQueue = false;
+					//	}
+					//}
+					/*if (emptyThePixelQueue)
 					{
 						m_pixelQueue = std::queue<DrawingPoint>();
 						for (auto& p : m_game.GetPlayers())
 						{
 							m_game.SetPlayerReceivedPixels(p.first, false);
 						}
-					}
+					}*/
 					std::vector<double> x;
 					std::vector<double> y;
 					std::vector<int> penWidth;
-					//std::vector<std::string> color;
+					std::vector<int> colors;
+					std::vector<std::string> colorsHex;
 					std::vector<int> newLine;
 					while (!copyQueue.empty())
 					{
 						DrawingPoint point = copyQueue.front();
+						m_pixelQueue.pop();
 						copyQueue.pop();
-						//m_pixelQueue.pop();
 						x.push_back(point.x);
 						y.push_back(point.y);
-						//color.push_back(point.color);
+						colors.push_back(point.color);
 						penWidth.push_back(point.penWidth);
 						newLine.push_back(point.newLine);
 					}
@@ -352,7 +353,11 @@ void http::Routing<Color>::Run(Storage& storage)
 					responseJson["x"] = x;
 					responseJson["y"] = y;
 					responseJson["penWidth"] = penWidth;
-					//responseJson["color"] = color;
+					for (int& color : colors)
+					{
+						colorsHex.push_back(ColorToHexString(color));
+					}
+					responseJson["color"] = colorsHex;
 					responseJson["newLine"] = newLine;
 					std::cout << "\n\n TRIMIS " << username << "\n\n";
 				}
@@ -425,7 +430,7 @@ void http::Routing<Color>::Run(Storage& storage)
 }
 
 template <>
-bool http::Routing<Color>::IsUnique(std::string email, std::string username, std::string password, Storage& storage)
+bool http::Routing<int>::IsUnique(std::string email, std::string username, std::string password, Storage& storage)
 {
 	UserDB userToCheck(-1, email, username, password);
 
@@ -443,7 +448,7 @@ bool http::Routing<Color>::IsUnique(std::string email, std::string username, std
 }
 
 template <>
-bool http::Routing<Color>::AuthentificationCheck(std::string username, std::string password, Storage& storage)
+bool http::Routing<int>::AuthentificationCheck(std::string username, std::string password, Storage& storage)
 {
 
 	UserDB userToCheck(-1, "", username, password);
@@ -456,46 +461,46 @@ bool http::Routing<Color>::AuthentificationCheck(std::string username, std::stri
 	return false;
 }
 
-bool http::Routing<Color>::GetGameExists() const
+bool http::Routing<int>::GetGameExists() const
 {
 	return m_gameExists;
 }
 
-void http::Routing<Color>::SetGameExists(const bool& gameExists)
+void http::Routing<int>::SetGameExists(const bool& gameExists)
 {
 	m_gameExists = gameExists;
 }
 
 template <>
-void http::Routing<Color>::SetGameMaster(const std::string& name)
+void http::Routing<int>::SetGameMaster(const std::string& name)
 {
 	m_gameMaster = name;
 }
 
-std::string http::Routing<Color>::GetGameMaster() const
+std::string http::Routing<int>::GetGameMaster() const
 {
 	return m_gameMaster;
 }
 
-bool http::Routing<Color>::IsGameMaster(const std::string& name)
+bool http::Routing<int>::IsGameMaster(const std::string& name)
 {
 	if (m_gameMaster == name)
 		return true;
 	return false;
 }
 
-void http::Routing<Color>::SetCurrentWord(const std::string& word)
+void http::Routing<int>::SetCurrentWord(const std::string& word)
 {
 	m_currentWord = word;
 }
 
-std::string http::Routing<Color>::GetCurrentWord() const
+std::string http::Routing<int>::GetCurrentWord() const
 {
 	return m_currentWord;
 }
 
 template <>
-void http::Routing<Color>::PopulateVectorWords(Storage& storage)
+void http::Routing<int>::PopulateVectorWords(Storage& storage)
 {
 	std::vector<Word> wordsVector;
 	for (int i = 0; i < 4 * m_game.GetPlayers().size(); i++)

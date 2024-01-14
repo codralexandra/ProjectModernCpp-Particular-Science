@@ -158,7 +158,7 @@ void drawingWidget::sendPixelToServer(const QPointF& pos)
         jsonPayload["x"] = static_cast<double>(pos.x());;
         jsonPayload["y"] = static_cast<double>(pos.y());;
         jsonPayload["penWidth"] = penWidth;
-        //  jsonPayload["color"] = penColor.name().toUtf8();
+        jsonPayload["color"] = penColor.name().toUtf8();
         jsonPayload["newLine"] = newLine;
         std::string jsonString = jsonPayload.dump();
 
