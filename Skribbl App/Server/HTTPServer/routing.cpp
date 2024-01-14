@@ -79,10 +79,6 @@ void http::Routing<int>::Run(Storage& storage)
 			if (!jsonData) {
 				return crow::response(400, "Invalid JSON format");
 			}
-			if (m_game.GetPlayers().size() < 1)
-			{
-				return crow::response(400, "Not enough players");
-			}
 			uint16_t id;
 			std::random_device RD; 
 			std::mt19937 engine(RD()); 
@@ -179,7 +175,7 @@ void http::Routing<int>::Run(Storage& storage)
 		}
 
 		jsonResponse2["gameHistory"] = gameHistory;
-		return crow::response(200, jsonResponse2);
+		return jsonResponse2.dump();
 			});
 
 	
@@ -191,7 +187,9 @@ void http::Routing<int>::Run(Storage& storage)
 		{
 			playerScores.push_back(it.second.GetPersonalScore());
 			playersUsernames.push_back(it.first);
+			std::cout << "\n\n\n\n\n" << it.first << " " << it.second.GetPersonalScore() << "\n\n\n\n";
 		}
+
 		jsonSendPackage["playerScores"] = playerScores;
 		jsonSendPackage["playersUsernames"] = playersUsernames;
 		return crow::response(200, jsonSendPackage);
@@ -363,7 +361,7 @@ void http::Routing<int>::Run(Storage& storage)
 				}
 				if (m_game.GetGameEnded() == true)
 				{
-					responseJson["GameState"] = true;
+					/*responseJson["GameState"] = true;
 					std::vector<int> playerScores;
 					std::vector<std::string> playersUsernames;
 					for (const auto& it : m_game.GetPlayers())
@@ -372,7 +370,7 @@ void http::Routing<int>::Run(Storage& storage)
 						playersUsernames.push_back(it.first);
 					}
 					responseJson["playerScores"] = playerScores;
-					responseJson["playersUsernames"] = playersUsernames;
+					responseJson["playersUsernames"] = playersUsernames;*/
 					return crow::response(202, responseJson);
 				}
 				return crow::response(200, responseJson);

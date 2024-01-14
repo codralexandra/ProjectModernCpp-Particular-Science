@@ -60,7 +60,7 @@
 		std::unordered_map<std::string,Player> m_players;
 		Difficulty m_difficulty;
 		LobbyState m_lobbyState;
-		static constexpr uint16_t m_rounds = 4;
+		static constexpr uint16_t m_rounds = 1;
 		std::vector<Word> m_words;
 		std::unique_ptr<Round> m_round;
 		uint16_t m_gameID;

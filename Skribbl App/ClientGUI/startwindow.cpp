@@ -21,6 +21,7 @@ StartWindow::StartWindow(QWidget* parent)
 	ui.widthSlider->setMinimum(0);
 	ui.widthSlider->setMaximum(10);
 	connect(ui.widthSlider, &QSlider::valueChanged, ui.drawingView, &drawingWidget::setPenWidth);
+	//connect(this, &StartWindow::startScoresWindow, this, &StartWindow::onStartScoresWindow);
 }
 
 StartWindow::~StartWindow()
@@ -132,6 +133,45 @@ void StartWindow::onUpdateGuess() {
 	ui.notDrawingWidget->setVisible(false);
 	update();
 }
+
+	void StartWindow::onStartScoresWindow()
+	{
+		ScoreWindow* scoreWindow = new ScoreWindow;
+		auto response = cpr::Get(cpr::Url{ "http://localhost:18080/game/playerScores" });
+		crow::json::rvalue responseBody = crow::json::load(response.text);
+		const auto& valuePlayerUsernames = responseBody["playersUsernames"];
+		const auto& valuePlayerScores = responseBody["playerScores"];
+		QString itemText;
+		std::vector<int>playerScores;
+		std::vector<std::string> playerUsernames;
+		for (size_t i = 0; i < valuePlayerUsernames.size(); ++i) {
+
+			playerScores.push_back(valuePlayerScores[i].i());
+			playerUsernames.push_back(valuePlayerUsernames[i].s());
+
+		}
+		for (int i = 0; i < playerScores.size(); i++)
+		{
+			itemText += QString("Username: ");
+			itemText += QString::fromUtf8(playerUsernames[i]);
+			itemText += QString(" - ");
+			itemText += QString::number(playerScores[i]);
+			itemText += '\n';
+
+		}
+
+		scoreWindow->SetScoreListText(itemText);
+
+		std::string winner = playerUsernames[0];
+
+		QString winnerLabel = QString("Congratulations!") + QString::fromUtf8(winner) + QString("has won!");
+
+		scoreWindow->SetWinnerLabelText(QString::fromStdString(winner));
+		scoreWindow->getPlayerScores(crow::json::load(response.text));
+		scoreWindow->show();
+		//this->close();ScoreWindow* scoreWindow = new ScoreWindow;
+	
+	}
 
 void StartWindow::on_blackButton_clicked()
 {
@@ -266,31 +306,7 @@ void StartWindow::waitInLobby() {
 		}
 		if (responseBody.has("GameEnded"))
 		{
-			ScoreWindow* scoreWindow = new ScoreWindow;
-			//auto response = cpr::Get(cpr::Url{ "http://localhost/game/playerScores" });
-			std::vector<std::string>playerUsernames{ responseBody["playersUsernames"].begin(),responseBody["playersUsernames"].end() };
-			std::vector<int>playerScores{ responseBody["playerScores"].begin(),responseBody["playerScores"].end() };
-			QString itemText;
-			for (int i = 0; i < playerScores.size(); i++)
-			{
-				itemText += QString("Username: ");
-				itemText += QString::fromUtf8(playerUsernames[i]);
-				itemText += QString(" - ");
-				itemText += QString::number(playerScores[i]);
-				itemText += '\n';
-
-			}
-
-			scoreWindow->SetScoreListText(itemText);
-
-			std::string winner = playerUsernames[0];
-
-			QString winnerLabel = QString("Congratulations!") + QString::fromUtf8(winner) + QString("has won!");
-
-			scoreWindow->SetWinnerLabelText(QString::fromStdString(winner));
-			scoreWindow->getPlayerScores(crow::json::load(response.text));
-			scoreWindow->show();
-			//this->close();
+			
 		}
 		//add pixel
 	} while (response.status_code == 200);
@@ -298,6 +314,10 @@ void StartWindow::waitInLobby() {
 	if (response.status_code == 201) {
 		// Schedule updateGameWindow to be called in the main thread
 		//QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
+	}
+	if (response.status_code == 202)
+	{
+		QMetaObject::invokeMethod(this, "onStartScoresWindow", Qt::QueuedConnection);
 	}
 }
 //void StartWindow::fastRoute()

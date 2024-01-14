@@ -31,6 +31,7 @@ public:
 	void fastRoute();
 	void clearDrawingFunction();
 	void clearDrawingSlot();
+	//void onStartScoresWindow();
 
 signals:
 	void updateTextEdit(const QString& text);
@@ -38,9 +39,11 @@ signals:
 	void updateGuess();
 	void updateDrawing(double x, double y, const QString& penColor, uint32_t penWidth, bool newLine);
 	void clearDrawingSignal();
+	void startScoresWindow();
 
 private slots:
 	void handleThemeChanged(const QString& styleSheet);
+	void onStartScoresWindow();
 	void on_blackButton_clicked();
 	void on_redButton_clicked();
 	void on_blueButton_clicked();

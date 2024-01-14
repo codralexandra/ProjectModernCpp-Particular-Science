@@ -4,7 +4,7 @@ ScoreWindow::ScoreWindow(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	this->setStyleSheet(themeManager->getCurrentStyleSheet());
+	//this->setStyleSheet(themeManager->getCurrentStyleSheet());
 }
 
 ScoreWindow::~ScoreWindow()
