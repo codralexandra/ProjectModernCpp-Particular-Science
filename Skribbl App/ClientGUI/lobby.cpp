@@ -7,6 +7,8 @@
 #include<thread>
 #include <functional>
 #include<chrono>
+#include <QtWebSockets/qwebsocket.h>
+
 
 Lobby::Lobby(QWidget* parent)
 	: QWidget(parent)
@@ -120,16 +122,54 @@ bool Lobby::GetGameMaster() const
 //		}
 //	}
 //}
-void Lobby::waitInLobby() {
-	cpr::Response response;
-	do {
-		response = cpr::Get(cpr::Url{"http://localhost:18080/lobby/waiting"});
-	} while (response.status_code == 201);
+ 
+ 
 
-	if (response.status_code == 200) {
-		// Schedule updateGameWindow to be called in the main thread
-		QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
-	}
+//void Lobby::waitInLobby() {
+//	cpr::Response response;
+//	do {
+//		response = cpr::Get(cpr::Url{"http://localhost:18080/lobby/waiting"});
+//	} while (response.status_code == 201);
+//
+//	if (response.status_code == 200) {
+//		// Schedule updateGameWindow to be called in the main thread
+//		QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
+//	}
+//}
+
+
+void Lobby::waitInLobby()
+{
+	QWebSocket webSocket;
+	QObject::connect(&webSocket, &QWebSocket::connected, [&webSocket]() {
+		qDebug() << "WebSocket Lobby Connected";
+		});
+	QEventLoop eventLoop;
+	QObject::connect(&webSocket, &QWebSocket::textMessageReceived, [this, &webSocket, &eventLoop](const QString& message) {
+		qDebug() << "WebSocket Lobby Message Received! " << message;
+
+		// Check if the received message matches a certain criteria
+		if (message == "Game is starting") {
+			qDebug() << "Received the expected message.";
+
+			// Perform actions, e.g., update the game window
+			QMetaObject::invokeMethod(this, "updateGameWindow", Qt::QueuedConnection);
+
+			// Stop the event loop (if needed)
+			eventLoop.quit();
+		}
+		});
+
+	// Connect to the WebSocket server
+	qDebug() << "Connecting to WebSocket server...";
+	webSocket.open(QUrl("ws://localhost:18080/lobby/waiting/socket"));
+
+	// Start the event loop to keep the application running
+	qDebug() << "Starting the event loop...";
+	eventLoop.exec();
+	qDebug() << "Event loop exited.";
+
+
 }
 
 void Lobby::updateGameWindow() {

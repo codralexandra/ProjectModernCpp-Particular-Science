@@ -8,6 +8,8 @@
 #include "lobbystate.h"
 #include "startwindow.h"
 #include "thememanager.h";
+#include <crow/websocket.h>
+
 
 class Lobby : public QWidget
 {
