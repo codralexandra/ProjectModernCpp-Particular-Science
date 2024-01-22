@@ -83,7 +83,7 @@ void Round::Score_Player_Drawing(Player& p, std::unordered_map<std::string,Playe
 	auto totalTime = std::accumulate(firstIt, lastIt, 0.0,
 		[](double sum, const std::pair<const std::string, Player>& playerPair) {
 			const Player& player = playerPair.second;
-			return (!player.GetIsDrawer()) ? sum + player.GetTimeGuessed() : sum;
+			return (player.GetIsDrawer()) ? sum + player.GetTimeGuessed() : sum;
 		}
 	);
 	
@@ -104,7 +104,7 @@ void Round::Score_Player_Guessing(std::unordered_map<std::string,Player>& p)
 	{
 		std::cout << "Time for player: " << player.second.GetUsername() << " " << player.second.GetTimeGuessed()<<" and last score\n";
 		std::cout << player.second.GetPersonalScore()<<std::endl;
-		if (player.second.GetIsDrawer() == false)
+		if (player.second.GetIsDrawer() == true)
 		{
 			if (player.second.GetTimeGuessed() == 60)
 			{
